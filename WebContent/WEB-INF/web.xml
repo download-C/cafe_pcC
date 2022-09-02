@@ -9,4 +9,65 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 1. board(게시판) *.bo -->
+  <servlet>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BoardFrontController</servlet-name>
+  	<url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 2. cart(카트) *.ca -->
+  <servlet>
+  	<servlet-name>CartFrontController</servlet-name>
+  	<servlet-class>com.pcc.cart.action.CartFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CartFrontController</servlet-name>
+  	<url-pattern>*.ca</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 3. member(회원) *.me -->
+  <servlet>
+  	<servlet-name>MemberFrontController</servlet-name>
+  	<servlet-class>com.pcc.member.action.MemberFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MemberFrontController</servlet-name>
+  	<url-pattern>*.me</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 4. order(주문) *.or -->
+  <servlet>
+  	<servlet-name>OrderFrontController</servlet-name>
+  	<servlet-class>com.pcc.order.action.OrderFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrderFrontController</servlet-name>
+  	<url-pattern>*.or</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 5. product(제품) *.pr -->
+  <servlet>
+  	<servlet-name>ProductFrontController</servlet-name>
+  	<servlet-class>com.pcc.product.action.ProductFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ProductFrontController</servlet-name>
+  	<url-pattern>*.pr</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 6. reservation(예약) *.re -->
+  <servlet>
+  	<servlet-name>ReservationFrontController</servlet-name>
+  	<servlet-class>com.pcc.reservation.action.ReservationFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReservationFrontController</servlet-name>
+  	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

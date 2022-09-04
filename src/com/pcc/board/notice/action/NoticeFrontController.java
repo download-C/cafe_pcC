@@ -1,4 +1,4 @@
-package com.pcc.board.action;
+package com.pcc.board.notice.action;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import vo.ActionForward;
 
-public class BoardFrontController extends HttpServlet {
+public class NoticeFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
@@ -34,13 +34,88 @@ public class BoardFrontController extends HttpServlet {
 		System.out.println();
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
-// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .bo로 끝나는 주소 사용) -------------
+// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .no로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
+		if(command.equals("/NoticeWrite.no")) {
+			forward = new ActionForward();
+			forward.setPath("./notice/noticeWriteForm.jsp");
+			forward.setRedirect(false);
+		}
 		
+		else if(command.equals("/NoticeWriteAction.no")) {
+			action = new NoticeWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/NoticeList.no")) {
+			
+			action = new NoticeListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/NoticeContent.no")){
+			
+			action = new NoticeContentAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/NoticeModifyForm.no")){
+			action = new NoticeModifyFormAction();
+				try {
+					action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}
+		
+		else if(command.equals("/NoticeModifyFormAction.no")){
+			
+				try {
+					forward = new ActionForward();
+					forward.setPath("./notice/noticeModifyForm.jsp");
+					forward.setRedirect(false);
+							
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}
+		
+		else if(command.equals("/NoticeModifyAction.no")){
+			action = new NoticeModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
@@ -50,6 +125,7 @@ public class BoardFrontController extends HttpServlet {
 		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
 		if(forward != null) {
+			System.out.println("forward는 null이 아닙니다");
 			// 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
 			if(forward.isRedirect()) {
 				System.out.println(" Controller : true");
@@ -64,7 +140,9 @@ public class BoardFrontController extends HttpServlet {
 				System.out.println(forward.getPath()+" 이동");
 				System.out.println("방식 : forward() 방식");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+				System.out.println("dis 성공!");
 				dis.forward(request, response);
+				System.out.println("forward 성공!");
 			}
 		}
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");

@@ -10,17 +10,37 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- 1. board(게시판) *.bo -->
+  <!-- 1. Notice(공지사항 게시판) *.no -->
   <servlet>
-  	<servlet-name>BoardFrontController</servlet-name>
-  	<servlet-class>com.pcc.board.action.BoardFrontController</servlet-class>
+  	<servlet-name>NoticeFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.notice.action.NoticeFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>BoardFrontController</servlet-name>
-  	<url-pattern>*.bo</url-pattern>
+  	<servlet-name>NoticeFrontController</servlet-name>
+  	<url-pattern>*.no</url-pattern>
   </servlet-mapping>
   
-  <!-- 2. cart(카트) *.ca -->
+  <!-- 2. QnA(QnA 게시판) *.qna -->
+  <servlet>
+  	<servlet-name>QnAFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.action.QnAFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>QnAFrontController</servlet-name>
+  	<url-pattern>*.qna</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 3. Review(리뷰 게시판) *.rv -->
+  <servlet>
+  	<servlet-name>ReviewFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.action.ReviewFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReviewFrontController</servlet-name>
+  	<url-pattern>*.rv</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 4. cart(카트) *.ca -->
   <servlet>
   	<servlet-name>CartFrontController</servlet-name>
   	<servlet-class>com.pcc.cart.action.CartFrontController</servlet-class>
@@ -30,7 +50,7 @@
   	<url-pattern>*.ca</url-pattern>
   </servlet-mapping>
   
-    <!-- 3. member(회원) *.me -->
+    <!-- 5. member(회원) *.me -->
   <servlet>
   	<servlet-name>MemberFrontController</servlet-name>
   	<servlet-class>com.pcc.member.action.MemberFrontController</servlet-class>
@@ -40,7 +60,7 @@
   	<url-pattern>*.me</url-pattern>
   </servlet-mapping>
   
-    <!-- 4. order(주문) *.or -->
+    <!-- 6. order(주문) *.or -->
   <servlet>
   	<servlet-name>OrderFrontController</servlet-name>
   	<servlet-class>com.pcc.order.action.OrderFrontController</servlet-class>
@@ -60,7 +80,7 @@
   	<url-pattern>*.pr</url-pattern>
   </servlet-mapping>
   
-    <!-- 6. reservation(예약) *.re -->
+    <!-- 7. reservation(예약) *.re -->
   <servlet>
   	<servlet-name>ReservationFrontController</servlet-name>
   	<servlet-class>com.pcc.reservation.action.ReservationFrontController</servlet-class>

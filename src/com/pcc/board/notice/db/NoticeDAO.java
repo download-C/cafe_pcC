@@ -68,8 +68,11 @@ public class NoticeDAO {
 			try {
 				con = getConnect();
 				sql = "select max(notice_num) from notice_boards";
+				System.out.println("select문 성공!");
 				pstmt = con.prepareStatement(sql);
+				System.out.println("pstmt 성공!");
 				rs = pstmt.executeQuery();
+				System.out.println("RS 성공!");
 				
 				if(rs.next()) {
 					notice_num = rs.getInt(1)+1;
@@ -207,7 +210,7 @@ public class NoticeDAO {
 		
 	}
 
-	public NoticeDTO getNoticeBoard(int notice_num) {
+	public NoticeDTO getNoticeContent(int notice_num) {
 		System.out.println("getNoticeBoard() 호출");
 		NoticeDTO dto = null;
 		
@@ -220,7 +223,7 @@ public class NoticeDAO {
 			
 			if(rs.next()) {
 				dto = new NoticeDTO();
-				dto.setNotice_num(rs.getInt("notice_num"));
+				dto.setNotice_num(notice_num);
 				dto.setNotice_subject(rs.getString("notice_subject"));
 				dto.setNotice_content(rs.getString("notice_content"));
 				dto.setNotice_readcount(rs.getInt("notice_readcount"));
@@ -237,7 +240,7 @@ public class NoticeDAO {
 	}
 
 	// 7. 공지사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
-	public NoticeDTO getNoticeModifyForm(int notice_num) {
+	public NoticeDTO getNoticeUpdate(int notice_num) {
 		NoticeDTO dto = null;
 		
 		try {
@@ -268,7 +271,7 @@ public class NoticeDAO {
 	}
 	
 	// 8. 공지사항 글 수정 메서드 -----------------------------------------
-	public void NoticeModify(int notice_num) {
+	public void NoticeUpdate(int notice_num) {
 		NoticeDTO dto = null;
 		
 		try {

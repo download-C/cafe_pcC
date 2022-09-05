@@ -9,31 +9,26 @@ import com.pcc.board.notice.db.NoticeDTO;
 import action.Action;
 import vo.ActionForward;
 
-public class NoticeModifyAction implements Action {
+public class NoticeUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("NoticeModifyAction_execute() 호출");
 		
-		request.setCharacterEncoding("UTF-8");
-		
+		System.out.println("NoticeUpdateAction_execute() 호출");
+		 
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-		String pageNum = request.getParameter("page_Num");
 		
-		NoticeDTO dto = new NoticeDTO();
-		request.setAttribute("pageNum", pageNum);
+		NoticeDAO dao = new NoticeDAO();
 		
-		System.out.println("NoticeDTO 객체 생성");
+		NoticeDTO dto = dao.getNoticeContent(notice_num);
 		
-		// DB에 저장된 공지사항 글 정보 불러오기
-		
-		
-	
+		request.setAttribute("dto", dto);
+		request.setAttribute("notice_num", notice_num);
 		
 		ActionForward forward = new ActionForward();
-
-
+		forward.setPath("/NoticeUpdateFormAction.no");
+		forward.setRedirect(false);
 		
 		return forward;
 	}

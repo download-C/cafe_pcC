@@ -11,7 +11,7 @@
 	<!-- 공지사항 게시판 등록 -->
 	<fieldset id="noticeModifyForm">
 		<h3>공지사항 글 수정하기</h3>
-		<form action="./NoticeModifyAction.no" method="post">
+		<form action="./NoticeUpdateAction.no" method="post">
 		<div>
 			<table>
 				<tr><td>
@@ -20,10 +20,10 @@
 				</td></tr>
 				<tr><td>
 					<textarea rows="30" cols="100" name="notice_content" id="notice_content"
-				      ></textarea>
+				      >${dto.notice_content }</textarea>
 				</td></tr>
 				<tr><td>
-					<input type="file" name="notice_file" id="notice_file" value="${dto.file }">
+					<input type="file" name="notice_file" id="notice_file" value="">
 				</td></tr>
 			</table>
 		</div>

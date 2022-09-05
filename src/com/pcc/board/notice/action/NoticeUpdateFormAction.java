@@ -9,31 +9,25 @@ import com.pcc.board.notice.db.NoticeDTO;
 import action.Action;
 import vo.ActionForward;
 
-public class NoticeContentAction implements Action {
+public class NoticeUpdateFormAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, 
-			HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("NoticeContentAction_execute() 호출");
+		System.out.println("NoticeUpdateFormAction_execute() 호출");
+		
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-		String pageNum = request.getParameter("pageNum");
 		
 		NoticeDAO dao = new NoticeDAO();
+		NoticeDTO dto = dao.getNoticeUpdate(notice_num);
 		
-		dao.updateReadCount(notice_num);
-		System.out.println("조회수 1 증가");
-		
-		NoticeDTO dto = dao.getNoticeContent(notice_num);
 		request.setAttribute("dto", dto);
-		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("notice_num", notice_num);
 		
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./notice/noticeContent.jsp");
-		forward.setRedirect(false);
-			
+		forward.setPath("./notice/noticeUpdateForm.jsp");
 		return forward;
 	}
 

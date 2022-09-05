@@ -70,7 +70,7 @@ public class NoticeFrontController extends HttpServlet {
 			
 			action = new NoticeContentAction();
 			try {
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -83,33 +83,20 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		}
 		
-		else if(command.equals("/NoticeModifyForm.no")){
-			action = new NoticeModifyFormAction();
-				try {
-					action.execute(request, response);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		else if(command.equals("/NoticeUpdateAction.no")) {
+			action = new NoticeUpdateAction();
 			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+
 		
-		else if(command.equals("/NoticeModifyFormAction.no")){
-			
-				try {
-					forward = new ActionForward();
-					forward.setPath("./notice/noticeModifyForm.jsp");
-					forward.setRedirect(false);
-							
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-		}
-		
-		else if(command.equals("/NoticeModifyAction.no")){
-			action = new NoticeModifyAction();
+		else if(command.equals("/NoticeUpdateFormAction.no")){
+			action = new NoticeUpdateFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

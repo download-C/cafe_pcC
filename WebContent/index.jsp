@@ -12,6 +12,8 @@
 // 		response.sendRedirect("./NoticeWrite.no");
 	
 		response.sendRedirect("./NoticeList.no");
+		
+// 		response.sendRedirect("./NoticeContent.no");
 	%>
 
 

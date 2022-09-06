@@ -83,8 +83,8 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		}
 		
-		else if(command.equals("/NoticeUpdateAction.no")) {
-			action = new NoticeUpdateAction();
+		else if(command.equals("/NoticeUpdate.no")) {
+			action = new NoticeUpdate();
 			
 			try {
 				forward = action.execute(request, response);
@@ -94,15 +94,29 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		}
 
+//		else if(command.equals("/NoticeUpdateForm.no")){
+//			action = new NoticeUpdateFormAction();
+//			try {
+//				forward = new ActionForward();
+//				forward.setPath("./notice/noticeUpdateForm.jsp");
+//				forward.setRedirect(false);
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
-		else if(command.equals("/NoticeUpdateFormAction.no")){
-			action = new NoticeUpdateFormAction();
+		else if(command.endsWith("/NoticeUpdateAction.no")){
+			action = new NoticeUpdateAction();
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
 		
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------

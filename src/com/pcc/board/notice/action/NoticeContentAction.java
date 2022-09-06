@@ -19,13 +19,14 @@ public class NoticeContentAction implements Action {
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		String pageNum = request.getParameter("pageNum");
-		
-		NoticeDAO dao = new NoticeDAO();
-		
-		dao.updateReadCount(notice_num);
-		System.out.println("조회수 1 증가");
-		
-		NoticeDTO dto = dao.getNoticeContent(notice_num);
+		NoticeDTO dto = new NoticeDTO();
+//		if(dto.getMgr_num() != 1234) {
+			NoticeDAO dao = new NoticeDAO();
+			dao.updateReadCount(notice_num);
+			System.out.println("조회수 1 증가");
+			dto = dao.getNoticeContent(notice_num);
+//		}
+				
 		request.setAttribute("dto", dto);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("notice_num", notice_num);

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>noticeContent</title>
+<title>공지사항 확인하기</title>
 </head>
 <body>
 	<fieldset>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td><input type="button" name="notice_update" value="수정"
-				     onclick="location.href='./NoticeUpdateAction.no?notice_num=${dto.notice_num}';"></td>
+				     onclick="location.href='./NoticeUpdate.no?notice_num=${dto.notice_num}';"></td>
 				<td><input type="button" name="notice_delete" value="삭제"
 				onclick=""></td>
 				<td><input type="button" name="notice_list" value="목록" 

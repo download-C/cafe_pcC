@@ -9,24 +9,27 @@ import com.pcc.board.notice.db.NoticeDTO;
 import action.Action;
 import vo.ActionForward;
 
-public class NoticeUpdateFormAction implements Action {
+public class NoticeUpdate implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
 		
-		System.out.println("NoticeUpdateFormAction_execute() 호출");
-		
-		
+		System.out.println("NoticeUpdateAction_execute() 호출");
+		 
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
 		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = dao.getNoticeUpdateContent(notice_num);
+		
+		NoticeDTO dto = dao.getNoticeContent(notice_num);
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("notice_num", notice_num);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./notice/noticeUpdateForm.jsp");
+		forward.setRedirect(false);
+		
 		return forward;
 	}
 

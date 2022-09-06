@@ -13,6 +13,7 @@ public class NoticeDTO {
 	private Timestamp notice_date;			// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
 	private  String notice_file;			// 첨부파일
 	
+	
 	public int getNotice_num() {
 		return notice_num;
 	}

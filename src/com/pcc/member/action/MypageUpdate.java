@@ -14,6 +14,7 @@ public class MypageUpdate implements Action {
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		System.out.println(" M : MypageUpdate_execute() 호출 ");
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		// 전달정보 저장(비밀번호,이름,휴대폰번호)

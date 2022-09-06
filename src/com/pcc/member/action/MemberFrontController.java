@@ -40,7 +40,9 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
+		
 		// 2-2. 마이페이지 리스트 화면
+		
 		if(command.equals("/mypageList.me")){
 			forward = new ActionForward();
 			forward.setPath("./mypage/mypageList.jsp");
@@ -53,7 +55,9 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 		// 2-3. 마이페이지 수정 화면
+		
 		else if(command.equals("/mypageUpdate.me")){
 			action = new MypageUpdate();
 			try{
@@ -62,7 +66,9 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 마이페이지 삭제 화면
+		
+		// 2-4. 마이페이지 삭제 화면
+		
 		else if(command.equals("/mypageDelete.me")){
 			action = new MypageDelete();
 			try{

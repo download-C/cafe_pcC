@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>info.jsp</h1>
+    <h1>mypageList.jsp</h1>
      
      <%
        // 로그인 여부 체크

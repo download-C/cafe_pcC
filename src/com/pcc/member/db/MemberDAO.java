@@ -63,6 +63,7 @@ public class MemberDAO {
 	// 3.   -----------------------------------------
 	
 	// 마이페이지 리스트
+	
 	public MemberDTO memberList(MemberDTO dto){
 		System.out.println("\n DAO : memberList(BoardDTO dto) 호출 ");
 		
@@ -102,6 +103,7 @@ public class MemberDAO {
 	// 4.   -----------------------------------------
 	
 	// 마이페이지 수정
+	
 	public int updateMember(MemberDTO dto){
 		int result = -1;
 		
@@ -164,6 +166,7 @@ public class MemberDAO {
 	// 5.   -----------------------------------------
 	
 	// 마이페이지 삭제
+	
 	public int deleteMember(MemberDTO dto){
 		int result = -1;
 		

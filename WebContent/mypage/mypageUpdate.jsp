@@ -60,7 +60,7 @@
           %>
     	   <script type="text/javascript">
     	       alert("정보 수정 완료~!");
-    	       location.href="main.jsp";
+    	       location.href="";
     	   </script>
     	   <%
       }else if(result == 0){

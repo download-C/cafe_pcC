@@ -14,6 +14,7 @@ public class MypageDelete implements Action {
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		System.out.println(" M : MypageDelete_execute() 호출 ");
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		

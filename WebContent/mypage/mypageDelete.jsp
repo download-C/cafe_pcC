@@ -48,7 +48,7 @@
     	   %>
     	   <script type="text/javascript">
     	       alert("회원 탈퇴 성공");
-    	       loction.href="main.jsp";
+    	       loction.href="";
     	   </script>
     	   <% 
        }else if(result ==0){

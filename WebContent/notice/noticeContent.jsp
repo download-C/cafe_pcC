@@ -33,13 +33,20 @@
 				<td colspan="3">${dto.notice_file }</td>
 			</tr>
 			<tr>
-				<td><input type="button" name="notice_update" value="수정"
-				     onclick="location.href='./NoticeUpdate.no?notice_num=${dto.notice_num}';"></td>
-				<td><input type="button" name="notice_delete" value="삭제"
-				onclick=""></td>
-				<td><input type="button" name="notice_list" value="목록" 
-				     onclick="location.href='./NoticeList.no?pageNum=${pageNum}';"></td>
-				<td></td>
+				<td>
+					<input type="button" name="notice_update" value="수정"
+				     onclick="location.href='./NoticeUpdate.no?notice_num=${dto.notice_num}';">
+			    </td>
+				<td>
+					<input type="button" name="notice_delete" value="삭제"
+				    onclick="location.herf='./NoticeDelete.no?notice_num=${dto.notice_num}';">
+			    </td>
+				<td>
+					<input type="button" name="notice_list" value="목록" 
+				     onclick="location.href='./NoticeList.no?pageNum=${pageNum}';">
+			    </td>
+				<td>
+				</td>
 			</tr>
 		</table>
 	</fieldset>

@@ -40,12 +40,14 @@ public class NoticeFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
+		// 2-1. 공지사항 글 쓰기 양식
 		if(command.equals("/NoticeWrite.no")) {
 			forward = new ActionForward();
 			forward.setPath("./notice/noticeWriteForm.jsp");
 			forward.setRedirect(false);
 		}
 		
+		// 2-2. 공지사항 글 DB에 올리기
 		else if(command.equals("/NoticeWriteAction.no")) {
 			action = new NoticeWriteAction();
 			try {
@@ -54,42 +56,30 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+		// 2-3. 공지사항 게시판 목록으로 가기
 		else if(command.equals("/NoticeList.no")) {
-			
 			action = new NoticeListAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+		// 2-4. 선택한 공지사항 내용 보기
 		else if(command.equals("/NoticeContent.no")){
-			
 			action = new NoticeContentAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			try {
-				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+		// 2-5. 공지사항 수정 정보 불러오기
 		else if(command.equals("/NoticeUpdate.no")) {
 			action = new NoticeUpdate();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -105,15 +95,22 @@ public class NoticeFrontController extends HttpServlet {
 //				e.printStackTrace();
 //			}
 //		}
-		
-		else if(command.endsWith("/NoticeUpdateAction.no")){
+		// 2-6. 공지사항 수정 정보 DB에 반영하기
+		else if(command.equals("/NoticeUpdateAction.no")){
 			action = new NoticeUpdateAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		// 2-7. 공지사항 삭제하기
+		else if(command.equals("/NoticeDelete.no")){
+			action = new NoticeDelete();
+		}
+		
+		else if(command.equals("/NoticeDelete.no")){
+			action = new NoticeDelete();
 		}
 		
 		

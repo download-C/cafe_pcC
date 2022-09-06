@@ -26,7 +26,7 @@ public class NoticeListAction implements Action {
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		
-		if (pageNum == null) {
+		if (pageNum == null || pageNum == "") {
 			pageNum = "1";
 		}
 		

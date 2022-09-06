@@ -11,7 +11,7 @@
 	<!-- 공지사항 게시판 등록 -->
 	<fieldset>
 		<h3>공지사항 글 수정하기</h3>
-		<form action="./NoticeUpdateAction.no?notice_num=${dto.notice_num }" method="get">
+		<form action="./NoticeUpdateAction.no?notice_num=${dto.notice_num }&" method="get">
 		<div>
 			<table>
 				<tr>

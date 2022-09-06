@@ -27,7 +27,7 @@
 						   placeholder="내용을 입력하세요." ></textarea>
 				</td></tr>
 				<tr><td>
-					<input type="file" name="notice_file" id="notice_file">
+					<input type="file" name="notice_file" id="notice_file" >
 				</td></tr>
 			</table>
 		</div>

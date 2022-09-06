@@ -10,10 +10,9 @@
 	<%
 		// index.jps
 		
-		response.sendRedirect("./");
+  		response.sendRedirect("./ProductWrite.pr");
 	%>
 
-
-
+	
 </body>
 </html>

@@ -2,12 +2,12 @@ package com.pcc.product.action;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import action.Action;
 import vo.ActionForward;
 
@@ -15,8 +15,7 @@ public class ProductFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("GET 방식, POST 방식 호출 - doGet(), doPost() 실행");
-		
+//		System.out.println(" GET 방식, POST 방식 호출 - doGet(), doPost() 실행");
 		System.out.println("--------- 1. 가상 주소 계산 시작 ---------");
 // 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
 			
@@ -31,15 +30,43 @@ public class ProductFrontController extends HttpServlet {
 			System.out.println(" Controller : command = "+command);
 		
 		System.out.println("--------- 1. 가상 주소 계산 완료 ---------");
-		System.out.println();
+		System.out.println(command);
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
-// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .pr로 끝나는 주소 사용) -------------
+ //2. 가상주소 매핑 (web.xml에 적혀있는 대로 .pr로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
+		//관리자계정 - 상품 등록 페이지
+		if(command.equals("/ProductWrite.pr")){
+			// 글쓰기 페이지 보여주기 (DB정보 필요없음)
+			System.out.println(" C : /ProductWrite.pr 호출 ");
+			System.out.println(" C : DB정보가 필요없음-view페이지로 이동 ");
+			
+			forward = new ActionForward();
+			forward.setPath("./product/writeForm.jsp");
+			forward.setRedirect(true);//디스패치 방식 -> 가상주소가 유지
+		}
+		
+		//상품 등록 넘기기
+		else if(command.equals("/ProductWriteAction.pr")){
+			System.out.println(" C : /ProductWriteAction.pr 호출 ");
+			System.out.println(" C : DB작업 o, 페이지 이동");
+			
+			// ProductWriteAction() 객체 생성
+			//ProductWriteAction pwAction = new ProductWriteAction();
+			action = new ProductWriteAction();
+			try {
+//			    forward = pwAction.execute(request, response);
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
 		
 		

@@ -5,7 +5,7 @@ package com.pcc.product.db;
 public class ProductDTO {
 	private int prod_num;
 	private String prod_name;
-	private int category;
+	private String category;
 	private int price;
 	
 	public int getProd_num() {
@@ -20,10 +20,10 @@ public class ProductDTO {
 	public void setProd_name(String prod_name) {
 		this.prod_name = prod_name;
 	}
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public int getPrice() {

@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
 // 제품 관련 모든 메서드를 생성하는 클래스
 
 public class ProductDAO {
@@ -61,7 +62,64 @@ public class ProductDAO {
 	
 	
 	// 3.   -----------------------------------------
-	
+	// 상품등록 글쓰기 - productWrite()
+	public void productWrite(ProductDTO dto){
+		System.out.println("\n DAO : productWrite(productDTO dto) 호출 ");
+		int prod_num = 0;  //글번호 저장 
+		
+		try {
+			//1.드라이버로드
+			//2.디비 연결
+			con = getConnect();
+			//3. sql 작성 & pstmt 객체
+			//  상품 번호(prod_num) 계산 (생성된 가장 마지막 상품번호 + 1)			
+			sql = "select max(prod_num) from products";
+			pstmt = con.prepareStatement(sql);
+			//4. sql 실행
+			rs = pstmt.executeQuery();//DB의 값을 다 가져오겠다
+			
+			// * 워크벤치 select 결과
+			//  - 삼각형 커서가 있을경우  rs.next() == true
+			//  - 원 커서가 있을 경우 rs.next() == false
+			//  - 커서가 없을경우  rs.next() == false
+			
+			// 5. 데이터 처리 (글번호 계산:마지막글번호 + 1)
+			if(rs.next()){//false -> 데이터 없음, true -> 데이터 있음
+				// getInt() => 컬럼의 값을 리턴, 만약에 값이 sql-null경우 0 리턴
+				//prod_num = rs.getInt()+1;
+				prod_num = rs.getInt("max(prod_num)")+1;
+			}
+			else {
+				prod_num = 1;
+			}
+			
+			System.out.println(" DAO : 상품번호 prod_num : " + prod_num);
+			
+			// 게시판 글 쓰기
+			// 3. sql작성 & pstmt 객체
+			sql = "insert into products values(?,?,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setInt(1, prod_num);
+			pstmt.setString(2, dto.getProd_name());
+			pstmt.setString(3, dto.getCategory());
+			pstmt.setInt(4, dto.getPrice());
+			
+			// 4. SQL 실행
+			pstmt.executeUpdate();//insert구문은 update사용
+			
+			System.out.println(" DAO : 글 작성 완료! ");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+	}
+	// 글쓰기 - productWrite()
 	
 	
 	

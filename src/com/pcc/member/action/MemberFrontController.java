@@ -40,8 +40,37 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		
-		
+		// 2-2. 마이페이지 리스트 화면
+		if(command.equals("/mypageList.me")){
+			forward = new ActionForward();
+			forward.setPath("./mypage/mypageList.jsp");
+			forward.setRedirect(false);
+			
+			action = new MypageListAction();
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		// 2-3. 마이페이지 수정 화면
+		else if(command.equals("/mypageUpdate.me")){
+			action = new MypageUpdate();
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		// 마이페이지 삭제 화면
+		else if(command.equals("/mypageDelete.me")){
+			action = new MypageDelete();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

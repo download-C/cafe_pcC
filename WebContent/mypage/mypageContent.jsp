@@ -35,20 +35,29 @@
        // dao.memberContent(dto);
        
      %>
-      <hr>
-      <h4> 아이디 : ${dto.mem_num }</h4>
-      <h4> 비밀번호 : ${dto.password }</h4>
-      <h4> 이름 : ${dto.name }</h4>
-      <h4> 휴대폰 번호 : ${dto.phone }</h4>
-      <h4> 회원가입일 : ${dto.reg_date }</h4>
-      
-      <form action="./mypageUpdate.me?mem_num=${dto.mem_num }" method="post">
-          <input type="submit" value="회원수정">
-       </form>
-      
-      <form action="./mypageDelete.me?mem_num=${dto.mem_num }" method="post">
-          <input type="submit" value="회원탈퇴">
-      </form>
+     <table border="1">
+        <tr>
+        <td>회원번호</td><td>${dto.mem_num }</td>
+        </tr>
+        <tr>
+        <td>휴대폰 번호</td><td>${dto.phone }</td>
+        </tr>
+        <tr>
+        <td>비밀번호</td><td>${dto.password }</td>
+        </tr>
+        <tr>
+        <td>이름</td><td>${dto.name }</td>
+        </tr>
+        <tr>
+        <td>회원가입일</td><td>${dto.reg_date }</td>
+        </tr>
+        <tr>
+        <td colspan="2">
+          <input type="submit" value="회원수정" onclick="location.href='./mypageUpdate.me?mem_num=${dto.mem_num }';">
+          <input type="submit" value="회원탈퇴" onclick="location.href='./mypageDelete.me?mem_num=${dto.mem_num }';">
+        </td>
+        </tr>
+      </table>
       
       
 </body>

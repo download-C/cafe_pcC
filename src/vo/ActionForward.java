@@ -2,7 +2,8 @@ package vo;
 
 public class ActionForward {
 	private String path; 
-	private boolean redirect;
+	private boolean isRedirect;
+	
 	public String getPath() {
 		return path;
 	}
@@ -10,9 +11,12 @@ public class ActionForward {
 		this.path = path;
 	}
 	public boolean isRedirect() {
-		return redirect;
+		return isRedirect;
 	}
-	public void setRedirect(boolean redirect) {
-		this.redirect = redirect;
+	public void setRedirect(boolean isRedirect) {
+		this.isRedirect = isRedirect;
 	}
+	
+	
+
 }

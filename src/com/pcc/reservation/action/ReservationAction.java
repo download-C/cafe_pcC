@@ -49,7 +49,7 @@ public class ReservationAction implements Action{
 		
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./Reservation.re");
+		forward.setPath("/Reservation.re");
 		forward.setRedirect(true);
 
 		

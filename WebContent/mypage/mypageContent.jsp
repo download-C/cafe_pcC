@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>mypageList.jsp</h1>
+    <h1>mypageContent.jsp</h1>
      
      <%
        // 로그인 여부 체크
@@ -27,26 +27,26 @@
        // DB에 접근해서 해당유저(로그인한 유저)의 정보만 가져오기
        
        //MemberDAO 객체
-       MemberDAO dao = new MemberDAO();
+       // MemberDAO dao = new MemberDAO();
      
        // 정보조회 메서드 호출
-       MemberDTO dto = new MemberDTO();
+       // MemberDTO dto = new MemberDTO();
        
-       dao.memberList(dto);
+       // dao.memberContent(dto);
        
      %>
       <hr>
-      <h4> 아이디 : <%=dto.getMem_num() %></h4>
-      <h4> 비밀번호 : <%=dto.getPassword() %></h4>
-      <h4> 이름 : <%=dto.getName() %></h4>
-      <h4> 휴대폰 번호 : <%=dto.getPhone() %></h4>
-      <h4> 회원가입일 : <%=dto.getReg_date() %></h4>
+      <h4> 아이디 : ${dto.mem_num }</h4>
+      <h4> 비밀번호 : ${dto.password }</h4>
+      <h4> 이름 : ${dto.name }</h4>
+      <h4> 휴대폰 번호 : ${dto.phone }</h4>
+      <h4> 회원가입일 : ${dto.reg_date }</h4>
       
-      <form action="./mypageUpdate.me" method="post">
+      <form action="./mypageUpdate.me?mem_num=${dto.mem_num }" method="post">
           <input type="submit" value="회원수정">
        </form>
       
-      <form action="./mypageDelete.me" method="post">
+      <form action="./mypageDelete.me?mem_num=${dto.mem_num }" method="post">
           <input type="submit" value="회원탈퇴">
       </form>
       

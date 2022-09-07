@@ -10,7 +10,7 @@
 	<%
 		// index.jps
 		
-		response.sendRedirect("./mypageList.me");
+		response.sendRedirect("./mypageContent.me");
 	%>
 
 

@@ -43,12 +43,14 @@ public class MemberFrontController extends HttpServlet {
 		
 		// 2-2. 마이페이지 리스트 화면
 		
-		if(command.equals("/mypageList.me")){
+		if(command.equals("/mypageContent.me")){
+	        
+			action = new MyPageContentAction();
+			
 			forward = new ActionForward();
-			forward.setPath("./mypage/mypageList.jsp");
+			forward.setPath("./mypage/mypageContent.jsp");
 			forward.setRedirect(false);
 			
-			action = new MypageListAction();
 			try{
 				forward  = action.execute(request, response);
 			}catch(Exception e){

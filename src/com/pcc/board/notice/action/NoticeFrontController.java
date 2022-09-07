@@ -49,6 +49,7 @@ public class NoticeFrontController extends HttpServlet {
 		
 		// 2-2. 공지사항 글 DB에 올리기
 		else if(command.equals("/NoticeWriteAction.no")) {
+//			System.out.println(command);
 			action = new NoticeWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -65,6 +66,7 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 		// 2-4. 선택한 공지사항 내용 보기
 		else if(command.equals("/NoticeContent.no")){
 			action = new NoticeContentAction();
@@ -137,7 +139,8 @@ public class NoticeFrontController extends HttpServlet {
 				System.out.println(" Controller : false");
 				System.out.println(forward.getPath()+" 이동");
 				System.out.println("방식 : forward() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+				RequestDispatcher dis 
+				= request.getRequestDispatcher(forward.getPath());
 				System.out.println("dis 성공!");
 				dis.forward(request, response);
 				System.out.println("forward 성공!");

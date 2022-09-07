@@ -22,11 +22,7 @@ public class NoticeWriteAction implements Action {
 		
 	// 1. noticeWriteForm.jsp에서 받은 정보(제목, 내용, 첨부파일)를 담을 BoardDTO 생성 후 저장
 		NoticeDTO dto = new NoticeDTO();
-		System.out.println("NoticeDTO 객체 생성");
 
-//		dto.setNotice_subject(request.getParameter("notice_subject"));
-//		dto.setNotice_content(request.getParameter("notice_content"));
-//		dto.setNotice_file(request.getParameter("notice_file"));
 		dto.setNotice_subject(request.getParameter("notice_subject"));
 		dto.setNotice_content(request.getParameter("notice_content"));
 		dto.setNotice_file(request.getParameter("notice_file"));
@@ -37,10 +33,11 @@ public class NoticeWriteAction implements Action {
 	// 2. DB에 정보 저장
 		NoticeDAO dao = new NoticeDAO();
 		dao.noticeWrite(dto);
+
 		System.out.println("DAO 객체 생성 후 DB에 저장 완료");
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/NoticeList.no");
+		forward.setPath("");
 		forward.setRedirect(true);
 		System.out.println("NoticeList.no로 이동");
 		

@@ -79,8 +79,8 @@ public class NoticeDAO {
 				
 				if(rs.next()) {
 					notice_num = rs.getInt(1)+1;
-					System.out.println("notice_num "+notice_num+"으로 업데이트 완료");
 				}
+				System.out.println("notice_num "+notice_num+"으로 업데이트 완료");
 				
 				sql = "insert into notice_boards(notice_num, mgr_num, notice_subject, "
 					  +"notice_content, notice_readcount, notice_date, notice_file) "
@@ -89,6 +89,7 @@ public class NoticeDAO {
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, notice_num);
+			
 				pstmt.setString(2, dto.getNotice_subject());
 				pstmt.setString(3, dto.getNotice_content());
 				pstmt.setInt(4,  dto.getNotice_readcount());

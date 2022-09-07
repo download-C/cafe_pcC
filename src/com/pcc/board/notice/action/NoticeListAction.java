@@ -23,20 +23,20 @@ public class NoticeListAction implements Action {
 		
 	// 페이징 처리 1. DB 정보 호출 -------------------------------------
 		
-		int pageSize = 10;
-		String pageNum = request.getParameter("pageNum");
+		String urlPageSize = "5";
 		
-		if (pageNum == null || pageNum == "") {
+		urlPageSize = request.getParameter("pageSize");
+		if(urlPageSize == null) {
+			urlPageSize = "5";
+		}
+		
+		int pageSize = Integer.parseInt(urlPageSize);
+		
+		String pageNum = request.getParameter("pageNum");
+		if (pageNum == null) {
 			pageNum = "1";
 		}
-		
-		String urlPageSize = request.getParameter("pageSize");
-		if(urlPageSize == null) {
-			urlPageSize = "10";
-		}
-		
-		pageSize = Integer.parseInt(urlPageSize);
-		
+				
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1)*pageSize+1;
 		int endRow = currentPage*pageSize;
@@ -58,11 +58,12 @@ public class NoticeListAction implements Action {
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		System.out.println("페이징 처리 완료");
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./notice/noticeList.jsp");
 		forward.setRedirect(false);
-
+		System.out.println("noticeList.jsp로 이동");
 		return forward;
 
 	}

@@ -7,6 +7,8 @@
 <title>NoticeList.jsp</title>
 </head>
 <body>
+<input type="button" name="noticeWrite" value="새 글 쓰기(new)"
+ onclick="location.href='./NoticeWrite.no';">
 	<fieldset>
 		<table>
 			<tr>

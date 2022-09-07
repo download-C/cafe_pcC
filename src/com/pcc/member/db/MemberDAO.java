@@ -64,8 +64,8 @@ public class MemberDAO {
 	
 	// 마이페이지 리스트
 	
-	public MemberDTO memberList(MemberDTO dto){
-		System.out.println("\n DAO : memberList(BoardDTO dto) 호출 ");
+	public MemberDTO memberContent(MemberDTO dto){
+		System.out.println("\n DAO : memberContent(BoardDTO dto) 호출 ");
 		
 		try{
 			//1.드라이버로드
@@ -73,8 +73,13 @@ public class MemberDAO {
 			con = getConnect();
 			//3. sql 작성 & pstmt 객체
 			//  게시판 글번호(bno) 계산 (작성된 가장 마지막글번호 + 1)			
-			sql = "select * from members";
+			sql = "select * from members where mem_num=?";
 			pstmt = con.prepareStatement(sql);
+			
+			// ???
+			// pstmt.setInt(1, dto.getMem_num());
+			pstmt.setInt(1, 1);
+			
 			//4. sql 실행
 			rs = pstmt.executeQuery();
 			
@@ -114,50 +119,34 @@ public class MemberDAO {
 			// 3. sql & pstmt
 			// 1) 수정하려는 정보와 회원, 본인 여부 체크
 			// 2) 본인일때만, 정보수정
-			sql = "select pw from members where mem_num = ?";
+			sql = "update members set password=?, name=?, phone=?";
 			pstmt = con.prepareStatement(sql);
 			
 			// ???
-			pstmt.setInt(1, dto.getMem_num());
+			pstmt.setString(1, dto.getPassword());
+			pstmt.setString(2, dto.getPassword());
+			pstmt.setString(3, dto.getPassword());
 			
 		    // 4. sql 실행
-			rs = pstmt.executeQuery();
+			pstmt.executeUpdate();
 			
 			// 5. 데이터 처리
-			 // 2) 본인일때만, 정보수정
-			if(rs.next()){
-				//회원
-				if(dto.getPassword().equals(rs.getString("password"))){
-					//회원, 비밀번호 동일=>본인
-                    //회원, 비밀번호 동일=>본인
-					
-					// 3. sql (update) & pstmt
-					// 특정 사용자의 정보(이름,나이,성별,이메일)을 수정
-					sql="update members set password=? name=?  where id=?";
-				    pstmt = con.prepareStatement(sql);
-				    
-				    // ????
-				    pstmt.setString(1, dto.getPassword());
-				    pstmt.setString(2, dto.getName());
-				    pstmt.setInt(3, dto.getMem_num());
-				    
-					// 4. sql 실행
-					pstmt.executeUpdate();
-					
+			// 2) 본인일때만, 정보수정
+			if(Mem_num.equals()){
 					result = 1;
 					System.out.println("DAO : 정보 수정 완료!");
-				}else{
+			}else if () {
+				
 					//회원, 비밀번호 오류
 					result = 0;
-				}
 			}else{
 				//비회원
 				result = -1;
 			}
 			System.out.println(" DAO : 디비동작 처리 끝(수정처리)("+result+")");
-		} catch (Exception e) {
+		 } catch (Exception e) {
 			e.printStackTrace();
-		}
+		 }
 
 		return result;
 	}	
@@ -167,7 +156,7 @@ public class MemberDAO {
 	
 	// 마이페이지 삭제
 	
-	public int deleteMember(MemberDTO dto){
+	public int deleteMember(int mem_num){
 		int result = -1;
 		
 		
@@ -175,32 +164,13 @@ public class MemberDAO {
 			// 1.2. 디비연결
 			con = getConnect();
 			// 3. sql 생성 & pstmt 객체
-			sql = "select * from members where mem_num=?";
+			sql = "delete * from members where mem_num=?";
 			pstmt = con.prepareStatement(sql);
 			// ???
-			pstmt.setInt(1, dto.getMem_num());
+			pstmt.setInt(1, mem_num);
 			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터처리	
-			if(rs.next()){
-				if(dto.getPassword().equals(rs.getString("password"))){
-					// 본인
-					// 3. sql(delete) & pstmt 객체
-					sql = "delete from members where mem_num=?";
-					pstmt = con.prepareStatement(sql);
-					// ??? 
-					pstmt.setInt(1, dto.getMem_num());
-					// 4. sql 실행
-					result = pstmt.executeUpdate();
-					// result = 1;
-				}else{
-					// 비밀번호 오류
-                    result = 0;
-				}
-			}else{
-				// 비회원
-				result = -1;
-			}
+			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

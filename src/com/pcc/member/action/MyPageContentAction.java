@@ -9,7 +9,7 @@ import com.pcc.member.db.MemberDTO;
 import action.Action;
 import vo.ActionForward;
 
-public class MypageListAction implements Action {
+public class MyPageContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
@@ -21,17 +21,17 @@ public class MypageListAction implements Action {
 		// 전달정보 저장(제목,비밀번호,이름,내용)
 		MemberDTO dto = new MemberDTO();
 		
-		request.setAttribute("dto", dto);
-		
 		// DB에 정보 저장
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
 				
-		dao.memberList(dto);
+		dao.memberContent(dto);
+		
+		request.setAttribute("dto", dto);
 				
 		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/mypageList.jsp");
+		forward.setPath("./mypage/mypageContent.jsp");
 		forward.setRedirect(true);
 				
 		return forward;

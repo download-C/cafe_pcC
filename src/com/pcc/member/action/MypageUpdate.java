@@ -17,8 +17,10 @@ public class MypageUpdate implements Action {
 		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		// 전달정보 저장(비밀번호,이름,휴대폰번호)
-		// BoardDTO 객체 생성
+		
+		// 전달정보 저장
+		// int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		
 		MemberDTO dto = new MemberDTO();
 		
 		dto.setPassword(request.getParameter("password"));

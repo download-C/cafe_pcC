@@ -14,8 +14,8 @@
      
      <%
       // 로그인 정보 체크     
-      String id = (String)session.getAttribute("loginID");
-      if(id == null){
+      String mem_num = (String)session.getAttribute("loginMem_num");
+      if(mem_num == null){
     	  response.sendRedirect("");
       }
       // 전달된 정보 저장(pw)
@@ -28,7 +28,7 @@
        
      // 사용자 비밀번호를 입력 전달
      %>
-      <form action="deletePro.jsp" method="POST">
+      <form action="" method="POST">
          
         비밀번호 : <input type="password" name="password">
        
@@ -40,7 +40,7 @@
        // 회원탈퇴 메서드 호출
        MemberDTO dto = new MemberDTO();
       
-       int result = dao.deleteMember(dto);
+       int result = dao.deleteMember(dto.getMem_num());
        
        if(result == 1){
     	   // 탈퇴시 로그인 정보 삭제(세션값 삭제, 초기화)
@@ -48,7 +48,6 @@
     	   %>
     	   <script type="text/javascript">
     	       alert("회원 탈퇴 성공");
-    	       loction.href="";
     	   </script>
     	   <% 
        }else if(result ==0){

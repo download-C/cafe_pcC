@@ -18,17 +18,17 @@ public class MypageDelete implements Action {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// 전달정보 저장(제목,비밀번호,이름,내용)
-		MemberDTO dto = new MemberDTO();
+		// 전달정보 저장
+		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 		
-		dto.setPassword(request.getParameter("password"));
+		// MemberDTO dto = new MemberDTO();
 		
 		
 		// DB에 정보 저장
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
 				
-		dao.deleteMember(dto);
+		dao.deleteMember(mem_num);
 				
 		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();

@@ -14,8 +14,8 @@
      <h2>회원수정 페이지</h2>
      <%
        // 로그인 체크
-       String id = (String)session.getAttribute("loginID");
-       if(id == null){
+       String mem_num = (String)session.getAttribute("loginMem_num");
+       if(mem_num == null){
     	   response.sendRedirect("");
        }
        // 기존의 회원정보 화면 출력
@@ -27,7 +27,7 @@
      %>
      
      <fieldset>
-       <form action="updatePro.jsp" method="post" name="fr">
+       <form action="" method="post">
           아이디 : <input type="text" name="id" value="<%=dto.getMem_num()%>" readonly="readonly"> <br>
           비밀번호 : <input type="password" name="password"> <br>
           이름 : <input type="text" name="name" value="<%=dto.getName()%>"> <br>
@@ -52,7 +52,7 @@
      
      <%
      // 정보 수정메서드(비밀번호, 이름)
-      int result = dao.updateMember(dto);
+      int result = dao.updateMember(dto.getMem_num());
       
       // 페이지 이동
       if(result == 1){

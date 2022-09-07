@@ -1,13 +1,13 @@
 package com.pcc.product.action;
 
 import java.io.IOException;
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 import action.Action;
 import vo.ActionForward;
 
@@ -30,7 +30,6 @@ public class ProductFrontController extends HttpServlet {
 			System.out.println(" Controller : command = "+command);
 		
 		System.out.println("--------- 1. 가상 주소 계산 완료 ---------");
-		System.out.println(command);
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
  //2. 가상주소 매핑 (web.xml에 적혀있는 대로 .pr로 끝나는 주소 사용) -------------
@@ -53,13 +52,41 @@ public class ProductFrontController extends HttpServlet {
 		//상품 등록 넘기기
 		else if(command.equals("/ProductWriteAction.pr")){
 			System.out.println(" C : /ProductWriteAction.pr 호출 ");
-			System.out.println(" C : DB작업 o, 페이지 이동");
 			
 			// ProductWriteAction() 객체 생성
 			//ProductWriteAction pwAction = new ProductWriteAction();
 			action = new ProductWriteAction();
+			System.out.println(" C : DB작업 o, 페이지 이동");
 			try {
 //			    forward = pwAction.execute(request, response);
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//상품 리스트 보는 페이지
+		else if(command.equals("/ProductList.pr")){
+			System.out.println(" C : /ProductList.pr 호출");
+			System.out.println(" C : DB정보가 필요, 페이지 이동 X, 페이지 출력");
+			
+			//ProductListAction() 객체 생성
+			//ProductListAction listAction = new ProductListAction();
+			action = new ProductListAction();
+			try{
+				System.out.println(" C : 해당 Model 객체 호출");
+				forward = action.execute(request, response);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		//상품 상세 페이지 
+		else if (command.equals("/ProductContent.pr")) {
+			System.out.println(" C : /ProductContent.pr 호출 ");
+			System.out.println(" C : DB정보 사용, 출력");
+			
+			// ProductContentAction 객체
+			action = new ProductContentAction();
+			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -69,10 +96,11 @@ public class ProductFrontController extends HttpServlet {
 		
 		
 		
-		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");
 		System.out.println();
+		
+		
 		
 		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
@@ -95,7 +123,8 @@ public class ProductFrontController extends HttpServlet {
 			}
 		}
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
-		
+		System.out.println();
+
 	}
 
 	@Override

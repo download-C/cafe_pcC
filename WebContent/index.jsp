@@ -10,7 +10,12 @@
 	<%
 		// index.jps
 		
-  		response.sendRedirect("./ProductWrite.pr");
+		//상품 등록 페이지로 이동
+  		//response.sendRedirect("./ProductWrite.pr");
+	
+		//상품 리스트(Menu) 페이지 이동
+  		response.sendRedirect("./ProductList.pr");
+	
 	%>
 
 	

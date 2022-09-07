@@ -10,7 +10,7 @@
 	<%
 		// index.jps
 		
-		response.sendRedirect("./");
+		response.sendRedirect("./Reservation.re");
 	%>
 
 

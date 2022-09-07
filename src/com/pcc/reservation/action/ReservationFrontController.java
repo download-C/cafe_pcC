@@ -18,11 +18,11 @@ public class ReservationFrontController extends HttpServlet {
 		System.out.println("GET 방식, POST 방식 호출 - doGet(), doPost() 실행");
 		
 		System.out.println("--------- 1. 가상 주소 계산 시작 ---------");
-// 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
+		// 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
 			
 			// 1-1. URI 불러오기
 			String requestURI = request.getRequestURI();
-			System.out.println(" Controller : requestUIR = "+requestURI);
+			System.out.println(" Controller : requestURI = "+requestURI);
 			// 1-2. context Path 불러오기
 			String ctxPath = request.getContextPath();
 			System.out.println(" Controller : ctxPath = "+ctxPath);
@@ -38,6 +38,15 @@ public class ReservationFrontController extends HttpServlet {
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
+		
+		if(command.equals("/Reservation.re")){
+			System.out.println(" C : /Reservation.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./reservationForm.jsp");
+			forward.setRedirect(false);
+		} 
+	
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		

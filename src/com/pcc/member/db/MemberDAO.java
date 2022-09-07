@@ -109,8 +109,10 @@ public class MemberDAO {
 	
 	// 마이페이지 수정
 	
-	public int updateMember(MemberDTO dto){
-		int result = -1;
+	public void updateMember(MemberDTO dto){
+		String password = dto.getPassword();
+	    String name = dto.getName();
+	    int mem_num = dto.getMem_num();
 		
 		try {
 			// 1.2 디비연결
@@ -119,36 +121,24 @@ public class MemberDAO {
 			// 3. sql & pstmt
 			// 1) 수정하려는 정보와 회원, 본인 여부 체크
 			// 2) 본인일때만, 정보수정
-			sql = "update members set password=?, name=?, phone=?";
+			sql = "update members set password=?, name=? where mem_num=?";
 			pstmt = con.prepareStatement(sql);
 			
 			// ???
-			pstmt.setString(1, dto.getPassword());
-			pstmt.setString(2, dto.getPassword());
-			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(1, password);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, mem_num);
 			
 		    // 4. sql 실행
 			pstmt.executeUpdate();
 			
-			// 5. 데이터 처리
-			// 2) 본인일때만, 정보수정
-			if(Mem_num.equals()){
-					result = 1;
-					System.out.println("DAO : 정보 수정 완료!");
-			}else if () {
-				
-					//회원, 비밀번호 오류
-					result = 0;
-			}else{
-				//비회원
-				result = -1;
-			}
-			System.out.println(" DAO : 디비동작 처리 끝(수정처리)("+result+")");
+			
+			System.out.println(" DAO : 디비동작 처리 끝(수정처리)("+mem_num+")");
 		 } catch (Exception e) {
 			e.printStackTrace();
 		 }
+		 
 
-		return result;
 	}	
 	
 
@@ -157,7 +147,6 @@ public class MemberDAO {
 	// 마이페이지 삭제
 	
 	public int deleteMember(int mem_num){
-		int result = -1;
 		
 		
 		try {
@@ -176,8 +165,7 @@ public class MemberDAO {
 		}finally{
 			closeDB();
 		}
-		return result;
-	
+	    return mem_num;
 	}
 	
 	

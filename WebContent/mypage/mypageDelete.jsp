@@ -14,15 +14,17 @@
      
      <%
       // 로그인 정보 체크     
-      String mem_num = (String)session.getAttribute("loginMem_num");
-      if(mem_num == null){
-    	  response.sendRedirect("");
-      }
+//       String mem_num = (String)session.getAttribute("loginMem_num");
+//       if(mem_num == null){
+//     	  response.sendRedirect("");
+//       }
       // 전달된 정보 저장(pw)
        String password = request.getParameter("password");
      
       // 회원정보 탈퇴 - 디비에 저장된 정보 삭제
        MemberDAO dao = new MemberDAO();
+      
+       MemberDTO dto = new MemberDTO();
        
     
        
@@ -38,7 +40,6 @@
       
      <% 
        // 회원탈퇴 메서드 호출
-       MemberDTO dto = new MemberDTO();
       
        int result = dao.deleteMember(dto.getMem_num());
        
@@ -67,5 +68,6 @@
     	   <%
        }
      %>
+     
 </body>
 </html>

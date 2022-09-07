@@ -2,6 +2,7 @@ package com.pcc.member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.member.db.MemberDAO;
 import com.pcc.member.db.MemberDTO;
@@ -19,7 +20,9 @@ public class MypageDelete implements Action {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 전달정보 저장
+		HttpSession session = request.getSession();
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+		String password = request.getParameter("password");
 		
 		// MemberDTO dto = new MemberDTO();
 		
@@ -28,12 +31,19 @@ public class MypageDelete implements Action {
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
 				
-		dao.deleteMember(mem_num);
-				
-		//페이지 이동정보 저장(리턴)
+		int result = dao.deleteMember(mem_num);
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/mypageDelete.jsp");
-		forward.setRedirect(true);
+		
+		if(result ==1){
+			session.invalidate();
+			//페이지 이동정보 저장(리턴)
+			forward.setPath("./mypage/mypageDelete.jsp");
+			forward.setRedirect(true);
+		}
+		else{
+			System.out.println("회원 삭제 실패");
+		}
 				
 		return forward;
 		

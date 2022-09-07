@@ -14,10 +14,11 @@
      <h2>회원수정 페이지</h2>
      <%
        // 로그인 체크
-       String mem_num = (String)session.getAttribute("loginMem_num");
-       if(mem_num == null){
-    	   response.sendRedirect("");
-       }
+//        String mem_num = (String)session.getAttribute("loginMem_num");
+//        if(mem_num == null){
+//     	   response.sendRedirect("");
+//        }
+
        // 기존의 회원정보 화면 출력
        // MemberDAO 객체 생성
        MemberDAO dao = new MemberDAO();
@@ -28,10 +29,10 @@
      
      <fieldset>
        <form action="" method="post">
-          아이디 : <input type="text" name="id" value="<%=dto.getMem_num()%>" readonly="readonly"> <br>
+          회원 번호 : <input type="text" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
+          휴대폰 번호 : <input type="text" name="phone" value="${dto.phone }">
           비밀번호 : <input type="password" name="password"> <br>
-          이름 : <input type="text" name="name" value="<%=dto.getName()%>"> <br>
-          휴대폰 번호 : <input type="text" name="phone" value="<%=dto.getPhone()%>">
+          이름 : <input type="text" name="name" value="${dto.name }"> <br>
           <hr>
              <input type="submit" value="개인정보수정"> 
        </form>
@@ -50,36 +51,37 @@
         }
      </script>
      
-     <%
+      <%
      // 정보 수정메서드(비밀번호, 이름)
-      int result = dao.updateMember(dto.getMem_num());
+     // int result = dao.updateMember(dto);
       
       // 페이지 이동
-      if(result == 1){
+      //if(result == 1){
     	  // 정보수정을 성공
           %>
     	   <script type="text/javascript">
-    	       alert("정보 수정 완료~!");
-    	       location.href="";
+//     	       alert("정보 수정 완료~!");
+//     	       location.href="";
     	   </script>
     	   <%
-      }else if(result == 0){
+      //}else if(result == 0){
     	  // 수정 실패-비밀번호 오류
     	   %>
     	   <script type="text/javascript">
-    	       alert("수정실패 : 비밀번호 오류");
-    	       history.back();
+//     	       alert("수정실패 : 비밀번호 오류");
+//     	       history.back();
     	   </script>
     	   <%
-      }else{//result == -1
+      //}else{
+    	  //result == -1
     	  // 수정 실패-아이디 정보 없음
     	   %>
     	   <script type="text/javascript">
-    	       alert("수정실패 : 아이디 정보 없음");
-    	       history.back();
+//     	       alert("수정실패 : 회원정보 없음");
+//     	       history.back();
     	   </script>
     	   <%
-      }
+      //}
       
     %>
      

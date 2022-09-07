@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.QnAWriteAction;
 import vo.ActionForward;
 
 public class BoardFrontController extends HttpServlet {
@@ -41,7 +42,20 @@ public class BoardFrontController extends HttpServlet {
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
+		if(command.equals("/QnAWrite.bo")) {
+			forward = new ActionForward();
+			forward.setPath("./QnA/QnAWriteForm.jsp");
+			forward.setRedirect(false);
+		}
 		
+		else if (command.equals("/QnAWriteAction.bo")) {
+			action = new QnAWriteAction();
+			try	{
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");
@@ -65,6 +79,7 @@ public class BoardFrontController extends HttpServlet {
 				System.out.println("방식 : forward() 방식");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
+				System.out.println (" dis 성공! ");
 			}
 		}
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");

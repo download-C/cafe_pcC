@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 // 게시판 관련 정보 객체
 
-public class BoardDTO {
+public class ReviewBoardDTO {
 	private int board_num;					// 게시판 글 번호(글식별자)
 	private int mem_num;					// 회원 번호(회원식별자) -> 게시판 타입이 고객도 쓸 수 있는 리뷰나 QnA일 경우 사용
 	private int board_type;					// 게시판 타입 -> 1:공지사항, 2:QnA, 3:리뷰
@@ -16,7 +16,7 @@ public class BoardDTO {
 	private int re_ref;						// 답글 그룹번호 -> 특정 글에 답글이 달릴 경우 모두 같은 그룹
 	private int re_lev;						// 답글 레벨 -> 일반 글은 0, 그 글의 답글은 1, 답글의 답글일 경우는 2 
 	private int re_seq;						// 답글 순서 -> 같은 레벨의 답글일 경우 먼저 작성된 글의 숫자가 더 작음
-	private Timestamp board_datetime;	// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
+	private Timestamp board_datetime;		// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
 	private String ip;
 	private  String file;
 	

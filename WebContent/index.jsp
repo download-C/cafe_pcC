@@ -8,9 +8,13 @@
 </head>
 <body>
 	<%
-		// index.jps
+	
+	
+		// index.jsp
 		
-		response.sendRedirect("./");
+		response.sendRedirect("./QnAWrite.bo");
+	
+	
 	%>
 
 

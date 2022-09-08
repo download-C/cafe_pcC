@@ -1,4 +1,4 @@
-package com.pcc.board.action;
+package com.pcc.QnAboard.action;
 
 import java.io.IOException;
 
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.Action;
-import action.QnAWriteAction;
+import qna.action.Action;
+import qna.action.QnAWriteAction;
 import vo.ActionForward;
 
-public class BoardFrontController extends HttpServlet {
+public class QnAFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {

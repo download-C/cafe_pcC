@@ -12,11 +12,11 @@
   
   <!-- 1. board(게시판) *.bo -->
   <servlet>
-  	<servlet-name>BoardFrontController</servlet-name>
-  	<servlet-class>com.pcc.board.action.BoardFrontController</servlet-class>
+  	<servlet-name>QnAFrontController</servlet-name>
+  	<servlet-class>com.pcc.QnAboard.action.QnAFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>BoardFrontController</servlet-name>
+  	<servlet-name>QnAFrontController</servlet-name>
   	<url-pattern>*.bo</url-pattern>
   </servlet-mapping>
   

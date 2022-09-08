@@ -1,4 +1,4 @@
-package com.pcc.board.db;
+package com.pcc.QnAboard.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,9 +28,12 @@ public class QnABoardDAO {
 		try {
 			// 1-1. 프로젝트 정보 초기화
 			Context initCTX = new InitialContext();
+			System.out.println("프로젝트 정보 초기화 완료");
 			// 1-2. 초기화된 프로젝트 중 데이터 관련 정보 불러오기
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/cafe_pcc");
+			System.out.println("초기화된 프로젝트 중 데이터 관련 정보 불러오기 완료");
 			con = ds.getConnection();
+			System.out.println("con 완료");
 			
 			System.out.println("DAO : DB 연결 완료");
 		} catch (NamingException e) {
@@ -53,7 +56,6 @@ public class QnABoardDAO {
 			if(con != null)  con.close();
 			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("DAO : DB 연결 해제");
@@ -88,24 +90,24 @@ public class QnABoardDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, QnA_num);
-			pstmt.setInt(2, dto.getQnAwriter_type());
+			//pstmt.setInt(2, dto.getQnAwriter_type());
 			//pstmt.setInt(3, dto.getmgr_num());
-			pstmt.setInt(3, dto.getmem_num());
-			pstmt.setInt(4, dto.getQnA_password());
+			pstmt.setInt(2, dto.getmem_num());
+			pstmt.setInt(3, dto.getQnA_password());
 			
-			pstmt.setString(5, dto.getQnA_subject());
-			pstmt.setString(6, dto.getQnA_content());
-			pstmt.setInt(7, dto.getQnA_readcount());
+			pstmt.setString(4, dto.getQnA_subject());
+			pstmt.setString(5, dto.getQnA_content());
+			pstmt.setInt(6, dto.getQnA_readcount());
 			
-			pstmt.setInt(8, dto.getQnA_re_ref());
-			pstmt.setInt(9, dto.getQnA_re_lev());
-			pstmt.setInt(10, dto.getQnA_re_seq());
+			pstmt.setInt(7, dto.getQnA_re_ref());
+			pstmt.setInt(8, dto.getQnA_re_lev());
+			pstmt.setInt(9, dto.getQnA_re_seq());
 			//pstmt.setString(12, dto.getQnA__ip());
 			//pstmt.setString(12, dto.getQnA__file());
 			
 			pstmt.executeUpdate();
 			
-			System.out.println(" DAO : 글 작성 완료! " + QnA_num  );
+			System.out.println(" DAO : 문의사항 정보 저장 완료! ");
 			
 			
 		} catch (Exception e) {

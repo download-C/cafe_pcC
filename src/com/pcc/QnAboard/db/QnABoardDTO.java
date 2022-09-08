@@ -1,4 +1,4 @@
-package com.pcc.board.db;
+package com.pcc.QnAboard.db;
 
 import java.sql.Timestamp;
 
@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 
 public class QnABoardDTO {
 	private int QnA_num;						// 게시판 글 번호(글식별자)
-	private int QnAwriter_type;					// 글 작성자 타입 -> 관리자일 경우 9로 시작, 일반 회원은 20으로 시작(회원번호가 가입한 날짜를 기반으로 생성됨)
-	private int mgr_num;					// 매니저 번호 -> 모든 게시판에 사용
-	private int mem_num;					// 회원 번호(회원식별자) -> 게시판 타입이 고객도 쓸 수 있는 리뷰나 QnA일 경우 사용
-	private int QnA_board_type;					// 게시판 타입 -> 1:공지사항, 2:QnA, 3:리뷰
+	private int QnA_writer_type;				// 글 작성자 타입 -> 관리자일 경우 9로 시작, 일반 회원은 20으로 시작(회원번호가 가입한 날짜를 기반으로 생성됨)
+	private int mgr_num;						// 매니저 번호 -> 모든 게시판에 사용
+	private int mem_num;						// 회원 번호(회원식별자) -> 게시판 타입이 고객도 쓸 수 있는 리뷰나 QnA일 경우 사용
+	//private int QnA_board_type;				// 게시판 타입 -> 1:공지사항, 2:QnA, 3:리뷰
 	private int QnA_password;					// 글 비밀번호
 	private String QnA_subject;					// 글 제목
 	private String QnA_content;					// 글 내용
@@ -17,7 +17,7 @@ public class QnABoardDTO {
 	private int QnA_re_ref;						// 답글 그룹번호 -> 특정 글에 답글이 달릴 경우 모두 같은 그룹
 	private int QnA_re_lev;						// 답글 레벨 -> 일반 글은 0, 그 글의 답글은 1, 답글의 답글일 경우는 2 
 	private int QnA_re_seq;						// 답글 순서 -> 같은 레벨의 답글일 경우 먼저 작성된 글의 숫자가 더 작음
-	private Timestamp QnA__date;		// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
+	private Timestamp QnA__date;				// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
 	private String QnA__ip;
 	private  String QnA__file;
 	
@@ -28,11 +28,11 @@ public class QnABoardDTO {
 	public void setQnA_num(int qnA_num) {
 		QnA_num = qnA_num;
 	}
-	public int getQnAwriter_type() {
-		return QnAwriter_type;
+	public int getQnA_writer_type() {
+		return QnA_writer_type;
 	}
-	public void setQnAwriter_type(int qnAwriter_type) {
-		QnAwriter_type = qnAwriter_type;
+	public void setQnA_writer_type(int qnAwriter_type) {
+		QnA_writer_type = qnAwriter_type;
 	}
 	public int getmgr_num() {
 		return mgr_num;
@@ -46,12 +46,12 @@ public class QnABoardDTO {
 	public void setmem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public int getQnA_board_type() {
-		return QnA_board_type;
-	}
-	public void setQnA_board_type(int qnA_board_type) {
-		QnA_board_type = qnA_board_type;
-	}
+//	public int getQnA_board_type() {
+//		return QnA_board_type;
+//	}
+//	public void setQnA_board_type(int qnA_board_type) {
+//		QnA_board_type = qnA_board_type;
+//	}
 	public int getQnA_password() {
 		return QnA_password;
 	}
@@ -116,8 +116,8 @@ public class QnABoardDTO {
 	
 	@Override
 	public String toString() {
-		return "QnABoardDTO [QnA_num=" + QnA_num + ", QnAwriter_type=" + QnAwriter_type + ", mgr_num=" + mgr_num
-				+ ", mem_num=" + mem_num + ", QnA_board_type=" + QnA_board_type + ", QnApassword=" + QnA_password
+		return "QnABoardDTO [QnA_num=" + QnA_num + ", QnAwriter_type=" + QnA_writer_type + ", mgr_num=" + mgr_num
+				+ ", mem_num=" + mem_num + ", QnApassword=" + QnA_password
 				+ ", QnA_subject=" + QnA_subject + ", QnA_content=" + QnA_content + ", QnA_readcount=" + QnA_readcount
 				+ ", QnA_re_ref=" + QnA_re_ref + ", QnA_re_lev=" + QnA_re_lev + ", QnA_re_seq=" + QnA_re_seq
 				+ ", QnA__date=" + QnA__date + ", QnA__ip=" + QnA__ip + ", QnA__file=" + QnA__file + "]";

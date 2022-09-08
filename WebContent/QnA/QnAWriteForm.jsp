@@ -17,10 +17,10 @@
 	<fieldset>
 	<form action="./QnAWriteAction.bo" method="post">
 	
-	작성자 : <input type="text" name="qna_name"> <br>
-	비밀번호 : <input type="password" name="qna_pw"> <br>
-	제목 : <input type="text" name="qna_subject"> <br>
-	내용 : <textarea rows="10" cols="20" name="qna_content"></textarea> <br>
+	비밀번호 : <input type="password" name="QnA_password"> <br>
+	제목 : <input type="text" name="QnA_subject"> <br>
+	내용 : <textarea rows="10" cols="20" name="QnA_content"></textarea> <br>
+	첨부파일 : <input type="text" name="QnA_file"> <br>
 
 	<input type="submit" value="작성하기">
 	

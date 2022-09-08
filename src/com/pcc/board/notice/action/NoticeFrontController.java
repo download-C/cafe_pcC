@@ -134,8 +134,7 @@ public class NoticeFrontController extends HttpServlet {
 				System.out.println(" Controller : true");
 				System.out.println(forward.getPath()+" 이동");
 				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
+				response.sendRedirect(forward.getPath());
 			
 			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
 			} else {

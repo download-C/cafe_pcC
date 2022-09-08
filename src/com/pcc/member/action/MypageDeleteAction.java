@@ -1,5 +1,7 @@
 package com.pcc.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,15 +32,26 @@ public class MypageDeleteAction implements Action{
 		int result = dao.deleteMember(dto);
 		
 		ActionForward forward = new ActionForward();
+		
 				
 		if(result == 1){
 			session.invalidate();
 			//페이지 이동정보 저장(리턴)
-			forward.setPath("./mypageContent.me");
-			forward.setRedirect(true);
+//			forward.setPath("./mypageContent.me");
+//			forward.setRedirect(true);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>alert('회원 삭제 성공!'); "
+					+ "location.href='./mypageContent.me';</script>");
+			out.flush();
+					
 		}
 		else{
-			System.out.println("회원 삭제 실패");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>alert('회원 삭제 실패!'); "
+					+ "history.back();</script>");
+			out.flush();
 		}
 				
 		return forward;

@@ -1,5 +1,7 @@
 package com.pcc.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ public class MypageUpdateAction implements Action{
 		MemberDAO dao = new MemberDAO();
 						
 		MemberDTO dto = new MemberDTO();
+		HttpSession session = request.getSession();
 		dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
 		dto.setPhone(request.getParameter("phone"));
 		dto.setPassword(request.getParameter("password"));
@@ -32,9 +35,16 @@ public class MypageUpdateAction implements Action{
 				
 		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypageContent.me");
-		forward.setRedirect(true);
-				
+		
+		
+//		forward.setPath("./mypageContent.me");
+//		forward.setRedirect(true);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script type='text/javascript'>alert('회원 수정 성공!'); "
+		     + "location.href='./mypageContent.me';</script>");
+	    out.flush();
+		
 		return forward;
 	
 	}

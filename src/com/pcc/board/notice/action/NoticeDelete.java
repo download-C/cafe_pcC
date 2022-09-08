@@ -14,17 +14,18 @@ public class NoticeDelete implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-		int mgr_num = Integer.parseInt(request.getParameter("mgr_num"));
+//		int mgr_num = Integer.parseInt(request.getParameter("mgr_num"));
+//		메니저로 로그인했을 때 사용해야 함.	
 
-		NoticeDAO.alter(response, "정말로 삭제하시겠습니까?");		
+//		NoticeDAO.alter(response, "정말로 삭제하시겠습니까?");		
 		
 		NoticeDAO dao = new NoticeDAO();
-//		dao.noticeDelete(notice_num, mgr_num);
+		dao.noticeDelete(notice_num, 1234);
 		System.out.println(notice_num+"번 공지사항 삭제 완료");
 		ActionForward forward = new ActionForward();
 		forward.setPath("/NoticeList.no");
 		forward.setRedirect(false);
-		return null;
+		return forward;
 	}
 
 }

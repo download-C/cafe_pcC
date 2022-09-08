@@ -109,11 +109,14 @@ public class NoticeFrontController extends HttpServlet {
 		// 2-7. 공지사항 삭제하기
 		else if(command.equals("/NoticeDelete.no")){
 			action = new NoticeDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		else if(command.equals("/NoticeDelete.no")){
-			action = new NoticeDelete();
-		}
+
 		
 		
 		

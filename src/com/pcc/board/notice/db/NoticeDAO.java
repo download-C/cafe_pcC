@@ -319,12 +319,9 @@ public class NoticeDAO {
 				pstmt.setInt(1, notice_num);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else {
-			
-		}
+		} 
 	}
 
 	
@@ -332,10 +329,11 @@ public class NoticeDAO {
 	public static void alter(HttpServletResponse response, String msg) {
 		try {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter w = response.getWriter();
-			w.write("<script>alter('"+msg+"');</script>");
-			w.flush();
-			w.close();
+			PrintWriter out = response.getWriter();
+			out.write("<script>alter('"+msg+"');</script>");
+			out.flush();
+			out.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

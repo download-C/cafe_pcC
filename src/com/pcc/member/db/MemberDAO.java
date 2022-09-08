@@ -146,26 +146,27 @@ public class MemberDAO {
 	
 	// 마이페이지 삭제
 	
-	public int deleteMember(int mem_num){
+	public int deleteMember(MemberDTO dto){
 		
-		
+		int result = 0;
 		try {
 			// 1.2. 디비연결
 			con = getConnect();
 			// 3. sql 생성 & pstmt 객체
-			sql = "delete * from members where mem_num=?";
+			sql = "delete from members where mem_num=? and password=?";
 			pstmt = con.prepareStatement(sql);
 			// ???
-			pstmt.setInt(1, mem_num);
+			pstmt.setInt(1, dto.getMem_num());
+			pstmt.setString(2, dto.getPassword());
 			// 4. sql 실행
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			closeDB();
 		}
-	    return mem_num;
+	    return result;
 	}
 	
 	

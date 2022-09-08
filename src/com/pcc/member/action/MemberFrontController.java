@@ -41,15 +41,11 @@ public class MemberFrontController extends HttpServlet {
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
-		// 2-2. 마이페이지 리스트 화면
+		// 2-2. 마이페이지 화면
 		
 		if(command.equals("/mypageContent.me")){
 	        
 			action = new MyPageContentAction();
-			
-			forward = new ActionForward();
-			forward.setPath("./mypage/mypageContent.jsp");
-			forward.setRedirect(false);
 			
 			try{
 				forward  = action.execute(request, response);
@@ -69,10 +65,28 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}
 		
+		else if(command.equals("/mypageUpdateAction.me")){
+			action = new MypageUpdateAction();
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
 		// 2-4. 마이페이지 삭제 화면
 		
 		else if(command.equals("/mypageDelete.me")){
 			action = new MypageDelete();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/mypageDeleteAction.me")){
+			action = new MypageDeleteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
@@ -92,8 +106,9 @@ public class MemberFrontController extends HttpServlet {
 				System.out.println(" Controller : true");
 				System.out.println(forward.getPath()+" 이동");
 				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
+//				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+//				dis.forward(request, response);
+				response.sendRedirect(forward.getPath());
 			
 			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
 			} else {

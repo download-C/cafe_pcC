@@ -2,6 +2,7 @@ package com.pcc.member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.member.db.MemberDAO;
 import com.pcc.member.db.MemberDTO;
@@ -9,31 +10,38 @@ import com.pcc.member.db.MemberDTO;
 import action.Action;
 import vo.ActionForward;
 
-public class MyPageContentAction implements Action {
+public class MypageDeleteAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println(" M : MypageListAction_execute() 호출 ");
 		
-		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		
-		// 전달정보 저장(제목,비밀번호,이름,내용)
-		MemberDTO dto = new MemberDTO();
-		
 		// DB에 정보 저장
+		
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
-				
-		dao.memberContent(dto);
+						
+		MemberDTO dto = new MemberDTO();
+		HttpSession session = request.getSession();
+		dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
+		dto.setPassword(request.getParameter("password"));
+
+
+		int result = dao.deleteMember(dto);
 		
-		request.setAttribute("dto", dto);
-				
-		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/mypageContent.jsp");
-		forward.setRedirect(false);
+				
+		if(result == 1){
+			session.invalidate();
+			//페이지 이동정보 저장(리턴)
+			forward.setPath("./mypageContent.me");
+			forward.setRedirect(true);
+		}
+		else{
+			System.out.println("회원 삭제 실패");
+		}
 				
 		return forward;
 	}
+
 }

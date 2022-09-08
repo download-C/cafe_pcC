@@ -52,11 +52,13 @@ public class MemberFrontController extends HttpServlet {
 			action = new JoinAction();
 			try {
 				forward = action.execute(request, response);
+				System.out.println("action.execute() 성공");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		//로그인 폼
 		}else if(command.equals("/LoginForm.me")){
+			System.out.println("로그인 폼으로 가기");
 			forward = new ActionForward();
 			forward.setPath("./members/LoginForm.jsp");
 			forward.setRedirect(false);
@@ -83,22 +85,25 @@ public class MemberFrontController extends HttpServlet {
 		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
 		if(forward != null) {
-			// 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
-			if(forward.isRedirect()) {
-				System.out.println(" Controller : true");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			
-			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
-			} else {
-				System.out.println(" Controller : false");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : forward() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			}
+	         System.out.println("forward는 null이 아닙니다");
+	         // 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
+	         if(forward.isRedirect()) {
+	            System.out.println(" Controller : true");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : sendRedirect() 방식");
+	            response.sendRedirect(forward.getPath());
+	         
+	         // 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
+	         } else {
+	            System.out.println(" Controller : false");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : forward() 방식");
+	            RequestDispatcher dis 
+	            = request.getRequestDispatcher(forward.getPath());
+	            System.out.println("dis 성공!");
+	            dis.forward(request, response);
+	            System.out.println("forward 성공!");
+	         }
 		}
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
 		

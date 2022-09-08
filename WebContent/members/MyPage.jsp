@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-g
+	<h1>마이페이지!</h1>
 </body>
 </html>

@@ -68,15 +68,21 @@ public class MemberDAO {
 			try {
 			con=getConnect();
 			sql = "select max(mem_num) from members";
+			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				mem_num = rs.getInt(1)+1;
 			}	
 			System.out.println(" DAO : 회원번호? "+mem_num);
 			
-			sql = "insert into members(mem_num, phone, password, name, reg_date)"
+			sql = "insert into members(mem_num, phone, password, name, regdate)"
 					+ "values(?,?,?,?,now())";
 			pstmt= con.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setString(2, dto.getPhone());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getName());
+			
 			pstmt.executeUpdate();
 			System.out.println(" DAO : 회원가입 성공! ");
 			} catch (SQLException e) {
@@ -86,10 +92,50 @@ public class MemberDAO {
 			}
 			
 		}
+		
+		// 4. DB에서 phone과 password 정보를 불러오는 메서드 -------
+		public MemberDTO getMember(String phone, String password) {
+			MemberDTO dto = new MemberDTO();
+			dto.setPhone(phone);
+			dto.setPassword(password);
+			
+			
+			return dto;
+		}
+		
+		// 5. 로그인을 위한 아이디와 비밀번호 일치 여부 확인loginMember() ----------
+		public int loginMember(MemberDTO dto) {
+			int result = -1;
+			
+			try {
+				con = getConnect();
+				sql = "select password from members where phone=?";
+				pstmt = con.prepareStatement(sql);
+			
+				pstmt.setString(1, dto.getPhone());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					if(dto.getPassword().equals(rs.getString("password"))){
+						System.out.println("로그인 성공");
+						result = 1;
+					} else {
+						System.out.println("비밀번호 오류");
+						result = -1;
+					}
+				} else {
+					System.out.println("아이디 오류");
+					result = 0;
+				}
+				System.out.println("로그인 확인 완료. result : "+result);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
 
 		
 		
-		// 4.  로그인 메서드 LoginMember(MemberDTO dto)---------------------
+		// 5.  로그인 메서드 LoginMember(MemberDTO dto)---------------------
 		public int LoginMember(MemberDTO dto){
 			int result=-1;
 			
@@ -125,7 +171,6 @@ public class MemberDAO {
 		
 		
 		
-		// 5.   -----------------------------------------
 
 
 	

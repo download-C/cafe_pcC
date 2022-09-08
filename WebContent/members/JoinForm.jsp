@@ -10,7 +10,7 @@
 <fieldset>
 <form action="./JoinAction.me" method="post">
 핸드폰번호:<input type="text" name="phone"><br>
-비밀번호:<input type="password" name="passward"><br>
+비밀번호:<input type="password" name="password"><br>
 이름: <input type="text" name="name"><br>
 <input type="submit" value="가입하기"> <input type="reset" value="다시작성"> 
 

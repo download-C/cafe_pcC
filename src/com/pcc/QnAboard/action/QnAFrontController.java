@@ -43,12 +43,23 @@ public class QnAFrontController extends HttpServlet {
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
 		if(command.equals("/QnAWrite.bo")) {
+			action = new QnAWrite();
+			// 회원번호
+			forward = new ActionForward();
+			forward.setPath("");;
+			forward.setRedirect(false);
+		}
+		// 로그인 한 회원의 정보를 갖고 오는 메서드
+		else if(command.equals("/QnAWriteAction.bo")) {
+		// 회원번호 가져오는 액션클래스
+			action = new QnAWriteAction();
 			forward = new ActionForward();
 			forward.setPath("./QnA/QnAWriteForm.jsp");
 			forward.setRedirect(false);
 		}
 		
-		else if (command.equals("/QnAWriteAction.bo")) {
+		else if (command.equals("/QnAContent.bo")) {
+			System.out.println(" C : /QnAContent.bo 호출 ");
 			action = new QnAWriteAction();
 			try	{
 				action.execute(request, response);
@@ -64,23 +75,25 @@ public class QnAFrontController extends HttpServlet {
 		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
 		if(forward != null) {
-			// 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
-			if(forward.isRedirect()) {
-				System.out.println(" Controller : true");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			
-			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
-			} else {
-				System.out.println(" Controller : false");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : forward() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-				System.out.println (" dis 성공! ");
-			}
+	         System.out.println("forward는 null이 아닙니다");
+	         // 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
+	         if(forward.isRedirect()) {
+	            System.out.println(" Controller : true");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : sendRedirect() 방식");
+	            response.sendRedirect(forward.getPath());
+	         
+	         // 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
+	         } else {
+	            System.out.println(" Controller : false");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : forward() 방식");
+	            RequestDispatcher dis 
+	            = request.getRequestDispatcher(forward.getPath());
+	            System.out.println("dis 성공!");
+	            dis.forward(request, response);
+	            System.out.println("forward 성공!");
+	         }
 		}
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
 		

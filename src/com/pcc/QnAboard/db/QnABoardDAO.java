@@ -82,28 +82,28 @@ public class QnABoardDAO {
 				System.out.println("QnA_num "+QnA_num+"으로 업데이트 완료");
 			}
 			
-			sql = "insert into qna_boards(QnA_num, QnA_writer_type, mgr_num"
-					+ "mem_num, QnA_password, QnA_subject, QnA_content, QnA_readcount,"
-					+ "QnA_re_ref, QnA_re_lev, QnA_re_seq, QnA__date, QnA__ip, QnA__file) " 
-					+ "values(?,?,12345,?,?,?,?,?,?,?,?,now(),123,456)";
+			sql = "insert into qna_boards(QnA_num, QnA_writer_type, mgr_num, "
+					+ "mem_num, QnA_password, QnA_subject, QnA_content, QnA_readcount, "
+					+ "QnA_re_ref, QnA_re_lev, QnA_re_seq, QnA_date, QnA_ip, QnA_file) " 
+					+ "values(?,?,?,123,?,?,?,?,?,?,?,now(),123123,?)";
 					
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, QnA_num);
-			//pstmt.setInt(2, dto.getQnAwriter_type());
-			//pstmt.setInt(3, dto.getmgr_num());
-			pstmt.setInt(2, dto.getmem_num());
-			pstmt.setInt(3, dto.getQnA_password());
+			pstmt.setInt(2, dto.getQnA_writer_type());
+			pstmt.setInt(3, dto.getmgr_num());
+			pstmt.setInt(4, dto.getmem_num());
+			pstmt.setInt(5, dto.getQnA_password());
 			
-			pstmt.setString(4, dto.getQnA_subject());
-			pstmt.setString(5, dto.getQnA_content());
-			pstmt.setInt(6, dto.getQnA_readcount());
+			pstmt.setString(6, dto.getQnA_subject());
+			pstmt.setString(7, dto.getQnA_content());
+			pstmt.setInt(8, dto.getQnA_readcount());
 			
-			pstmt.setInt(7, dto.getQnA_re_ref());
-			pstmt.setInt(8, dto.getQnA_re_lev());
-			pstmt.setInt(9, dto.getQnA_re_seq());
-			//pstmt.setString(12, dto.getQnA__ip());
-			//pstmt.setString(12, dto.getQnA__file());
+			pstmt.setInt(9, dto.getQnA_re_ref());
+			pstmt.setInt(10, dto.getQnA_re_lev());
+			pstmt.setInt(11, dto.getQnA_re_seq());
+			//pstmt.setString(12, dto.getQnA_ip());
+			pstmt.setString(12, dto.getQnA_file());
 			
 			pstmt.executeUpdate();
 			
@@ -115,6 +115,11 @@ public class QnABoardDAO {
 		}  finally {
 			closeDB();
 		}
+	}
+
+	public void getMem_num(Object attribute) {
+		
+		
 	}
 	
 	

@@ -17,9 +17,9 @@ public class QnABoardDTO {
 	private int QnA_re_ref;						// 답글 그룹번호 -> 특정 글에 답글이 달릴 경우 모두 같은 그룹
 	private int QnA_re_lev;						// 답글 레벨 -> 일반 글은 0, 그 글의 답글은 1, 답글의 답글일 경우는 2 
 	private int QnA_re_seq;						// 답글 순서 -> 같은 레벨의 답글일 경우 먼저 작성된 글의 숫자가 더 작음
-	private Timestamp QnA__date;				// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
-	private String QnA__ip;
-	private  String QnA__file;
+	private Timestamp QnA_date;				// 글 작성시간 -> sql에 디폴트로 now() 되어있음.
+	private String QnA_ip;
+	private  String QnA_file;
 	
 	
 	public int getQnA_num() {
@@ -31,8 +31,8 @@ public class QnABoardDTO {
 	public int getQnA_writer_type() {
 		return QnA_writer_type;
 	}
-	public void setQnA_writer_type(int qnAwriter_type) {
-		QnA_writer_type = qnAwriter_type;
+	public void setQnA_writer_type(int qnA_writer_type) {
+		QnA_writer_type = qnA_writer_type;
 	}
 	public int getmgr_num() {
 		return mgr_num;
@@ -55,8 +55,8 @@ public class QnABoardDTO {
 	public int getQnA_password() {
 		return QnA_password;
 	}
-	public void setQnA_password(int qnApassword) {
-		QnA_password = qnApassword;
+	public void setQnA_password(int qnA_password) {
+		QnA_password = qnA_password;
 	}
 	public String getQnA_subject() {
 		return QnA_subject;
@@ -94,33 +94,33 @@ public class QnABoardDTO {
 	public void setQnA_re_seq(int qnA_re_seq) {
 		QnA_re_seq = qnA_re_seq;
 	}
-	public Timestamp getQnA__date() {
-		return QnA__date;
+	public Timestamp getQnA_date() {
+		return QnA_date;
 	}
-	public void setQnA__date(Timestamp qnA__date) {
-		QnA__date = qnA__date;
+	public void setQnA_date(Timestamp qnA_date) {
+		QnA_date = qnA_date;
 	}
-	public String getQnA__ip() {
-		return QnA__ip;
+	public String getQnA_ip() {
+		return QnA_ip;
 	}
-	public void setQnA__ip(String qnA__ip) {
-		QnA__ip = qnA__ip;
+	public void setQnA__ip(String qnA_ip) {
+		QnA_ip = qnA_ip;
 	}
-	public String getQnA__file() {
-		return QnA__file;
+	public String getQnA_file() {
+		return QnA_file;
 	}
-	public void setQnA__file(String qnA__file) {
-		QnA__file = qnA__file;
+	public void setQnA__file(String qnA_file) {
+		QnA_file = qnA_file;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "QnABoardDTO [QnA_num=" + QnA_num + ", QnAwriter_type=" + QnA_writer_type + ", mgr_num=" + mgr_num
-				+ ", mem_num=" + mem_num + ", QnApassword=" + QnA_password
+		return "QnA_BoardDTO [QnA_num=" + QnA_num + ", QnA_writer_type=" + QnA_writer_type + ", mgr_num=" + mgr_num
+				+ ", mem_num=" + mem_num + ", QnA_password=" + QnA_password
 				+ ", QnA_subject=" + QnA_subject + ", QnA_content=" + QnA_content + ", QnA_readcount=" + QnA_readcount
 				+ ", QnA_re_ref=" + QnA_re_ref + ", QnA_re_lev=" + QnA_re_lev + ", QnA_re_seq=" + QnA_re_seq
-				+ ", QnA__date=" + QnA__date + ", QnA__ip=" + QnA__ip + ", QnA__file=" + QnA__file + "]";
+				+ ", QnA__date=" + QnA_date + ", QnA__ip=" + QnA_ip + ", QnA__file=" + QnA_file + "]";
 	}
 	
 

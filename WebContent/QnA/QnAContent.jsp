@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,42 +8,50 @@
 </head>
 <body>
 
+	<h1>문의사항 확인</h1>
+
 
 <fieldset>
 		<table>
 			<tr>
 				<td>글번호</td>
-				<td>${dto.board_num }</td>
+				<td>${dto.QnA_num }</td>
 				<td>조회수</td>
-				<td>${dto.readcount }</td>
+				<td>${dto.QnA_readcount }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
 				<td>관리자</td>
 				<td>작성일</td>
-				<td>${dto.board_datetime }</td>
+				<td>${dto.QnA_date }</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td colspan="3">${dto.subject }</td>
+				<td colspan="3">${dto.QnA_subject }</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td colspan="3">${dto.content }</td>
+				<td colspan="3">${dto.QnA_content }</td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td colspan="3">${dto.file }</td>
+				<td colspan="3">${dto.QnA_file }</td>
 			</tr>
 			<tr>
-				<td><input type="button" name="notice_update" value="수정"
-				     onclick="location.href='./QnAUpdateAction.no?notice_num=${dto.notice_num}';"></td>
-	<%-- onclick="location.href='./QnAUpdate.no?notice_num=${dto.notice_num}';"></td> --%> 
-				<td><input type="button" name="notice_delete" value="삭제"
-				onclick=""></td>
-				<td><input type="button" name="qna_list" value="목록" 
-				     onclick="location.href='./QnAList.no?pageNum=${pageNum}';"></td>
-				<td></td>
+				<td>
+					<input type="button" name="QnA_update" value="수정"
+				     onclick="location.href='./QnAUpdateAction.no?notice_num=${dto.notice_num}';">
+				</td>
+				<td>
+					<input type="button" name="QnA_delete" value="삭제"
+					onclick="">
+				</td>
+				<td>
+					<input type="button" name="QnA_list" value="목록" 
+				     onclick="location.href='./QnAList.no?pageNum=${pageNum}';">
+				 </td>
+				<td>
+					</td>
 			</tr>
 		</table>
 	</fieldset>

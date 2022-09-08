@@ -15,8 +15,9 @@
 	<br>
 	
 	<fieldset>
-	<form action="./QnAWriteAction.bo" method="post">
+	<form action="./QnAContent.bo" method="post">
 	
+	회원번호 : <input type="text" name="mem_num" readonly="readonly" value="${dto.mem_num}"> <br>
 	비밀번호 : <input type="password" name="QnA_password"> <br>
 	제목 : <input type="text" name="QnA_subject"> <br>
 	내용 : <textarea rows="10" cols="20" name="QnA_content"></textarea> <br>

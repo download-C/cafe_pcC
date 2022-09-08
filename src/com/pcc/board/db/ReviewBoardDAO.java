@@ -12,14 +12,14 @@ import javax.sql.DataSource;
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
-public class BoardDAO {
+public class ReviewBoardDAO {
 
 	private Connection con = null;
 	private String sql ="";
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	public BoardDAO () {
+	public ReviewBoardDAO () {
 		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 	}
 	

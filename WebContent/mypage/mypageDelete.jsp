@@ -13,61 +13,35 @@
      <h2> 회원정보 탈퇴(삭제) </h2>
      
      <%
-      // 로그인 정보 체크     
-//       String mem_num = (String)session.getAttribute("loginMem_num");
-//       if(mem_num == null){
-//     	  response.sendRedirect("");
-//       }
-      // 전달된 정보 저장(pw)
-       String password = request.getParameter("password");
+       // 로그인 여부 체크
+       String mem_num = (String) session.getAttribute("loginMem_num");
+//     if(mem_num == null){
+//     	   response.sendRedirect("loginForm.jsp");
+//     }
+     %>
      
-      // 회원정보 탈퇴 - 디비에 저장된 정보 삭제
-       MemberDAO dao = new MemberDAO();
-      
-       MemberDTO dto = new MemberDTO();
-       
-    
-       
+     <% 
      // 사용자 비밀번호를 입력 전달
      %>
-      <form action="" method="POST">
-         
-        비밀번호 : <input type="password" name="password">
-       
-        <input type="submit" value="탈퇴하기">
- 
+      <form action="./mypageDeleteAction.me" method="POST" onsubmit="return checkData()" name="fr"> 
+        회원 번호 : <input type="text" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
+        비밀번호 : <input type="password" name="password"> <br>
+         <input type="submit" value="탈퇴하기">
       </form>
       
-     <% 
-       // 회원탈퇴 메서드 호출
-      
-       int result = dao.deleteMember(dto.getMem_num());
-       
-       if(result == 1){
-    	   // 탈퇴시 로그인 정보 삭제(세션값 삭제, 초기화)
-    	   session.invalidate();
-    	   %>
-    	   <script type="text/javascript">
-    	       alert("회원 탈퇴 성공");
-    	   </script>
-    	   <% 
-       }else if(result ==0){
-    	   %>
-    	   <script type="text/javascript">
-    	       alert("탈퇴 실패 : 비밀번호 오류");
-    	       history.back();
-    	   </script>
-    	   <%
-       }else{
-    	   // result = -1
-    	   %>
-    	   <script type="text/javascript">
-    	       alert("탈퇴 실패 : 회원정보 에러");
-    	       history.back();
-    	   </script>
-    	   <%
-       }
-     %>
-     
+      <script type="text/javascript">
+        // alert("document.fr.pw.value : "+document.fr.pw.value);
+        function checkData(){
+        	var password = document.fr.password.value;
+        
+        	if(password == "" || password.length<1){
+        		alert("비밀번호를 입력하세요.");
+        		document.fr.password.focus();
+        		return false;
+        	}
+        	
+        }
+     </script>
+
 </body>
 </html>

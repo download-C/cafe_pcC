@@ -13,7 +13,7 @@
      
      <%
        // 로그인 여부 체크
-//        String mem_num = (String) session.getAttribute("loginMem_num");
+          String mem_num = (String) session.getAttribute("loginMem_num");
 //        if(mem_num == null){
 //     	   response.sendRedirect("loginForm.jsp");
 //        }
@@ -23,18 +23,6 @@
      
      <h2>개인정보 조회</h2>
      
-     <%
-       // DB에 접근해서 해당유저(로그인한 유저)의 정보만 가져오기
-       
-       //MemberDAO 객체
-       // MemberDAO dao = new MemberDAO();
-     
-       // 정보조회 메서드 호출
-       // MemberDTO dto = new MemberDTO();
-       
-       // dao.memberContent(dto);
-       
-     %>
      <table border="1">
         <tr>
         <td>회원번호</td><td>${dto.mem_num }</td>

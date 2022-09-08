@@ -39,7 +39,7 @@
 			    </td>
 				<td>
 					<input type="button" name="notice_delete" value="삭제"
-				    onclick="location.herf='./NoticeDelete.no?notice_num=${dto.notice_num}';">
+				    onclick="location.href='./NoticeDelete.no?notice_num=${dto.notice_num}';">
 			    </td>
 				<td>
 					<input type="button" name="notice_list" value="목록" 

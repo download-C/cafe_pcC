@@ -113,7 +113,7 @@ public class MemberDAO {
 		String password = dto.getPassword();
 	    String name = dto.getName();
 	    int mem_num = dto.getMem_num();
-		
+	
 		try {
 			// 1.2 디비연결
 			con = getConnect();
@@ -137,8 +137,8 @@ public class MemberDAO {
 		 } catch (Exception e) {
 			e.printStackTrace();
 		 }
-		 
-
+		
+		
 	}	
 	
 

@@ -42,6 +42,39 @@ public class MemberFrontController extends HttpServlet {
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
 		
+		//회원가입 폼
+		if(command.equals("/JoinForm.me")){
+			forward = new ActionForward();
+			forward.setPath("./members/JoinForm.jsp");
+			forward.setRedirect(false);
+		//회원가입 정보 db이동
+		}else if(command.equals("/JoinAction.me")){
+			action = new JoinAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//로그인 폼
+		}else if(command.equals("/LoginForm.me")){
+			forward = new ActionForward();
+			forward.setPath("./members/LoginForm.jsp");
+			forward.setRedirect(false);
+		//로그인 정보 확인
+		}else if(command.equals("/LoginAction.me")){
+			action=new LoginAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		//마이페이지 폼
+		}else if(command.equals("/MyPage.me")){
+			forward = new ActionForward();
+			forward.setPath("./members/MyPage.jsp");
+			forward.setRedirect(false);
+			
+		}
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

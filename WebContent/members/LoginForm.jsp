@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		// index.jps
-		
-		response.sendRedirect("./JoinForm.me");
-	%>
+<fieldset>
+<form action="./LoginAction.me" method="post">
+핸드폰번호:<input type="text" name="phone">
+비밀번호: <input type="password" name="password">
+<input type="submit" value="로그인">
+</form>
 
-
-
+</fieldset>
 </body>
 </html>

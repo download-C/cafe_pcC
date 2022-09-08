@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		// index.jps
-		
-		response.sendRedirect("./JoinForm.me");
-	%>
-
-
-
+g
 </body>
 </html>

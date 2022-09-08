@@ -60,18 +60,74 @@ public class MemberDAO {
 	}
 	
 	
-	// 3.   -----------------------------------------
-	
-	
-	
-	
-	// 4.   -----------------------------------------
-	
-	
-	
-	
-	// 5.   -----------------------------------------
-	
+	// 3.  회원가입 메서드 JoinMember(MemberDTO dto)----------------
+		public void JoinMember(MemberDTO dto){
+			System.out.println("\n DAO : JoinMember(MemberDTO dto)");
+			int mem_num=0;
+			
+			try {
+			con=getConnect();
+			sql = "select max(mem_num) from members";
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				mem_num = rs.getInt(1)+1;
+			}	
+			System.out.println(" DAO : 회원번호? "+mem_num);
+			
+			sql = "insert into members(mem_num, phone, password, name, reg_date)"
+					+ "values(?,?,?,?,now())";
+			pstmt= con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			System.out.println(" DAO : 회원가입 성공! ");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+		}
+
+		
+		
+		// 4.  로그인 메서드 LoginMember(MemberDTO dto)---------------------
+		public int LoginMember(MemberDTO dto){
+			int result=-1;
+			
+			try{
+			con = getConnect();
+			sql = "select password from members where phone=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getPhone());
+			rs = pstmt.executeQuery();
+			
+				if(rs.next()){
+					if(dto.getPassword().equals(rs.getString("password"))){
+						//로그인성공
+						result =1;
+					}else{
+						//비밀번호 오류
+						result =0;
+					}
+				}else{
+					result=-1;
+				}
+				System.out.println(" DAO : 로그인 체크 완료("+result+")");
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			return result;
+			
+			
+		}
+		
+		
+		
+		
+		// 5.   -----------------------------------------
+
+
 	
 	
 	

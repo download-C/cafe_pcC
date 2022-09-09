@@ -38,7 +38,7 @@ public class ProductWriteAction implements Action{
 		
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("");
+		forward.setPath("./ProductList.pr");
 		forward.setRedirect(true);
 		//true -> sendRedirect() : 주소와 화면 모두 바뀜 ->이걸로 넘어가기!
 		//false -> 디스패치방식 forward() : 주소는 바뀌지 않고 화면만 바뀜

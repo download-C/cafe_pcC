@@ -33,6 +33,7 @@ public class ProductFrontController extends HttpServlet {
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
  //2. 가상주소 매핑 (web.xml에 적혀있는 대로 .pr로 끝나는 주소 사용) -------------
+		// 서블릿 주소를 판별하여 이동하는 if문
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
@@ -41,18 +42,24 @@ public class ProductFrontController extends HttpServlet {
 		//관리자계정 - 상품 등록 페이지
 		if(command.equals("/ProductWrite.pr")){
 			// 글쓰기 페이지 보여주기 (DB정보 필요없음)
+			// 글쓰기 폼 표시를 위한 View 페이지(*.jsp) 로 포워딩
+			// 별도의 비즈니스 로직(= DB 작업)이 없이 뷰페이지로 바로 연결
+			// => 이 때, JSP 페이지의 URL(qwriteForm.js)이 주소표시줄에 노출되지 않고
+			//    이전의 요청 주소인 서블릿 주소("/ProductWrite.pr")를 그대로 유지해야하므로
+			//    Dispatcher 방식으로 포워딩을 수행해야한다!
+			// => 파라미터로 현재 위치(= Root)에서 하위 디렉토리의 writeForm.js 페이지 지정
 			System.out.println(" C : /ProductWrite.pr 호출 ");
 			System.out.println(" C : DB정보가 필요없음-view페이지로 이동 ");
 			
 			forward = new ActionForward();
 			forward.setPath("./product/writeForm.jsp");
-			forward.setRedirect(true);//디스패치 방식 -> 가상주소가 유지
+			forward.setRedirect(false);//디스패치 방식 -> 가상주소가 유지
 		}
 		
 		//상품 등록 넘기기
 		else if(command.equals("/ProductWriteAction.pr")){
 			System.out.println(" C : /ProductWriteAction.pr 호출 ");
-			
+
 			// ProductWriteAction() 객체 생성
 			//ProductWriteAction pwAction = new ProductWriteAction();
 			action = new ProductWriteAction();
@@ -105,26 +112,29 @@ public class ProductFrontController extends HttpServlet {
 		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
 		if(forward != null) {
-			// 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
-			if(forward.isRedirect()) {
-				System.out.println(" Controller : true");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			
-			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
-			} else {
-				System.out.println(" Controller : false");
-				System.out.println(forward.getPath()+" 이동");
-				System.out.println("방식 : forward() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			}
-		}
+	         System.out.println("forward는 null이 아닙니다");
+	         // 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
+	         if(forward.isRedirect()) {
+	            System.out.println(" Controller : true");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : sendRedirect() 방식");
+	            response.sendRedirect(forward.getPath());
+	         
+	         // 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
+	         } else {
+	            System.out.println(" Controller : false");
+	            System.out.println(forward.getPath()+" 이동");
+	            System.out.println("방식 : forward() 방식");
+	            RequestDispatcher dis 
+	            = request.getRequestDispatcher(forward.getPath());
+	            System.out.println("dis 성공!");
+	            dis.forward(request, response);
+	            System.out.println("forward 성공!");
+	         }
+	         
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
 		System.out.println();
-
+		}
 	}
 
 	@Override

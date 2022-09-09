@@ -11,15 +11,22 @@
 	  <h2> 상품 등록 페이지 </h2>
    
    <fieldset>
-      <form action="./ProductWriteAction.pr" method="post">
-         상품명 : <input type="text" name="prod_name"><br>
-         카테고리 :<input type="radio" name="category" value="coffee">coffee
-		<input type="radio" name="category" value="noncoffee">non coffee
-		<input type="radio" name="category" value="brunch">brunch<br>
-         가격 : <input type="text" name="price"><br>
-         
-      
-        <input type="submit" value="등록하기">
+      <form action="./ProductWriteAction.pr" method="post" enctype="multipart/form-data">
+      	<label for="prod_name">상품명 : </label>
+        <input type="text"  name="prod_name" id="prod_name"><br>
+        
+      	<label for="category">카테고리 : </label>
+        <input type="radio" name="category" id="category" value="coffee">coffee
+		<input type="radio" name="category" id="category" value="noncoffee">non coffee
+	 	<input type="radio" name="category" id="category" value="brunch">brunch<br>
+	 	
+	 	<label for="price">가격 : </label>
+        <input type="text" name="price" id="price"><br>
+        
+	 	<label for="photo">상품 사진 : </label>
+        <input type="file" name="photo" id="photo"><br>
+        
+        <input type="submit" value="상품 등록하기">
       </form>  
    </fieldset>
 	

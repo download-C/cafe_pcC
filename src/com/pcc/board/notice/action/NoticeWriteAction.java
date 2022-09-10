@@ -32,14 +32,12 @@ public class NoticeWriteAction implements Action {
 		
 	// 2. DB에 정보 저장
 		NoticeDAO dao = new NoticeDAO();
-		dao.noticeWrite(dto);
+		int notice_num = dao.noticeWrite(dto);
 
-		System.out.println("DAO 객체 생성 후 DB에 저장 완료");
-		
 		ActionForward forward = new ActionForward();
-		forward.setPath("");
+		forward.setPath("./NoticeContent.no?notice_num="+notice_num);
 		forward.setRedirect(true);
-		System.out.println("NoticeList.no로 이동");
+		System.out.println("NoticeContent.no로 이동");
 		
 		return forward;
 	}

@@ -43,7 +43,7 @@
 			    </td>
 				<td>
 					<input type="button" name="notice_list" value="목록" 
-				     onclick="location.href='./NoticeList.no?pageNum=${requestScope.pageNum }';">
+				     onclick="location.href='./NoticeList.no?pageNum=${pageNum}';">
 			    </td>
 				<td>
 				</td>

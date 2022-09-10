@@ -66,7 +66,7 @@ public class NoticeDAO {
 	
 	
 	// 3.  공지사항 글쓰기 메서드 -----------------------------------------
-		public void noticeWrite(NoticeDTO dto) {
+		public int noticeWrite(NoticeDTO dto) {
 			int notice_num = 0;
 			try {
 				con = getConnect();
@@ -98,12 +98,17 @@ public class NoticeDAO {
 				pstmt.executeUpdate();
 				
 				System.out.println("DAO : 공지사항 정보 저장 완료");
+				
+				System.out.println("notice_num : "+dto.getNotice_num());
+				
+
 					
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
+			return notice_num;
 				
 	}
 	

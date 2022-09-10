@@ -19,6 +19,7 @@ public class NoticeContentAction implements Action {
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		String pageNum = request.getParameter("pageNum");
+		
 		NoticeDTO dto = new NoticeDTO();
 //		if(dto.getMgr_num() != 1234) {
 			NoticeDAO dao = new NoticeDAO();
@@ -30,7 +31,7 @@ public class NoticeContentAction implements Action {
 		request.setAttribute("dto", dto);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("notice_num", notice_num);
-		
+		System.out.println("pageNum: "+pageNum);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./notice/noticeContent.jsp");
 		forward.setRedirect(false);

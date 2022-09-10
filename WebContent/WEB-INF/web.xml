@@ -10,6 +10,17 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- 0. main(메인 페이지) *.pcc -->
+  
+  <servlet>
+  	<servlet-name>MainFrontController</servlet-name>
+  	<servlet-class>action.MainFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MainFrontController</servlet-name>
+  	<url-pattern>*.pcc</url-pattern>
+  </servlet-mapping>
+  
   <!-- 1. Notice(공지사항 게시판) *.no -->
   <servlet>
   	<servlet-name>NoticeFrontController</servlet-name>
@@ -88,6 +99,16 @@
   <servlet-mapping>
   	<servlet-name>ReservationFrontController</servlet-name>
   	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
+     <!-- 8. manager(매니저) *.mgr -->
+  <servlet>
+  	<servlet-name>ManagerFrontController</servlet-name>
+  	<servlet-class>com.pcc.manager.action.ManagerFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ManagerFrontController</servlet-name>
+  	<url-pattern>*.mgr</url-pattern>
   </servlet-mapping>
   
 </web-app>

@@ -1,9 +1,9 @@
 <%@page import="com.pcc.reservation.db.ReservationDTO"%>
-<%@page import="com.pcc.reservation.db.ReservationDAO"%>
 <%@page import="java.io.PrintWriter"%>
+<%@page import="com.pcc.reservation.db.ReservationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,64 +12,57 @@
 <body>
 	<h1>reservation.jsp</h1>
 
+	<jsp:useBean id = "dto" class="com.pcc.reservation.db.ReservationDTO"/>
+	<jsp:setProperty property = "*"  name = "dto"/>
+
+	
 	
 	<% 
 	
 		request.setCharacterEncoding("UTF-8");
 	
 	
+		String res_date = request.getParameter("res_date");
+		String res_hour = request.getParameter("res_hour");
+		String res_num = request.getParameter("res_num_of_persons");
+		
+		session.setAttribute("res_date", res_date);
+		session.setAttribute("res_hour", res_hour);
+		session.setAttribute("res_num", res_num);
 	
 		ReservationDAO dao = new ReservationDAO();
-		ReservationDTO dto = new ReservationDTO();
+		
 	
 	int result = dao.reservation(dto);
 	
-	if(result == 0){
+	if(result == 1){
 		%>
 		<script type="text/javascript">
-		alert("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-		location.href("reservationForm.jsp");	
+		alert("예약이 완료되었습니다.");
+		location.href = "reservationContent.jsp";	
 		</script>
 		
-<% 		
-	}
-	else if(result == 1){
-	%>
-		<script type="text/javascript">
-		alert("예약이 완료되었습니다.");
-		location.href("reservationForm.jsp");	
-		</script>
-	
-	
 <% 		
 	}
 	else if(result == 2){
-		
 	%>
 		<script type="text/javascript">
-		alert("예약이 불가능합니다.");
-		location.href("reservationForm.jsp");	
+		alert("예약이 완료되었습니다.");
+		location.href = "reservationContent.jsp";	
 		</script>
+	
 <%
 	} else if(result == 3){
 		%>
 		<script type="text/javascript">
-		alert("예약이 완료되었습니다.");
-		location.href("reservationForm.jsp");	
-		</script>
-	<% 	
-	}
-	else if(result == 4){
-	%>
-		<script type="text/javascript">
 		alert("예약이 불가능합니다.");
-		location.href("reservationForm.jsp");	
+		location.href = "reservationForm.jsp";	
 		</script>
-<% 		
+		
+<% 	
 	}
+
 	%>
-	
-	   
 	   
 	   
 	   

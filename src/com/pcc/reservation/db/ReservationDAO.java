@@ -10,6 +10,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.pcc.reservation.db.ReservationDTO;
+
 
 
 // 예약 관련 모든 메서드를 생성하는 클래스
@@ -65,593 +67,111 @@ public class ReservationDAO {
 	// 3.   -----------------------------------------
 	
 	
-	public int reservation(ReservationDTO dto) {
+	public int reservation(ReservationDTO dto) throws Exception {
 		int result = -1;
+
 		
+		int res_num = 0;
+		int mem_num = 0;
+		int table_occupied = 0;
 				try{
 					con = getConnect();
-			
-	
-	
-	
-	
-	String res_date = dto.getRes_date();
-	String res_hour = dto.getRes_hour();
-	
-	int res_num_of_persons = dto.getRes_num_of_persons();
-	
-	int month = Integer.parseInt(res_date.substring(5, 7));
-	int day = Integer.parseInt(res_date.substring(8, 10));
-	int hour = Integer.parseInt(res_hour);
-	
-	
-	int table_total = 20;
-	int table_occupied=  0;
-	int table_possible = table_total - table_occupied;
+				
+					
+					
+
+					int res_num_of_persons = dto.getRes_num_of_persons();
+					String res_date = dto.getRes_date();
+					String res_time = dto.getRes_hour();
 	
 
-	if((month>0 && month<13) && (day>0 && day<32) && (hour>0 && hour<10)){
+	
+					int month = Integer.parseInt(res_date.substring(5, 7));
+					int day = Integer.parseInt(res_date.substring(8, 10));
+					int hour = Integer.parseInt(res_time.substring(0, 2));
+	
+	
+					int table_total = 20;
+					int table_possible = (table_total - 5) - table_occupied;
+	
 
-		switch(hour) {
-	      case 1:
-	      	table_occupied = 5;
-	      	
-	      	if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	    		if(table_possible > 0) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
+					if((month>0 && month<13) && (day>0 && day<32) && (hour>12 && hour<22)){
+						
+						sql = "select max(res_num), max(mem_num), max(table_occupied) from reservations";   
+						pstmt = con.prepareStatement(sql);
+				
+						rs = pstmt.executeQuery();
 					
-	    		   	   pstmt = con.prepareStatement(sql);
+						if(rs.next()){
+							
+							res_num = rs.getInt(1) + 1;
+							mem_num = rs.getInt("max(mem_num)") + 1; 
+							table_occupied = rs.getInt(3) + 1;
+						} 
 					
-	    		   	   pstmt.setInt(1, dto.getRes_num()+1);
-	    		   	   pstmt.setInt(2, dto.getMem_num()+1);
-	    		   	   pstmt.setString(3, dto.getRes_date());
-	    		   	   pstmt.setString(4, dto.getRes_hour());
-	    		   	   pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-	    		   	   pstmt.executeUpdate();	
-	    		
-	    		   	   table_occupied += 1;
-	    			   result = 1;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		               result = 2;
-	    			}
-	    		
-	    	} 
-	    	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	    		if(table_possible > 1) {
-	    		   	   System.out.println("예약가능");
-	    		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;	
-	    		   	   result = 3;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		              	result = 4;
-	    			}
-	    	}
-	    	else{
-	    		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	    	}
-	    			result = 0;
-	    			break;
-	    			
-	    			
-	    		case 2:
-	    		table_occupied = 5;
-	    		
-	    		if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	        		if(table_possible > 0) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        			   result = 1;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		               result = 2;
-	        			}
-	        		
-	        	} 
-	        	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	        		if(table_possible > 1) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        		   	   result = 3;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		              	result = 4;
-	        			}
-	        	}
-	        	else{
-	        		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	        	}
-	        			result = 0;
-	    				break;
-	    		case 3:
-	    		table_occupied = 9;
-	    		if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	        		if(table_possible > 0) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        			   result = 1;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		               result = 2;
-	        			}
-	        		
-	        	} 
-	        	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	        		if(table_possible > 1) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        		   	   result = 3;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		              	result = 4;
-	        			}
-	        	}
-	        	else{
-	        		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	        	}
-	        			result = 0;
-	        			
-	    				break;
-	    				
-	    	case 4:
-			table_occupied = 7;
-			if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	    		if(table_possible > 0) {
-	    		   	   System.out.println("예약가능");
-	    		   	 sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;	
-	    			   result = 1;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		               result = 2;
-	    			}
-	    		
-	    	} 
-	    	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	    		if(table_possible > 1) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;
-	    		   	   result = 3;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		              	result = 4;
-	    			}
-	    	}
-	    	else{
-	    		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	    	}
-	    			result = 0;
-	    		
-					break;
-					
-					
-	    	case 5:
-			table_occupied = 8;
-			if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	    		if(table_possible > 0) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;
-					
-	    			   result = 1;
-	    			   
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		               result = 2;
-	    			}
-	    		
-	    	} 
-	    	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	    		if(table_possible > 1) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;
-	    		   	   result = 3;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		              	result = 4;
-	    			}
-	    	}
-	    	else{
-	    		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	    	}
-	    			result = 0;
-	    			
-					break;
-					
-					
-	    	case 6:
-			table_occupied = 15;
-			if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	    		if(table_possible > 0) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;
-	    			   result = 1;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		               result = 2;
-	    			}
-	    		
-	    	} 
-	    	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	    		if(table_possible > 1) {
-	    		   	   System.out.println("예약가능");
-	    		   	   sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	    			
-					
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, dto.getRes_num()+1);
-					pstmt.setInt(2, dto.getMem_num()+1);
-					pstmt.setString(3, dto.getRes_date());
-					pstmt.setString(4, dto.getRes_hour());
-					pstmt.setInt(5, dto.getRes_num_of_persons());
-					
-			
-					pstmt.executeUpdate();	
-	    		
-					table_occupied += 1;
-	    		   	   result = 3;
-	    			}
-	    			else {
-	    		    	   System.out.println("예약이 불가능 합니다");
-	    		              	result = 4;
-	    			}
-	    	}
-	    	else{
-	    		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	    	}
-	    			result = 0;
-	    		
-					break;
-					
-					
-	    	case 7:
-	    		table_occupied = 20;
-	    		if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	        		if(table_possible > 0) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        			   result = 1;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		               result = 2;
-	        			}
-	        		
-	        	} 
-	        	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	        		if(table_possible > 1) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        		   	   result = 3;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		              	result = 4;
-	        			}
-	        	}
-	        	else{
-	        		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	        	}
-	        			result = 0;
-	        		
-	    				break;
-	    				
-	    	case 8:
-	    		table_occupied = 18;
-	    		if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	        		if(table_possible > 0) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        			   result = 1;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		               result = 2;
-	        			}
-	        		
-	        	} 
-	        	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	        		if(table_possible > 1) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        		   	   result = 3;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		              	result = 4;
-	        			}
-	        	}
-	        	else{
-	        		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	        	}
-	        			result = 0;
-	        		
-	    				break;
-	    				
-	    	case 9:
-	    		table_occupied = 17;
-	    		if(res_num_of_persons < 5 && res_num_of_persons >0 ){
-	        		if(table_possible > 0) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        			   result = 1;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		               result = 2;
-	        			}
-	        		
-	        	} 
-	        	else if(res_num_of_persons > 4 && res_num_of_persons < 9){
-	        		if(table_possible > 1) {
-	        		   	   System.out.println("예약가능");
-	        		   	sql = "insert into cafe_pcc values(?, ?, cast(? as DATE), cast(? as TIME), ?)";
-	        			
-	    				
-	    				pstmt = con.prepareStatement(sql);
-	    				
-	    				pstmt.setInt(1, dto.getRes_num()+1);
-	    				pstmt.setInt(2, dto.getMem_num()+1);
-	    				pstmt.setString(3, dto.getRes_date());
-	    				pstmt.setString(4, dto.getRes_hour());
-	    				pstmt.setInt(5, dto.getRes_num_of_persons());
-	    				
-	    		
-	    				pstmt.executeUpdate();	
-	        		
-	    				table_occupied += 1;
-	        		   	   result = 3;
-	        			}
-	        			else {
-	        		    	   System.out.println("예약이 불가능 합니다");
-	        		              	result = 4;
-	        			}
-	        	}
-	        	else{
-	        		System.out.println("잘못입력하셨거나, 예약 가능 인원이 초과되었습니다.");
-	        	}
-	        			result = 0;
-	    				
-	    				break;
-	    			
-	    		
-	    	}
-	      	
+						
+						for(int i = hour ; i < hour + 1; i++){
+								if(res_num_of_persons < 5 && res_num_of_persons >0 && table_possible > 0){
+									
+										System.out.println("예약가능");
+										sql = "insert into reservations values(?, ?, cast(? as DATE), cast(? as TIME), ?, ?, ?)";
+    			
+										pstmt = con.prepareStatement(sql);
+				
+										pstmt.setInt(1, res_num);
+										pstmt.setInt(2, mem_num);
+										pstmt.setString(3, dto.getRes_date());
+										pstmt.setString(4, dto.getRes_hour());
+										pstmt.setInt(5, dto.getRes_num_of_persons());
+										pstmt.setInt(6, dto.getTable_total());
+										pstmt.setInt(7, table_occupied);
+				
 		
-	    }
-					} catch(Exception e){
+										pstmt.executeUpdate();	
+    		
+										result = 1;
+									} 
+								else if(res_num_of_persons > 4 && res_num_of_persons < 9 && table_possible > 1){
+											 System.out.println("예약가능");
+											 sql = "insert into reservations values(?, ?, cast(? as DATE), cast(? as TIME), ?, ?, ?)";
+				
+				
+											 pstmt = con.prepareStatement(sql);
+				
+											 pstmt.setInt(1, res_num);
+											 pstmt.setInt(2, mem_num);
+											 pstmt.setString(3, dto.getRes_date());
+											 pstmt.setString(4, dto.getRes_hour());
+											 pstmt.setInt(5, dto.getRes_num_of_persons());
+											 pstmt.setInt(6, dto.getTable_total());
+											 pstmt.setInt(7, table_occupied);
+				
+
+											 pstmt.executeUpdate();	
+
+
+											 result = 2;
+									
+										}
+								
+								else{
+									System.out.println("예약이 불가능 합니다.");
+									
+									result = 3;
+								}
+										
+							}
+			
+						}			
+						
+					
+					} catch (SQLException e) {
 						e.printStackTrace();
 					} finally{
 						closeDB();
 					}
-
-		return result;
-
-		
+				
+				return result;
 	}
 	
 }

@@ -8,7 +8,20 @@
 </head>
 <body>
 	<h1>mainPage.jsp</h1>
-	
-	${sessionScope.mgr_num }
+	<%
+		if(session.getAttribute("mgr_num") != null) {
+			%>
+			로그인 성공
+			세션 아이디 : ${sessionScope.mgr_num }
+			<%
+			
+		} else {
+			%>
+			로그인해주세요
+			<input type="button" name="button" 
+			value="로그인 페이지로 이동" onclick="loaction.href='./LoginManager.mgr'">
+			<%
+		}
+	%>
 </body>
 </html>

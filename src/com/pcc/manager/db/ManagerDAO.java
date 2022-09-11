@@ -4,24 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 public class ManagerDAO {
 	
 	// 매니저 관련 모든 메서드를 생성하는 클래스
+	
 
-		private Connection con = null;
-		private String sql ="";
-		private PreparedStatement pstmt = null;
-		private ResultSet rs = null;
+	private Connection con = null;
+	private String sql ="";
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 		
 		public ManagerDAO () {
 			System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 		}
+		
+		
 		
 		// 1. CP를 이용한 DB 연결 -----------------------------------------
 		private Connection getConnect() {
@@ -64,6 +69,22 @@ public class ManagerDAO {
 			ManagerDTO dto = new ManagerDTO();
 			dto.setMgr_id(mgr_id);
 			dto.setMgr_password(mgr_password);
+			
+			try {
+				con = getConnect();
+				sql = "select * from managers where mgr_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mgr_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					dto.setMgr_num(rs.getInt("mgr_num"));
+					dto.setMgr_name(rs.getString("mgr_name"));
+					dto.setMgr_job(rs.getString("mgr_job"));
+					dto.setMgr_title(rs.getString("mgr_title"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 			return dto;
 		}

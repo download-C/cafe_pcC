@@ -2,6 +2,7 @@ package com.pcc.manager.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.manager.db.ManagerDAO;
 import com.pcc.manager.db.ManagerDTO;
@@ -10,7 +11,8 @@ import action.Action;
 import vo.ActionForward;
 
 public class LoginManagerAction implements Action {
-
+	String message;
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -19,16 +21,27 @@ public class LoginManagerAction implements Action {
 		
 		ManagerDAO dao = new ManagerDAO();
 		ManagerDTO dto = dao.getManager(mgr_id, mgr_password);
+	
+		System.out.println(dto);
 		
 		int result = dao.loginManager(dto);
 		
 		ActionForward forward = new ActionForward();
 		if(result == 1) {
-			request.setAttribute(Integer.toString(dto.getMgr_num()), "mgr_num");
+			String mgr_num = String.valueOf(dto.getMgr_num());
+//			Cookie idCookie = new Cookie("mgr_num",  mgr_num);
+//			response.addCookie(idCookie);
+			message = dto.getMgr_name()+"님, 환영합니다!";
+			HttpSession session = request.getSession();
+			session.setAttribute("mgr_num", mgr_num);
+			session.setAttribute("message", message);
 
+			System.out.println("세션값 생성 성공!");
+			request.getAttribute("mgr_num");
 			forward.setPath("/MainPage.pcc");
 			forward.setRedirect(false);
 		} else {
+			message = "아이디와 비밀번호가 일치하지 않습니다.";
 			forward.setPath("./LoginManager.mgr");
 			forward.setRedirect(true);
 		}

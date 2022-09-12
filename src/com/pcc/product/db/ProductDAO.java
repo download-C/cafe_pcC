@@ -24,7 +24,7 @@ public class ProductDAO {
 	private ResultSet rs = null;
 	
 	public ProductDAO () {
-		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
+//		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 	}
 	
 	// 1. CP를 이용한 DB 연결 -----------------------------------------
@@ -36,7 +36,7 @@ public class ProductDAO {
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/cafe_pcc");
 			con = ds.getConnection();
 			
-			System.out.println("DAO : DB 연결 완료");
+//			System.out.println("DAO : DB 연결 완료");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,18 +55,20 @@ public class ProductDAO {
 			if(rs != null)	rs.close();
 			if(pstmt != null)  pstmt.close();
 			if(con != null)  con.close();
-			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
+//			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("DAO : DB 연결 해제");
+//		System.out.println("DAO : DB 연결 해제");
 	}
 	
 	
 	// 3. 상품등록 글쓰기 - productWrite()  -----------------------------------------
 	public void productWrite(ProductDTO dto){
-		System.out.println("\n DAO : productWrite(productDTO dto) 호출 ");
+//		System.out.println("\n DAO : productWrite(productDTO dto) 호출 ");
+		System.out.println("4. productWrite DAO");
+		
 		int prod_num = 0;  //글번호 저장 
 		
 		try {
@@ -95,11 +97,11 @@ public class ProductDAO {
 				prod_num = 1;
 			}
 			
-			System.out.println(" DAO : 상품번호 prod_num : " + prod_num);
+//			System.out.println(" DAO : 상품번호 prod_num : " + prod_num);
 			
 			// 게시판 글 쓰기
 			// 3. sql작성 & pstmt 객체
-			sql = "insert into products values(?,?,?,?)";
+			sql = "insert into products values(?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -108,11 +110,13 @@ public class ProductDAO {
 			pstmt.setString(2, dto.getProd_name());
 			pstmt.setString(3, dto.getCategory());
 			pstmt.setInt(4, dto.getPrice());
+			pstmt.setString(5,  dto.getProd_img());
+			pstmt.setString(6, dto.getProd_real_img());
 			
 			// 4. SQL 실행
 			pstmt.executeUpdate();//insert구문은 update사용
 			
-			System.out.println(" DAO : 글 작성 완료! ");
+//			System.out.println(" DAO : 글 작성 완료! ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,7 +131,7 @@ public class ProductDAO {
 	
 	// 4. 상품 목록 조회(all) - getProductList()  -----------------------------------------
 	public List<ProductDTO> getProductList(){
-		
+		System.out.println("4. productList DAO");
 		// 글정보 모두를 저장하는 배열(가변길이)
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
 		
@@ -152,13 +156,15 @@ public class ProductDAO {
 				dto.setProd_name(rs.getString("prod_name"));
 				dto.setCategory(rs.getString("category"));
 				dto.setPrice(rs.getInt("price"));
+				dto.setProd_img(rs.getString("prod_img"));
+				dto.setProd_real_img(rs.getString("prod_real_img"));
 				
 				//DTO -> List
 				productList.add(dto);
 				
 			}//while문 종료
 			
-			System.out.println(" C : 상품 목록 모두 저장 완료");
+//			System.out.println(" C : 상품 목록 모두 저장 완료");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -213,7 +219,9 @@ public class ProductDAO {
 	
 	// 7. 특정 상품 1개의 정보 조회 getProduct(prod_num) -----------------------------------------
 	public ProductDTO getProduct(int prod_num) {
-		System.out.println(" DAO : getProduct(prod_num) 호출 ");
+		
+		System.out.println("4. product DAO ");
+		
 		ProductDTO dto = null;
 	
 		try {
@@ -239,10 +247,12 @@ public class ProductDAO {
 				dto.setProd_name(rs.getString("prod_name"));
 				dto.setCategory(rs.getString("category"));
 				dto.setPrice(rs.getInt("price"));
+				dto.setProd_img(rs.getString("prod_img"));
+				dto.setProd_real_img(rs.getString("prod_real_img"));
 				
 			}//if
 			
-			System.out.println(" DAO : "+prod_num+"번 상품 상세페이지 정보 저장 완료");
+//			System.out.println(" DAO : "+prod_num+"번 상품 상세페이지 정보 저장 완료");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

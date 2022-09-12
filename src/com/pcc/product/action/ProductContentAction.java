@@ -15,7 +15,7 @@ public class ProductContentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
-		System.out.println(" M : ProductContentAction_execute() 호출 ");
+		System.out.println("3. ProductContentAction");
 		
 		// 전달된 정보 저장(prod_num, page_num)
 		// => 전달되는 파라메터값의 경우 
@@ -29,6 +29,9 @@ public class ProductContentAction implements Action {
 		
 		// 게시판 글 1개의 정보를 가져와서 출력
 		ProductDTO dto = dao.getProduct(prod_num);
+		
+		System.out.println("5. ProductContentAction 돌아옴");
+
 		
 		// Model 객체 정보 출력 X
 		//   view 에서 정보 출력O

@@ -1,4 +1,4 @@
-package com.pcc.cart.db;
+package com.pcc.product.db;
 
 // 카트 관련 정보 객체
 

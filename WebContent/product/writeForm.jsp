@@ -23,8 +23,8 @@
 	 	<label for="price">가격 : </label>
         <input type="text" name="price" id="price"><br>
         
-	 	<label for="photo">상품 사진 : </label>
-        <input type="file" name="photo" id="photo"><br>
+	 	<label for="prod_img">상품 사진 : </label>
+        <input type="file" name="prod_img" id="prod_img"><br>
         
         <input type="submit" value="상품 등록하기">
       </form>  

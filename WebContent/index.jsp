@@ -14,7 +14,7 @@
 		// index.jsp
 		
 		 //response.sendRedirect("./QnAWrite.bo");
-		 response.sendRedirect("./QnAWriteForm.bo");
+		 response.sendRedirect("./QnABoardListAction.bo");
 		// response.sendRedirect("/QnABoardList.bo");
 	
 	

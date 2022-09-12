@@ -66,8 +66,8 @@ public class QnABoardDAO {
 	
 	// 3. 공지사항 글쓰기 메서드  -----------------------------------------
 	
-	public void QnAWrite (QnABoardDTO dto) {
-		int qna_num = 0;
+	public int QnAWrite (QnABoardDTO dto) {
+		int QnA_num = 0;
 		try {
 			con = getConnect();
 			sql = "select max(qna_num) from qna_boards";
@@ -75,9 +75,45 @@ public class QnABoardDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			System.out.println(" pstmt 성공! ");
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				QnA_num = rs.getInt(1)+1;
+			}
+			System.out.println(" QnA_num : " + QnA_num);
+			
+			sql = "insert into qna_boards (QnA_num, QnA_writer_type, mem_num, QnA_password, "
+					+ "QnA_subject, QnA_content, QnA_readcount, QnA_re_ref, QnA_re_lev, QnA_re_seq, "
+					+ "QnA_date, QnA_ip, QnA_file) "
+					+ "values (?,2,1111,?,?,?,?,?,?,?,now(),?,?) ";
+			System.out.println("SQL 완료");
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, QnA_num);
+			pstmt.setInt(2, dto.getQnA_password());
+			pstmt.setString(3, dto.getQnA_subject());
+			pstmt.setString(4, dto.getQnA_content());
+			System.out.println(" content 완료 ");
+			pstmt.setInt(5, dto.getQnA_readcount());
+			System.out.println(" readcount 완료 ");
+			
+			pstmt.setInt(6, 1);
+			pstmt.setInt(7, 1);
+			pstmt.setInt(8, 1);
+			
+			pstmt.setString(9, "123");
+			pstmt.setString(10, dto.getQnA_file());
+			
+			pstmt.executeUpdate();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			closeDB();
 		}
+		return QnA_num; 
+		
 	}
 	
 	// 회원번호로 개인정보를 불러오는 메서드
@@ -194,9 +230,78 @@ public class QnABoardDAO {
 	
 	
 	
-	// 6.   -----------------------------------------
+	// 6. 작성한 글 가져오는 메서드  -----------------------------------------
 	
-	
+	public QnABoardDTO getQnAContent (int QnA_num) {
+		
+		QnABoardDTO dto = new QnABoardDTO();
+
+		try {
+			con = getConnect();
+			
+			sql = "select * from qna_boards where QnA_num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, QnA_num);
+			
+			//pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				
+				dto.setQnA_num(rs.getInt("QnA_num"));
+				dto.setQnA_writer_type(rs.getInt("QnA_writer_type"));
+				dto.setmem_num(rs.getInt("mem_num"));
+				dto.setQnA_password(rs.getInt("QnA_password"));
+				dto.setQnA_subject(rs.getString("QnA_subject"));
+				dto.setQnA_content(rs.getString("QnA_content"));
+				dto.setQnA_readcount(rs.getInt("QnA_readcount"));
+				dto.setQnA_re_ref(rs.getInt("QnA_re_ref"));
+				dto.setQnA_re_lev(rs.getInt("QnA_re_lev"));
+				dto.setQnA_re_seq(rs.getInt("QnA_re_seq"));
+				dto.setQnA_date(rs.getTimestamp("QnA_date"));
+				dto.setQnA_ip(rs.getString("QnA_ip"));
+				dto.setQnA_file(rs.getString("QnA_file"));
+				
+				
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return dto;
+		
+	}		
+		
+
+	public void updateReadCount(int QnA_num) {
+		
+		try {
+			con = getConnect();
+			
+			sql = "select QnA_readcount from qna_boards where QnA_num=? ";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, QnA_num);
+			
+			if(rs.next()) {
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 	
 	// 7.   -----------------------------------------

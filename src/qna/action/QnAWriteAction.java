@@ -2,7 +2,7 @@ package qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.ActionMapUIResource;
+
 
 import com.pcc.QnAboard.db.QnABoardDAO;
 import com.pcc.QnAboard.db.QnABoardDTO;
@@ -44,14 +44,16 @@ public class QnAWriteAction implements Action {
 		// 2. DB에 정보 저장
 		
 		QnABoardDAO dao = new QnABoardDAO();
-		dao.QnAWrite(dto);
-		
+		int QnA_num = dao.QnAWrite(dto);
+		dto = dao.getQnAContent(QnA_num);
 		System.out.println(" DAO 객체 생성 후 DB에 저장 완료");
+
+		System.out.println("QnA_num :" +QnA_num);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./QnA/QnAWriteForm.jsp");
+		forward.setPath("./QnAContent.bo=QnA_num" + QnA_num);
 		forward.setRedirect(true);
-		System.out.println(" QnAList.bo로 이동 ");
+		System.out.println(" QnAContent.bo로 이동 ");
 		
 		return forward;
 	}

@@ -71,7 +71,34 @@ public class QnAFrontController extends HttpServlet {
 			}
 			
 			// QnA게시판 목록
-		} else if (command.equals("/QnABoardList.bo")) {
+		} 
+//		
+//		else if(command.equals("/QnAContentAction.bo")) {
+//			System.out.println(" C : QnAContentAction.bo 호출 ");
+//			
+//			action = new QnAContentAction();
+//			 
+//			try {
+//				action.execute(request, response);
+//			} catch (Exception e) {
+//				
+//				e.printStackTrace();
+//			}
+//		}
+		
+		else if(command.equals("/QnAContent.bo")) {
+			System.out.println( " C : QnAContent.bo 호출 ");
+			
+			action = new QnAContentAction();
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		else if (command.equals("/QnABoardList.bo")) {
 			System.out.println(" C : QnABoardList.bo 호출 ");
 			
 			// QnABoardListAction() 객체 생성
@@ -84,7 +111,6 @@ public class QnAFrontController extends HttpServlet {
 				e.printStackTrace();
 				}
 			}
-		
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

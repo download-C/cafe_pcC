@@ -11,7 +11,6 @@
 	<h1>QnAWriteForm.jsp</h1>
 	<h2> 문의사항 작성페이지</h2>	
 	
-	
 	<br>
 	
 	<fieldset>

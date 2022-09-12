@@ -1,12 +1,15 @@
 package com.pcc.QnAboard.action;
 
 import java.io.IOException;
+import java.nio.channels.ClosedByInterruptException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.digester.SystemPropertySource;
 
 import qna.action.Action;
 import qna.action.QnAWriteAction;
@@ -43,14 +46,15 @@ public class QnAFrontController extends HttpServlet {
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
 		if(command.equals("/QnAWrite.bo")) {
-			action = new QnAWrite();
+			//action = new QnAWriteMemberInfo();
 			// 회원번호
 			forward = new ActionForward();
-			forward.setPath("");;
+			forward.setPath("QnAWriteForm.bo");
 			forward.setRedirect(false);
 		}
-		// 로그인 한 회원의 정보를 갖고 오는 메서드
-		else if(command.equals("/QnAWriteAction.bo")) {
+		// ▲ 로그인 한 회원의 세션 아이디(회원번호)를 이용해 개인정보를 갖고 오는 메서드
+		
+		else if(command.equals("/QnAWriteForm.bo")) {
 		// 회원번호 가져오는 액션클래스
 			action = new QnAWriteAction();
 			forward = new ActionForward();
@@ -66,7 +70,22 @@ public class QnAFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+			
+			// QnA게시판 목록
+		} else if (command.equals("/QnABoardList.bo")) {
+			System.out.println(" C : QnABoardList.bo 호출 ");
+			
+			// QnABoardListAction() 객체 생성
+			QnABoardListAction qnalistAction = new QnABoardListAction();
+			
+			try {
+				System.out.println(" C : 해당 Model 객체 호출 ");
+				qnalistAction.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				}
+			}
+		
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

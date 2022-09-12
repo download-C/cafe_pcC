@@ -28,6 +28,9 @@ public class QnAWriteAction implements Action {
 		dto.setQnA_content(request.getParameter("QnA_content"));
 		dto.setQnA__file(request.getParameter("QnA_file"));
 		
+		// IP 주소 추가
+		dto.setQnA__ip(request.getRemoteAddr());
+		
 		System.out.println(" 파라미터 값 DTO에 저장 완료! ");
 		
 		System.out.println(" M : " + dto);
@@ -40,7 +43,7 @@ public class QnAWriteAction implements Action {
 		System.out.println(" DAO 객체 생성 후 DB에 저장 완료");
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("");
+		forward.setPath("./QnA/QnAWriteForm.jsp");
 		forward.setRedirect(true);
 		System.out.println(" QnAList.bo로 이동 ");
 		

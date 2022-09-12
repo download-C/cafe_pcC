@@ -7,12 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%
 	
 	
 		// index.jsp
 		
-		response.sendRedirect("./QnAWrite.bo");
+		 //response.sendRedirect("./QnAWrite.bo");
+		 response.sendRedirect("./QnAWriteForm.bo");
+		// response.sendRedirect("/QnABoardList.bo");
 	
 	
 	%>

@@ -1,4 +1,4 @@
-package qna.action;
+package com.pcc.QnAboard.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pcc.QnAboard.db.QnABoardDAO;
 import com.pcc.QnAboard.db.QnABoardDTO;
 
+import qna.action.Action;
 import vo.ActionForward;
 
 public class QnAWriteAction implements Action {

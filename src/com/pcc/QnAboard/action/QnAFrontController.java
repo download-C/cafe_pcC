@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.digester.SystemPropertySource;
 
 import qna.action.Action;
-import qna.action.QnAWriteAction;
 import vo.ActionForward;
 
 public class QnAFrontController extends HttpServlet {
@@ -52,16 +51,18 @@ public class QnAFrontController extends HttpServlet {
 //			forward.setPath("QnAWriteForm.bo");
 //			forward.setRedirect(false);
 //		}
-		// ▲ 로그인 한 회원의 세션 아이디(회원번호)를 이용해 개인정보를 갖고 오는 메서드
+// ▲ 로그인 한 회원의 세션 아이디(회원번호)를 이용해 개인정보를 갖고 오는 메서드
 		
+		// 2-1. 공지사항 글 쓰기 양식
 		if(command.equals("/QnAWriteForm.bo")) {
-		// 회원번호 가져오는 액션클래스
 			forward = new ActionForward();
 			forward.setPath("./QnA/QnAWriteForm.jsp");
 			forward.setRedirect(false);
+			System.out.println(" QnAWriteForm.bo 가상 주소로 이동 ");
 		}
 		
-		else if (command.equals("/QnAWriteAction.bo")) {
+		// 2-2. 공지사항 글 DB에 올리기
+	else if (command.equals("/QnAWriteAction.bo")) {
 			System.out.println(" C : /QnAWriteAction.bo 호출 ");
 			action = new QnAWriteAction();
 			try	{
@@ -69,10 +70,38 @@ public class QnAFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+			else if(command.equals("/QnAContent.bo")) {
+				System.out.println( " C : QnAContent.bo 호출 ");
+
+				action = new QnAContentAction();
+				try {
+					action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			
-			// QnA게시판 목록
+			
+
+		// 2-3. QnA게시판 목록으로 이동
 		} 
-//		
+			else if (command.equals("/QnABoardList.bo")) {
+				System.out.println(" C : QnABoardList.bo 호출 ");
+
+		// QnABoardListAction() 객체 생성
+		QnABoardListAction qnalistAction = new QnABoardListAction();
+		
+		try {
+			System.out.println(" C : 해당 Model 객체 호출 ");
+			qnalistAction.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		}
+			//action = new QnABoardListAction();
+			
+		
+//
 //		else if(command.equals("/QnAContentAction.bo")) {
 //			System.out.println(" C : QnAContentAction.bo 호출 ");
 //			
@@ -85,33 +114,12 @@ public class QnAFrontController extends HttpServlet {
 //				e.printStackTrace();
 //			}
 //		}
+
 		
-		else if(command.equals("/QnAContent.bo")) {
-			System.out.println( " C : QnAContent.bo 호출 ");
+		//else if (command.equals("/QnABoardList.bo")) {
 			
-			action = new QnAContentAction();
-			try {
-				action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		else if (command.equals("/QnABoardList.bo")) {
-			System.out.println(" C : QnABoardList.bo 호출 ");
-			
-			// QnABoardListAction() 객체 생성
-			QnABoardListAction qnalistAction = new QnABoardListAction();
-			
-			try {
-				System.out.println(" C : 해당 Model 객체 호출 ");
-				qnalistAction.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-				}
-			}
-		
+
+
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");
 		System.out.println();
@@ -142,18 +150,15 @@ public class QnAFrontController extends HttpServlet {
 		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
 		
 	}
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doProcess(request, response);
 	}
-	
+
 	
 
 }

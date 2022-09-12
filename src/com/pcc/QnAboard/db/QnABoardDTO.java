@@ -103,16 +103,22 @@ public class QnABoardDTO {
 	public String getQnA_ip() {
 		return QnA_ip;
 	}
+	public void setQnA__ip(String qnA_ip) {
+		
+	}
 	public void setQnA_ip(String qnA_ip) {
 		QnA_ip = qnA_ip;
 	}
 	public String getQnA_file() {
 		return QnA_file;
 	}
+	public void setQnA__file(String qnA_file) {
+		
+	}
 	public void setQnA_file(String qnA_file) {
 		QnA_file = qnA_file;
 	}
-	
+
 	
 	@Override
 	public String toString() {

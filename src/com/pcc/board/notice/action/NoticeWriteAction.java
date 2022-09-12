@@ -2,6 +2,7 @@ package com.pcc.board.notice.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.board.notice.db.NoticeDAO;
 import com.pcc.board.notice.db.NoticeDTO;
@@ -14,6 +15,8 @@ public class NoticeWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
+		HttpSession sesssionID;
+//		if()
 		
 		System.out.println("NoticeWriteAction_execute() 호출");
 	// 0. 한글 처리

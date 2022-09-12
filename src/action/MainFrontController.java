@@ -46,9 +46,6 @@ public class MainFrontController extends HttpServlet{
 				forward.setPath("./mainPage.jsp");
 				forward.setRedirect(false);
 			}
-
-			
-		
 		
 		// ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝------------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

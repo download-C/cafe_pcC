@@ -11,14 +11,14 @@
 		
 // 		response.sendRedirect("./NoticeWrite.no");
 	
-// 		response.sendRedirect("./NoticeList.no");
+// 		response.t("./NoticeList.no");
 		
 // 		response.sendRedirect("./NoticeContent.no");
 
-		response.sendRedirect("./LoginManager.mgr");
+// 		response.sendRedirect("./LoginManager.mgr");
+
+		response.sendRedirect("./MainPage.pcc");
 	%>
-
-
 
 </body>
 </html>

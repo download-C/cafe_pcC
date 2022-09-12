@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>signinManager.jsp</h1>
+	<h1>LoginManager.jsp</h1>
 	
 	<form action="./LoginManagerAction.mgr" method="post">
 		<fieldset>

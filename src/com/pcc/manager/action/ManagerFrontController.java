@@ -41,19 +41,22 @@ public class ManagerFrontController extends HttpServlet{
 		ActionForward forward = null;
 		
 		// ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		// 2-0. 메인 화면으로 이동
-			if(command.equals("/MainPage.pcc")) {
-				forward = new ActionForward();
-				forward.setPath("./mainPage.jsp");
-				forward.setRedirect(false);
-			}
+		
+		// 2-0. 메인페이지로 이동
+//			if(command.equals("/MainPage.mgr")) {
+//				forward = new ActionForward();
+//				forward.setPath("./main/mainPage.jsp");
+//				forward.setRedirect(false);
+//				
+//			}
+		
 		// 2-1. 관리자 로그인 페이지로 이동
 			if(command.equals("/LoginManager.mgr")) {
 				forward = new ActionForward();
 				forward.setPath("./manager/loginManager.jsp");
 				forward.setRedirect(false);
 			}
-		// 2-2. 관리자 회원가입 실행
+		// 2-2. 관리자 로그인 실행
 			else if(command.equals("/LoginManagerAction.mgr")) {
 				action = new LoginManagerAction();
 				try {
@@ -61,6 +64,18 @@ public class ManagerFrontController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+		// 2-3. 관리자 로그아웃 실행
+			else if(command.endsWith("/LogoutManager.mgr")) {
+				System.out.println("매니저 로그아웃 실행");
+				action = new LogoutManagerAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		
 		// ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝------------------

@@ -110,5 +110,7 @@
   	<servlet-name>ManagerFrontController</servlet-name>
   	<url-pattern>*.mgr</url-pattern>
   </servlet-mapping>
-  
+
+
+
 </web-app>

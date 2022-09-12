@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import vo.ActionForward;
@@ -42,9 +43,18 @@ public class NoticeFrontController extends HttpServlet {
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		// 2-1. 공지사항 글 쓰기 양식
 		if(command.equals("/NoticeWrite.no")) {
-			forward = new ActionForward();
-			forward.setPath("./notice/noticeWriteForm.jsp");
-			forward.setRedirect(false);
+			HttpSession session = request.getSession();
+			String MgrID = (String) session.getAttribute("mgr_num"); 
+			if(MgrID != null) {
+				forward = new ActionForward();
+				forward.setPath("./notice/noticeWriteForm.jsp");
+				forward.setRedirect(false);
+			} else {
+				forward = new ActionForward();
+				forward.setPath("./NoticeList.no");
+				forward.setRedirect(true);
+			}
+			
 		}
 		
 		// 2-2. 공지사항 글 DB에 올리기

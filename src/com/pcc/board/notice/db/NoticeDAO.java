@@ -84,7 +84,7 @@ public class NoticeDAO {
 				
 				sql = "insert into notice_boards(notice_num, mgr_num, notice_subject, "
 					  +"notice_content, notice_readcount, notice_date, notice_file) "
-					  +"values(?,1234,?,?,?,now(),?)";
+					  +"values(?,1111,?,?,?,now(),?)";
 						
 				pstmt = con.prepareStatement(sql);
 				
@@ -100,8 +100,6 @@ public class NoticeDAO {
 				System.out.println("DAO : 공지사항 정보 저장 완료");
 				
 				System.out.println("notice_num : "+dto.getNotice_num());
-				
-
 					
 			} catch (SQLException e) {
 				e.printStackTrace();

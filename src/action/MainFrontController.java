@@ -43,7 +43,13 @@ public class MainFrontController extends HttpServlet{
 		// 2-0. 메인 화면으로 이동
 			if(command.equals("/MainPage.pcc")) {
 				forward = new ActionForward();
-				forward.setPath("./mainPage.jsp");
+				forward.setPath("./main/mainPage.jsp");
+				forward.setRedirect(false);
+			}
+			
+			else if(command.equals("/Login.pcc")) {
+				forward = new ActionForward();
+				forward.setPath("./main/login.jsp");
 				forward.setRedirect(false);
 			}
 		

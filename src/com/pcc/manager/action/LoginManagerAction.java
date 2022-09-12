@@ -35,11 +35,12 @@ public class LoginManagerAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("mgr_num", mgr_num);
 			session.setAttribute("message", message);
+			session.setMaxInactiveInterval(600);
 
 			System.out.println("세션값 생성 성공!");
-			request.getAttribute("mgr_num");
-			forward.setPath("/MainPage.pcc");
-			forward.setRedirect(false);
+			
+			forward.setPath("./MainPage.pcc");
+			forward.setRedirect(true);
 		} else {
 			message = "아이디와 비밀번호가 일치하지 않습니다.";
 			forward.setPath("./LoginManager.mgr");

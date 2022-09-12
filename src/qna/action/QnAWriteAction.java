@@ -22,14 +22,20 @@ public class QnAWriteAction implements Action {
 		
 		// 1. QnAWriteForm.jsp에서 받은 정보(제목, 내용, 첨부파일)를 담을 BoardDTO 생성 후 저장
 		QnABoardDTO dto = new QnABoardDTO();
+		System.out.println("DTO 객체 생성 완료");
 		
 		dto.setQnA_password(Integer.parseInt(request.getParameter("QnA_password")));
+		System.out.println("비밀번호 불러오기");
 		dto.setQnA_subject(request.getParameter("QnA_subject"));
+		System.out.println("제목 불러오기");
 		dto.setQnA_content(request.getParameter("QnA_content"));
-		dto.setQnA__file(request.getParameter("QnA_file"));
+		System.out.println("내용 불러오기");
+		dto.setQnA_file(request.getParameter("QnA_file"));
+		System.out.println("파일 불러오기");
 		
 		// IP 주소 추가
-		dto.setQnA__ip(request.getRemoteAddr());
+		dto.setQnA_ip(request.getRemoteAddr());
+	    System.out.println("ip 불러오기");
 		
 		System.out.println(" 파라미터 값 DTO에 저장 완료! ");
 		

@@ -103,13 +103,13 @@ public class QnABoardDTO {
 	public String getQnA_ip() {
 		return QnA_ip;
 	}
-	public void setQnA__ip(String qnA_ip) {
+	public void setQnA_ip(String qnA_ip) {
 		QnA_ip = qnA_ip;
 	}
 	public String getQnA_file() {
 		return QnA_file;
 	}
-	public void setQnA__file(String qnA_file) {
+	public void setQnA_file(String qnA_file) {
 		QnA_file = qnA_file;
 	}
 	
@@ -120,7 +120,7 @@ public class QnABoardDTO {
 				+ ", mem_num=" + mem_num + ", QnA_password=" + QnA_password
 				+ ", QnA_subject=" + QnA_subject + ", QnA_content=" + QnA_content + ", QnA_readcount=" + QnA_readcount
 				+ ", QnA_re_ref=" + QnA_re_ref + ", QnA_re_lev=" + QnA_re_lev + ", QnA_re_seq=" + QnA_re_seq
-				+ ", QnA__date=" + QnA_date + ", QnA__ip=" + QnA_ip + ", QnA__file=" + QnA_file + "]";
+				+ ", QnA_date=" + QnA_date + ", QnA_ip=" + QnA_ip + ", QnA_file=" + QnA_file + "]";
 	}
 	
 

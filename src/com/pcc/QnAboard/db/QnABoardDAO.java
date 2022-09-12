@@ -67,65 +67,16 @@ public class QnABoardDAO {
 	// 3. 공지사항 글쓰기 메서드  -----------------------------------------
 	
 	public void QnAWrite (QnABoardDTO dto) {
-		int QnA_num = 0;
+		int qna_num = 0;
 		try {
 			con = getConnect();
-			sql = "select max(QnA_num) from qna_boards";
+			sql = "select max(qna_num) from qna_boards";
 			System.out.println(" select문 성공! ");
 			
 			pstmt = con.prepareStatement(sql);
 			System.out.println(" pstmt 성공! ");
-			
-			rs = pstmt.executeQuery();
-			System.out.println(" RS 성공! ");
-			
-			if(rs.next()) {
-				QnA_num = rs.getInt(1)+1;
-				System.out.println("QnA_num "+QnA_num+"으로 업데이트 완료");
-			}
-			
-			sql = "insert into qna_boards(QnA_num, QnA_writer_type, "
-					+ "mem_num, QnA_password, QnA_subject, QnA_content, QnA_readcount, "
-					+ "QnA_re_ref, QnA_re_lev, QnA_re_seq, QnA_date, QnA_ip, QnA_file) " 
-					+ "values(?,?,?,123,?,?,?,?,?,?,?,now(),123123,?)";
-					
-			pstmt = con.prepareStatement(sql);
-			System.out.println("pstmt 완료");
-			
-			pstmt.setInt(1, QnA_num);
-			System.out.println("pstmt QnA_num 완료");
-			
-			pstmt.setInt(2, dto.getQnA_writer_type());
-			System.out.println("pstmt QnA_writer_type 완료");
-			//pstmt.setInt(3, dto.getmgr_num());
-			pstmt.setInt(3, dto.getmem_num());
-			System.out.println("pstmt mem_num 완료");
-			
-			pstmt.setInt(4, dto.getQnA_password());
-			System.out.println("pstmt QnA_password 완료");
-			
-			pstmt.setString(5, dto.getQnA_subject());
-			System.out.println("pstmt QnA_subject 완료");
-			pstmt.setString(6, dto.getQnA_content());
-			System.out.println("pstmt QnA_content 완료");
-			pstmt.setInt(7, dto.getQnA_readcount());
-			
-			pstmt.setInt(8, dto.getQnA_re_ref());
-			pstmt.setInt(9, dto.getQnA_re_lev());
-			pstmt.setInt(10, dto.getQnA_re_seq());
-			//pstmt.setString(12, dto.getQnA_ip());
-			pstmt.setString(11, dto.getQnA_file());
-			
-			pstmt.executeUpdate();
-			System.out.println("executeUpdate 완료");
-			
-			System.out.println(" DAO : 문의사항 정보 저장 완료! ");
-			System.out.println(" DTO : " + dto);
-			
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-		}  finally {
-			closeDB();
 		}
 	}
 	
@@ -188,8 +139,8 @@ public class QnABoardDAO {
 					dto.setQnA_re_lev(rs.getInt("QnA_re_lev"));
 					dto.setQnA_re_seq(rs.getInt("QnA_re_seq"));
 					dto.setQnA_date(rs.getTimestamp("QnA_date"));
-					dto.setQnA__ip(rs.getString("QnA_ip"));
-					dto.setQnA__file(rs.getString("QnA_file"));
+					dto.setQnA_ip(rs.getString("QnA_ip"));
+					dto.setQnA_file(rs.getString("QnA_file"));
 					
 					qnaboardlist.add(dto);
 					

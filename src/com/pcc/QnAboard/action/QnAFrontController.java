@@ -45,25 +45,24 @@ public class QnAFrontController extends HttpServlet {
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
-		if(command.equals("/QnAWrite.bo")) {
-			//action = new QnAWriteMemberInfo();
-			// 회원번호
-			forward = new ActionForward();
-			forward.setPath("QnAWriteForm.bo");
-			forward.setRedirect(false);
-		}
+//		if(command.equals("/QnAWrite.bo")) {
+//			//action = new QnAWriteMemberInfo();
+//			// 회원번호
+//			forward = new ActionForward();
+//			forward.setPath("QnAWriteForm.bo");
+//			forward.setRedirect(false);
+//		}
 		// ▲ 로그인 한 회원의 세션 아이디(회원번호)를 이용해 개인정보를 갖고 오는 메서드
 		
-		else if(command.equals("/QnAWriteForm.bo")) {
+		if(command.equals("/QnAWriteForm.bo")) {
 		// 회원번호 가져오는 액션클래스
-			action = new QnAWriteAction();
 			forward = new ActionForward();
 			forward.setPath("./QnA/QnAWriteForm.jsp");
 			forward.setRedirect(false);
 		}
 		
-		else if (command.equals("/QnAContent.bo")) {
-			System.out.println(" C : /QnAContent.bo 호출 ");
+		else if (command.equals("/QnAWriteAction.bo")) {
+			System.out.println(" C : /QnAWriteAction.bo 호출 ");
 			action = new QnAWriteAction();
 			try	{
 				action.execute(request, response);

@@ -17,7 +17,9 @@
 
 // 		response.sendRedirect("./LoginManager.mgr");
 
-		response.sendRedirect("./MainPage.pcc");
+//		response.sendRedirect("./MainPage.pcc");
+		
+		response.sendRedirect("./ReviewWrite.rv");
 	%>
 
 </body>

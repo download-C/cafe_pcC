@@ -44,7 +44,7 @@
   <!-- 3. Review(리뷰 게시판) *.rv -->
   <servlet>
   	<servlet-name>ReviewFrontController</servlet-name>
-  	<servlet-class>com.pcc.board.action.ReviewFrontController</servlet-class>
+  	<servlet-class>com.pcc.board.review.action.ReviewFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ReviewFrontController</servlet-name>

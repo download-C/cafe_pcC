@@ -1,7 +1,10 @@
 package com.pcc.reservation.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.reservation.db.ReservationDAO;
 import com.pcc.reservation.db.ReservationDTO;
@@ -30,17 +33,19 @@ public class ReservationAction implements Action{
 				ReservationDTO dto = new ReservationDTO();
 				System.out.println("DTO객체 생성");
 			
-				
+				HttpSession session = request.getSession();
 				String res_date = request.getParameter("res_date");
 				String res_hour = request.getParameter("res_hour");
 				String res_num_of_persons = request.getParameter("res_num_of_persons");
-
-
+				
 				dto.setRes_date(res_date);
 				dto.setRes_hour(res_hour);
 				dto.setRes_num_of_persons(Integer.parseInt(res_num_of_persons));
 				dto.setTable_total(20);
 				
+				session.setAttribute("res_date", res_date);
+				session.setAttribute("res_hour", res_hour);
+				session.setAttribute("res_num", res_num_of_persons);
 				
 				
 				// ReservationDAO 객체 생성
@@ -49,17 +54,54 @@ public class ReservationAction implements Action{
 				
 				
 				System.out.println("reservation 메서드 생성");
-				dao.reservation(dto);
-			
-			
+				int result = dao.reservation(dto);
 				
-				ActionForward forward = new ActionForward();
-				forward.setPath("./reservation.jsp");
-				forward.setRedirect(false);
-
+				if(result == 1){
+					
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter pr = response.getWriter();
 				
-				return forward;
+				pr.println("<script type = 'text/javascript'>");
+				pr.println("alert('예약이 완료되었습니다.')");
+				pr.println("location.href = 'ReservationContent.re'");
+				pr.println("</script>");
+				pr.close();
+				
+				return null;
 
+			
+				}
+				if(result == 2){
+					
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter pr = response.getWriter();
+			
+				pr.println("<script type = 'text/javascript'>");
+				pr.println("alert('예약이 완료되었습니다.')");
+				pr.println("location.href = 'ReservationContent.re'");
+				pr.println("</script>");
+				pr.close();
+				
+				return null;
+				
+				}
+				if(result == 3){
+					
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter pr = response.getWriter();
+				
+				pr.println("<script type = 'text/javascript'>");
+				pr.println("alert('예약이 불가능합니다.')");
+				pr.println("location.href = 'Reservation.re'");
+				pr.println("</script>");
+				pr.close();
+				return null;
+				}
+				
+				
+				return null;
+				
+				
 
 	}
 }

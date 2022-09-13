@@ -11,16 +11,19 @@
 	<h1>reservationContent.jsp</h1>
 	
 	<table border="1">
+	
+	
+	
       <tr>
         <td>예약 날짜</td>
         <td>예약 시간</td>
         <td>예약 인원</td>
       </tr>
- 
 	       <tr>
 	        <td><%=session.getAttribute("res_date") %></td>
 	        <td><%=session.getAttribute("res_hour") %></td>
 	        <td><%=session.getAttribute("res_num")%></td>
+	        
 	      </tr>
  
      </table>

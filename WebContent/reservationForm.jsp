@@ -26,5 +26,7 @@
 	<input type="submit" value="예약하기"> 
 	</form>
 	
+	
+	
 </body>
 </html>

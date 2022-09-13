@@ -61,13 +61,13 @@ public class ReservationFrontController extends HttpServlet {
 	    	}
 	    	
 		} 
-//		else if(command.equals("./reservationContent.jsp")){
-//			System.out.println(" C : ./reservationContent.jsp");
-//			
-//			forward = new ActionForward();
-//			forward.setPath("/ReservationFinished.re");
-//			forward.setRedirect(true);
-//		}
+		else if(command.equals("/ReservationContent.re")){
+			System.out.println(" C : /ReservationContent.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./reservationContent.jsp");
+			forward.setRedirect(false);
+		}
 		
 	
 		

@@ -126,6 +126,15 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		}
 		
+		else if(command.equals("/NoticeDeleteCheck.no")){
+			action = new NoticeDeleteCheck();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 
 		
 		

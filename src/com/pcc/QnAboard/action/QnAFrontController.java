@@ -66,47 +66,48 @@ public class QnAFrontController extends HttpServlet {
 			System.out.println(" C : /QnAWriteAction.bo 호출 ");
 			action = new QnAWriteAction();
 			try	{
-				action.execute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-					}
 			}
+		}
 			
-//		// 2-2. 공지사항 작성한 글 페이지로 넘어가기 
-//			else if(command.equals("/QnAContent.bo")) {
-//				System.out.println( " C : QnAContent.bo 호출 ");
-//
-//				action = new QnAContentAction();
-//				try {
-//					action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-			
+		// 2-2. 문의사항 작성한 글 페이지로 넘어가기 
+			else if(command.equals("/QnAContent.bo")) {
+				System.out.println( " C : QnAContent.bo 호출 ");
+				action = new QnAContentAction();					
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			
 
 		// 2-3. QnA게시판 목록으로 이동
 		 
 			else if (command.equals("/QnABoardList.bo")) {
 				System.out.println(" C : QnABoardList.bo 호출 ");
-				//action = new QnABoardListAction();
+				System.out.println(" C : DB정보가 필요함, 페이지 이동 X, 해당 페이지 출력O ");
+				
+				 action = new QnABoardListAction();
 		try {
 			System.out.println(" C : 해당 Model 객체 호출 ");
-			action.execute(request, response);
+			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+				}
 			}
-		}
 		
 		// 2-4. 선택한 문의사항 내용 보기
-		else if (command.equals("/QnAContent.bo")) {
-			action = new QnAContentAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		else if (command.equals("/QnAContent.bo")) {
+//			action = new QnAContentAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 			
 
 

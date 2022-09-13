@@ -12,13 +12,15 @@
 	
 		// index.jsp
 		
-		 
+		
 		//response.sendRedirect("./QnAWriteForm.bo");
 		//response.sendRedirect("./QnABoardListAction.bo");
-		  response.sendRedirect("/QnABoardList.bo");
+		response.sendRedirect("./QnABoardList.bo");
+		//response.sendRedirect("./QnAContent.bo");
 	
 	
-	%>
+		
+%>
 
 
 </body>

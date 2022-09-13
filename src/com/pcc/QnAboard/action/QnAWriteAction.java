@@ -33,8 +33,6 @@ public class QnAWriteAction implements Action {
 		System.out.println("내용 불러오기");
 		dto.setQnA_file(request.getParameter("QnA_file"));
 		System.out.println("파일 불러오기");
-		
-		// IP 주소 추가
 		dto.setQnA_ip(request.getRemoteAddr());
 	    System.out.println("ip 불러오기");
 		
@@ -45,14 +43,15 @@ public class QnAWriteAction implements Action {
 		// 2. DB에 정보 저장
 		
 		QnABoardDAO dao = new QnABoardDAO();
+		
 		int QnA_num = dao.QnAWrite(dto);
-		dto = dao.getQnAContent(QnA_num);
+	
 		System.out.println(" DAO 객체 생성 후 DB에 저장 완료");
 
-		System.out.println("QnA_num :" +QnA_num);
+	
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./QnAContent.bo=QnA_num" + QnA_num);
+		forward.setPath("./QnAContent.bo?QnA_num=" + QnA_num);
 		forward.setRedirect(true);
 		System.out.println(" QnAContent.bo로 이동 ");
 		

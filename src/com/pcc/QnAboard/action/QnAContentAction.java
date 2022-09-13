@@ -19,15 +19,16 @@ public class QnAContentAction implements Action {
 		
 		QnABoardDTO dto = new QnABoardDTO();
 		QnABoardDAO dao = new QnABoardDAO();
-		//dao.getQnABoardCount(QnA_num);
+		dao.getQnAReadCount(QnA_num);
 		dao.updateReadCount(QnA_num);
 		System.out.println(" 조회수 1 증가 ");
 		dto = dao.getQnAContent(QnA_num);
 		System.out.println( "DTO : " + dto );
-		
-		request.setAttribute("dto",dto);
+		 
+		request.setAttribute("dto", dto);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("QnA_num", QnA_num);
+		System.out.println("pageNum : " + pageNum);
 		
 		
 		ActionForward forward = new ActionForward();

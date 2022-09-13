@@ -129,5 +129,6 @@ public class QnABoardDTO {
 				+ ", QnA_date=" + QnA_date + ", QnA_ip=" + QnA_ip + ", QnA_file=" + QnA_file + "]";
 	}
 	
+	
 
 }

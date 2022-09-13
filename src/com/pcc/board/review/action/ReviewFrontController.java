@@ -1,4 +1,4 @@
-package com.pcc.board.action;
+package com.pcc.board.review.action;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import vo.ActionForward;
 
-public class BoardFrontController extends HttpServlet {
+public class ReviewFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +40,23 @@ public class BoardFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		
+	
+		// 2-1. 리뷰 작성 페이지로 이동
+		if(command.equals("/ReviewWrite.rv")) {
+			forward = new ActionForward();
+			forward.setPath("./review/reviewForm.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/ReviewWriteAction.rv")) {
+			action = new ReviewWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewContent.rv")) {
+			action = new ReviewContent();
+		}
 		
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------

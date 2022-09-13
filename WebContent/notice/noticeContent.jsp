@@ -6,7 +6,7 @@
 <title>공지사항 확인하기</title>
 </head>
 <body>
-	<fieldset>
+	 <fieldset>
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -50,6 +50,5 @@
 			</tr>
 		</table>
 	</fieldset>
-
 </body>
 </html>

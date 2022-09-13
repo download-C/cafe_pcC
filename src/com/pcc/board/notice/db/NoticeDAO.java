@@ -284,17 +284,20 @@ public class NoticeDAO {
 	}
 	
 	// 8. 공지사항 글 수정 메서드 -----------------------------------------
-	public NoticeDTO NoticeUpdate(NoticeDTO dto, int notice_num) {
-		
+	public int NoticeUpdate(NoticeDTO dto, int notice_num) {
+		int result = -1;
 		System.out.println("NoticeUpdate() 호출");
 		
 		System.out.println("dto: "+dto+"=======================");
 		
+		
 		try {
 			con = getConnect();
+			
 			sql = "update notice_boards "
 					+ "set notice_subject=?, notice_content=?, "
 					+ "notice_file=? where notice_num = ?";
+			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1,dto.getNotice_subject());
@@ -308,12 +311,14 @@ public class NoticeDAO {
 			
 			System.out.println("DB에 공지사항 업데이트 완료");
 			
+			result = 1;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-		return dto;
+		return result;
 	}
 
 	// 9. 공지사항 지우기  -----------------------------------------
@@ -341,13 +346,10 @@ public class NoticeDAO {
 	// 10. 알림창 지우기 메서드  -----------------------------------------
 	public static void alter(HttpServletResponse response, String msg) {
 		try {
-			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.write("<script>");
-			out.write("alert("+msg+");");
-			out.write("</script>");
+			response.setContentType("text/html; charset=UTF-8;");
+			out.println("<script>alert('"+msg+"'); </script>");
 			out.flush();
-			out.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,5 +1,7 @@
 package com.pcc.board.notice.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +23,8 @@ public class NoticeDelete implements Action {
 		System.out.println("삭제하는 매니저 번호 : "+mgr_num);
 //		메니저로 로그인했을 때 사용해야 함.	
 		
-		
+		String msg = "정말로 지우시겠습니까?";
+//		NoticeDAO.alter(response, msg);
 		
 		NoticeDAO dao = new NoticeDAO();
 		dao.noticeDelete(notice_num, mgr_num);

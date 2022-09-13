@@ -86,7 +86,7 @@ public class QnABoardDAO {
 			sql = "insert into qna_boards (QnA_num, QnA_writer_type, mem_num, QnA_password, "
 					+ "QnA_subject, QnA_content, QnA_readcount, QnA_re_ref, QnA_re_lev, QnA_re_seq, "
 					+ "QnA_date, QnA_ip, QnA_file) "
-					+ "values (?,2,1111,?,?,?,?,?,?,?,now(),?,?) ";
+					+ "values (?,2,123,?,?,?,?,?,?,?,now(),?,?) ";
 			System.out.println("SQL 완료");
 			
 			pstmt = con.prepareStatement(sql);
@@ -99,6 +99,8 @@ public class QnABoardDAO {
 			System.out.println(" readcount 완료 ");
 			
 			pstmt.setInt(6, 1);
+			
+			
 			pstmt.setInt(7, 1);
 			pstmt.setInt(8, 1);
 			
@@ -106,6 +108,7 @@ public class QnABoardDAO {
 			pstmt.setString(10, dto.getQnA_file());
 			
 			pstmt.executeUpdate();
+			System.out.println(" sql 구문 실행 완료 ");
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -133,10 +136,7 @@ public class QnABoardDAO {
 //			e.printStackTrace();
 //		}
 		
-		
-		
-		
-		
+
 	}
 	
 

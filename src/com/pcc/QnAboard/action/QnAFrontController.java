@@ -37,7 +37,7 @@ public class QnAFrontController extends HttpServlet {
 		System.out.println();
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
-// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .bo로 끝나는 주소 사용) -------------
+		// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .bo로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
@@ -62,61 +62,51 @@ public class QnAFrontController extends HttpServlet {
 		}
 		
 		// 2-2. 공지사항 글 DB에 올리기
-	else if (command.equals("/QnAWriteAction.bo")) {
+		else if (command.equals("/QnAWriteAction.bo")) {
 			System.out.println(" C : /QnAWriteAction.bo 호출 ");
 			action = new QnAWriteAction();
 			try	{
 				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+					}
 			}
-	}
-			else if(command.equals("/QnAContent.bo")) {
-				System.out.println( " C : QnAContent.bo 호출 ");
-
-				action = new QnAContentAction();
-				try {
-					action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			
+//		// 2-2. 공지사항 작성한 글 페이지로 넘어가기 
+//			else if(command.equals("/QnAContent.bo")) {
+//				System.out.println( " C : QnAContent.bo 호출 ");
+//
+//				action = new QnAContentAction();
+//				try {
+//					action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
 			
 			
 
 		// 2-3. QnA게시판 목록으로 이동
-		} 
+		 
 			else if (command.equals("/QnABoardList.bo")) {
 				System.out.println(" C : QnABoardList.bo 호출 ");
-
-		// QnABoardListAction() 객체 생성
-		QnABoardListAction qnalistAction = new QnABoardListAction();
-		
+				//action = new QnABoardListAction();
 		try {
 			System.out.println(" C : 해당 Model 객체 호출 ");
-			qnalistAction.execute(request, response);
+			action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			}
 		}
-			//action = new QnABoardListAction();
-			
 		
-//
-//		else if(command.equals("/QnAContentAction.bo")) {
-//			System.out.println(" C : QnAContentAction.bo 호출 ");
-//			
-//			action = new QnAContentAction();
-//			 
-//			try {
-//				action.execute(request, response);
-//			} catch (Exception e) {
-//				
-//				e.printStackTrace();
-//			}
-//		}
-
-		
-		//else if (command.equals("/QnABoardList.bo")) {
+		// 2-4. 선택한 문의사항 내용 보기
+		else if (command.equals("/QnAContent.bo")) {
+			action = new QnAContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 			
 
 

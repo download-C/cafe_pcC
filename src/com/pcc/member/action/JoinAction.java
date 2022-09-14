@@ -13,24 +13,27 @@ public class JoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("3. JoinAction");
 		
 		request.setCharacterEncoding("UTF-8");
 		MemberDTO dto = new MemberDTO();
-		System.out.println("DTO객체생성");
+		System.out.println(" DTO객체생성");
 		
 		dto.setPhone(request.getParameter("phone"));
-		System.out.println("phone: "+dto.getPhone());
+		System.out.println(" phone: "+dto.getPhone());
 		dto.setPassword(request.getParameter("password"));
-		System.out.println("password: "+dto.getPassword());
+		System.out.println(" password: "+dto.getPassword());
 		dto.setName(request.getParameter("name"));
-		System.out.println("name : "+dto.getName());
+		System.out.println(" name : "+dto.getName());
 		
 		
 		MemberDAO dao = new MemberDAO();
-		System.out.println("DAO객체생성");
+		System.out.println(" DAO객체생성");
 		dao.JoinMember(dto);
-		System.out.println("JoinMemeber 메서드 실행");
+		System.out.println(" JoinMemeber 메서드 실행");
 		
+		
+		System.out.println("5. JoinAction 돌아옴");
 		ActionForward forward = new ActionForward();
 		forward.setPath("./LoginForm.me");
 		forward.setRedirect(true);

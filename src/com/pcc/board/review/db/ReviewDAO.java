@@ -4,15 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-
-import com.sun.xml.internal.txw2.Document;
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
@@ -65,7 +63,7 @@ public class ReviewDAO {
 	
 
 	// 3. 리뷰 게시글 DB에 넣는 메서드
-	public void reviewWrite(ReviewDTO dto) {
+	public int managerReviewWrite(ReviewDTO dto) {
 		int review_num =0;
 		
 		try {
@@ -78,39 +76,39 @@ public class ReviewDAO {
 			}
 			System.out.println("review_num :"+review_num+"으로 업데이트 완료");
 			
-			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, mem_num, review_password, "
+			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, review_password, "
 					+ "review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
 					+ "review_re_seq, review_date, review_ip, review_file) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+					+ "values(?,?,?,?,?,?,?,?,?,?,now(),?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_num);
-			pstmt.setInt(2, 2);
-			pstmt.setInt(3, 0);
-			pstmt.setInt(4, dto.getMem_num());
-			pstmt.setInt(5, dto.getReview_password());
-			pstmt.setString(6, dto.getReview_subject());
-			pstmt.setString(7, dto.getReview_content());
-			pstmt.setInt(8, dto.getReview_readcount());
-			pstmt.setInt(9, dto.getReview_re_ref());
-			pstmt.setInt(10, dto.getReview_re_lev());
-			pstmt.setInt(11, dto.getReview_re_seq());
-			pstmt.setString(12, dto.getReview_ip());
-			pstmt.setString(13, dto.getReview_file());
+			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
+			pstmt.setInt(3, dto.getMgr_num());
+			pstmt.setInt(4, dto.getReview_password());
+			pstmt.setString(5, dto.getReview_subject());
+			pstmt.setString(6, dto.getReview_content());
+			pstmt.setInt(7, dto.getReview_readcount());
+			pstmt.setInt(8, dto.getReview_re_ref());
+			pstmt.setInt(9, dto.getReview_re_lev());
+			pstmt.setInt(10, dto.getReview_re_seq());
+			pstmt.setString(11, dto.getReview_ip());
+			pstmt.setString(12, dto.getReview_file());
 			
 			pstmt.executeUpdate();
+			
 	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-				
+					
+		return review_num;
 	}
 	
-	
-	// 4. 조회수 올리는 메서드 -----------------------------------------
-	public int updateReviewReadcount(int review_num) {
+	// 4-1. 증가한 조회수 DB에 업데이트하기 -----------------------------------------
+	public int getReviewCount() {
 		int ctn = 0;
 		try {
 			con = getConnect();
@@ -128,8 +126,29 @@ public class ReviewDAO {
 		
 		return 0;
 	}
+	
+	// 4-2. DB에서 조회수 찾아서 1 올리기  ----------------
+	public void updateReviewReadcount(int review_num) {
+		
+		try {
+			con = getConnect();
+			sql = "update review_boards set review_readcount = review_readcount+1 " 
+					+ "where review_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_num);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	
+	
+	
+	
 
-	// 5.   -----------------------------------------
+	// 5. 리뷰 글 보기  -----------------------------------------
 	public ReviewDTO getReviewContent(int review_num) {
 		ReviewDTO dto = new ReviewDTO();
 		
@@ -147,7 +166,7 @@ public class ReviewDAO {
 				dto.setMgr_num(rs.getInt("mgr_num"));
 				dto.setMem_num(rs.getInt("mem_num"));
 				dto.setReview_password(rs.getInt("review_password"));
-				dto.setReview_subject(rs.getString("reveiw_subject"));
+				dto.setReview_subject(rs.getString("review_subject"));
 				dto.setReview_content(rs.getString("review_content"));
 				dto.setReview_readcount(rs.getInt("review_readcount"));
 				dto.setReview_re_ref(rs.getInt("review_re_ref"));
@@ -155,7 +174,7 @@ public class ReviewDAO {
 				dto.setReview_re_seq(rs.getInt("review_re_seq"));
 				dto.setReview_date(rs.getTimestamp("review_date"));
 				dto.setReview_ip(rs.getString("review_ip"));
-				dto.setReview_file(rs.getString("reveiw_file"));
+				dto.setReview_file(rs.getString("review_file"));
 			}
 			System.out.println(review_num+"번 리뷰 불러오기 완료");
 		} catch (SQLException e) {
@@ -167,15 +186,90 @@ public class ReviewDAO {
 		return dto;
 	}
 	
+
 	
+	// 6. 리뷰 게시판 목록 조회  -----------------------------------------
+	public List<ReviewDTO> getReviewList() {
+		System.out.println("getReviewList() 호출");
+		
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>(); 
+		
+		try {
+			con = getConnect();
+			sql = "select * from review_boards";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				ReviewDTO dto = new ReviewDTO();
+				dto.setReview_num(rs.getInt(1));
+				dto.setReview_writer_type(rs.getInt(2));
+				dto.setMgr_num(rs.getInt(3));
+				dto.setMem_num(rs.getInt(4));
+				dto.setReview_password(rs.getInt(5));
+				dto.setReview_subject(rs.getString(6));
+				dto.setReview_content(rs.getString(7));
+				dto.setReview_content(rs.getString(8));
+				dto.setReview_re_ref(rs.getInt(9));
+				dto.setReview_re_lev(rs.getInt(10));
+				dto.setReview_re_seq(rs.getInt(11));
+				dto.setReview_date(rs.getTimestamp(12));
+				dto.setReview_ip(rs.getString(13));
+				dto.setReview_file(rs.getString(14));
+				
+				reviewList.add(dto);
+				
+				System.out.println("리뷰 목록 저장 완료");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return reviewList;
+	}
 	
-	
-	
-	
-	
-	
-	// 6.   -----------------------------------------
-	
+	public List<ReviewDTO> getReviewList(int startRow, int pageSize) {
+		System.out.println("getReviewList(int startRow, int pageSize) 호출");
+		
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>(); 
+		
+		try {
+			con = getConnect();
+			sql = "select * from review_boards order by review_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+					ReviewDTO dto = new ReviewDTO();
+					dto.setReview_num(rs.getInt(1));
+					dto.setReview_writer_type(rs.getInt(2));
+					dto.setMgr_num(rs.getInt(3));
+					dto.setMem_num(0);
+					dto.setReview_password(rs.getInt(5));
+					dto.setReview_subject(rs.getString(6));
+					dto.setReview_content(rs.getString(7));
+					dto.setReview_content(rs.getString(8));
+					dto.setReview_re_ref(rs.getInt(9));
+					dto.setReview_re_lev(rs.getInt(10));
+					dto.setReview_re_seq(rs.getInt(11));
+					dto.setReview_date(rs.getTimestamp(12));
+					dto.setReview_ip(rs.getString(13));
+					dto.setReview_file(rs.getString(14));
+					
+					reviewList.add(dto);
+					System.out.println("한 페이지에 "+pageSize+"개 리뷰 목록 저장 완료");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return reviewList;
+	}
 	
 	
 	

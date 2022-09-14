@@ -18,8 +18,11 @@
 			로그인 성공 <br>
 			${sessionScope.mgr_num } <br>
 			${sessionScope.message } <br>
-			<a href="./LogoutManager.mgr">로그아웃</a>
+			<a href="./LogoutManager.mgr">로그아웃</a><br>
+			
 			<a href="./NoticeList.no">공지사항</a> <br>
+			
+			<a href="./ReviewList.rv">리뷰 게시판</a> <br>
 			<%
 			
 		} else {

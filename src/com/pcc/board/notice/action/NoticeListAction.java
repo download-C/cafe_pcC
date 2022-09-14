@@ -45,11 +45,12 @@ public class NoticeListAction implements Action {
 		List<NoticeDTO> noticeList = dao.getNoticeList(startRow, pageSize);
 	
 		int pageCount = (cnt/pageSize)+(cnt%pageSize==0 ? 0:1);
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 		int endPage = startPage+pageBlock-1;
 		
 		if(endPage>pageCount) endPage=pageCount;
+		System.out.println("페이징 처리 완료");
 		
 		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("pageNum", pageNum);
@@ -58,7 +59,6 @@ public class NoticeListAction implements Action {
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		System.out.println("페이징 처리 완료");
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./notice/noticeList.jsp");

@@ -134,7 +134,7 @@ public class NoticeDAO {
 				noticeList.add(dto);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			closeDB();
 		}

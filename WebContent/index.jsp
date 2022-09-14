@@ -9,6 +9,10 @@
 	<%
 		// index.jps
 		
+
+// 		response.sendRedirect("./JoinForm.me");
+	
+// 		response.sendRedirect("./LoginForm.me");
 // 		response.sendRedirect("./NoticeWrite.no");
 	
 // 		response.t("./NoticeList.no");
@@ -23,6 +27,5 @@
 
 // 		response.sendRedirect("./ReviewList.rv");
 	%>
-
 </body>
 </html>

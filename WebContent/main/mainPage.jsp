@@ -17,10 +17,8 @@
 	<h1>mainPage.jsp</h1>
 	<%
 		String mgr_num = (String)session.getAttribute("mgr_num");
+		String mem_num = (String)session.getAttribute("mem_num");
 		if(mgr_num != null) {
-			session = request.getSession();
-			session.setAttribute("mgr_num", mgr_num);
-
 			%>
 			
 			매니저번호 : ${sessionScope.mgr_num } <br>
@@ -31,10 +29,16 @@
 			<a href="./ReviewList.rv">리뷰 게시판</a> <br>
 			<%
 			
+		} else if(mem_num != null) {
+			%>
+			${sessionScope.message }
+			<a href="./NoticeList.no">공지사항</a> <br>
+			
+			<a href="./ReviewList.rv">리뷰 게시판</a> <br>
+			<%
 		} else {
 			%>
-			로그인해주세요 <br>
-		
+			로그인이 필요합니다. <br>
 			<%
 		}
 	

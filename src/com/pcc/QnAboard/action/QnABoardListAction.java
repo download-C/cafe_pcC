@@ -36,14 +36,17 @@ public class QnABoardListAction implements Action{
 	}
 	
 	int pageSize = Integer.parseInt(urlPageSize);
-	
 	String pageNum = request.getParameter("pageNum");
+	
+	
 	if(pageNum == null) {
 		pageNum = "1";
 	}
+
 	
 	int currentPage = Integer.parseInt(pageNum);
 	int startRow = (currentPage -1)*pageSize+1;
+	
 	int endRow = currentPage*pageSize;
 	
 	// 페이징처리 2. 목록 하단에 페이지 이동 버튼 만들기 -------------------------------

@@ -30,7 +30,8 @@
 	
 	%>
 	
-	 <h3><a href="./QnAWriteForm.qna">글쓰기 (new)</a></h3> 
+	 <h3><input type="button" name="qnaWrite" value="새 글 쓰기(new)"
+	  onclick="location.href='./QnAWriteForm.qna';"></h3> 
 	 
 	
 	<table border="1">
@@ -49,11 +50,13 @@
 // 			QnABoardDTO dto = qnaboardlist.get(i);
 			
 		%>
+		
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
+		
 			<tr>
 				<td>${dto.qna_num }</td>
 				<td>
-					<a href="./QnAContent.no?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
+					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
 				<td>관리자</td>
 				<td>${dto.qna_readcount }</td>
 				<td>${dto.qna_date }</td>

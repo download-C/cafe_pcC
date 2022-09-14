@@ -244,9 +244,9 @@ public class QnABoardDAO {
 			return qnaboardlist;
 		}
 	
-	// 5.   -----------------------------------------
+	// 5. 조회수 증가 메서드  -----------------------------------------
 	
-	// 글 개수 조회 메서드	
+	
 		
 		public int getQnABoardCount() {
 			System.out.println( " \n DAO : getQnABoardCount() 메서드 실행 ");
@@ -277,9 +277,9 @@ public class QnABoardDAO {
 	
 	
 	
-	// 6. 작성한 글 가져오는 메서드  -----------------------------------------
+	// 6. 조회수 올리는 메서드  -----------------------------------------
 	
-	public QnABoardDTO getQnAContent (int QnA_num) {
+	public QnABoardDTO getQnAContent (int qna_num) {
 		System.out.println( "DAO : getQnAContent() 메서드 실행" );
 		
 		QnABoardDTO dto = null;
@@ -287,10 +287,10 @@ public class QnABoardDAO {
 		try {
 			con = getConnect();
 			
-			sql = "select * from qna_boards where QnA_num=?";
+			sql = "select * from qna_boards where qna_num=?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, QnA_num);
+			pstmt.setInt(1, qna_num);
 			
 			//pstmt.executeQuery();
 			rs = pstmt.executeQuery();
@@ -313,7 +313,7 @@ public class QnABoardDAO {
 				dto.setQna_ip(rs.getString("qna_ip"));
 				dto.setQna_file(rs.getString("qna_file"));
 
-				System.out.println(QnA_num+"의 dto: "+dto);
+				System.out.println(qna_num+"의 dto: "+dto);
 			}
 	
 		} catch (SQLException e) {
@@ -327,7 +327,7 @@ public class QnABoardDAO {
 	}		
 		
 
-	public int getQnAReadCount(int QnA_num) {
+	public int getQnAReadCount(int qna_num) {
 		
 	
 		int cnt = 0;
@@ -336,7 +336,7 @@ public class QnABoardDAO {
 			con = getConnect();
 			sql = "select QnA_readcount from qna_boards where QnA_num=? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, QnA_num);
+			pstmt.setInt(1, qna_num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -353,14 +353,14 @@ public class QnABoardDAO {
 		return cnt;
 	}
 
-	public void updateReadCount(int QnA_num) {
+	public void updateReadCount(int qna_num) {
 		
 		try {
 			con = getConnect();
 			sql = "update qna_boards set QnA_readcount=QnA_readcount+1 "
 					+ "where QnA_num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, QnA_num);
+			pstmt.setInt(1, qna_num);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -370,15 +370,83 @@ public class QnABoardDAO {
 		
 		
 	}
+
 	
 		
-	// 7.   -----------------------------------------
+	// 7. 공지사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
+	
+	public QnABoardDTO getQnAUpdateContent(int qna_num) {
+		QnABoardDTO dto = null;
+		
+		try {
+			
+			con = getConnect();
+			
+			sql = "select qna_subject, qna_content, qna_file from qna_boards "
+					+ "where qna_num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new QnABoardDTO();
+				dto.setQna_subject(rs.getString("qna_subject"));
+				System.out.println(qna_num+"번 제목 가져오기 완료 ");
+				dto.setQna_content(rs.getString("qna_content"));
+				System.out.println(qna_num+"번 내용 가져오기 완료 ");
+				dto.setQna_file(rs.getString("qna_file"));
+				System.out.println(qna_num+"번 파일 가져오기 완료 ");
+			}
+			System.out.println(qna_num+"번 문의사항 저장 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		
+		
+		
+		return dto;
+	}
 	
 	
 	
-	
-	// 8.   -----------------------------------------
-	
+	// 8. 문의사항 글 수정 메서드  -----------------------------------------
+		public QnABoardDTO QnAUpdate(QnABoardDTO dto, int qna_num) {
+			System.out.println(" QnAUpdate() 호출 ");
+			
+			System.out.println("dto : " + dto + "=======================");
+			
+			try {
+				con = getConnect();
+				sql = "update qna_boards "
+						+ "set qna_subject=?, qna_content=?, "
+						+ "qna_file=? where qna_num=?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getQna_subject());
+				pstmt.setString(2, dto.getQna_content());
+				pstmt.setString(3, dto.getQna_file());
+				pstmt.setInt(4, dto.getQna_num());
+				System.out.println("qna_num : " + dto.getQna_num());
+				System.out.println("dto : " + dto);
+				
+				pstmt.executeUpdate();
+				
+				System.out.println("DB에 공지사항 업데이트 완료");
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			return dto;
+		}
 	
 	
 	

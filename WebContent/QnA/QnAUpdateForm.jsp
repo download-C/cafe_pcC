@@ -6,14 +6,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>문의사항 글 수정하기</title>
 
-	<h1>QnAModifyForm.jsp</h1>
 	<h1>QnAUpdateForm.jsp</h1>
 	
 	<fieldset>
-	<fieldset>
 		<h3>문의사항 글 수정하기</h3>
+		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }&" method="get">
+		<div>
+			<table>
+				<tr>
+					<td>
+						<input type="hidden" name="qna_num" id="qna_num"
+							values="${dto.qna_num }" readonly="readonly">
+					</td>
+				</tr>
+				<tr><td>
+					<input type="text" name="qna_subject" id="qna_subject"
+						values="${dto.qna_subject }">
+				</td></tr>
+				<tr><td>
+					<textarea rows="30" cols="100" name="qna_content" id="qna_content">${dto.qna_content }</textarea>
+				</td></tr>
+				<tr><td>
+					<input type="file" name="qna_file" id="qna_file">
+				</td></tr>
+			</table>
+		</div>
+		<div id="commanCell">
+			<input type="button" value="임시저장"> &nbsp;&nbsp;
+			<input type="submit" value="수정">
+		</div>
+		</form>
 	</fieldset>
-	</fieldset>
+
 
 
 

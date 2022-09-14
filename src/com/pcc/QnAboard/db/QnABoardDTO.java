@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 // 게시판 관련 정보 객체
 
-public class QnABoardDTO {
+	public class QnABoardDTO {
 	private int qna_num;						// 게시판 글 번호(글식별자)
 	private int qna_writer_type;				// 글 작성자 타입 -> 관리자일 경우 9로 시작, 일반 회원은 20으로 시작(회원번호가 가입한 날짜를 기반으로 생성됨)
 	private int mgr_num;						// 매니저 번호 -> 모든 게시판에 사용

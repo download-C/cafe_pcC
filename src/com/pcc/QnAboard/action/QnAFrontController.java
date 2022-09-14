@@ -99,15 +99,15 @@ public class QnAFrontController extends HttpServlet {
 				}
 			}
 		
-		// 2-4. 선택한 문의사항 내용 보기
-//		else if (command.equals("/QnAContent.qna")) {
-//			action = new QnAContentAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		 // 2-4. 선택한 문의사항 내용 보기
+		else if (command.equals("/QnAContent.qna")) {
+			action = new QnAContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 			
 
 

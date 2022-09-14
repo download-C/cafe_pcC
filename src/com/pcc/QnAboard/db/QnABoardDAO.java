@@ -86,18 +86,18 @@ public class QnABoardDAO {
 			System.out.println(" QnA_num : " + QnA_num);
 			
 			sql = "insert into qna_boards (QnA_num, QnA_writer_type, mem_num, QnA_password, "
-					+ "QnA_subject, QnA_content, QnA_readcount, QnA_re_ref, QnA_re_lev, QnA_re_seq, "
-					+ "QnA_date, QnA_ip, QnA_file) "
-					+ "values (?,2,1111,?,?,?,?,?,?,?,now(),?,?) ";
+					+ "qna_subject, QnA_content, QnA_readcount, QnA_re_ref, QnA_re_lev, QnA_re_seq, "
+					+ "qna_date, QnA_ip, QnA_file) "
+					+ "values (?,2,123,?,?,?,?,?,?,?,now(),?,?) ";
 			System.out.println("SQL 완료");
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, QnA_num);
-			pstmt.setInt(2, dto.getQnA_password());
-			pstmt.setString(3, dto.getQnA_subject());
-			pstmt.setString(4, dto.getQnA_content());
+			pstmt.setInt(2, dto.getQna_password());
+			pstmt.setString(3, dto.getQna_subject());
+			pstmt.setString(4, dto.getQna_content());
 			System.out.println(" content 완료 ");
-			pstmt.setInt(5, dto.getQnA_readcount());
+			pstmt.setInt(5, dto.getQna_readcount());
 			System.out.println(" readcount 완료 ");
 			
 			pstmt.setInt(6, 1);
@@ -105,7 +105,7 @@ public class QnABoardDAO {
 			pstmt.setInt(8, 1);
 			
 			pstmt.setString(9, "123");
-			pstmt.setString(10, dto.getQnA_file());
+			pstmt.setString(10, dto.getQna_file());
 			
 			pstmt.executeUpdate();
 			System.out.println(" sql 구문 실행 완료 ");
@@ -159,19 +159,19 @@ public class QnABoardDAO {
 				while (rs.next()) {
 					QnABoardDTO dto = new QnABoardDTO();
 					
-					dto.setQnA_num(rs.getInt("QnA_num"));
-					dto.setQnA_writer_type(rs.getInt("QnA_writer_type"));
-					dto.setmem_num(rs.getInt("mem_num"));
-					dto.setQnA_password(rs.getInt("QnA_password"));
-					dto.setQnA_subject(rs.getString("QnA_subject"));
-					dto.setQnA_content(rs.getString("QnA_content"));
-					dto.setQnA_readcount(rs.getInt("QnA_readcount"));
-					dto.setQnA_re_ref(rs.getInt("QnA_re_ref"));
-					dto.setQnA_re_lev(rs.getInt("QnA_re_lev"));
-					dto.setQnA_re_seq(rs.getInt("QnA_re_seq"));
-					dto.setQnA_date(rs.getTimestamp("QnA_date"));
-					dto.setQnA_ip(rs.getString("QnA_ip"));
-					dto.setQnA_file(rs.getString("QnA_file"));
+					dto.setQna_num(rs.getInt("qna_num"));
+					dto.setQna_writer_type(rs.getInt("qna_writer_type"));
+					dto.setMem_num(rs.getInt("mem_num"));
+					dto.setQna_password(rs.getInt("qna_password"));
+					dto.setQna_subject(rs.getString("qna_subject"));
+					dto.setQna_content(rs.getString("qna_content"));
+					dto.setQna_readcount(rs.getInt("qna_readcount"));
+					dto.setQna_re_ref(rs.getInt("qna_re_ref"));
+					dto.setQna_re_lev(rs.getInt("qna_re_lev"));
+					dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+					dto.setQna_date(rs.getTimestamp("qna_date"));
+					dto.setQna_ip(rs.getString("qna_ip"));
+					dto.setQna_file(rs.getString("qna_file"));
 					
 					qnaboardlist.add(dto);
 					
@@ -211,19 +211,19 @@ public class QnABoardDAO {
 				while (rs.next()) {
 					QnABoardDTO dto = new QnABoardDTO();
 					
-					dto.setQnA_num(rs.getInt("QnA_num"));
-					dto.setQnA_writer_type(rs.getInt("QnA_writer_type"));
-					dto.setmem_num(rs.getInt("mem_num"));
-					dto.setQnA_password(rs.getInt("QnA_password"));
-					dto.setQnA_subject(rs.getString("QnA_subject"));
-					dto.setQnA_content(rs.getString("QnA_content"));
-					dto.setQnA_readcount(rs.getInt("QnA_readcount"));
-					dto.setQnA_re_ref(rs.getInt("QnA_re_ref"));
-					dto.setQnA_re_lev(rs.getInt("QnA_re_lev"));
-					dto.setQnA_re_seq(rs.getInt("QnA_re_seq"));
-					dto.setQnA_date(rs.getTimestamp("QnA_date"));
-					dto.setQnA_ip(rs.getString("QnA_ip"));
-					dto.setQnA_file(rs.getString("QnA_file"));
+					dto.setQna_num(rs.getInt("qna_num"));
+					dto.setQna_writer_type(rs.getInt("qna_writer_type"));
+					dto.setMem_num(rs.getInt("mem_num"));
+					dto.setQna_password(rs.getInt("qna_password"));
+					dto.setQna_subject(rs.getString("qna_subject"));
+					dto.setQna_content(rs.getString("qna_content"));
+					dto.setQna_readcount(rs.getInt("qna_readcount"));
+					dto.setQna_re_ref(rs.getInt("qna_re_ref"));
+					dto.setQna_re_lev(rs.getInt("qna_re_lev"));
+					dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+					dto.setQna_date(rs.getTimestamp("qna_date"));
+					dto.setQna_ip(rs.getString("qna_ip"));
+					dto.setQna_file(rs.getString("qna_file"));
 					
 					qnaboardlist.add(dto);
 					
@@ -299,19 +299,19 @@ public class QnABoardDAO {
 				
 				dto = new QnABoardDTO();
 				
-				dto.setQnA_num(rs.getInt("QnA_num"));
-				dto.setQnA_writer_type(rs.getInt("QnA_writer_type"));
-				dto.setmem_num(rs.getInt("mem_num"));
-				dto.setQnA_password(rs.getInt("QnA_password"));
-				dto.setQnA_subject(rs.getString("QnA_subject"));
-				dto.setQnA_content(rs.getString("QnA_content"));
-				dto.setQnA_readcount(rs.getInt("QnA_readcount"));
-				dto.setQnA_re_ref(rs.getInt("QnA_re_ref"));
-				dto.setQnA_re_lev(rs.getInt("QnA_re_lev"));
-				dto.setQnA_re_seq(rs.getInt("QnA_re_seq"));
-				dto.setQnA_date(rs.getTimestamp("QnA_date"));
-				dto.setQnA_ip(rs.getString("QnA_ip"));
-				dto.setQnA_file(rs.getString("QnA_file"));
+				dto.setQna_num(rs.getInt("qna_num"));
+				dto.setQna_writer_type(rs.getInt("qna_writer_type"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setQna_password(rs.getInt("qna_password"));
+				dto.setQna_subject(rs.getString("qna_subject"));
+				dto.setQna_content(rs.getString("qna_content"));
+				dto.setQna_readcount(rs.getInt("qna_readcount"));
+				dto.setQna_re_ref(rs.getInt("qna_re_ref"));
+				dto.setQna_re_lev(rs.getInt("qna_re_lev"));
+				dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+				dto.setQna_date(rs.getTimestamp("qna_date"));
+				dto.setQna_ip(rs.getString("qna_ip"));
+				dto.setQna_file(rs.getString("qna_file"));
 
 				System.out.println(QnA_num+"의 dto: "+dto);
 			}

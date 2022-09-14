@@ -25,15 +25,15 @@ public class QnAWriteAction implements Action {
 		QnABoardDTO dto = new QnABoardDTO();
 		System.out.println("DTO 객체 생성 완료");
 		
-		dto.setQnA_password(Integer.parseInt(request.getParameter("QnA_password")));
+		dto.setQna_password(Integer.parseInt(request.getParameter("QnA_password")));
 		System.out.println("비밀번호 불러오기");
-		dto.setQnA_subject(request.getParameter("QnA_subject"));
+		dto.setQna_subject(request.getParameter("QnA_subject"));
 		System.out.println("제목 불러오기");
-		dto.setQnA_content(request.getParameter("QnA_content"));
+		dto.setQna_content(request.getParameter("QnA_content"));
 		System.out.println("내용 불러오기");
-		dto.setQnA_file(request.getParameter("QnA_file"));
+		dto.setQna_file(request.getParameter("QnA_file"));
 		System.out.println("파일 불러오기");
-		dto.setQnA_ip(request.getRemoteAddr());
+		dto.setQna_ip(request.getRemoteAddr());
 	    System.out.println("ip 불러오기");
 		
 		System.out.println(" 파라미터 값 DTO에 저장 완료! ");
@@ -51,9 +51,9 @@ public class QnAWriteAction implements Action {
 	
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./QnAContent.bo?QnA_num=" + QnA_num);
+		forward.setPath("./QnAContent.qna?QnA_num=" + QnA_num);
 		forward.setRedirect(true);
-		System.out.println(" QnAContent.bo로 이동 ");
+		System.out.println(" QnAContent.qna로 이동 ");
 		
 		return forward;
 	}

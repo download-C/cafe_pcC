@@ -37,33 +37,33 @@ public class QnAFrontController extends HttpServlet {
 		System.out.println();
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
-		// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .bo로 끝나는 주소 사용) -------------
+		// 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .qna로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
-//		if(command.equals("/QnAWrite.bo")) {
+//		if(command.equals("/QnAWrite.qna")) {
 //			//action = new QnAWriteMemberInfo();
 //			// 회원번호
 //			forward = new ActionForward();
-//			forward.setPath("QnAWriteForm.bo");
+//			forward.setPath("QnAWriteForm.qna");
 //			forward.setRedirect(false);
 //		}
 // ▲ 로그인 한 회원의 세션 아이디(회원번호)를 이용해 개인정보를 갖고 오는 메서드
 		
 		// 2-1. 공지사항 글 쓰기 양식
-		if(command.equals("/QnAWriteForm.bo")) {
+		if(command.equals("/QnAWriteForm.qna")) {
 			forward = new ActionForward();
 			forward.setPath("./QnA/QnAWriteForm.jsp");
 			forward.setRedirect(false);
-			System.out.println(" QnAWriteForm.bo 가상 주소로 이동 ");
+			System.out.println(" QnAWriteForm.qna 가상 주소로 이동 ");
 		}
 		
 		// 2-2. 공지사항 글 DB에 올리기
-		else if (command.equals("/QnAWriteAction.bo")) {
-			System.out.println(" C : /QnAWriteAction.bo 호출 ");
+		else if (command.equals("/QnAWriteAction.qna")) {
+			System.out.println(" C : /QnAWriteAction.qna 호출 ");
 			action = new QnAWriteAction();
 			try	{
 				forward = action.execute(request, response);
@@ -73,8 +73,8 @@ public class QnAFrontController extends HttpServlet {
 		}
 			
 		// 2-2. 문의사항 작성한 글 페이지로 넘어가기 
-			else if(command.equals("/QnAContent.bo")) {
-				System.out.println( " C : QnAContent.bo 호출 ");
+			else if(command.equals("/QnAContent.qna")) {
+				System.out.println( " C : QnAContent.qna 호출 ");
 				action = new QnAContentAction();					
 				try {
 					forward = action.execute(request, response);
@@ -86,8 +86,8 @@ public class QnAFrontController extends HttpServlet {
 
 		// 2-3. QnA게시판 목록으로 이동
 		 
-			else if (command.equals("/QnABoardList.bo")) {
-				System.out.println(" C : QnABoardList.bo 호출 ");
+			else if (command.equals("/QnABoardList.qna")) {
+				System.out.println(" C : QnABoardList.qna 호출 ");
 				System.out.println(" C : DB정보가 필요함, 페이지 이동 X, 해당 페이지 출력O ");
 				
 				 action = new QnABoardListAction();
@@ -100,7 +100,7 @@ public class QnAFrontController extends HttpServlet {
 			}
 		
 		// 2-4. 선택한 문의사항 내용 보기
-//		else if (command.equals("/QnAContent.bo")) {
+//		else if (command.equals("/QnAContent.qna")) {
 //			action = new QnAContentAction();
 //			try {
 //				forward = action.execute(request, response);

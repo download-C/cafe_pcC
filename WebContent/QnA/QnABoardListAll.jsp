@@ -17,20 +17,21 @@
 	
 	<%
 	
-	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
+ 	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
 	
-// 	String pageNum = (String)request.getAttribute("pageNum");
+//  	String pageNum = (String)request.getAttribute("pageNum");
 	
-// 	int cnt = (Integer)request.getAttribute("cnt");
-// 	int pageCount = (Integer)request.getAttribute("pageCount");
-// 	int pageBlock = (Integer)request.getAttribute("pageBlock");
-// 	int startPage = (Integer)request.getAttribute("startPage");
-// 	int endPage = (Integer)request.getAttribute("endPage");
+//  	int cnt = (Integer)request.getAttribute("cnt");
+//  	int pageCount = (Integer)request.getAttribute("pageCount");
+//  	int pageBlock = (Integer)request.getAttribute("pageBlock");
+//  	int startPage = (Integer)request.getAttribute("startPage");
+//  	int endPage = (Integer)request.getAttribute("endPage");
 	
 	
 	%>
 	
-<!-- <h3><a href="./QnABoardWrite.bo">글쓰기 (new)</a></h3> -->
+	 <h3><a href="./QnAWriteForm.qna">글쓰기 (new)</a></h3> 
+	 
 	
 	<table border="1">
 		<tr>
@@ -44,31 +45,31 @@
 		
 		<%
 		
-		for (int i = 0; i < qnaboardlist.size(); i++) {
-			QnABoardDTO dto = qnaboardlist.get(i);
+// 		for (int i = 0; i < qnaboardlist.size(); i++) {
+// 			QnABoardDTO dto = qnaboardlist.get(i);
 			
 		%>
-	
-		<tr>
-			<td><%=dto.getQnA_num() %></td>
-			<td><%=dto.getQnA_subject() %></td>
-		<%-- <td><%=dto.getmem_num() %></td> 추후 Members 테이블에서 조인해서 출력해야함~~! --%>
-			<td><%=dto.getQnA_readcount() %></td>
-			<td><%=dto.getQnA_date() %></td>
-			<td><%=dto.getQnA_ip() %></td>
-		</tr>			
-		<% } %>
+		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
+			<tr>
+				<td>${dto.qna_num }</td>
+				<td>
+					<a href="./QnAContent.no?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
+				<td>관리자</td>
+				<td>${dto.qna_readcount }</td>
+				<td>${dto.qna_date }</td>
+			</tr>
+			</c:forEach>
 		</table>
 	
 	<c:if test="${cnt!=0 }">
 	<c:if test="${startPage > pageBlock }">
-         <a href="./QnABoardList.bo?pageNum=${startPage-pageBlock }">[이전]</a>
+         <a href="./QnABoardList.qna?pageNum=${startPage-pageBlock }">[이전]</a>
       </c:if>
       <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-         <a href="./QnABoardList.bo?pageNum=${i }">[${i }]</a>
+         <a href="./QnABoardList.qna?pageNum=${i }">[${i }]</a>
       </c:forEach>
       <c:if test="${endPage < pageCount }">
-         <a href="./QnABoardList.bo?pageNum=${startPage + pageBlock }">[다음]</a>
+         <a href="./QnABoardList.qna?pageNum=${startPage + pageBlock }">[다음]</a>
       </c:if>
 	</c:if>
 

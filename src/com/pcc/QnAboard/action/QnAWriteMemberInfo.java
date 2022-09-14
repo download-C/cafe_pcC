@@ -37,7 +37,7 @@ public class QnAWriteMemberInfo implements Action {
 //		forward.setPath("./QnA/QnAWriteForm.jsp");
 //		forward.setRedirect(false);
 //		
-//		System.out.println(" QnAWrtiteForm.bo로 이동");
+//		System.out.println(" QnAWrtiteForm.qna로 이동");
 //		
 //		
 //			

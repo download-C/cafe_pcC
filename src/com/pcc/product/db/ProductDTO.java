@@ -3,6 +3,15 @@ package com.pcc.product.db;
 // 제품 관련 정보 객체
 
 public class ProductDTO {
+	
+	private int prod_num;
+	private String prod_name;
+	private String category;
+	private int price;
+	private String prod_img;//원본 파일명
+	private String prod_real_img;//실제 업로드 된 파일명(중복처리됨)
+	
+	
 	public String getProd_img() {
 		return prod_img;
 	}
@@ -15,12 +24,6 @@ public class ProductDTO {
 	public void setProd_real_img(String prod_real_img) {
 		this.prod_real_img = prod_real_img;
 	}
-	private int prod_num;
-	private String prod_name;
-	private String category;
-	private int price;
-	private String prod_img;//원본 파일명
-	private String prod_real_img;//실제 업로드 된 파일명(중복처리됨)
 	
 	public int getProd_num() {
 		return prod_num;

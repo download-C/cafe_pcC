@@ -100,17 +100,16 @@ public class CartDAO {
 			
 			//카트 데이터 입력
 			//3. sql 작성 & pstmt 객체
-			sql = "insert into carts(cart_num, prod_num, requirements, total_price)"
-					+ " values(?,?,?,?);";
+			sql = "insert into carts values(?,?,?,?,?);";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			//???
 			pstmt.setInt(1, cart_num);
-			//pstmt.setInt(2,  dto.getMem_num());
 			pstmt.setInt(2,  dto.getProd_num());
-			pstmt.setString(3, dto.getRequirements());
-			pstmt.setInt(4, dto.getTotal_price());
+			pstmt.setInt(3,  dto.getProd_count());
+			pstmt.setString(4, dto.getRequirements());
+			pstmt.setInt(5, dto.getTotal_price());
 			
 			//4. sql 실행
 			pstmt.executeUpdate();//insert 구문은 Update 사용
@@ -167,42 +166,42 @@ public class CartDAO {
 	
 	
 	// 5. 카트에 담는 회원의 정보 가져오기(  -----------------------------------------
-	public CartDTO getMember(int mem_num) {
-		System.out.println("4. getMember DAO");
-		CartDTO dto = null;
-		
-		try{
-			//1,2 디비연결
-			con = getConnect();
-			//3. sql 작성(select) & pstmt 객체
-			sql = "select * from members where mem_num=?";
-			pstmt = con.prepareStatement(sql);
-			// ???
-			pstmt.setInt(1, mem_num);
-			
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			
-			//5. 데이터 처리
-			if(rs.next()){
-				//DB에 특정 상품의 정보를 가져와서 저장
-				
-				//DB->DTO
-				dto = new CartDTO();
-				
-				dto.setMem_num(rs.getInt("mem_num"));
-			}
-//			System.out.println(" DAO : " + mem_num + "번 상품 정보 가져옴");
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return dto;		
-
-	}
+//	public CartDTO getMember(int mem_num) {
+//		System.out.println("4. getMember DAO");
+//		CartDTO dto = null;
+//		
+//		try{
+//			//1,2 디비연결
+//			con = getConnect();
+//			//3. sql 작성(select) & pstmt 객체
+//			sql = "select * from members where mem_num=?";
+//			pstmt = con.prepareStatement(sql);
+//			// ???
+//			pstmt.setInt(1, mem_num);
+//			
+//			// 4. sql 실행
+//			rs = pstmt.executeQuery();
+//			
+//			//5. 데이터 처리
+//			if(rs.next()){
+//				//DB에 특정 상품의 정보를 가져와서 저장
+//				
+//				//DB->DTO
+//				dto = new CartDTO();
+//				
+//				dto.setMem_num(rs.getInt("mem_num"));
+//			}
+////			System.out.println(" DAO : " + mem_num + "번 상품 정보 가져옴");
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			closeDB();
+//		}
+//		
+//		return dto;		
+//
+//	}
 
 	
 	
@@ -221,7 +220,10 @@ public class CartDAO {
 			//2. 디비 연결
 			con = getConnect();
 			//3. sql 작성 & pstmt 객체
-			sql ="select * from carts";
+			sql ="select c.cart_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
+					"c.requirements, c.prod_count, p.price, c.total_price "+
+					"from products p join carts c "+
+					"on c.prod_num = p.prod_num;";
 //			sql_prod = "select c.prod_num, p.prod_name, p.prod_img, p.prod_real_img " +
 //						"from products p join carts c on c.prod_num = p.prod_num;";
 					
@@ -238,7 +240,12 @@ public class CartDAO {
 				CartDTO dto = new CartDTO();
 				dto.setCart_num(rs.getInt("cart_num"));
 				dto.setProd_num(rs.getInt("prod_num"));
+				dto.setProd_name(rs.getString("prod_name"));
+				dto.setProd_img(rs.getString("prod_img"));
+				dto.setProd_real_img(rs.getString("prod_real_img"));
 				dto.setRequirements(rs.getString("requirements"));
+				dto.setProd_count(rs.getInt("prod_count"));
+				dto.setPrice(rs.getInt("price"));
 				dto.setTotal_price(rs.getInt("total_price"));
 				
 				//DTO -> List

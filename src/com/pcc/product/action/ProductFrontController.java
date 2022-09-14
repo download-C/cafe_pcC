@@ -57,7 +57,7 @@ public class ProductFrontController extends HttpServlet {
 		}
 		
 		//상품 등록 넘기기
-		else if(command.equals("/ProductWriteAction.pr")){
+		else if(command.equals("/ProductWrite.pr")){
 //			System.out.println(" C : /ProductWriteAction.pr 호출 ");
 
 			// ProductWriteAction() 객체 생성
@@ -100,7 +100,7 @@ public class ProductFrontController extends HttpServlet {
 			}
 		}
 		//상품 주문 옵션 정보 작성 -> DB 필요
-		else if(command.equals("/CartWriteAction.pr")){
+		else if(command.equals("/CartWrite.pr")){
 //			System.out.println(" C : /CartWriteAction.pr 호출");
 //			System.out.println(" C : DB 정보 사용, 출력");
 			
@@ -122,6 +122,41 @@ public class ProductFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		}
+		
+		//결제 정보를 담는 페이지
+		else if(command.equals("/OrderWrite.pr")){
+			
+			//OrderWriteAction
+			action = new OrderWriteAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+//			//orderWrite.jsp로 이동
+//			forward = new ActionForward();
+//			forward.setPath("./product/orderWrite.jsp");
+//			forward.setRedirect(false);//디스패치 방식 -> 가상주소가 유지
+			
+		}
+
+		//결제 정보를 DB로 넘기는 페이지
+		else if(command.equals("/Order.pr")){
+			//OrderAction()객체 생성
+			action = new OrderAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+		//결제 후 최종 내역을 확인하는 페이지
+		else if(command.equals("/OrderList.pr")){
 			
 		}
 		

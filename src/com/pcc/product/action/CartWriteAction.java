@@ -26,13 +26,10 @@ public class CartWriteAction implements Action {
 		CartDTO dto = new CartDTO();
 		
 		//dto.setCart_num(Integer.parseInt(request.getParameter("cart_num")));
-		//dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
 		dto.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
 		dto.setRequirements(request.getParameter("requirements"));
+		dto.setProd_count(Integer.parseInt(request.getParameter("prod_count")));
 		dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));
-//		System.out.println(request.getParameter("prod_num"));
-//		System.out.println(request.getParameter("requirements"));
-//		System.out.println(request.getParameter("total_price"));
 		
 		
 		

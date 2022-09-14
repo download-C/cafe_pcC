@@ -11,7 +11,7 @@
 	  <h2> 상품 등록 페이지 </h2>
    
    <fieldset>
-      <form action="./ProductWriteAction.pr" method="post" enctype="multipart/form-data">
+      <form action="./ProductWrite.pr" method="post" enctype="multipart/form-data">
       	<label for="prod_name">상품명 : </label>
         <input type="text"  name="prod_name" id="prod_name"><br>
         

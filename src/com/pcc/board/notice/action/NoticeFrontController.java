@@ -56,7 +56,6 @@ public class NoticeFrontController extends HttpServlet {
 			}
 			
 		}
-		
 		// 2-2. 공지사항 글 DB에 올리기
 		else if(command.equals("/NoticeWriteAction.no")) {
 //			System.out.println(command);

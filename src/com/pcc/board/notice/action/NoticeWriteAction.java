@@ -38,7 +38,7 @@ public class NoticeWriteAction implements Action {
 		int notice_num = dao.noticeWrite(dto);
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./NoticeContent.no?notice_num="+notice_num);
+		forward.setPath("./NoticeContent.no?notice_num="+notice_num+"&pageNum=1");
 		forward.setRedirect(true);
 		System.out.println("NoticeContent.no로 이동");
 		

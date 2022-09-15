@@ -68,6 +68,39 @@ public class ReservationFrontController extends HttpServlet {
 			forward.setPath("./reservationContent.jsp");
 			forward.setRedirect(false);
 		}
+		else if(command.equals("/ReservationList.re")){
+			System.out.println(" C : /ReservationList.re");
+			
+			action = new ReservationListAction();
+	    	try{
+	    		forward = action.execute(request, response);
+	    	} catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+		}
+		else if(command.equals("/MemberReservationList.re")){
+			System.out.println(" C : /MemberReservationList.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./memberReservationListForm.jsp");
+			forward.setRedirect(false);	
+		}
+		else if(command.equals("/MemberReservationListAction.re")){
+	    	System.out.println(" C : /MemberReservationListAction.re 호출");
+	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
+	    	
+	    	//ReservationAction() 객체 생성
+	    	action = new MemberReservationListAction();
+	    	try{
+	    		forward = action.execute(request, response);
+	    	} catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    	
+		} 
+		
+		
+		
 		
 	
 		

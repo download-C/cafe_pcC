@@ -13,6 +13,8 @@
 
 	<form action="./ReservationAction.re" method = "post">
 	
+	회원번호 <input type="number" name="mem_num" placeholder="회원번호 4자리를 입력해주세요.">
+	
 	인원 <input type="number" name="res_num_of_persons" placeholder="숫자만 입력하세요.">
 	
 	<br><br>

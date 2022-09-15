@@ -2,13 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>"C:/Users/Controller/Desktop/0901안드로이드.txt"
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<%
-		response.sendRedirect("./Reservation.re");
+		//response.sendRedirect("./Reservation.re");
+		//response.sendRedirect("./ReservationList.re");
+		response.sendRedirect("./MemberReservationList.re");
 	%>
 
 

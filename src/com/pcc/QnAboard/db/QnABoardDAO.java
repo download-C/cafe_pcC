@@ -407,8 +407,6 @@ public class QnABoardDAO {
 			closeDB();
 		}
 		
-		
-		
 		return dto;
 	}
 	
@@ -447,13 +445,66 @@ public class QnABoardDAO {
 			}
 			return dto;
 		}
+
+		
+
+	// 9. 문의사항 지우기 (매니저용)  -----------------------------------------
 	
+		public void QnADelete(HttpSession session, int qna_num, int mgr_num) {
+			
+			try {
+				con = getConnect();
+				sql = "delete form qna_boards where qna_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, qna_num);
+				
+				pstmt.executeUpdate();
+				
+				System.out.println("매니저용 글 삭제 완료");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+		}
 	
-	
-	// 9.   -----------------------------------------
-	
-	
-	
+		// 문의사항 지우기 (회원용)  -----------------------------------------
+		
+		public void QnADelect (HttpSession session, int qna_num, int mem_num, int password) {
+			int qna_password = 1234;
+			
+			try {
+				con = getConnect();
+				sql = "selct qna_password from qna_boards where qna_num=?";
+				pstmt.setInt(1, qna_num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					qna_password = rs.getInt("qna_password");
+				}
+				
+				if(password == qna_password) {
+					sql = "delete from qna_boards where qna_num=? and qna_password=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, qna_num);
+					pstmt.setInt(2, qna_password);
+					
+					pstmt.executeUpdate();
+					System.out.println("회원용 글 삭제 완료");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+		}
+		
+		
+		
+		
 	
 	// 10.   -----------------------------------------
 	

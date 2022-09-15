@@ -33,23 +33,17 @@
 	 <h3><input type="button" name="qnaWrite" value="새 글 쓰기(new)"
 	  onclick="location.href='./QnAWriteForm.qna';"></h3> 
 	 
-	
-	<table border="1">
-		<tr>
-			<td>번호</td>
-			<td>제목</td>
-<!-- 		<td>글쓴이</td> 추후 Members 테이블에서 조인해서 출력해야함~~! -->
-			<td>조회수</td>
-			<td>작성일</td>
-			<td>IP</td>
-		</tr>
-		
-		<%
-		
-// 		for (int i = 0; i < qnaboardlist.size(); i++) {
-// 			QnABoardDTO dto = qnaboardlist.get(i);
-			
-		%>
+	<fieldset>
+		<table border="1">
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+		   <!-- <td>글쓴이</td>  글쓴이는 추후 Members 테이블에서 조인해서 출력해야함~~! -->
+				<td>조회수</td>
+				<td>작성일</td>
+				<td>IP</td>
+			</tr>
+
 		
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
 		
@@ -57,12 +51,14 @@
 				<td>${dto.qna_num }</td>
 				<td>
 					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
-				<td>관리자</td>
+				<!-- <td>관리자</td> -->
 				<td>${dto.qna_readcount }</td>
 				<td>${dto.qna_date }</td>
+				<td>${dto.qna_ip }</td>
 			</tr>
 			</c:forEach>
 		</table>
+	</fieldset>
 	
 	<c:if test="${cnt!=0 }">
 	<c:if test="${startPage > pageBlock }">

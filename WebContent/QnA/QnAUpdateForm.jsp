@@ -16,7 +16,7 @@
 				<tr>
 					<td>
 						<input type="hidden" name="qna_num" id="qna_num"
-							values="${dto.qna_num }" readonly="readonly">
+							value="${dto.qna_num }" readonly="readonly">
 					</td>
 				</tr>
 				<tr><td>제목
@@ -32,7 +32,6 @@
 			</table>
 		</div>
 		<div id="commanCell">
-			<input type="button" value="임시저장"> &nbsp;&nbsp;
 			<input type="submit" value="수정" >
 		</div>
 		</form>

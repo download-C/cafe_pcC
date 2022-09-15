@@ -108,6 +108,28 @@ public class QnAFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		// 2-5. 문의사항 수정 정보 불러오기
+		else if (command.equals("/QnAUpdate.qna")) {
+			action = new QnAUpdate();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-6. 문의사항 수정 정보 DB에 반영하기
+		else if (command.equals("/QnAUpdateAction.qna")) {
+			action = new QnAUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
 			
 
 

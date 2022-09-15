@@ -19,21 +19,21 @@
 							values="${dto.qna_num }" readonly="readonly">
 					</td>
 				</tr>
-				<tr><td>
+				<tr><td>제목
 					<input type="text" name="qna_subject" id="qna_subject"
-						values="${dto.qna_subject }">
+						value="${dto.qna_subject }">
 				</td></tr>
-				<tr><td>
+				<tr><td>내용
 					<textarea rows="30" cols="100" name="qna_content" id="qna_content">${dto.qna_content }</textarea>
 				</td></tr>
-				<tr><td>
+				<tr><td>첨부파일
 					<input type="file" name="qna_file" id="qna_file">
 				</td></tr>
 			</table>
 		</div>
 		<div id="commanCell">
 			<input type="button" value="임시저장"> &nbsp;&nbsp;
-			<input type="submit" value="수정">
+			<input type="submit" value="수정" >
 		</div>
 		</form>
 	</fieldset>

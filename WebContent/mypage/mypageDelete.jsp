@@ -24,7 +24,7 @@
      // 사용자 비밀번호를 입력 전달
      %>
       <form action="./mypageDeleteAction.me" method="POST" onsubmit="return checkData()" name="fr"> 
-        회원 번호 : <input type="text" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
+        회원 번호 : <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
         비밀번호 : <input type="password" name="password"> <br>
          <input type="submit" value="탈퇴하기">
       </form>

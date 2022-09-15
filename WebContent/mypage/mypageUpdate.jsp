@@ -23,16 +23,21 @@
      
      <h2>회원수정 페이지</h2>
  
-     <fieldset>
-       <form action="./mypageUpdateAction.me" method="post" onsubmit="return checkData()" name="fr">
-          회원 번호 : <input type="text" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
-          휴대폰 번호 : <input type="text" name="phone" value="${dto.phone }" readonly="readonly"> <br>
-          비밀번호 : <input type="password" name="password"> <br>
-          이름 : <input type="text" name="name" value="${dto.name }"> <br>
+     <form action="./mypageUpdateAction.me" method="post" onsubmit="return checkData()" name="fr">
+          <fieldset>
+          <legend>Basic Info</legend>
+          <label>회원 번호</label>
+          <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
+          <label>휴대폰 번호</label> 
+          <input type="text" name="phone" value="${dto.phone }" readonly="readonly"> <br>
+          <label>비밀번호</label>
+          <input type="password" name="password"> <br>
+          <label>이름</label>
+          <input type="text" name="name" value="${dto.name }"> <br>
           <hr>
              <input type="submit" value="개인정보수정"> 
-       </form>
-     </fieldset>
+          </fieldset>
+      </form>
      
      <script type="text/javascript">
         // alert("document.fr.pw.value : "+document.fr.pw.value);

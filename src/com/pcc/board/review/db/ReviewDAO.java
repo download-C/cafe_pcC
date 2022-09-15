@@ -10,6 +10,8 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
@@ -34,7 +36,7 @@ public class ReviewDAO {
 			DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/cafe_pcc");
 			con = ds.getConnection();
 			
-			System.out.println("DAO : DB 연결 완료");
+//			System.out.println("DAO : DB 연결 완료");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +55,7 @@ public class ReviewDAO {
 			if(rs != null)	rs.close();
 			if(pstmt != null)  pstmt.close();
 			if(con != null)  con.close();
-			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
+//			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,7 +109,7 @@ public class ReviewDAO {
 		return review_num;
 	}
 	
-	// 4-1. 증가한 조회수 DB에 업데이트하기 -----------------------------------------
+	// 4-1. DB에 저장된 조회수 가져와서 1 올리기 -----------------------------------------
 	public int getReviewCount() {
 		int ctn = 0;
 		try {
@@ -127,7 +129,7 @@ public class ReviewDAO {
 		return 0;
 	}
 	
-	// 4-2. DB에서 조회수 찾아서 1 올리기  ----------------
+	// 4-2. DB에서 1 올라간 조회수 저장  ------------------------
 	public void updateReviewReadcount(int review_num) {
 		
 		try {
@@ -144,11 +146,9 @@ public class ReviewDAO {
 		}
 	}
 	
-	
-	
-	
 
-	// 5. 리뷰 글 보기  -----------------------------------------
+
+	// 5. 리뷰 글 가져오기 -----------------------------------------
 	public ReviewDTO getReviewContent(int review_num) {
 		ReviewDTO dto = new ReviewDTO();
 		
@@ -192,7 +192,7 @@ public class ReviewDAO {
 	public List<ReviewDTO> getReviewList() {
 		System.out.println("getReviewList() 호출");
 		
-		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>(); 
+		List<ReviewDTO> reviewList = new ArrayList<>(); 
 		
 		try {
 			con = getConnect();
@@ -232,18 +232,18 @@ public class ReviewDAO {
 	public List<ReviewDTO> getReviewList(int startRow, int pageSize) {
 		System.out.println("getReviewList(int startRow, int pageSize) 호출");
 		
-		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>(); 
+		List<ReviewDTO> reviewList = new ArrayList<>(); 
 		
 		try {
 			con = getConnect();
-			sql = "select * from review_boards order by review_num desc limit ?, ?";
+			sql = "select * from review_boards order by review_num desc limit ?, 10";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
-			pstmt.setInt(2, pageSize);
+//			pstmt.setInt(2, pageSize);
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()){
+			while(rs.next()){
 					ReviewDTO dto = new ReviewDTO();
 					dto.setReview_num(rs.getInt(1));
 					dto.setReview_writer_type(rs.getInt(2));
@@ -252,7 +252,7 @@ public class ReviewDAO {
 					dto.setReview_password(rs.getInt(5));
 					dto.setReview_subject(rs.getString(6));
 					dto.setReview_content(rs.getString(7));
-					dto.setReview_content(rs.getString(8));
+					dto.setReview_readcount(rs.getInt(8));
 					dto.setReview_re_ref(rs.getInt(9));
 					dto.setReview_re_lev(rs.getInt(10));
 					dto.setReview_re_seq(rs.getInt(11));
@@ -269,16 +269,88 @@ public class ReviewDAO {
 			closeDB();
 		}
 		return reviewList;
+	
+	}
+	
+	
+	// 7. 리뷰 수정 내용 DB에 저장  -----------------------------------------
+	public ReviewDTO ReviewUpdate(ReviewDTO dto, int review_num) {
+		
+		System.out.println("ReviewUpdate() 호출");
+		
+		try {
+		con = getConnect();
+		sql = "update review_boards set review_subject=?, review_content=?, "
+				+ "review_file=? where review_num = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getReview_subject());
+		pstmt.setString(2, dto.getReview_content());
+		pstmt.setString(3, dto.getReview_file());
+		pstmt.setInt(4, review_num);
+		
+		pstmt.executeUpdate();
+				
+		} catch (Exception e ) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return dto;
 	}
 	
 	
 	
-	// 7.   -----------------------------------------
-	
-	
-	
-	
-	// 8.   -----------------------------------------
+	// 8.  관리자용 리뷰 글 지우기 메서드 -----------------------------------------
+	public void ReviewDelete(HttpSession session, int review_num, int mgr_num) {		
+		
+		try{
+			con = getConnect();
+			sql = "delete from review_boards where review_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_num);
+			
+			pstmt.executeUpdate();
+			
+			System.out.println("관리자용 글 삭제 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}		
+	}
+
+	// 회원용 리뷰글 삭제 메서드
+	public void ReviewDelete(HttpSession session, int review_num, int mem_num, int password) {
+		int review_password = 0;
+		try {
+			// 해당 글을 삭제하려는 사람이 회원인 경우 DB에 저장된 비밀번호 가져옴.
+			con = getConnect();
+			sql = "select password from review_boards where review_num = ?";
+			pstmt.setInt(1, review_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				// DB에서 가져온 해당 글의 비밀번호
+				review_password = rs.getInt("review_password");
+			}
+			
+			if(password == review_password) {
+				// 사용자가 입력한 비밀번호와 DB의 비밀번호가 일치할 경우 삭제함.
+				sql = "delete from review_boards where review_num = ? and review_password = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, review_num);
+				pstmt.setInt(2, review_password);
+				
+				pstmt.executeUpdate();
+				System.out.println("회원용 글 삭제 완료");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
 	
 	
 	

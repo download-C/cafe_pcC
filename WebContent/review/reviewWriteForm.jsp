@@ -25,7 +25,7 @@
 		<form action="./ReviewWriteAction.rv" method="post">
 		<div>
 		작성자 <input type="text" name="name" id="name" readonly="readonly"> 
-		비밀번호 <input type="password" name="review_password" placeholder="4자리 숫자로 적으세요"> <br>
+		비밀번호 <input type="password" name="review_password" maxlength="4" placeholder="4자리 숫자로 적으세요"> <br>
 		제목 <input type="text" name="review_subject"> <br>
 		내용 <textarea rows="30" cols="80 " name="review_content"></textarea> <br>
 		첨부파일 <input type="file" name="review_file" id="review_file"> <br>

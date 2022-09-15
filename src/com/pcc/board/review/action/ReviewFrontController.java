@@ -17,23 +17,23 @@ public class ReviewFrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("GET 방식, POST 방식 호출 - doGet(), doPost() 실행");
 		
-		System.out.println("--------- 1. 가상 주소 계산 시작 ---------");
+		System.out.println("---------------- 1. 가상 주소 계산 시작 ----------------");
 // 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
 			
 			// 1-1. URI 불러오기
 			String requestURI = request.getRequestURI();
-			System.out.println(" Controller : requestUIR = "+requestURI);
+//			System.out.println(" Controller : requestUIR = "+requestURI);
 			// 1-2. context Path 불러오기
 			String ctxPath = request.getContextPath();
-			System.out.println(" Controller : ctxPath = "+ctxPath);
+//			System.out.println(" Controller : ctxPath = "+ctxPath);
 			// 1-3. URI를 context Path 길이만큼 자르기
 			String command = requestURI.substring(ctxPath.length());
 			System.out.println(" Controller : command = "+command);
 		
-		System.out.println("--------- 1. 가상 주소 계산 완료 ---------");
+		System.out.println("----------------- 1. 가상 주소 계산 완료 ----------------");
 		System.out.println();
 		
-		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
+		System.out.println("---------------- 2. 가상 주소 매핑 시작 ----------------");
 // 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .bo로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null; 	
@@ -46,35 +46,54 @@ public class ReviewFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./review/reviewWriteForm.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/ReviewWriteAction.rv")) {
+		} 
+		// 2-2. 리뷰 내용 DB에 저장
+		else if(command.equals("/ReviewWriteAction.rv")) {
 			action = new ReviewWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/ReviewContent.rv")) {
+		} 
+		// 2-3. 리뷰 목록 불러오기
+		else if(command.equals("/ReviewList.rv")){
+			action = new ReviewListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		// 2-4. 리뷰 내용 불러오기
+		else if(command.equals("/ReviewContent.rv")) {
 			action = new ReviewContent();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/ReviewList.rv")){
-			action = new ReviewList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		}
+		// 2-6. 리뷰 삭제 버튼 눌렀을 때 비밀번호 입력 폼으로 연결
+		else if(command.equals("ReviewPasswordForm.rv")) {
+			forward = new ActionForward();
+			forward.setPath("./review/reviewPassword.jsp");
+			forward.setRedirect(false);
+		}
+		
+		// 2-6. 리뷰 내용 삭제하기
+		else if(command.equals("/ReviewDelete.rv")) {
+			action = new ReviewDelete();
 		}
 		
 		
+		
+		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
-		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");
+		System.out.println("---------------- 2. 가상 주소 매핑 완료 ----------------");
 		System.out.println();
 		
-		System.out.println("--------- 3. 가상 주소 이동 시작 ---------");
+		System.out.println("---------------- 3. 가상 주소 이동 시작 ----------------");
 // 3. 가상주소 이동 (페이지 정보에 따라 이동 방법을 sendRedirect(true), forward(false)로 정해줌
 		if(forward != null) {
 			// 3-1. sendRedirect 방식 (DB 연동으로 이동정보를 보낼 때)
@@ -94,7 +113,10 @@ public class ReviewFrontController extends HttpServlet {
 				dis.forward(request, response);
 			}
 		}
-		System.out.println("--------- 3. 가상 주소 이동 완료 ---------");
+		System.out.println("---------------- 3. 가상 주소 이동 완료 ----------------");
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		
 	}
 

@@ -67,7 +67,7 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 2-3. 공지사항 게시판 목록으로 가기
+		// 2-3. 공지사항 목록 불러오기
 		else if(command.equals("/NoticeList.no")) {
 			action = new NoticeListAction();
 			try {

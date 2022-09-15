@@ -11,10 +11,12 @@
 		String name = "관리자";
 	}
 %>
+<script src="./script/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<h1>reviewContent.jsp</h1>
 	<fieldset>
+	<form action = "./ReviewDelete.rv?review_num=${dto.review_num }" method="post">
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -42,21 +44,22 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="button" name="review_update" value="수정"
+					<input type="button" name="review_update" id="update"value="수정"
 				     onclick="location.href='./ReviewUpdate.rv?review_num=${dto.review_num}';">
 			    </td>
 				<td>
-					<input type="button" name="review_delete" value="삭제"
-				    onclick="location.href='./ReviewDelete.rv?review_num=${dto.review_num}';">
+					<input type="button" name="review_delete" id="delete" value="삭제" 
+					onclick="location.herf='./ReviewPassword.rv';">
 			    </td>
 				<td>
-					<input type="button" name="review_list" value="목록" 
+					<input type="button" name="review_list" id="list" value="목록" 
 				     onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">
 			    </td>
 				<td>
 				</td>
 			</tr>
 		</table>
+		</form>
 	</fieldset>
 	
 </body>

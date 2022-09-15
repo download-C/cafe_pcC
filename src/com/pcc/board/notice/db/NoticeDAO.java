@@ -144,6 +144,7 @@ public class NoticeDAO {
 	
 	public List<NoticeDTO> getNoticeList(int startRow, int pageSize) {
 		System.out.println("getNoticeList(int startRow, int pageSize) 호출");
+		
 		List<NoticeDTO> noticeList = new ArrayList<>();
 		try {
 			con = getConnect();
@@ -176,7 +177,7 @@ public class NoticeDAO {
 	}
 	
 	
-	// 6. 조회수 증가 메서드  -----------------------------------------
+	// 6. 조회수 가져오기 메서드  -----------------------------------------
 	public int getNoticeCount() {
 		int cnt = 0;
 		try {
@@ -189,7 +190,7 @@ public class NoticeDAO {
 				return cnt = rs.getInt(1);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
@@ -199,7 +200,7 @@ public class NoticeDAO {
 	}
 
 	// 6. 조회수 올리는 메서드  -----------------------------------------
-	public void updateReadCount(int notice_num) {
+	public void updateNoticeReadCount(int notice_num) {
 		try {
 			con = getConnect();
 			sql = "update notice_boards set notice_readcount=notice_readcount+1 "
@@ -208,7 +209,6 @@ public class NoticeDAO {
 			pstmt.setInt(1, notice_num);
 			pstmt.executeUpdate();
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -216,7 +216,7 @@ public class NoticeDAO {
 		}
 		
 	}
-
+	// 7. 공지사항 글 내용 가져오기 -----------------------------
 	public NoticeDTO getNoticeContent(int notice_num) {
 		System.out.println("getNoticeBoard() 호출");
 		NoticeDTO dto = null;
@@ -246,38 +246,8 @@ public class NoticeDAO {
 		return dto;
 	}
 
-	// 7. 공지사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
-	public NoticeDTO getNoticeUpdateContent(int notice_num) {
-		NoticeDTO dto = null;
-		
-		try {
-			con = getConnect();
-			sql = "select notice_subject, notice_content, notice_file from notice_boards "
-					+ "where notice_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, notice_num);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				dto = new NoticeDTO();
-				dto.setNotice_subject(rs.getString("notice_subject"));
-				System.out.println(notice_num+"번 제목 가져오기 완료");
-				dto.setNotice_content(rs.getString("notice_content"));
-				System.out.println(notice_num+"번 내용 가져오기 완료");
-				dto.setNotice_file(rs.getString("notice_file"));
-				System.out.println(notice_num+"번 파일 가져오기 완료");
-			}
-			System.out.println(notice_num+"번 공지사항 저장 완료");
-		} catch (Exception e){
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		return dto;
-	}
 	
-	// 8. 공지사항 글 수정 메서드 -----------------------------------------
+	// 8. 공지사항 글 수정 내용 DB에 저장하는 메서드 -----------------------------------------
 	public NoticeDTO NoticeUpdate(NoticeDTO dto, int notice_num) {
 		
 		System.out.println("NoticeUpdate() 호출");

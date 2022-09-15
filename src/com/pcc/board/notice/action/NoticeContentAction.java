@@ -23,7 +23,7 @@ public class NoticeContentAction implements Action {
 		NoticeDTO dto = new NoticeDTO();
 //		if(dto.getMgr_num() != 1234) {
 			NoticeDAO dao = new NoticeDAO();
-			dao.updateReadCount(notice_num);
+			dao.updateNoticeReadCount(notice_num);
 			System.out.println("조회수 1 증가");
 			dto = dao.getNoticeContent(notice_num);
 //		}

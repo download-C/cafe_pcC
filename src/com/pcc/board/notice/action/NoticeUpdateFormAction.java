@@ -20,7 +20,7 @@ public class NoticeUpdateFormAction implements Action {
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
 		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = dao.getNoticeUpdateContent(notice_num);
+		NoticeDTO dto = dao.getNoticeContent(notice_num);
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("notice_num", notice_num);

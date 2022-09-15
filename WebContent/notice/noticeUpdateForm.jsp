@@ -33,7 +33,6 @@
 			</table>
 		</div>
 		<div id="commandCell">
-			<input type="button" value="임시 저장"> &nbsp;&nbsp;
 			<input type="submit" value="수정" > 
 		</div>
 		</form>	

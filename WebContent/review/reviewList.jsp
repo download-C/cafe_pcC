@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ReviewList.jsp</title>
 </head>
 <body>
-<input type="button" name="reviewWrite" value="새 글 쓰기(new)"
- onclick="location.href='./ReviewWrite.rv';">
+	<input type="button" name="reviewWrite" value="새 글 쓰기(new)"
+		onclick="location.href='./ReviewWrite.rv';">
 	<fieldset>
 		<table>
 			<tr>
@@ -18,16 +18,16 @@
 				<td>조회수</td>
 				<td>작성일</td>
 			</tr>
-		<c:forEach var="dto" items="${requestScope.reviewList}">
-			<tr>
-				<td>${dto.review_num }</td>
-				<td>
-					<a href="./ReviewContent.rv?review_num=${dto.review_num }&pageNum=${requestScope.pageNum}">${dto.review_subject }</a>
-				<td>관리자</td>
-				<td>${dto.review_readcount }</td>
-				<td>${dto.review_date }</td>
-			</tr>
-		</c:forEach>
+			<c:forEach var="dto" items="${reviewList}">
+				<tr>
+					<td>${dto.review_num }</td>
+					<td><a
+						href="./ReviewContent.rv?review_num=${dto.review_num }&pageNum=${requestScope.pageNum}">${dto.review_subject }</a>
+					<td>관리자</td>
+					<td>${dto.review_readcount }</td>
+					<td>${dto.review_date }</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</fieldset>
 	<c:if test="${cnt != 0 }">

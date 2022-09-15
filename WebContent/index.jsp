@@ -20,6 +20,8 @@
 		response.sendRedirect("./MainPage.pcc");
 		
 // 		response.sendRedirect("./ReviewWrite.rv");
+
+// 		response.sendRedirect("./ReviewList.rv");
 	%>
 
 </body>

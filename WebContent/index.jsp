@@ -15,6 +15,8 @@
 	
 		//상품 리스트(Menu) 페이지 이동
   		response.sendRedirect("./ProductList.pr");
+  		//response.sendRedirect("./Cart.pr");
+  		//response.sendRedirect("./OrderWrite.pr");
 	
 	%>
 

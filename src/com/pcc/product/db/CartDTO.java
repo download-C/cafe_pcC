@@ -1,5 +1,7 @@
 package com.pcc.product.db;
 
+import java.sql.Timestamp;
+
 // 카트 관련 정보 객체
 
 public class CartDTO {
@@ -12,8 +14,16 @@ public class CartDTO {
 	private int prod_count;
 	private int price;
 	private int total_price;
+	private Timestamp checked;
 	
 	
+
+	public Timestamp getChecked() {
+		return checked;
+	}
+	public void setChecked(Timestamp checked) {
+		this.checked = checked;
+	}
 	public String getProd_name() {
 		return prod_name;
 	}
@@ -73,7 +83,7 @@ public class CartDTO {
 	public String toString() {
 		return "CartDTO [cart_num=" + cart_num + ", prod_num=" + prod_num + ", prod_name=" + prod_name + ", prod_img="
 				+ prod_img + ", prod_real_img=" + prod_real_img + ", requirements=" + requirements + ", prod_count="
-				+ prod_count + ", price=" + price + ", total_price=" + total_price + "]";
+				+ prod_count + ", price=" + price + ", total_price=" + total_price + ", checked=" + checked + "]";
 	}
 	
 }

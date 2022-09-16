@@ -100,7 +100,8 @@ public class CartDAO {
 			
 			//카트 데이터 입력
 			//3. sql 작성 & pstmt 객체
-			sql = "insert into carts values(?,?,?,?,?);";
+			sql = "insert into carts(cart_num, prod_num, prod_count, requirements, total_price) "+
+			"values(?,?,?,?,?);";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -223,7 +224,8 @@ public class CartDAO {
 			sql ="select c.cart_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
 					"c.requirements, c.prod_count, p.price, c.total_price "+
 					"from products p join carts c "+
-					"on c.prod_num = p.prod_num;";
+					"on c.prod_num = p.prod_num "+
+					"where c.checked is null";
 //			sql_prod = "select c.prod_num, p.prod_name, p.prod_img, p.prod_real_img " +
 //						"from products p join carts c on c.prod_num = p.prod_num;";
 					
@@ -247,6 +249,7 @@ public class CartDAO {
 				dto.setProd_count(rs.getInt("prod_count"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setTotal_price(rs.getInt("total_price"));
+				//dto.setChecked(rs.getTimestamp("checked"));
 				
 				//DTO -> List
 				cartList.add(dto);
@@ -263,12 +266,37 @@ public class CartDAO {
 		}
 		return cartList;
 	}
+
 	
 	
 	
-	// 7.   -----------------------------------------
 	
+	// 7. checked(cart_dto)  -----------------------------------------
 	
+	public void checked(CartDTO cart_dto) {
+		System.out.println("4. checked DAO");
+		
+		//결제한 카트의 상품들은 checked를 현재 일시로 변경
+		try{
+			//1. 드라이버 로드
+			//2. 디비 연결
+			con = getConnect();
+			//3. sql 작성 & pstmt 객체
+			//checked값이 null 인 경우 다 가져오기
+			sql = "update carts set checked = now() where checked is null;";
+			pstmt = con.prepareStatement(sql);
+			//4. sql 실행
+			pstmt.executeUpdate();
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+	}
 	
 	
 	// 8.   -----------------------------------------

@@ -16,7 +16,12 @@ public class CartListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
+		
 		System.out.println("3. CartListAction");
+		
+		
+		//==================================================
+		
 		
 		//CartDAO 객체 생성
 		CartDAO dao = new CartDAO();
@@ -24,13 +29,17 @@ public class CartListAction implements Action {
 		//dao 메서드 중에서 카트에 담긴 상품을 모두 가져오는 메서드 호출
 		List<CartDTO> cartList = dao.getCartList();
 		
-		System.out.println("5. CartListAction 돌아옴");
 
 		//VIEW 페이지 정보 전달을 위해서 request 영역에 저장
 		request.setAttribute("cartList", cartList);
+
+		
+		//==================================================
+
 		
 		//화면에 출력
 		//페이지 이동
+		System.out.println("5. CartListAction 돌아옴");
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/cart.jsp");
 		forward.setRedirect(false);

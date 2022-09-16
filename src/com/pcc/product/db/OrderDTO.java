@@ -11,8 +11,8 @@ public class OrderDTO {
 	private String phone; //주문자 전화번호
 	
 	private int cart_num; //카트 번호(view)에서 가져오기
-	private int prod_count;
-	private int total_price;
+	private int prod_count; //조인
+	private int total_price;//조인
 	
 	private int prod_num;
 	private String prod_name;
@@ -22,9 +22,16 @@ public class OrderDTO {
 	private String order_method;  //주문 방법
 	private String order_state;   //주문 상태
 	private int order_price;     //총 주문 가격
+	private int pickup_time;
 	
 	
 	
+	public int getPickup_time() {
+		return pickup_time;
+	}
+	public void setPickup_time(int pickup_time) {
+		this.pickup_time = pickup_time;
+	}
 	public String getMem_name() {
 		return mem_name;
 	}
@@ -115,7 +122,8 @@ public class OrderDTO {
 				+ phone + ", cart_num=" + cart_num + ", prod_count=" + prod_count + ", total_price=" + total_price
 				+ ", prod_num=" + prod_num + ", prod_name=" + prod_name + ", requirements=" + requirements
 				+ ", order_date=" + order_date + ", order_method=" + order_method + ", order_state=" + order_state
-				+ ", order_price=" + order_price + "]";
+				+ ", order_price=" + order_price + ", pickup_time=" + pickup_time + "]";
 	}
+	
 
 }

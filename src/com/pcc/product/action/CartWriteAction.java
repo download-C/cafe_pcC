@@ -60,7 +60,7 @@ public class CartWriteAction implements Action {
 		}
 		//productContent.jsp 파일의 "주문하기"버튼을 눌렸을 때
 		else{
-			forward.setPath("./Order.pr");
+			forward.setPath("./OrderWrite.pr");
 			forward.setRedirect(true);				
 		}
 		

@@ -57,7 +57,7 @@ public class ProductFrontController extends HttpServlet {
 		}
 		
 		//상품 등록 넘기기
-		else if(command.equals("/ProductWrite.pr")){
+		else if(command.equals("/ProductSave.pr")){
 //			System.out.println(" C : /ProductWriteAction.pr 호출 ");
 
 			// ProductWriteAction() 객체 생성
@@ -157,7 +157,9 @@ public class ProductFrontController extends HttpServlet {
 		
 		//결제 후 최종 내역을 확인하는 페이지
 		else if(command.equals("/OrderList.pr")){
-			
+			forward = new ActionForward();
+			forward.setPath("./product/orderList.jsp");
+			forward.setRedirect(true);
 		}
 		
 		

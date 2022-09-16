@@ -22,29 +22,33 @@
 	
 	<!-- category 클릭 시 카테고리별 상품 리스트만 뜨도록 구현 -->
 	
-	<h2>category</h2>
-	<div>
-		<div id="cate_coffee"><a>coffee</a></div>
-		<div id="cate_noncoffee"><a>non coffee</a></div>
-		<div id="cate_brunch"><a>brunch</a></div>
-	</div>
-	<br>
+<!-- 	<h2>category</h2> -->
+<!-- 	<div> -->
+<!-- 		<div id="cate_all"><a>all</a></div> -->
+<!-- 		<div id="cate_coffee"><a>coffee</a></div> -->
+<!-- 		<div id="cate_noncoffee"><a>non coffee</a></div> -->
+<!-- 		<div id="cate_brunch"><a>brunch</a></div> -->
+<!-- 	</div> -->
+<!-- 	<br> -->
 	
 	<div class="product">
-	<c:forEach var="dto" items="${requestScope.productList }">
-	<div>
-		<!-- 상품 클릭 시, 상품 개별 페이지로 이동하도록 구현 -->
-		<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
-		
-		<img src="img/product/${dto.prod_img}">
-		<br>
-		${dto.prod_name }<br>
-		
-		</a>
+		<c:forEach var="dto" items="${requestScope.productList }">
+			<div>
+				<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
+<%-- 				<div>${dto.category}</div> --%>
+				<img src="img/product/${dto.prod_img}"><br>
+				${dto.prod_name }<br>
+				</a>
+			</div><br>
+		</c:forEach>
 	</div>
-	<br>
-	</c:forEach>
-	</div>
+<!-- 	-------------------------------------------------- -->
+<%-- 	<c:if test="${dto.category=='coffee'}"> --%>
+	
+<!-- 		아아 -->
+		
+		
+<%-- 	</c:if> --%>
 	
 </body>
 </html>

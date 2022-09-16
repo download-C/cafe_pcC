@@ -6,6 +6,9 @@
 <title>공지사항 글 수정하기</title>
 </head>
 <body>
+<header>
+	<jsp:include page="../main/top2.jsp" />
+</header>
 	<h1> noticeUpdateForm.jsp </h1>
 	
 	<!-- 공지사항 게시판 등록 -->

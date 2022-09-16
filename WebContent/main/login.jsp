@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<header>
+	<jsp:include page="top2.jsp" />
+</header>
 	<form action = "./Login.pcc" method="post">
 		아이디 <input type="text" name="id"> <br>
 		비밀번호 <input type="password" name="password"> <br>

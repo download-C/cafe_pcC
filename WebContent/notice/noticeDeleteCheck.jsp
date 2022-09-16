@@ -8,6 +8,9 @@
 <title>알림창</title>
 </head>
 <body>
+<header>
+	<jsp:include page="../main/top2.jsp" />
+</header>
 	<script>
 		alert("${msg}");
 		location.href=:"<c:out value='${pageContext.request.contextPath}'/>${url}";

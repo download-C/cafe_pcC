@@ -451,8 +451,10 @@ public class QnABoardDAO {
 		
 
 	// 9. 문의사항 지우기 (매니저용)  -----------------------------------------
-	
+		
 		public void QnADelete(HttpSession session, int qna_num, int mgr_num) {
+		
+			
 			
 			try {
 				con = getConnect();
@@ -503,19 +505,62 @@ public class QnABoardDAO {
 				closeDB();
 			}
 		}
-}
-		
-		
-		
-		
-	
-	// 10.   -----------------------------------------
-	
-	
-	
-	
-	
-	
-	
-}
 
+
+		
+		
+		
+	
+	// 10. 특정 글 1개의 정보 조회   -----------------------------------------
+	
+	public QnABoardDTO getBoard(int qna_num) {
+		System.out.println(" C: getBoard(qna_num) 호출");
+		
+		QnABoardDTO dto = null;
+		
+		try {
+			con = getConnect();
+			
+			sql = "select * from qna_boards where qna_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new QnABoardDTO();
+				
+				dto.setQna_num(rs.getInt("qna_num"));
+				dto.setQna_writer_type(rs.getInt("qna_writer_type"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setQna_password(rs.getInt("qna_password"));
+				dto.setQna_subject(rs.getString("qna_subject"));
+				dto.setQna_content(rs.getString("qna_content"));
+				dto.setQna_readcount(rs.getInt("qna_readcount"));
+				dto.setQna_re_ref(rs.getInt("qna_re_ref"));
+				dto.setQna_re_lev(rs.getInt("qna_re_lev"));
+				dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+				dto.setQna_date(rs.getTimestamp("qna_date"));
+				dto.setQna_ip(rs.getString("qna_ip"));
+				dto.setQna_file(rs.getString("qna_file"));
+				
+			} //if
+			
+			System.out.println(" C : 게시글 " + qna_num + "번 정보 dto에 저장 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		
+		return dto;
+		
+	}
+	
+	
+	
+	
+	
+	
+
+}

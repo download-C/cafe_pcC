@@ -129,16 +129,26 @@ public class QnAFrontController extends HttpServlet {
 			}
 		}
 		
-		// 2-7. 문의사항 삭제하기
-		else if(command.equals("/QnADelete.qna")) {
-			action = new QnADelete();
+		// 2-7. 문의사항 확인 페이지에서 삭제 버튼 눌렀을때
+		// 비밀번호 입력 폼으로 연결
+		else if(command.equals("/QnAPasswordForm.qna")) {
+			forward = new ActionForward();
+			forward.setPath("./QnA/QnAPassword.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/QnAPasswordCheck.qna")){
+			action = new QnAPasswordCheck();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
+		
+		// 2-8. 문의사항 삭제하기
+		else if(command.equals("/QnADelete.qna")) {
+			action = new QnADelete();
+		}
 			
 
 

@@ -60,6 +60,7 @@ public class IdCheck implements Action {
 		
 		// 1. 페이지에서 ID값 불러오기 ->  'id':$('id').val()
 		String phone = request.getParameter("phone");
+		System.out.println("phone: "+phone);
 	 
 		 // 2. MemberDAO 객체 생성
 		 MemberDAO dao = new MemberDAO();
@@ -69,8 +70,8 @@ public class IdCheck implements Action {
 		 
 		 // 4. 아이디 입력 확인 후 중복 여부에 따른 문구 정의하기
 		 String divResult = "";
+		 
 		 if(result) {
-			 
 			 divResult = "사용 가능한 아이디입니다.";
 		 } else {
 			 divResult = "이미 사용중인 아이디입니다.";

@@ -52,7 +52,8 @@ public class NoticeFrontController extends HttpServlet {
 				forward.setPath("./notice/noticeWriteForm.jsp");
 				forward.setRedirect(false);
 			} else {
-				MemberDAO.alert(response, "권한이 없습니다.", "history.back();");
+				MemberDAO dao = new MemberDAO();
+				dao.alert(response, "권한이 없습니다.", "history.back();");
 			}
 			
 		}

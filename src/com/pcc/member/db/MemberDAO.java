@@ -27,7 +27,7 @@ public class MemberDAO {
 	}
 	
 	// 0. alert창 띄우는 메서드 
-	public static void alert(HttpServletResponse response, String msg, String path) {
+	public void alert(HttpServletResponse response, String msg, String path) {
 		response.setContentType("text/html; charset=utf-8");
 		
 		PrintWriter out;
@@ -39,6 +39,8 @@ public class MemberDAO {
 			out.println("</script>");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		
 	}
@@ -155,12 +157,14 @@ public class MemberDAO {
 			
 			try {
 				con = getConnect();
-				sql = "select phone from members where phone=?";
+				sql = "select * from members where phone=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, phone);
 				rs = pstmt.executeQuery();
+				System.out.println("phone: "+phone);
 				
 				if(rs.next()) {
+					
 					if(phone.equals(rs.getString("phone"))){
 						System.out.println("이미 사용중인 아이디입니다.");
 						result= false;
@@ -168,7 +172,7 @@ public class MemberDAO {
 						System.out.println("사용 가능한 아이디입니다.");
 						result= true;
 					}
-				} 
+				} else result = true;
 				
 				System.out.println(" DAO : 로그인 체크 완료("+result+")");
 			} catch (SQLException e) {

@@ -129,6 +129,15 @@ public class QnAFrontController extends HttpServlet {
 			}
 		}
 		
+		// 2-7. 문의사항 삭제하기
+		else if(command.equals("/QnADelete.qna")) {
+			action = new QnADelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 			
 

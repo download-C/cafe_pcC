@@ -1,5 +1,6 @@
 package com.pcc.QnAboard.db;
 
+import java.nio.channels.ClosedByInterruptException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
@@ -472,7 +474,7 @@ public class QnABoardDAO {
 	
 		// 문의사항 지우기 (회원용)  -----------------------------------------
 		
-		public void QnADelect (HttpSession session, int qna_num, int mem_num, int password) {
+		public void QnADelete (HttpSession session, int qna_num, int mem_num, int password) {
 			int qna_password = 1234;
 			
 			try {
@@ -501,6 +503,7 @@ public class QnABoardDAO {
 				closeDB();
 			}
 		}
+}
 		
 		
 		

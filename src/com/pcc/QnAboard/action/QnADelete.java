@@ -25,6 +25,7 @@ public class QnADelete implements Action {
 
 		QnABoardDAO dao = new QnABoardDAO();
 		QnABoardDTO dto = dao.getQnAContent(qna_num);
+
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -33,7 +34,7 @@ public class QnADelete implements Action {
 		if(mgr_num != 0 && mem_num == 0) {
 			dao.QnADelete(session, qna_num, mgr_num);
 		}else if(mem_num != 0 && mgr_num == 0) {
-			dao.QnADelect(session, qna_num, mem_num, qna_password);
+			dao.QnADelete(session, qna_num, mem_num, qna_password);
 		}
 
 		System.out.println(qna_num+"번 공지사항 삭제 완료");
@@ -44,12 +45,17 @@ public class QnADelete implements Action {
 		out.println("</script>");
 		
 		return null;
+
 	}
 	
-	
-	
-	
-	
-	
-	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

@@ -20,8 +20,7 @@
 		<tr>
 			<td>예약 번호</td>
 			<td>멤버 번호</td>
-			<td>예약 날짜</td>
-			<td>예약 시간</td>
+			<td>예약 날짜 및 시간</td>
 			<td>예약 인원</td>
 		</tr>
 		<%
@@ -35,7 +34,6 @@
 			<td><%=dto.getRes_num()%></td>
 			<td><%=dto.getMem_num()%></td>
 			<td><%=dto.getRes_date()%></td>
-			<td><%=dto.getRes_hour()%></td>
 			<td><%=dto.getRes_num_of_persons()%></td>
 		</tr>
 		<%} %>

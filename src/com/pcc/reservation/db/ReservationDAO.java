@@ -72,24 +72,24 @@ public class ReservationDAO {
 		int result = -1;
 
 		int res_num = 0;
+		int mem_num = 0;
 		int table_occupied = 0;
 		try {
 			con = getConnect();
 
 			int res_num_of_persons = dto.getRes_num_of_persons();
 			String res_date = dto.getRes_date();
-			String res_time = dto.getRes_hour();
 
 			int month = Integer.parseInt(res_date.substring(5, 7));
 			int day = Integer.parseInt(res_date.substring(8, 10));
-			int hour = Integer.parseInt(res_time.substring(0, 2));
+			int hour = Integer.parseInt(res_date.substring(11, 13));
 
 			int table_total = 20;
 			int table_possible = (table_total - 5) - table_occupied;
 
 			if ((month > 0 && month < 13) && (day > 0 && day < 32) && (hour > 12 && hour < 22)) {
 
-				sql = "select max(res_num), max(table_occupied) from reservations";
+				sql = "select max(res_num), max(mem_num), max(table_occupied) from reservations";
 				pstmt = con.prepareStatement(sql);
 
 				rs = pstmt.executeQuery();
@@ -97,6 +97,7 @@ public class ReservationDAO {
 				if (rs.next()) {
 
 					res_num = rs.getInt(1) + 1;
+					mem_num = rs.getInt(2) + 1;
 					table_occupied = rs.getInt(2) + 1;
 				}
 
@@ -104,34 +105,32 @@ public class ReservationDAO {
 					if (res_num_of_persons < 5 && res_num_of_persons > 0 && table_possible > 0) {
 
 						System.out.println("예약가능");
-						sql = "insert into reservations values(?, ?, cast(? as DATE), cast(? as TIME), ?, ?, ?)";
+						sql = "insert into reservations values(?, ?, cast(? as DATE), ?, ?, ?)";
 
 						pstmt = con.prepareStatement(sql);
 
 						pstmt.setInt(1, res_num);
-						pstmt.setInt(2, dto.getMem_num());
+						pstmt.setInt(2, mem_num);
 						pstmt.setString(3, dto.getRes_date());
-						pstmt.setString(4, dto.getRes_hour());
-						pstmt.setInt(5, dto.getRes_num_of_persons());
-						pstmt.setInt(6, dto.getTable_total());
-						pstmt.setInt(7, table_occupied);
+						pstmt.setInt(4, dto.getRes_num_of_persons());
+						pstmt.setInt(5, dto.getTable_total());
+						pstmt.setInt(6, table_occupied);
 
 						pstmt.executeUpdate();
 
 						result = 1;
 					} else if (res_num_of_persons > 4 && res_num_of_persons < 9 && table_possible > 1) {
 						System.out.println("예약가능");
-						sql = "insert into reservations values(?, ?, cast(? as DATE), cast(? as TIME), ?, ?, ?)";
+						sql = "insert into reservations values(?, ?, cast(? as DATE), ?, ?, ?)";
 
 						pstmt = con.prepareStatement(sql);
 
 						pstmt.setInt(1, res_num);
-						pstmt.setInt(2, dto.getMem_num());
+						pstmt.setInt(2, mem_num);
 						pstmt.setString(3, dto.getRes_date());
-						pstmt.setString(4, dto.getRes_hour());
-						pstmt.setInt(5, dto.getRes_num_of_persons());
-						pstmt.setInt(6, dto.getTable_total());
-						pstmt.setInt(7, table_occupied);
+						pstmt.setInt(4, dto.getRes_num_of_persons());
+						pstmt.setInt(5, dto.getTable_total());
+						pstmt.setInt(6, table_occupied);
 
 						pstmt.executeUpdate();
 
@@ -176,10 +175,9 @@ public class ReservationDAO {
 				dto.setRes_num(rs.getInt(1));
 				dto.setMem_num(rs.getInt(2));
 				dto.setRes_date(rs.getString(3));
-				dto.setRes_hour(rs.getString(4));
-				dto.setRes_num_of_persons(rs.getInt(5));
-				dto.setTable_total(rs.getInt(6));
-				dto.setTable_occupied(rs.getInt(7));
+				dto.setRes_num_of_persons(rs.getInt(4));
+				dto.setTable_total(rs.getInt(5));
+				dto.setTable_occupied(rs.getInt(6));
 				
 				reservationList.add(dto);
 				
@@ -197,7 +195,7 @@ public class ReservationDAO {
 		
 	}
 	
-	public List<ReservationDTO> memberReservationList(){
+	public List<ReservationDTO> memberReservationList(int mem_num){
 		int res_num = 0;
 		
 		List<ReservationDTO> memberReservationList = new ArrayList<ReservationDTO>();
@@ -206,24 +204,24 @@ public class ReservationDAO {
 		try{
 		con = getConnect();
 		
-		sql = "select res_num, mem_num, res_date, res_hour, res_num_of_persons from reservations where mem_num = ? ";  
+		sql = "select res_num, mem_num, res_date, res_num_of_persons from reservations where mem_num = ? ";  
 		pstmt = con.prepareStatement(sql);
 		
-		ReservationDTO dto = new ReservationDTO();
-		
-		pstmt.setInt(1, dto.getMem_num());
+		pstmt.setInt(1, mem_num);
 		
 		rs = pstmt.executeQuery();	
 		
 			
 			while(rs.next()){
 				
+				ReservationDTO dto = new ReservationDTO();
 				
-				dto.setRes_num(rs.getInt(1));
+				res_num = res_num + 1;
+				
+				dto.setRes_num(res_num);
 				dto.setMem_num(rs.getInt(2));
 				dto.setRes_date(rs.getString(3));
-				dto.setRes_hour(rs.getString(4));
-				dto.setRes_num_of_persons(rs.getInt(5));
+				dto.setRes_num_of_persons(rs.getInt(4));
 			
 				
 				memberReservationList.add(dto);

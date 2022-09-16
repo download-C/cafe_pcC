@@ -30,7 +30,7 @@ public class MemberReservationListAction implements Action {
 		ReservationDAO dao = new ReservationDAO();
 		System.out.println("DAO객체 생성");
 
-		List<ReservationDTO> memberReservationList = dao.memberReservationList();
+		List<ReservationDTO> memberReservationList = dao.memberReservationList(mem_num);
 
 		request.setAttribute("memberReservationList", memberReservationList);
 		

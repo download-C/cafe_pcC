@@ -1,11 +1,11 @@
 package com.pcc.reservation.db;
 
+import java.sql.Date;
 
 public class ReservationDTO {
 	private int res_num;
 	private int mem_num;
 	private String res_date;
-	private String res_hour;
 	private int res_num_of_persons;
 	private int table_total;
 	private int table_occupied;
@@ -27,12 +27,6 @@ public class ReservationDTO {
 	}
 	public void setRes_date(String res_date) {
 		this.res_date = res_date;
-	}
-	public String getRes_hour() {
-		return res_hour;
-	}
-	public void setRes_hour(String res_hour) {
-		this.res_hour = res_hour;
 	}
 	public int getRes_num_of_persons() {
 		return res_num_of_persons;

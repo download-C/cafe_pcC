@@ -34,14 +34,11 @@ public class ReservationAction implements Action{
 				System.out.println("DTO객체 생성");
 			
 				HttpSession session = request.getSession();
-				int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 				String res_date = request.getParameter("res_date");
-				String res_hour = request.getParameter("res_hour");
 				String res_num_of_persons = request.getParameter("res_num_of_persons");
+				System.out.println(res_date);
 				
-				dto.setMem_num(mem_num);
 				dto.setRes_date(res_date);
-				dto.setRes_hour(res_hour);
 				dto.setRes_num_of_persons(Integer.parseInt(res_num_of_persons));
 				dto.setTable_total(20);
 				
@@ -53,9 +50,7 @@ public class ReservationAction implements Action{
 				System.out.println("reservation 메서드 생성");
 				int result = dao.reservation(dto);
 				
-				session.setAttribute("mem_num", mem_num);
-				session.setAttribute("res_date", res_date);
-				session.setAttribute("res_hour", res_hour);
+				session.setAttribute("res_date", res_date.substring(0, 10) + " " + res_date.substring(11, 16));
 				session.setAttribute("res_num", res_num_of_persons);
 				
 				if(result == 1){

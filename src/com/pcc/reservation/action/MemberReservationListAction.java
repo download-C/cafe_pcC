@@ -23,8 +23,14 @@ public class MemberReservationListAction implements Action {
 		
 		
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-		
 		dto.setMem_num(mem_num);
+		
+// 		테이블 merge 후에 mem_num 대신 로그인 아이디 받을꺼임.	
+		
+//		HttpSession session = request.getSession();
+//		String loginID = session.setAttribute("loginID ", " " );
+		
+		
 		
 		
 		ReservationDAO dao = new ReservationDAO();

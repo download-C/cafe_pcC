@@ -1,5 +1,7 @@
 package com.pcc.board.notice.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,31 +21,60 @@ public class NoticeUpdateAction implements Action {
 		
 		
 		NoticeDAO dao = new NoticeDAO();
+		String pageNum = request.getParameter("pageNum");
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-		NoticeDTO dto = dao.getNoticeContent(notice_num);
-		System.out.println(notice_num+"번 글의 정보를 가진 NoticeDTO 객체 생성");
-		System.out.println("==============================");
-		System.out.println("DTO : "+dto);
-		System.out.println("==============================");
+		NoticeDTO dto = new NoticeDTO();
 		dto.setNotice_num(notice_num);
 		dto.setNotice_subject(request.getParameter("notice_subject"));
 		dto.setNotice_content(request.getParameter("notice_content"));
 		dto.setNotice_file(request.getParameter("notice_file"));
 		System.out.println("noticeUpdateForm.jsp 파라미터값 DTO에 저장 완료");
 		System.out.println("==============================");
-		System.out.println("DTO : "+dto);
-		System.out.println("==============================");
 
-		dao.NoticeUpdate(dto, notice_num);
-		System.out.println("공지사항 업데이트 완료");
-		
-		request.setAttribute("dto", dto);
-		request.setAttribute("notice_num", notice_num);
-		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/NoticeContent.no");
-		forward.setRedirect(false);
-		return forward;
+		int result = dao.NoticeUpdate(dto, notice_num);
+		
+	// 자바에서 JS 호출하기 (request와 response가 있는 Action 페이지만 가능)
+		if(result == -1){
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println(	"alert('비밀번호가 다릅니다.');");
+			out.println(	"history.back();");
+			out.println("</script>");
+			// 이미 페이지가 이동했기 때문에 html과 연결을 끊어야 함. 
+			out.close();
+			
+			return null; // 컨트롤러로 이동하지 않음.
+			
+		} else if(result == 0){
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println(	"alert('글이 없습니다.');");
+			out.println(	"history.back();");
+			out.println("</script>");
+			// 이미 페이지가 이동했기 때문에 html과 연결을 끊어야 함. 
+			out.close();
+			
+			return null; // 컨트롤러로 이동하지 않음.
+			
+		} else {
+			request.setAttribute("dto", dto);
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("notice_num", notice_num);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println(	"alert('글을 수정했습니다.');");
+			out.println(	"location.href='./NoticeContent.no?notice_num='"+notice_num+"'&pageNum='"+pageNum+"';");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		
 	}
 
 }

@@ -24,25 +24,21 @@ public class NoticeDelete implements Action {
 		HttpSession session = request.getSession();
 		int mgr_num = Integer.parseInt((String)session.getAttribute("mgr_num"));
 		System.out.println("삭제하는 매니저 번호 : "+mgr_num);
-		if(mgr_num != 0) {
-			NoticeDAO dao = new NoticeDAO();
-			dao.noticeDelete(notice_num, mgr_num);
-			System.out.println(notice_num+"번 공지사항 삭제 완료");
-			
-			out.println("<script>");
-			out.println("alert('삭제되었습니다.');");
-			out.println("location.href='./NoticeList.no';");
-			out.println("</script>");
-			
-			return null;
 
-		}
-			out.println("<script>");
-			out.println("alert('삭제 권한이 없습니다.');");
-			out.println("history.back()");
-			out.println("</script>");
-
-			return null;
+//		메니저로 로그인했을 때 사용해야 함.	
+		
+		String msg = "정말로 지우시겠습니까?";
+//		NoticeDAO.alter(response, msg);
+		
+		NoticeDAO dao = new NoticeDAO();
+		dao.noticeDelete(notice_num, mgr_num);
+		System.out.println(notice_num+"번 공지사항 삭제 완료");
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./NoticeList.no");
+		forward.setRedirect(true);
+		
+		return forward;
 	}
 
 }

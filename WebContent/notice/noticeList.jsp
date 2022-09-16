@@ -7,15 +7,17 @@
 <title>NoticeList.jsp</title>
 </head>
 <body>
-<header><jsp:include page="../main/top.jsp"></jsp:include></header>
-	<input type="button" name="noticeWrite" value="새 글 쓰기(new)"
-		onclick="location.href='./NoticeWrite.no';">
+<header>
+	<jsp:include page="../main/top2.jsp" />
+</header>
+<input type="button" name="noticeWrite" value="새 글 쓰기(new)"
+ onclick="location.href='./NoticeWrite.no';">
 	<fieldset>
 		<table>
 			<tr>
 				<td>글번호</td>
 				<td>제목</td>
-				<td>글쓴이</td>
+				<td>작성자</td>
 				<td>조회수</td>
 				<td>작성일</td>
 			</tr>

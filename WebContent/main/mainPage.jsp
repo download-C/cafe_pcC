@@ -12,9 +12,8 @@
 </head>
 <body>
 <header>
-<jsp:include page="../main/top.jsp"></jsp:include>
+<jsp:include page="top2.jsp" />
 </header>
-<main>
 	<h1>mainPage.jsp</h1>
 	<%
 		String mgr_num = (String)session.getAttribute("mgr_num");
@@ -35,8 +34,7 @@
 		} else {
 			%>
 			로그인해주세요 <br>
-			<input type="button" name="button" 
-			value="로그인 페이지로 이동" onclick="location.href='./Login.pcc'"> <br>
+		
 			<%
 		}
 	

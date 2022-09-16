@@ -6,8 +6,8 @@
 <title>공지사항 확인하기</title>
 </head>
 <body>
-<header><jsp:include page="../main/top.jsp"></jsp:include></header>
-	<fieldset>
+<jsp:include page="../main/top2.jsp" />
+	 <fieldset>
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -51,6 +51,5 @@
 			</tr>
 		</table>
 	</fieldset>
-
 </body>
 </html>

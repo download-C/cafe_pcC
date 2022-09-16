@@ -7,6 +7,7 @@
 <title>리뷰 작성하기</title>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<h1>reviewForm.jsp</h1>
 	
 	<% 

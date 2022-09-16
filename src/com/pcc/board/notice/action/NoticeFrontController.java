@@ -56,7 +56,6 @@ public class NoticeFrontController extends HttpServlet {
 			}
 			
 		}
-		
 		// 2-2. 공지사항 글 DB에 올리기
 		else if(command.equals("/NoticeWriteAction.no")) {
 //			System.out.println(command);
@@ -119,6 +118,15 @@ public class NoticeFrontController extends HttpServlet {
 		// 2-7. 공지사항 삭제하기
 		else if(command.equals("/NoticeDelete.no")){
 			action = new NoticeDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/NoticeDeleteCheck.no")){
+			action = new NoticeDeleteCheck();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

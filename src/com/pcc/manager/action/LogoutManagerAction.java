@@ -1,5 +1,7 @@
 package com.pcc.manager.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,14 +23,25 @@ public class LogoutManagerAction implements Action {
 			session.invalidate();	
 			System.out.println("세션 정보 초기화 완료");
 			System.out.println("session: "+session);
-		}
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그아웃되었습니다.');");
+			out.println("location.href='./MainPage.pcc';");
+			out.println("</script>");
+			
+			return null;
+		} 
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./MainPage.pcc");
-		forward.setRedirect(true);
-		System.out.println("MainPage로 이동");
+//		ActionForward forward = new ActionForward();
+//		forward.setPath("./MainPage.pcc");
+//		forward.setRedirect(true);
+//		System.out.println("MainPage로 이동");
+//		
+//		return forward;
 		
-		return forward;
+		return null;
 	}
 
 }

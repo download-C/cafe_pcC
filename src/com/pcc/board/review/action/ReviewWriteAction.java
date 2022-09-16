@@ -24,7 +24,16 @@ public class ReviewWriteAction implements Action {
 		String mgr_num = (String)session.getAttribute("mgr_num");
 		if(mgr_num != null) {
 			
-			int review_password = Integer.parseInt(request.getParameter("review_password"));
+			String review_password = request.getParameter("review_password");
+			if(review_password == "") {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('비밀번호를 입력해주세요');");
+				out.println("history.back();");
+				out.println("</script>");
+			}
+			
 			String review_subject = request.getParameter("review_subject");
 			String review_content = request.getParameter("review_content");
 			String review_file = request.getParameter("review_file");
@@ -32,7 +41,7 @@ public class ReviewWriteAction implements Action {
 			ReviewDTO dto = new ReviewDTO();
 		
 			dto.setMgr_num(Integer.parseInt(mgr_num));
-			dto.setReview_password(review_password);
+			dto.setReview_password(Integer.parseInt(review_password));
 			dto.setReview_subject(review_subject);
 			dto.setReview_content(review_content);
 			dto.setReview_file(review_file);

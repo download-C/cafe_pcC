@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<h1>LoginManager.jsp</h1>
 	
 	<form action="./LoginManagerAction.mgr" method="post">

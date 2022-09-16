@@ -15,6 +15,12 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import org.eclipse.jdt.internal.compiler.ast.NumberLiteral;
+
+import com.pcc.manager.db.ManagerDAO;
+import com.pcc.manager.db.ManagerDTO;
+import com.sun.org.apache.bcel.internal.generic.DASTORE;
+
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
 public class NoticeDAO {
@@ -282,36 +288,30 @@ public class NoticeDAO {
 
 	// 9. 공지사항 지우기  -----------------------------------------
 	public void noticeDelete(int notice_num, int mgr_num) {
-		
 		// 9-1. if 문으로 유저의 정보가 매니저일 경우
-		if(mgr_num == 1234 ){
+		if(mgr_num != 0 ){
 			try {
 				con = getConnect();
-				sql = "delete from notice_boards where notice_num=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, notice_num);
-				pstmt.executeUpdate();
+				ManagerDAO dao = new ManagerDAO();
+				ManagerDTO dto = dao.getManager(mgr_num);
+				if( dto.getMgr_num() == mgr_num ){
+					sql = "delete from notice_boards where notice_num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, notice_num);
+					pstmt.executeUpdate();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
+			
 		} 
 	}
 
 	
 	// 10. 알림창 지우기 메서드  -----------------------------------------
-	public static void alter(HttpServletResponse response, String msg) {
-		try {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.write("<script>alter('"+msg+"');</script>");
-			out.flush();
-			out.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 	
 	
 	

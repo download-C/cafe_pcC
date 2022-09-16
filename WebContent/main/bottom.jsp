@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../main/top.jsp"></jsp:include>
-	<form action = "./Login.pcc" method="post">
-		아이디 <input type="text" name="id"> <br>
-		비밀번호 <input type="password" name="password"> <br>
-		<input type="submit" name="sbumit" value="로그인">
-	</form>
-	
-	<a href="./LoginManager.mgr">매니저 로그인하기</a>
+
 </body>
 </html>

@@ -7,6 +7,7 @@
 <title>리뷰 수정하기</title>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<h1>reviewUpdateForm.jsp</h1>
 	<!-- 리뷰 글 수정하기 -->
 	<fieldset>

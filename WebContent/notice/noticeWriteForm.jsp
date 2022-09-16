@@ -10,6 +10,7 @@
 
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<h1> noticeWriteForm.jsp </h1>
 	
 	<!-- 공지사항 게시판 등록 -->

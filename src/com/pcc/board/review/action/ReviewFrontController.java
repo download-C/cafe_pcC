@@ -75,10 +75,19 @@ public class ReviewFrontController extends HttpServlet {
 			}
 		}
 		// 2-6. 리뷰 삭제 버튼 눌렀을 때 비밀번호 입력 폼으로 연결
-		else if(command.equals("ReviewPasswordForm.rv")) {
+		else if(command.equals("/ReviewPasswordForm.rv")) {
 			forward = new ActionForward();
 			forward.setPath("./review/reviewPassword.jsp");
 			forward.setRedirect(false);
+		}
+		
+		else if(command.equals("/ReviewPasswordCheck.rv")) {
+			action = new ReviewPasswordCheck();
+			try{
+				forward = action.execute(request, response);
+			} catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		// 2-6. 리뷰 내용 삭제하기

@@ -64,7 +64,7 @@ public class ManagerDAO {
 			System.out.println("DAO : DB 연결 해제");
 		}
 		
-		// 3. 매니저의 정보를 DB에서 가져오는 메서드
+		// 3-1. 매니저의 정보를 DB에서 가져오는 메서드
 		public ManagerDTO getManager(String mgr_id, String mgr_password) {
 			ManagerDTO dto = new ManagerDTO();
 			dto.setMgr_id(mgr_id);
@@ -88,6 +88,35 @@ public class ManagerDAO {
 			
 			return dto;
 		}
+		
+		
+		// 3-2. 매니저의 정보를 DB에서 가져오는 메서드
+				public ManagerDTO getManager(int mgr_num) {
+					ManagerDTO dto = new ManagerDTO();
+					dto.setMgr_num(mgr_num);
+					
+					try {
+						con = getConnect();
+						sql = "select * from managers where mgr_num=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, mgr_num);
+						rs = pstmt.executeQuery();
+						if(rs.next()) {
+							System.out.println();
+							System.out.println(mgr_num);
+							if(mgr_num == rs.getInt("mgr_num")) {
+							dto.setMgr_num(mgr_num);
+							dto.setMgr_name(rs.getString("mgr_name"));
+							dto.setMgr_job(rs.getString("mgr_job"));
+							dto.setMgr_title(rs.getString("mgr_title"));
+							}
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					
+					return dto;
+				}
 		
 		// 4. 매니저 로그인하는 메서드
 		public int loginManager(ManagerDTO dto) {

@@ -14,6 +14,7 @@
 <script src="./script/jquery-3.6.0.js"></script>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<h1>reviewContent.jsp</h1>
 	<fieldset>
 	<form action = "./ReviewDelete.rv?review_num=${dto.review_num }" method="post">
@@ -49,7 +50,7 @@
 			    </td>
 				<td>
 					<input type="button" name="review_delete" id="delete" value="삭제" 
-					onclick="location.herf='./ReviewPassword.rv';">
+					onclick="location.href='./ReviewPasswordForm.rv?notice_num=${dto.review_num}';">
 			    </td>
 				<td>
 					<input type="button" name="review_list" id="list" value="목록" 

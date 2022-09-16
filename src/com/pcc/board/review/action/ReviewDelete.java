@@ -17,20 +17,27 @@ public class ReviewDelete implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		int review_num = Integer.parseInt(request.getParameter("review_num"));
 		HttpSession session = request.getSession();
-		int mgr_num = Integer.parseInt((String)session.getAttribute("mgr_num"));
-		int mem_num = Integer.parseInt((String)session.getAttribute("mem_num"));
-		int review_password = Integer.parseInt(request.getParameter("review_password"));
-		
-		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.getReviewContent(review_num);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		
+		int review_num = Integer.parseInt(request.getParameter("review_num"));
+		int mgr_num = Integer.parseInt((String)session.getAttribute("mgr_num"));
+		int mem_num = Integer.parseInt((String)session.getAttribute("mem_num"));
+		int review_password = Integer.parseInt(request.getParameter("review_password"));
+		
+		if(mgr_num==0 || mem_num== 0) {
+			out.println("<script>");
+			out.println("alert('로그인해주세요');");
+			out.println("location.href='./Login.pcc';");
+			out.println("</script>");
+		}
+		
+		ReviewDAO dao = new ReviewDAO();
+		ReviewDTO dto = dao.getReviewContent(review_num);
+	
 		if(mgr_num != 0 && mem_num ==0) {
 			dao.ReviewDelete(session, review_num, mgr_num);
 		} else if(mem_num != 0 && mgr_num == 0){

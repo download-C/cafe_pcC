@@ -6,6 +6,7 @@
 <title>공지사항 확인하기</title>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<fieldset>
 		<table>
 			<tr>

@@ -7,6 +7,7 @@
 <title>NoticeList.jsp</title>
 </head>
 <body>
+<header><jsp:include page="../main/top.jsp"></jsp:include></header>
 	<input type="button" name="noticeWrite" value="새 글 쓰기(new)"
 		onclick="location.href='./NoticeWrite.no';">
 	<fieldset>

@@ -44,5 +44,10 @@
 			<a href="./ReviewList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
+<!-- 푸터 시작 -->
+<footer>
+<jsp:include page="../main/bottom.jsp" />
+</footer>
+<!-- 푸터 끝 -->
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,17 +9,20 @@
 <%
 	session = request.getSession();
 	String mgr_num = (String)session.getAttribute("mgr_num");
+	String mem_num = (String)session.getAttribute("mem_num");
+	
 	if(mgr_num != null) {
 		String name = "관리자";
+	} else if(mem_num != null ) {
+		
+		
 	}
 %>
-<script src="./script/jquery-3.6.0.js"></script>
 </head>
 <body>
 <header><jsp:include page="../main/top2.jsp"></jsp:include></header>
 	<h1>reviewContent.jsp</h1>
 	<fieldset>
-	<form action = "./ReviewDelete.rv?review_num=${dto.review_num }" method="post">
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -45,12 +50,12 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="button" name="review_update" id="update"value="수정"
-				     onclick="location.href='./ReviewUpdate.rv?review_num=${dto.review_num}';">
+					<input type="button" name="review_update" id="update" value="수정"
+				     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
 			    </td>
 				<td>
 					<input type="button" name="review_delete" id="delete" value="삭제" 
-					onclick="location.href='./ReviewPasswordForm.rv?notice_num=${dto.review_num}';">
+					onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
 			    </td>
 				<td>
 					<input type="button" name="review_list" id="list" value="목록" 
@@ -60,8 +65,11 @@
 				</td>
 			</tr>
 		</table>
-		</form>
 	</fieldset>
-	
+<!-- 푸터 시작 -->
+<footer>
+<jsp:include page="../main/bottom.jsp" />
+</footer>
+<!-- 푸터 끝 -->
 </body>
 </html>

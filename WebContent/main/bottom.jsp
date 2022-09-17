@@ -1,16 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-=======
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,8 +18,8 @@
 									Samhan Golden Gate 7F, &nbsp; DongCheon-ro 109, Busanjin-gu, Busan, Republic of Korea
 									</span>
 								</p>
-								<p style="text-align: left;">
-									<span style="font-size: 12px;">주식회사 카페피씨씨 / 대표 최다운</span>
+								<p style="text-align: left; ">
+									<span style="font-size: 12px; color: rgb(255, 255, 255); font-size: 12px;">주식회사 카페피씨씨 / 대표 최다운</span>
 								</p>
 								<p style="text-align: left;">
 									<span style="font-size: 12px;"> 
@@ -45,7 +33,7 @@
 										<span style="color: rgb(255, 255, 255);">E-mail :&nbsp;</span>
 									</span>
 									<span style="color: rgb(255, 255, 255); font-size: 12px;"> 
-										<a href="mailto:cafe_pcc@gmail.com"> cafe_pcc@gmail.com</a>
+										<a href="mailto:cafe_pcc@gmail.com" style="color: rgb(255, 255, 255); font-size: 12px;"> cafe_pcc@gmail.com</a>
 									</span>
 								</p>
 								<p style="text-align: left;">
@@ -55,7 +43,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="copryright-area _copy_menu" style="">
+						<div class="copryright-area _copy_menu" style="color: rgb(255, 255, 255); font-size: 12px;">
 							Copyright ⓒ 2022 cafe pcC All rights reserved.
 						</div>
 					</div>
@@ -64,10 +52,10 @@
 							<div class="_footer_menu" style="display: none;"></div>
 							<div class="_policy_menu" style="">
 								<li class="_use_policy_menu">
-									<a href="/?mode=policy" onclick="SITE.openPolicy(); return false;"> 이용약관 </a>
+									<a href="#" onclick="SITE.openPolicy(); return false;" style="color: rgb(255, 255, 255); font-size: 12px;"> 이용약관 </a>
 								</li>
 								<li class="_use_policy_menu" style="font-weight: bold">
-									<a href="/?mode=privacy" onclick="SITE.openPrivacy();return false;">개인정보처리방침</a>
+									<a href="#" onclick="SITE.openPrivacy();return false;" style="color: rgb(255, 255, 255); font-size: 12px;">개인정보처리방침</a>
 								</li>
 							</div>
 							<div class="_tour_policy_menu" style="display: none;"></div>
@@ -76,10 +64,10 @@
 					<div class="foot-sociallink _sns_link" style="">
 						<div class="btn-group _sns_link_list" role="group">
 							<a type="button" class="btn pull-right _0517os1D68 "
-								href="https://www.instagram.com/gbdcoffee/" style=""
+								href="https://www.itwillbs.co.kr" style=""
 								target="_blank">
 								<i aria-hidden="true" class="simple icon-social-instagram"></i>
-								<span class="sr-only">SNS 바로가기</span>
+								<span class="sr-only" style="color: rgb(255, 255, 255); font-size: 12px;">SNS 바로가기</span>
 							</a>
 						</div>
 					</div>
@@ -90,6 +78,5 @@
 		</div>
 	</div>
 	</footer>
->>>>>>> refs/heads/feature/11(Template)
 </body>
 </html>

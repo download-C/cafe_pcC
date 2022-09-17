@@ -38,6 +38,10 @@
 		</form>
 	</fieldset>
 	
-	
+<!-- 푸터 시작 -->
+<footer>
+<jsp:include page="../main/bottom.jsp" />
+</footer>
+<!-- 푸터 끝 -->
 </body>
 </html>

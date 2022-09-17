@@ -37,12 +37,18 @@ public class ReviewDelete implements Action {
 		
 		ReviewDAO dao = new ReviewDAO();
 		ReviewDTO dto = dao.getReviewContent(review_num);
+		if(dto.getReview_password() == review_password) {
+			dao.ReviewDelete(session, review_num, mem_num);
+			dao.alert(response, "글이 수정되었습니다.", "./ReviewList.rv");
+			return null;
+		}
+		
 	
-		if(mgr_num != 0 && mem_num ==0) {
-			dao.ReviewDelete(session, review_num, mgr_num);
-		} else if(mem_num != 0 && mgr_num == 0){
-			dao.ReviewDelete(session, review_num, mem_num, review_password);
-		} 
+//		if(mgr_num != 0 && mem_num ==0) {
+//			dao.ReviewDelete(session, review_num, mgr_num);
+//		} else if(mem_num != 0 && mgr_num == 0){
+//			dao.ReviewDelete(session, review_num, mem_num, review_password);
+//		} 
 		
 		out.println("<script>");
 		out.println("alert('삭제되었습니다.';");

@@ -1,5 +1,7 @@
 package com.pcc.board.review.db;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
@@ -25,6 +28,22 @@ public class ReviewDAO {
 	
 	public ReviewDAO () {
 		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
+	}
+	
+	// 0. alert() 띄우는 메서드
+	public void alert(HttpServletResponse response, String msg, String path) {
+		try {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('"+msg+"');");
+			out.println("location.href='"+path+"';");
+			out.println("</script>");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// 1. CP를 이용한 DB 연결 -----------------------------------------
@@ -261,8 +280,8 @@ public class ReviewDAO {
 					dto.setReview_file(rs.getString(14));
 					
 					reviewList.add(dto);
-					System.out.println("한 페이지에 "+pageSize+"개 리뷰 목록 저장 완료");
 			}
+			System.out.println("한 페이지에 "+pageSize+"개 리뷰 목록 저장 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -273,22 +292,44 @@ public class ReviewDAO {
 	}
 	
 	
-	// 7. 리뷰 수정 내용 DB에 저장  -----------------------------------------
-	public ReviewDTO ReviewUpdate(ReviewDTO dto, int review_num) {
+	// 7-1. 매니저가 리뷰 수정하는 메서드   -----------------------------------------
+	public ReviewDTO ReviewUpdate(ReviewDTO dto) {
 		
 		System.out.println("ReviewUpdate() 호출");
-		
 		try {
-		con = getConnect();
-		sql = "update review_boards set review_subject=?, review_content=?, "
-				+ "review_file=? where review_num = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, dto.getReview_subject());
-		pstmt.setString(2, dto.getReview_content());
-		pstmt.setString(3, dto.getReview_file());
-		pstmt.setInt(4, review_num);
+			con = getConnect();
+			sql = "update review_boards set review_subject=?, review_content=?, "
+					+ "review_file=? where review_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getReview_subject());
+			pstmt.setString(2, dto.getReview_content());
+			pstmt.setString(3, dto.getReview_file());
+			pstmt.setInt(4, dto.getReview_num());
+			
+			pstmt.executeUpdate();
+				
+		} catch (Exception e ) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return dto;
+	}
+	// 7-2. 회원이 리뷰 수정하는 메서드 
+	public ReviewDTO ReviewUpdate(ReviewDTO dto, int mem_num) {
 		
-		pstmt.executeUpdate();
+		System.out.println("ReviewUpdate() 호출");
+		try {
+			con = getConnect();
+			sql = "update review_boards set review_subject=?, review_content=?, "
+					+ "review_file=? where review_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getReview_subject());
+			pstmt.setString(2, dto.getReview_content());
+			pstmt.setString(3, dto.getReview_file());
+			pstmt.setInt(4, dto.getReview_num());
+			
+			pstmt.executeUpdate();
 				
 		} catch (Exception e ) {
 			e.printStackTrace();
@@ -321,29 +362,17 @@ public class ReviewDAO {
 	}
 
 	// 회원용 리뷰글 삭제 메서드
-	public void ReviewDelete(HttpSession session, int review_num, int mem_num, int password) {
-		int review_password = 0;
+	public void ReviewDelete(int review_num, int mem_num) {
 		try {
-			// 해당 글을 삭제하려는 사람이 회원인 경우 DB에 저장된 비밀번호 가져옴.
 			con = getConnect();
-			sql = "select password from review_boards where review_num = ?";
+		
+			// 사용자가 입력한 비밀번호와 DB의 비밀번호가 일치할 경우 삭제함.
+			sql = "delete from review_boards where review_num = ? and review_password = ?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_num);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				// DB에서 가져온 해당 글의 비밀번호
-				review_password = rs.getInt("review_password");
-			}
 			
-			if(password == review_password) {
-				// 사용자가 입력한 비밀번호와 DB의 비밀번호가 일치할 경우 삭제함.
-				sql = "delete from review_boards where review_num = ? and review_password = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, review_num);
-				pstmt.setInt(2, review_password);
-				
-				pstmt.executeUpdate();
-				System.out.println("회원용 글 삭제 완료");
-			}
+			pstmt.executeUpdate();
+			System.out.println("회원용 글 삭제 완료");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

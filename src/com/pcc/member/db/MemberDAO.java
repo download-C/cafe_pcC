@@ -13,6 +13,8 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.pcc.board.review.db.ReviewDTO;
+
 // 회원 관련 모든 메서드를 생성하는 클래스
 
 public class MemberDAO {
@@ -181,15 +183,11 @@ public class MemberDAO {
 			return result;
 		}
 
-		
-		
-		
-		
 		// 6. 로그인을 위한 아이디와 비밀번호 일치 여부 확인loginMember() ----------
 		public int loginMember(String phone, String password) {
 			System.out.println("4. loginMember DAO");
 			int result = -1;
-			
+			System.out.println(password);
 			try {
 				con = getConnect();
 				sql = "select password from members where phone=?";
@@ -223,24 +221,42 @@ public class MemberDAO {
 		}
 
 	
+	// 7.  리뷰 글 수정 메서드 -----------------------------------------
+		public int ReviewUpdate(ReviewDTO dto, int review_num) {
+			int result = -1;
 
-		
-		
-
-	 
-		
-
-
-	
-	
-	
-	// 6.   -----------------------------------------
-	
-	
-	
-	
-	// 7.   -----------------------------------------
-	
+			System.out.println("ReviewUpdate() 호출");
+			
+			System.out.println("dto: "+dto+"=======================");
+			
+			try {
+				con = getConnect();
+				
+				sql = "update review_boards "
+						+ "set review_subject=?, review_content=?, "
+						+ "review_file=? where review_num = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1,dto.getReview_subject());
+				pstmt.setString(2, dto.getReview_content());
+				pstmt.setString(3, dto.getReview_file());
+				pstmt.setInt(4, review_num);
+				System.out.println("review_num: "+dto.getReview_num());
+				System.out.println("dto: "+dto);
+				
+				pstmt.executeUpdate();
+				
+				System.out.println("DB에 리뷰 업데이트 완료");
+				
+				result = 1;
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+			return result;
 	
 	
 	
@@ -258,7 +274,7 @@ public class MemberDAO {
 	
 	
 	
-	
+		}
 	
 	
 	

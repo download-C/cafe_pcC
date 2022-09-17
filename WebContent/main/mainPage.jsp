@@ -14,6 +14,7 @@
 <header>
 <jsp:include page="top2.jsp" />
 </header>
+
 	<h1>mainPage.jsp</h1>
 	<%
 		String mgr_num = (String)session.getAttribute("mgr_num");
@@ -24,17 +25,13 @@
 			매니저번호 : ${sessionScope.mgr_num } <br>
 			${sessionScope.message } <br>
 		
-			<a href="./NoticeList.no">공지사항</a> <br>
-			
-			<a href="./ReviewList.rv">리뷰 게시판</a> <br>
+
 			<%
 			
 		} else if(mem_num != null) {
 			%>
-			${sessionScope.message }
-			<a href="./NoticeList.no">공지사항</a> <br>
-			
-			<a href="./ReviewList.rv">리뷰 게시판</a> <br>
+			${sessionScope.message } <br>
+
 			<%
 		} else {
 			%>
@@ -45,8 +42,8 @@
 		
 	%>
 	
-</main>
 <footer>
+<jsp:include page="bottom.jsp" />
 </footer>
 </body>
 </html>

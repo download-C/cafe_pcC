@@ -25,7 +25,7 @@
 				<tr>
 					<td>
 						<input type="hidden" name="notice_num" id="notice_num" 
-					    	   value="${dto.notice_num }" readonly="readonly">
+					    	   value="${dto.notice_num }">
 					</td>
 				</tr>
 				<tr><td>

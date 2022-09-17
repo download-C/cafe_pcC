@@ -35,14 +35,14 @@
 				
 				if(mem_num != null ){
 			%>
-				<ul>
+				<ul class="util">
 					<li><a href="./Logout.me">LOGOUT</a></li>
 					<li><a href="./MyPage.me">MY PAGE</a></li>
 				</ul>
 			<%
 				} else if(mgr_num != null) {
 			%>
-				<ul>
+				<ul class="util">
 					<li><a href="./ManagerLogout.mgr">LOGOUT</a></li>
 					<li><a href="">MY PAGE</a></li>
 				</ul>	

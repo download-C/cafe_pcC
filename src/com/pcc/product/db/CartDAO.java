@@ -297,10 +297,42 @@ public class CartDAO {
 		
 		
 	}
+
 	
 	
-	// 8.   -----------------------------------------
+	// 8. updateCart(dto)  -----------------------------------------
 	
+	public void updateCart(CartDTO cart_dto) {
+		System.out.println("4. updateCart DAO");
+		//장바구니에서 변경된 prod_count, total_price -> update
+				try{
+					//1. 드라이버 로드
+					//2. 디비 연결
+					con = getConnect();
+					//3. sql 작성 & pstmt 객체
+					//checked값이 null 인 경우 다 가져오기
+					sql = "update carts set prod_count =?, total_price =? "+
+							"where cart_num =?;";
+					pstmt = con.prepareStatement(sql);
+					
+					//???
+					CartDTO dto = new CartDTO();
+
+					pstmt.setInt(1, dto.getCart_num());
+					pstmt.setInt(2,  dto.getProd_count());
+					pstmt.setInt(3,  dto.getTotal_price());
+					
+					//4. sql 실행
+					pstmt.executeUpdate();
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					closeDB();
+				}
+				
+		
+	}
 	
 	
 	

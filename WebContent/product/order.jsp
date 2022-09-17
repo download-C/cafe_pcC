@@ -59,8 +59,16 @@ $(document).ready(function(){
 		});
 	});
 	
+	$('#order_test').click(function(){
+		var blank = $('input:radio[name=pickup_time]').is(":checked");
+		if(blank == false ){
+			alert("픽업 시간을 체크하세요.");
+				return false;
+				
+		}
+	});
 	
-	
+
 	
 });//jQuery
 
@@ -114,8 +122,9 @@ $(document).ready(function(){
 	 	<input type="radio" name="pickup_time" id="pickup_time" value="15">15분 뒤<br>
 	 	
 		<input type="hidden" name="order_price" value="${order}">
-		<input type="submit" value="결제하기">
+		<input type="submit" value="결제하기" id="order_test">
 		<input type="button" value="결제 테스트" id="order">
+		<input type="button" value="제이쿼리 테스트" >
 	</form>
 	
 	

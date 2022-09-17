@@ -9,7 +9,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/productList.css" type="text/css">
+<script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('button').click(function() {
+		
+			$('.' + $(this).attr('data-text')).show();
+			$('.category').not("."+$(this).attr('data-text')).hide();
+			
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>productList.jsp</h1>
@@ -22,33 +32,30 @@
 	
 	<!-- category 클릭 시 카테고리별 상품 리스트만 뜨도록 구현 -->
 	
-<!-- 	<h2>category</h2> -->
-<!-- 	<div> -->
-<!-- 		<div id="cate_all"><a>all</a></div> -->
-<!-- 		<div id="cate_coffee"><a>coffee</a></div> -->
-<!-- 		<div id="cate_noncoffee"><a>non coffee</a></div> -->
-<!-- 		<div id="cate_brunch"><a>brunch</a></div> -->
-<!-- 	</div> -->
-<!-- 	<br> -->
+	<h2>category</h2>
+	<div>
+		<button data-text="all">all</button>
+		<button data-text="coffee">coffee</button>
+		<button data-text="noncoffee">non coffee</button>
+		<button data-text="brunch">brunch</button>
+	</div>
+	<br>
+
+	<input type="button" value="장바구니로 이동" onclick="location.href='./Cart.pr';">
+	
+	
 	
 	<div class="product">
 		<c:forEach var="dto" items="${requestScope.productList }">
-			<div>
+			<div class="${dto.category} category all">
 				<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
-<%-- 				<div>${dto.category}</div> --%>
 				<img src="img/product/${dto.prod_img}"><br>
 				${dto.prod_name }<br>
 				</a>
-			</div><br>
+			</div>
 		</c:forEach>
 	</div>
-<!-- 	-------------------------------------------------- -->
-<%-- 	<c:if test="${dto.category=='coffee'}"> --%>
-	
-<!-- 		아아 -->
-		
-		
-<%-- 	</c:if> --%>
+
 	
 </body>
 </html>

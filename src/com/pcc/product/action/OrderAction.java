@@ -53,18 +53,19 @@ public class OrderAction implements Action {
 		
 		//dao 메서드 중에서 카트에 담긴 상품을 모두 가져오는 메서드 호출
 		List<CartDTO> cartList = cart_dao.getCartList();
-		
+		System.out.println("5. OrderAction 돌아옴");
 
 		//VIEW 페이지 정보 전달을 위해서 request 영역에 저장
 		request.setAttribute("cartList", cartList);
-		request.setAttribute("order", order_dto.getOrder_price());
+		request.setAttribute("order_dto", order_dto);
 
 		
 		//==================================================
 
 		
 		
-		System.out.println("5. OrderAction 돌아옴");
+		//결제 후 주문 내역을 확인
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./product/orderList.jsp");
 		forward.setRedirect(true);

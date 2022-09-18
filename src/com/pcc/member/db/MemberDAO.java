@@ -78,7 +78,7 @@ public class MemberDAO {
 			
 			// ???
 			// pstmt.setInt(1, dto.getMem_num());
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, dto.getMem_num());
 			
 			//4. sql 실행
 			rs = pstmt.executeQuery();

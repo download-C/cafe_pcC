@@ -133,8 +133,15 @@ public class ReviewDAO {
 		
 		try {
 			con = getConnect();
+			sql = "select max(review_num) from review_boards";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
-			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, reveiw_name, "
+			if(rs.next()){
+				review_num = rs.getInt(1)+1;
+			}
+			
+			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, review_name, "
 					+ "review_password, review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
 					+ "review_re_seq, review_date, review_ip, review_file) "
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
@@ -142,9 +149,10 @@ public class ReviewDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_num);
 			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
-			pstmt.setInt(3, dto.getMem_num());
-			pstmt.setInt(4, dto.getReview_password());
-			pstmt.setString(5,  "관리자");
+			pstmt.setInt(3, dto.getMgr_num());
+			pstmt.setString(4,  "관리자");
+			pstmt.setInt(5, dto.getReview_password());
+			System.out.println("글 제목:"+dto.getReview_subject());
 			pstmt.setString(6, dto.getReview_subject());
 			pstmt.setString(7, dto.getReview_content());
 			pstmt.setInt(8, dto.getReview_readcount());

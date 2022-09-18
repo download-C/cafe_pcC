@@ -39,11 +39,14 @@ public class ReviewPasswordCheck implements Action {
 //			System.out.println("button : "+button);
 			
 			if(button.equals("update")) {
-				ActionForward forward = new ActionForward();
-				forward.setPath("/ReviewUpdateForm.rv?review_num="+review_num);
-				forward.setRedirect(true);
-				System.out.println("글 수정을 위한 정보 불러오기 필요");
-				return forward;
+//				ActionForward forward = new ActionForward();
+//				forward.setPath("/ReviewUpdate.rv?review_num="+review_num);
+//				forward.setRedirect(true);
+//				System.out.println("글 수정을 위한 정보 불러오기 필요");
+//				return forward;
+				dao.alert(response, "비밀번호가 일치하여 리뷰 수정 페이지로 이동합니다.", 
+						"location.href='./ReviewUpdate.rv?review_num="+review_num+"';");
+				return null;
 			} else if(button.equals("delete")) {
 				ActionForward forward = new ActionForward();
 				forward.setPath("./ReviewDelete.rv?review_num="+review_num);

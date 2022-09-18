@@ -96,15 +96,15 @@ public class ReviewFrontController extends HttpServlet {
 			}
 		}
 		// 2-7. 리뷰 수정 페이지로 이동
-		else if(command.equals("/ReviewUpdateForm.rv")){
-			action = new ReviewUpdateFromAction();
+		else if(command.equals("/ReviewUpdate.rv")){
+			action = new ReviewUpdateFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/ReviewUpdate.rv")){
+		else if(command.equals("/ReviewUpdateForm.rv")){
 			forward = new ActionForward();
 			forward.setPath("./review/reviewUpdateForm.jsp");
 			forward.setRedirect(false);
@@ -121,13 +121,33 @@ public class ReviewFrontController extends HttpServlet {
 		}
 		
 		
-		// 2-6. 리뷰 내용 삭제하기
+		// 2-8. 리뷰 내용 삭제하기
 		else if(command.equals("/ReviewDelete.rv")) {
 			action = new ReviewDelete();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-9. 매니저 리뷰 답글 적는 페이지 이동
+		else if(command.equals("/ReviewReplyForm.rv")){
+			action = new ReviewReplyFormAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-10. 매니저 리뷰 답글 달기
+		else if(command.equals("/ReviewReply.rv")) {
+			action = new ReviewReplyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

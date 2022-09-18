@@ -12,10 +12,10 @@
 	<jsp:include page="../main/top.jsp" />
 </header>
 	<h1>reviewUpdateForm.jsp</h1>
-	${dto }
+	
 	<fieldset>
 		<h3>리뷰 글 수정하기</h3>
-		<form action="./ReviewUpdateAction.no?review_num=${review_num }&pageNum=${pageNum}" method="post">
+		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post">
 			<div>
 				<table>
 					<tr>

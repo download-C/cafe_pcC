@@ -46,7 +46,10 @@
 				<td colspan="3">${dto.qna_file}</td>
 <%-- 			<td colspan="3"><%=request.getAttribute("qna_file") %></td> --%>
 			</tr>
+			
 			<tr>
+			
+			
 
 					<td>
  					<input type="button" name="qna_update" value="수정" 

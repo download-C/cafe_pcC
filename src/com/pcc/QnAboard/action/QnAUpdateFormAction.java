@@ -15,16 +15,11 @@ public class QnAUpdateFormAction implements Action{
 			HttpServletResponse response) throws Exception {
 		
 		
-		
 		System.out.println("QnAUpdateAction_execute() 호출");
 		
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		String pageNum = request.getParameter("pageNum");
-		
-//		if (pageNum==null) {
-//			pageNum = "1";
-//		}
-		
+				
 		QnABoardDAO dao = new QnABoardDAO();
 		
 		QnABoardDTO dto = dao.getQnAUpdateContent(qna_num);
@@ -35,13 +30,12 @@ public class QnAUpdateFormAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./QnA/QnAUpdateForm.jsp");
-		//forward.setRedirect(false);
+		forward.setRedirect(false);
 		
-		
-		
+
 		return forward;
 	}
 
+	
+	
 }
-
-

@@ -110,45 +110,79 @@ public class QnAFrontController extends HttpServlet {
 		}
 		
 		// 2-5. 문의사항 수정 정보 불러오기
-		else if (command.equals("/QnAUpdate.qna")) {
-			action = new QnAUpdate();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+				else if (command.equals("/QnAUpdate.qna")) {
+					action = new QnAUpdate();
+					try {
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				// 2-6. 문의사항 수정 정보 DB에 반영하기
+				else if (command.equals("/QnAUpdateAction.qna")) {
+					action = new QnAUpdateAction();
+					try {
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 		
-		// 2-6. 문의사항 수정 정보 DB에 반영하기
-		else if (command.equals("/QnAUpdateAction.qna")) {
-			action = new QnAUpdateAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		// 2-5. 문의사항 수정/삭제 버튼 눌렀을때 비밀번호 입력 폼으로 연결
+//		else if (command.equals("/QnAPasswordForm.qna")) {
+//			String button = request.getParameter("button");
+//			System.out.println(button);
+//			request.setAttribute("button", button);
+//			forward = new ActionForward();
+//			forward.setPath("./QnA/QnAPassword.jsp");
+//			forward.setRedirect(false);
+//		}
+//		
+//		// 2-6. 비밀번호 입력시 DB와 일치 여부 확인
+//		else if(command.equals("/QnAPasswordCheck.qna")) {
+//			action = new QnAPasswordCheck();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
-		// 2-7. 문의사항 확인 페이지에서 삭제 버튼 눌렀을때
-		// 비밀번호 입력 폼으로 연결
-		else if(command.equals("/QnAPasswordForm.qna")) {
-			forward = new ActionForward();
-			forward.setPath("./QnA/QnAPassword.jsp");
-			forward.setRedirect(false);
-		}
-		else if(command.equals("/QnAPasswordCheck.qna")){
-			action = new QnAPasswordCheck();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		// 2-7. 문의사항 수정 페이지로 이동
+//		else if (command.equals("/QnAUpdateForm.qna")) {
+//			action = new QnAUpdateFormAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		else if(command.equals("/QnAUpdate.qna")){
+//			forward = new ActionForward();
+//			forward.setPath("./QnA/QnAUpdateForm.jsp");
+//			forward.setRedirect(false);
+//		}
 		
+		// 2-7. 수정된 문의사항 DB에 저장하기
+//		else if(command.equals("/QnAUpdateAction.qna")) {
+//			action = new QnAUpdateAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
 		// 2-8. 문의사항 삭제하기
-		else if(command.equals("/QnADelete.qna")) {
-			action = new QnADelete();
-		}
+//		else if(command.equals("/QnADelete.qna")) {
+//			action = new QnADelete();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 			
 
 

@@ -1,5 +1,7 @@
 package com.pcc.QnAboard.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +17,7 @@ public class QnAUpdateAction implements Action{
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
-		System.out.println("QnAUpdateProAction_execute() 호출");
+System.out.println("QnAUpdateProAction_execute() 호출");
 		
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("한글 처리 완료");
@@ -54,9 +56,5 @@ public class QnAUpdateAction implements Action{
 		
 		return forward;
 	}
-
-	
-	
-	
 	
 }

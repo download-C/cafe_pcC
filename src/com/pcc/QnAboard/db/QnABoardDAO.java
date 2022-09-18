@@ -1,5 +1,7 @@
 package com.pcc.QnAboard.db;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.channels.ClosedByInterruptException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
@@ -28,6 +31,21 @@ public class QnABoardDAO {
 	public QnABoardDAO () {
 		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 	}
+	
+	// 0. alert창 -----------------------------------------
+	public void alert(HttpServletResponse response, String msg, String path) {
+        try {
+            response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert("+msg+");");
+            out.println("location.href="+path+"");
+            out.println("</script>");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	// 1. CP를 이용한 DB 연결 -----------------------------------------
 	private Connection getConnect() {
@@ -90,7 +108,7 @@ public class QnABoardDAO {
 			sql = "insert into qna_boards (QnA_num, QnA_writer_type, mem_num, QnA_password, "
 					+ "qna_subject, QnA_content, QnA_readcount, QnA_re_ref, QnA_re_lev, QnA_re_seq, "
 					+ "qna_date, QnA_ip, QnA_file) "
-					+ "values (?,2,123,?,?,?,?,?,?,?,now(),?,?) ";
+					+ "values (?,2,1111,?,?,?,?,?,?,?,now(),?,?) ";
 			System.out.println("SQL 완료");
 			
 			pstmt = con.prepareStatement(sql);
@@ -375,7 +393,7 @@ public class QnABoardDAO {
 
 	
 		
-	// 7. 공지사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
+	// 7. 문의사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
 	
 	public QnABoardDTO getQnAUpdateContent(int qna_num) {
 		QnABoardDTO dto = null;
@@ -412,92 +430,109 @@ public class QnABoardDAO {
 		return dto;
 	}
 	
-	
-	
 	// 8. 문의사항 글 수정 메서드  -----------------------------------------
-		public QnABoardDTO QnAUpdate(QnABoardDTO dto, int qna_num) {
-			System.out.println(" QnAUpdate() 호출 ");
-			
-			System.out.println("dto : " + dto + "=======================");
-			
-			try {
-				con = getConnect();
-				sql = "update qna_boards "
-						+ "set qna_subject=?, qna_content=?, "
-						+ "qna_file=? where qna_num=?";
+			public QnABoardDTO QnAUpdate(QnABoardDTO dto, int qna_num) {
+				System.out.println(" QnAUpdate() 호출 ");
 				
-				pstmt = con.prepareStatement(sql);
+				System.out.println("dto : " + dto + "=======================");
 				
-				pstmt.setString(1, dto.getQna_subject());
-				pstmt.setString(2, dto.getQna_content());
-				pstmt.setString(3, dto.getQna_file());
-				pstmt.setInt(4, dto.getQna_num());
-				System.out.println("qna_num : " + dto.getQna_num());
-				System.out.println("dto : " + dto);
-				
-				pstmt.executeUpdate();
-				
-				System.out.println("DB에 공지사항 업데이트 완료");
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				closeDB();
-			}
-			return dto;
-		}
-
-		
-
-	// 9. 문의사항 지우기 (매니저용)  -----------------------------------------
-		
-		public void QnADelete(HttpSession session, int qna_num, int mgr_num) {
-		
-			
-			
-			try {
-				con = getConnect();
-				sql = "delete form qna_boards where qna_num=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, qna_num);
-				
-				pstmt.executeUpdate();
-				
-				System.out.println("매니저용 글 삭제 완료");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				closeDB();
-			}
-			
-		}
-	
-		// 문의사항 지우기 (회원용)  -----------------------------------------
-		
-		public void QnADelete (HttpSession session, int qna_num, int mem_num, int password) {
-			int qna_password = 1234;
-			
-			try {
-				con = getConnect();
-				sql = "selct qna_password from qna_boards where qna_num=?";
-				pstmt.setInt(1, qna_num);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					qna_password = rs.getInt("qna_password");
-				}
-				
-				if(password == qna_password) {
-					sql = "delete from qna_boards where qna_num=? and qna_password=?";
+				try {
+					con = getConnect();
+					sql = "update qna_boards "
+							+ "set qna_subject=?, qna_content=?, "
+							+ "qna_file=? where qna_num=?";
+					
 					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, qna_num);
-					pstmt.setInt(2, qna_password);
+					
+					pstmt.setString(1, dto.getQna_subject());
+					pstmt.setString(2, dto.getQna_content());
+					pstmt.setString(3, dto.getQna_file());
+					pstmt.setInt(4, dto.getQna_num());
+					System.out.println("qna_num : " + dto.getQna_num());
+					System.out.println("dto : " + dto);
 					
 					pstmt.executeUpdate();
-					System.out.println("회원용 글 삭제 완료");
+					
+					System.out.println("DB에 공지사항 업데이트 완료");
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					closeDB();
 				}
+				return dto;
+			}
+	
+	
+	
+	// 8. 문의사항 글 수정 메서드 (매니저)  -----------------------------------------
+
+//	public QnABoardDTO QnAUpdate(QnABoardDTO dto) {
+//		
+//		System.out.println("QnAUpdate() 호출");
+//		
+//		try {
+//			con = getConnect();
+//			sql = "update qna_boards set qna_subject=?, qna_content=?, "
+//					+ "qna_file=? where qna_num=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, dto.getQna_subject());
+//			pstmt.setString(2, dto.getQna_content());
+//			pstmt.setString(3, dto.getQna_file());
+//			pstmt.setInt(4, dto.getQna_num());
+//			
+//			pstmt.executeUpdate();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			closeDB();
+//		}
+//		
+//		return dto;
+//	}
+		
+
+	// 9. 문의사항 글 수정 메서드 (회원)  -----------------------------------------
+		
+//		public QnABoardDTO QnAUpdate (QnABoardDTO dto, int mem_num) {
+//			
+//			System.out.println("QnAUpdate() 호출");
+//			
+//			try {
+//				con = getConnect();
+//				sql = "update qna_boards set qna_subject=?, qna_content=?, "
+//						+ "qna_file=?, where qna_num=?";
+//				pstmt = con.prepareStatement(sql);
+//				pstmt.setString(1, dto.getQna_subject());
+//				pstmt.setString(2, dto.getQna_content());
+//				pstmt.setString(3, dto.getQna_file());
+//				pstmt.setInt(4, dto.getQna_num());
+//				
+//				pstmt.executeUpdate();
+//						
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}finally {
+//				closeDB();
+//			}
+//			return dto;
+//		}
+		
+	// 10. 문의사항 글 삭제 메서드 (회원)   -----------------------------------------
+		
+		public void QnADelete(int qna_num, int mem_num) {
+			try {
+				con = getConnect();
+				
+				sql = "delete from qna_boards where qna_num=? and qna_password=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, qna_num);
+				
+				pstmt.executeUpdate();
+				System.out.println("회원용 글 삭제 완료");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -507,11 +542,9 @@ public class QnABoardDAO {
 		}
 
 
+
 		
-		
-		
-	
-	// 10. 특정 글 1개의 정보 조회   -----------------------------------------
+	// 11. 특정 글 1개의 정보 조회   -----------------------------------------
 	
 	public QnABoardDTO getBoard(int qna_num) {
 		System.out.println(" C: getBoard(qna_num) 호출");

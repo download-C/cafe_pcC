@@ -27,7 +27,7 @@ public class QnAPasswordCheck implements Action {
 		dto = dao.getQnAContent(qna_num);
 		
 		if(qna_password == dto.getQna_password()) {
-			dao.QnADelete(session, qna_num, mem_num, qna_password);
+			dao.QnADelete(qna_num, mem_num);
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

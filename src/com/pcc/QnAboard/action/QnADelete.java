@@ -12,14 +12,14 @@ import com.pcc.QnAboard.db.QnABoardDTO;
 import qna.action.Action;
 import vo.ActionForward;
 
-public class QnADelete implements Action {
+public class QnADelete implements Action{
 
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession();
 		
-		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		
@@ -27,8 +27,8 @@ public class QnADelete implements Action {
 		int mgr_num = Integer.parseInt(request.getParameter("mgr_num"));
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 		int qna_password = Integer.parseInt(request.getParameter("qna_password"));
-		
-		if (mgr_num == 0 || mem_num == 0) {
+
+		if(mgr_num == 0 || mem_num == 0) {
 			out.println("<script>");
 			out.println("alert('로그인해주세요');");
 			out.println("location.href='./Login.pcc';");
@@ -37,11 +37,10 @@ public class QnADelete implements Action {
 		
 		QnABoardDAO dao = new QnABoardDAO();
 		QnABoardDTO dto = dao.getQnAContent(qna_num);
-		
-		if (mgr_num != 0 && mem_num == 0) {
-			dao.QnADelete(session, qna_num, mgr_num);
-		}else if(mem_num !=0 && mgr_num == 0) {
-			dao.QnADelete(session, qna_num, mem_num, qna_password);
+		if(dto.getQna_password() == qna_password) {
+			dao.QnADelete(qna_num, mem_num);
+			dao.alert(response, "글이 삭제되었습니다","./QnABoardList.qna");
+			return null;
 		}
 		
 		out.println("<script>");
@@ -51,13 +50,7 @@ public class QnADelete implements Action {
 		
 		return null;
 	}
+	
+	
 
-	
-	
 }
-	
-	
-	
-	
-	
-

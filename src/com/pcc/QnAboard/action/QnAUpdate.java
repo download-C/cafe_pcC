@@ -1,7 +1,10 @@
 package com.pcc.QnAboard.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.QnAboard.db.QnABoardDAO;
 import com.pcc.QnAboard.db.QnABoardDTO;
@@ -28,10 +31,7 @@ public class QnAUpdate implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setPath("./QnA/QnAUpdateForm.jsp");
 		forward.setRedirect(false);
-		
-		
-		
-		
+
 		return forward;
 	}
 	

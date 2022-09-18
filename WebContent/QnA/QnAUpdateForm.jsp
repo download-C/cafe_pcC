@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>문의사항 글 수정하기</title>
-
+<body>
 	<h1>QnAUpdateForm.jsp</h1>
 	
 	<fieldset>
@@ -42,8 +42,7 @@
 
 
 
-</head>
-<body>
 
+</head>
 </body>
 </html>

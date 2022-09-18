@@ -1,3 +1,4 @@
+<%@page import="com.pcc.member.db.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -11,21 +12,23 @@
 	<h1>reviewForm.jsp</h1>
 	
 	<% 
-// 	HttpSession session = request.getSession();
-// 	//매니저 로그인 했을 때
-// 	if(session.getAttribute("mgr_num")) {
-// 		name=""
-// 	} 
-// 	// 회원 로그인했을 때 
-// 	else {
-		
-// 	}
+	String mgr_num = (String)session.getAttribute("mgr_num");
+	String mem_num = (String)session.getAttribute("mem_num");
+	String name = "";
+	if(mem_num != null) {
+		MemberDAO dao = new MemberDAO();
+		name = dao.getName(Integer.parseInt(mem_num));  
+	} else if (mgr_num != null) {
+		name = "관리자";
+	}
+	
 	%>
 	<fieldset>
 		<legend>리뷰 작성하기</legend>
 		<form action="./ReviewWriteAction.rv" method="post">
 		<div>
-		작성자 <input type="text" name="name" id="name" readonly="readonly"> 
+		
+	 	<input type="hidden" name="review_name" id="review_name" value="${review_name }" readonly="readonly">
 		비밀번호 <input type="password" name="review_password" maxlength="4" placeholder="4자리 숫자로 적으세요"> <br>
 		제목 <input type="text" name="review_subject"> <br>
 		내용 <textarea rows="30" cols="80 " name="review_content"></textarea> <br>

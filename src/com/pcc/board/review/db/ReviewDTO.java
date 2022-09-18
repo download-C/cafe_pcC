@@ -9,6 +9,7 @@ public class ReviewDTO {
 	private int review_writer_type;				// 글 작성자 타입 -> 관리자일 경우 9로 시작, 일반 회원은 20으로 시작(회원번호가 가입한 날짜를 기반으로 생성됨)
 	private int mgr_num;					// 매니저 번호(매니저 식별자)
 	private int mem_num;					// 회원 번호(회원식별자) -> 게시판 타입이 고객도 쓸 수 있는 리뷰나 QnA일 경우 사용
+	private String review_name;
 	private int review_password;				// 글 비밀번호
 	private String review_subject;					// 글 제목
 	private String review_content;					// 글 내용
@@ -104,16 +105,21 @@ public class ReviewDTO {
 	public void setReview_file(String review_file) {
 		this.review_file = review_file;
 	}
+	public String getReview_name() {
+		return review_name;
+	}
+	public void setReview_name(String review_name) {
+		this.review_name = review_name;
+	}
+	
 	@Override
 	public String toString() {
 		return "ReviewDTO [review_num=" + review_num + ", review_writer_type=" + review_writer_type + ", mgr_num="
-				+ mgr_num + ", mem_num=" + mem_num + ", review_password=" + review_password + ", review_subject="
-				+ review_subject + ", review_content=" + review_content + ", review_readcount=" + review_readcount
-				+ ", review_re_ref=" + review_re_ref + ", review_re_lev=" + review_re_lev + ", review_re_seq="
-				+ review_re_seq + ", review_date=" + review_date + ", review_ip=" + review_ip + ", review_file="
-				+ review_file + "]";
+				+ mgr_num + ", mem_num=" + mem_num + ", review_name=" + review_name + ", review_password="
+				+ review_password + ", review_subject=" + review_subject + ", review_content=" + review_content
+				+ ", review_readcount=" + review_readcount + ", review_re_ref=" + review_re_ref + ", review_re_lev="
+				+ review_re_lev + ", review_re_seq=" + review_re_seq + ", review_date=" + review_date + ", review_ip="
+				+ review_ip + ", review_file=" + review_file + "]";
 	}
-	
-	
 	
 }

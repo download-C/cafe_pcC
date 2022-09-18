@@ -10,7 +10,7 @@
 <header><jsp:include page="../main/top2.jsp"></jsp:include></header>
 
 <%-- 	회원번호 :${sessionScope.mem_num } --%>
-	<input type="button" name="reviewWrite" value="새 글 쓰기(new)"
+	<input type="button" name="reviewWrite" value="리뷰 남기기(new)"
 		onclick="location.href='./ReviewWrite.rv';">
 	<fieldset>
 		<table>
@@ -26,7 +26,7 @@
 					<td>${dto.review_num }</td>
 					<td><a
 						href="./ReviewContent.rv?review_num=${dto.review_num }&pageNum=${requestScope.pageNum}">${dto.review_subject }</a>
-					<td>관리자</td>
+					<td>${dto.review_name }</td>
 					<td>${dto.review_readcount }</td>
 					<td>${dto.review_date }</td>
 				</tr>

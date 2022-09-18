@@ -117,7 +117,36 @@ public class MemberDAO {
 			
 		}
 		
-		// 4. DB에서 phone으로 회원 정보 불러오는 메서드 -------
+		// 4-2. DB에서 mem_num으로 회원 정보 불러오는 메서드 -------
+		public String getName(int mem_num) {
+			System.out.println("4. getMember(p,p) DAO");
+			String name = "";
+			MemberDTO dto = new MemberDTO();
+			
+			dto.setMem_num(mem_num);
+						
+			try {
+				con=getConnect();
+				sql = "select * from members where mem_num=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+
+					name = rs.getString("name");
+
+					System.out.println("rs dto:"+dto);
+					return name;
+				}
+			
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return name;
+		}
+		
 		public MemberDTO getMember(String phone, String password) {
 			System.out.println("4. getMember(p,p) DAO");
 			MemberDTO dto = new MemberDTO();

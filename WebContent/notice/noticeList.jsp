@@ -10,8 +10,18 @@
 <header>
 	<jsp:include page="../main/top2.jsp" />
 </header>
+<% 
+// 매니저로 로그인했을 때만 글 쓰기 버튼이 보이게
+	String mem_num = (String)session.getAttribute("mem_num");
+	String mgr_num = (String)session.getAttribute("mgr_num");
+if(mgr_num != null) {
+	%>
 <input type="button" name="noticeWrite" value="새 글 쓰기(new)"
  onclick="location.href='./NoticeWrite.no';">
+ <%
+ // 회원 로그인 시 글쓰기 버튼 안 보임
+ } else {}
+ %>
 	<fieldset>
 		<table>
 			<tr>

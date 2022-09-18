@@ -43,9 +43,12 @@ public class ReviewFrontController extends HttpServlet {
 	
 		// 2-1. 리뷰 작성 페이지로 이동
 		if(command.equals("/ReviewWrite.rv")) {
-			forward = new ActionForward();
-			forward.setPath("./review/reviewWriteForm.jsp");
-			forward.setRedirect(false);
+			action = new ReviewWrite();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} 
 		// 2-2. 리뷰 내용 DB에 저장
 		else if(command.equals("/ReviewWriteAction.rv")) {

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pcc.board.review.db.ReviewDAO;
 import com.pcc.board.review.db.ReviewDTO;
+import com.pcc.member.db.MemberDAO;
+import com.sun.org.apache.xml.internal.dtm.DTMDOMException;
 
 import action.Action;
 import vo.ActionForward;
@@ -21,6 +23,7 @@ public class ReviewListAction implements Action {
 		// 0. BoardDAO 객체 생성 후 필요한 정보 불러오기
 		ReviewDAO dao = new ReviewDAO();
 		int cnt = dao.getReviewCount();
+		
 
 		// 페이징 처리 1. DB 정보 호출 -------------------------------------
 

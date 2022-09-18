@@ -37,7 +37,7 @@ public class ReviewDAO {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('"+msg+"');");
-			out.println("location.href='"+path+"';");
+			out.println(path);
 			out.println("</script>");
 			
 		} catch (IOException e) {
@@ -83,8 +83,8 @@ public class ReviewDAO {
 	}
 	
 
-	// 3. 리뷰 게시글 DB에 넣는 메서드
-	public int managerReviewWrite(ReviewDTO dto) {
+	// 3-1. 리뷰 게시글 DB에 넣는 메서드
+	public int reviewWrite(ReviewDTO dto) {
 		int review_num =0;
 		
 		try {
@@ -97,27 +97,27 @@ public class ReviewDAO {
 			}
 			System.out.println("review_num :"+review_num+"으로 업데이트 완료");
 			
-			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, review_password, "
-					+ "review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
+			sql = "insert into review_boards(review_num, review_writer_type, mem_num, review_name, "
+					+ "review_password, review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
 					+ "review_re_seq, review_date, review_ip, review_file) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, review_num);
-			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
-			pstmt.setInt(3, dto.getMgr_num());
-			pstmt.setInt(4, dto.getReview_password());
-			pstmt.setString(5, dto.getReview_subject());
-			pstmt.setString(6, dto.getReview_content());
-			pstmt.setInt(7, dto.getReview_readcount());
-			pstmt.setInt(8, dto.getReview_re_ref());
-			pstmt.setInt(9, dto.getReview_re_lev());
-			pstmt.setInt(10, dto.getReview_re_seq());
-			pstmt.setString(11, dto.getReview_ip());
-			pstmt.setString(12, dto.getReview_file());
+			pstmt.setInt(2, 2); // 1은 관리자, 2는 회원
+			pstmt.setInt(3, dto.getMem_num());
+			pstmt.setString(4, dto.getReview_name());
+			pstmt.setInt(5, dto.getReview_password());
+			pstmt.setString(6, dto.getReview_subject());
+			pstmt.setString(7, dto.getReview_content());
+			pstmt.setInt(8, dto.getReview_readcount());
+			pstmt.setInt(9, review_num);
+			pstmt.setInt(10, 0);
+			pstmt.setInt(11, 0);
+			pstmt.setString(12, dto.getReview_ip());
+			pstmt.setString(13, dto.getReview_file());
 			
 			pstmt.executeUpdate();
-			
 	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,6 +127,44 @@ public class ReviewDAO {
 					
 		return review_num;
 	}
+	
+	// 3-2. 관리자가 리뷰에 답글 다는 메서드 ------------------------------
+	public int reviewReply(int review_num, ReviewDTO dto) {
+		
+		try {
+			con = getConnect();
+			
+			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, reveiw_name, "
+					+ "review_password, review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
+					+ "review_re_seq, review_date, review_ip, review_file) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_num);
+			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
+			pstmt.setInt(3, dto.getMem_num());
+			pstmt.setInt(4, dto.getReview_password());
+			pstmt.setString(5,  "관리자");
+			pstmt.setString(6, dto.getReview_subject());
+			pstmt.setString(7, dto.getReview_content());
+			pstmt.setInt(8, dto.getReview_readcount());
+			pstmt.setInt(9, review_num);
+			pstmt.setInt(10, 1);
+			pstmt.setInt(11, 1);
+			pstmt.setString(12, dto.getReview_ip());
+			pstmt.setString(13, dto.getReview_file());
+			
+			pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+					
+		return review_num;
+	}
+	
 	
 	// 4-1. DB에 저장된 조회수 가져와서 1 올리기 -----------------------------------------
 	public int getReviewCount() {
@@ -225,16 +263,17 @@ public class ReviewDAO {
 				dto.setReview_writer_type(rs.getInt(2));
 				dto.setMgr_num(rs.getInt(3));
 				dto.setMem_num(rs.getInt(4));
-				dto.setReview_password(rs.getInt(5));
-				dto.setReview_subject(rs.getString(6));
-				dto.setReview_content(rs.getString(7));
+				dto.setReview_name(rs.getString(5));
+				dto.setReview_password(rs.getInt(6));
+				dto.setReview_subject(rs.getString(7));
 				dto.setReview_content(rs.getString(8));
-				dto.setReview_re_ref(rs.getInt(9));
-				dto.setReview_re_lev(rs.getInt(10));
-				dto.setReview_re_seq(rs.getInt(11));
-				dto.setReview_date(rs.getTimestamp(12));
-				dto.setReview_ip(rs.getString(13));
-				dto.setReview_file(rs.getString(14));
+				dto.setReview_content(rs.getString(9));
+				dto.setReview_re_ref(rs.getInt(10));
+				dto.setReview_re_lev(rs.getInt(11));
+				dto.setReview_re_seq(rs.getInt(12));
+				dto.setReview_date(rs.getTimestamp(13));
+				dto.setReview_ip(rs.getString(14));
+				dto.setReview_file(rs.getString(15));
 				
 				reviewList.add(dto);
 				
@@ -267,17 +306,18 @@ public class ReviewDAO {
 					dto.setReview_num(rs.getInt(1));
 					dto.setReview_writer_type(rs.getInt(2));
 					dto.setMgr_num(rs.getInt(3));
-					dto.setMem_num(0);
-					dto.setReview_password(rs.getInt(5));
-					dto.setReview_subject(rs.getString(6));
-					dto.setReview_content(rs.getString(7));
-					dto.setReview_readcount(rs.getInt(8));
-					dto.setReview_re_ref(rs.getInt(9));
-					dto.setReview_re_lev(rs.getInt(10));
-					dto.setReview_re_seq(rs.getInt(11));
-					dto.setReview_date(rs.getTimestamp(12));
-					dto.setReview_ip(rs.getString(13));
-					dto.setReview_file(rs.getString(14));
+					dto.setMem_num(rs.getInt(4));
+					dto.setReview_name(rs.getString(5));
+					dto.setReview_password(rs.getInt(6));
+					dto.setReview_subject(rs.getString(7));
+					dto.setReview_content(rs.getString(8));
+					dto.setReview_readcount(rs.getInt(9));
+					dto.setReview_re_ref(rs.getInt(10));
+					dto.setReview_re_lev(rs.getInt(11));
+					dto.setReview_re_seq(rs.getInt(12));
+					dto.setReview_date(rs.getTimestamp(13));
+					dto.setReview_ip(rs.getString(14));
+					dto.setReview_file(rs.getString(15));
 					
 					reviewList.add(dto);
 			}

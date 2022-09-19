@@ -10,6 +10,10 @@
 		// index.jps
 		
 
+//		response.sendRedirect("./mypageContent.me");
+
+
+
 // 		response.sendRedirect("./JoinForm.me");
 	
 // 		response.sendRedirect("./LoginForm.me");

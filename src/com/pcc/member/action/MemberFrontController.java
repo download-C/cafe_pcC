@@ -40,9 +40,59 @@ public class MemberFrontController extends HttpServlet {
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
+		// 2-2. 마이페이지 화면
 		
-		//회원가입 폼
-		if(command.equals("/JoinForm.me")){
+
+		if(command.equals("/mypageContent.me")){
+	        
+			action = new MyPageContentAction();
+			
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-3. 마이페이지 수정 화면
+		
+		else if(command.equals("/mypageUpdate.me")){
+			action = new MypageUpdate();
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/mypageUpdateAction.me")){
+			action = new MypageUpdateAction();
+			try{
+				forward  = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-4. 마이페이지 삭제 화면
+		
+		else if(command.equals("/mypageDelete.me")){
+			action = new MypageDelete();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/mypageDeleteAction.me")){
+			action = new MypageDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+
+//회원가입 폼
+		else if(command.equals("/JoinForm.me")){
 			forward = new ActionForward();
 			forward.setPath("./members/JoinForm.jsp");
 			forward.setRedirect(false);

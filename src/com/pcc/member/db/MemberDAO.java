@@ -16,7 +16,6 @@ import javax.sql.DataSource;
 import com.pcc.board.review.db.ReviewDTO;
 
 // 회원 관련 모든 메서드를 생성하는 클래스
-
 public class MemberDAO {
 
 	private Connection con = null;
@@ -28,7 +27,7 @@ public class MemberDAO {
 		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 	}
 	
-	// 0. alert창 띄우는 메서드 
+// 0. alert창 띄우는 메서드 
 	public void alert(HttpServletResponse response, String msg, String path) {
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -47,7 +46,7 @@ public class MemberDAO {
 		
 	}
 	
-	// 1. CP를 이용한 DB 연결 -----------------------------------------
+// 1. CP를 이용한 DB 연결 -----------------------------------------
 	private Connection getConnect() {
 		try {
 			// 1-1. 프로젝트 정보 초기화
@@ -68,7 +67,7 @@ public class MemberDAO {
 		return con;
 	}
 	
-	// 2. getConnect() 메서드의 역순으로 DB 연결 해제 ------------------
+// 2. getConnect() 메서드의 역순으로 DB 연결 해제 ------------------
 	
 	private void closeDB() {
 		try {
@@ -84,7 +83,7 @@ public class MemberDAO {
 	}
 	
 	
-	// 3.  회원가입 메서드 JoinMember(MemberDTO dto)----------------
+// 3. 회원가입 메서드 JoinMember(MemberDTO dto)----------------
 		public void JoinMember(MemberDTO dto){
 			System.out.println("4. JoinMember DAO");
 			int mem_num=0;
@@ -117,7 +116,7 @@ public class MemberDAO {
 			
 		}
 		
-		// 4-2. DB에서 mem_num으로 회원 정보 불러오는 메서드 -------
+  // 4-2. DB에서 mem_num으로 회원 정보 불러오는 메서드 -------
 		public String getName(int mem_num) {
 			System.out.println("4. getMember(p,p) DAO");
 			String name = "";
@@ -178,9 +177,7 @@ public class MemberDAO {
 			return dto;
 		}
 		
-
-		
-		// 5.  아이디 중복 체크 IdCheck()---------------------
+// 5. 아이디 중복 체크 IdCheck()---------------------
 		
 		public boolean IdCheck(String phone) {
 			System.out.println("4. IdCheck DAO");
@@ -212,7 +209,7 @@ public class MemberDAO {
 			return result;
 		}
 
-		// 6. 로그인을 위한 아이디와 비밀번호 일치 여부 확인loginMember() ----------
+// 6. 로그인을 위한 아이디와 비밀번호 일치 여부 확인loginMember() ----------
 		public int loginMember(String phone, String password) {
 			System.out.println("4. loginMember DAO");
 			int result = -1;
@@ -248,9 +245,8 @@ public class MemberDAO {
 			}
 			return result;
 		}
-
 	
-	// 7.  리뷰 글 수정 메서드 -----------------------------------------
+// 7.  리뷰 글 수정 메서드 -----------------------------------------
 		public int ReviewUpdate(ReviewDTO dto, int review_num) {
 			int result = -1;
 
@@ -287,25 +283,103 @@ public class MemberDAO {
 			}
 			return result;
 	
-	
-	
-	// 8.   -----------------------------------------
-	
-	
-	
-	
-	// 9.   -----------------------------------------
-	
-	
-	
-	
-	// 10.   -----------------------------------------
-	
-	
-	
+// 8. 마이페이지 리스트  -----------------------------------------
+	public MemberDTO memberContent(MemberDTO dto){
+		System.out.println("\n DAO : memberContent(BoardDTO dto) 호출 ");
+		
+		try{
+			//1.드라이버로드
+			//2.디비 연결
+			con = getConnect();
+			//3. sql 작성 & pstmt 객체
+			//  게시판 글번호(bno) 계산 (작성된 가장 마지막글번호 + 1)			
+			sql = "select * from members where mem_num=?";
+			pstmt = con.prepareStatement(sql);
+			
+			// ???
+			// pstmt.setInt(1, dto.getMem_num());
+			pstmt.setInt(1, dto.getMem_num());
+			
+			//4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			if(rs.next()){
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setPassword(rs.getString("password"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setReg_date(rs.getTimestamp("regdate"));
+				
+				System.out.println(" DAO : 회원정보 저장 완료");
+				System.out.println(" DAO : "+dto.toString());
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
+		
+		return dto;
+	}
 	
+// 9. 마이페이지 수정 -----------------------------------------	
+	public void updateMember(MemberDTO dto){
+		String password = dto.getPassword();
+	    String name = dto.getName();
+	    int mem_num = dto.getMem_num();
 	
+		try {
+			// 1.2 디비연결
+			con = getConnect();
+			
+			// 3. sql & pstmt
+			// 1) 수정하려는 정보와 회원, 본인 여부 체크
+			// 2) 본인일때만, 정보수정
+			sql = "update members set password=?, name=? where mem_num=?";
+			pstmt = con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setString(1, password);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, mem_num);
+			
+		    // 4. sql 실행
+			pstmt.executeUpdate();
+			
+			
+			System.out.println(" DAO : 디비동작 처리 끝(수정처리)("+mem_num+")");
+		 } catch (Exception e) {
+			e.printStackTrace();
+		 }
+		
+		
+	}	
 	
+
+// 10. 마이페이지 삭제  -----------------------------------------
+	public int deleteMember(MemberDTO dto){
+		int result = 0;
+		try {
+			// 1.2. 디비연결
+			con = getConnect();
+			// 3. sql 생성 & pstmt 객체
+			sql = "delete from members where mem_num=? and password=?";
+			pstmt = con.prepareStatement(sql);
+			// ???
+			pstmt.setInt(1, dto.getMem_num());
+			pstmt.setString(2, dto.getPassword());
+			// 4. sql 실행
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+	    return result;
+	}	
+  
+  // 클래스 끝
 }
 

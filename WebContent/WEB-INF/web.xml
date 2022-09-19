@@ -34,7 +34,7 @@
   <!-- 2. QnA(QnA 게시판) *.qna -->
   <servlet>
   	<servlet-name>QnAFrontController</servlet-name>
-  	<servlet-class>com.pcc.board.action.QnAFrontController</servlet-class>
+  	<servlet-class>com.pcc.QnAboard.action.QnAFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>QnAFrontController</servlet-name>

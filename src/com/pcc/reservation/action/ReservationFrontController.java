@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pcc.reservation.action.ReservationAction;
+
 import action.Action;
 import vo.ActionForward;
 
@@ -18,11 +20,11 @@ public class ReservationFrontController extends HttpServlet {
 		System.out.println("GET 방식, POST 방식 호출 - doGet(), doPost() 실행");
 		
 		System.out.println("--------- 1. 가상 주소 계산 시작 ---------");
-// 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
+		// 1. servlet 파일이 들어있는 프로젝트명 (== 가상주소) 계산 ---------------------
 			
 			// 1-1. URI 불러오기
 			String requestURI = request.getRequestURI();
-			System.out.println(" Controller : requestUIR = "+requestURI);
+			System.out.println(" Controller : requestURI = "+requestURI);
 			// 1-2. context Path 불러오기
 			String ctxPath = request.getContextPath();
 			System.out.println(" Controller : ctxPath = "+ctxPath);
@@ -36,8 +38,71 @@ public class ReservationFrontController extends HttpServlet {
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
 // 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .re로 끝나는 주소 사용) -------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
-		Action action = null; 	
+		Action action = null;
 		ActionForward forward = null;
+		
+		if(command.equals("/Reservation.re")){
+			System.out.println(" C : /Reservation.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./reservationForm.jsp");
+			forward.setRedirect(false);	
+		} 
+		else if(command.equals("/ReservationAction.re")){
+	    	System.out.println(" C : /ReservationAction.re 호출");
+	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
+	    	
+	    	//ReservationAction() 객체 생성
+	    	action = new ReservationAction();
+	    	try{
+	    		forward = action.execute(request, response);
+	    	} catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    	
+		} 
+		else if(command.equals("/ReservationContent.re")){
+			System.out.println(" C : /ReservationContent.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./reservationContent.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/ReservationList.re")){
+			System.out.println(" C : /ReservationList.re");
+			
+			action = new ReservationListAction();
+	    	try{
+	    		forward = action.execute(request, response);
+	    	} catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+		}
+		else if(command.equals("/MemberReservationList.re")){
+			System.out.println(" C : /MemberReservationList.re");
+			
+			forward = new ActionForward();
+			forward.setPath("./memberReservationListForm.jsp");
+			forward.setRedirect(false);	
+		}
+		else if(command.equals("/MemberReservationListAction.re")){
+	    	System.out.println(" C : /MemberReservationListAction.re 호출");
+	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
+	    	
+	    	//ReservationAction() 객체 생성
+	    	action = new MemberReservationListAction();
+	    	try{
+	    		forward = action.execute(request, response);
+	    	} catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    	
+		} 
+		
+		
+		
+		
+	
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		
@@ -55,9 +120,8 @@ public class ReservationFrontController extends HttpServlet {
 				System.out.println(" Controller : true");
 				System.out.println(forward.getPath()+" 이동");
 				System.out.println("방식 : sendRedirect() 방식");
-				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
-			
+				response.sendRedirect(forward.getPath());
+				
 			// 3-2. forward 방식 (DB 연동 없이 페이지만 전환할 때)
 			} else {
 				System.out.println(" Controller : false");

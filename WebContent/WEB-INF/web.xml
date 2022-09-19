@@ -9,4 +9,108 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 0. main(메인 페이지) *.pcc -->
+  
+  <servlet>
+  	<servlet-name>MainFrontController</servlet-name>
+  	<servlet-class>action.MainFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MainFrontController</servlet-name>
+  	<url-pattern>*.pcc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 1. Notice(공지사항 게시판) *.no -->
+  <servlet>
+  	<servlet-name>NoticeFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.notice.action.NoticeFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>NoticeFrontController</servlet-name>
+  	<url-pattern>*.no</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 2. QnA(QnA 게시판) *.qna -->
+  <servlet>
+  	<servlet-name>QnAFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.action.QnAFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>QnAFrontController</servlet-name>
+  	<url-pattern>*.qna</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 3. Review(리뷰 게시판) *.rv -->
+  <servlet>
+  	<servlet-name>ReviewFrontController</servlet-name>
+  	<servlet-class>com.pcc.board.review.action.ReviewFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReviewFrontController</servlet-name>
+  	<url-pattern>*.rv</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 4. cart(카트) *.ca -->
+  <servlet>
+  	<servlet-name>CartFrontController</servlet-name>
+  	<servlet-class>com.pcc.cart.action.CartFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CartFrontController</servlet-name>
+  	<url-pattern>*.ca</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 5. member(회원) *.me -->
+  <servlet>
+  	<servlet-name>MemberFrontController</servlet-name>
+  	<servlet-class>com.pcc.member.action.MemberFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MemberFrontController</servlet-name>
+  	<url-pattern>*.me</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 6. order(주문) *.or -->
+  <servlet>
+  	<servlet-name>OrderFrontController</servlet-name>
+  	<servlet-class>com.pcc.order.action.OrderFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrderFrontController</servlet-name>
+  	<url-pattern>*.or</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 5. product(제품) *.pr -->
+  <servlet>
+  	<servlet-name>ProductFrontController</servlet-name>
+  	<servlet-class>com.pcc.product.action.ProductFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ProductFrontController</servlet-name>
+  	<url-pattern>*.pr</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 7. reservation(예약) *.re -->
+  <servlet>
+  	<servlet-name>ReservationFrontController</servlet-name>
+  	<servlet-class>com.pcc.reservation.action.ReservationFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReservationFrontController</servlet-name>
+  	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
+     <!-- 8. manager(매니저) *.mgr -->
+  <servlet>
+  	<servlet-name>ManagerFrontController</servlet-name>
+  	<servlet-class>com.pcc.manager.action.ManagerFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ManagerFrontController</servlet-name>
+  	<url-pattern>*.mgr</url-pattern>
+  </servlet-mapping>
+
+
+
 </web-app>

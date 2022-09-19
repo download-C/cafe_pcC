@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ReservationDTO {
 	private int res_num;
 	private int mem_num;
+	private String name;
 	private String res_date;
 	private int res_num_of_persons;
 	private int table_total;
@@ -22,6 +23,13 @@ public class ReservationDTO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String string) {
+		this.name = string;
+	}
+	
 	public String getRes_date() {
 		return res_date;
 	}
@@ -47,5 +55,11 @@ public class ReservationDTO {
 		this.table_occupied = table_occupied;
 	}
 	
+	@Override
+	public String toString() {
+		return "ReservationDTO [res_num=" + res_num + ", mem_num=" + mem_num + ", name=" + name + ", res_date="
+				+ res_date + ", res_num_of_persons=" + res_num_of_persons + ", table_total=" + table_total
+				+ ", table_occupied=" + table_occupied + "]";
+	}
 	
 }

@@ -37,6 +37,9 @@ public class ReservationFrontController extends HttpServlet {
 		
 		System.out.println("--------- 2. 가상 주소 매핑 시작 ---------");
 // 2. 가상주소 매핑 (web.xml에 적혀있는 대로 .re로 끝나는 주소 사용) -------------
+		
+		
+// ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
 		// 2-1. 페이지 이동 정보를 담을 Action과 ActionForward 객체 생성
 		Action action = null;
 		ActionForward forward = null;
@@ -45,12 +48,12 @@ public class ReservationFrontController extends HttpServlet {
 			System.out.println(" C : /Reservation.re");
 			
 			forward = new ActionForward();
-			forward.setPath("./reservationForm.jsp");
+			forward.setPath("./reservation/reservationForm.jsp");
 			forward.setRedirect(false);	
 		} 
 		else if(command.equals("/ReservationAction.re")){
-	    	System.out.println(" C : /ReservationAction.re 호출");
-	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
+//	    	System.out.println(" C : /ReservationAction.re 호출");
+//	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
 	    	
 	    	//ReservationAction() 객체 생성
 	    	action = new ReservationAction();
@@ -65,7 +68,7 @@ public class ReservationFrontController extends HttpServlet {
 			System.out.println(" C : /ReservationContent.re");
 			
 			forward = new ActionForward();
-			forward.setPath("./reservationContent.jsp");
+			forward.setPath("./reservation/reservationContent.jsp");
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/ReservationList.re")){
@@ -78,35 +81,29 @@ public class ReservationFrontController extends HttpServlet {
 	    		e.printStackTrace();
 	    	}
 		}
-		else if(command.equals("/MemberReservationList.re")){
-			System.out.println(" C : /MemberReservationList.re");
-			
-			forward = new ActionForward();
-			forward.setPath("./memberReservationListForm.jsp");
-			forward.setRedirect(false);	
-		}
-		else if(command.equals("/MemberReservationListAction.re")){
-	    	System.out.println(" C : /MemberReservationListAction.re 호출");
-	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
-	    	
-	    	//ReservationAction() 객체 생성
-	    	action = new MemberReservationListAction();
-	    	try{
-	    		forward = action.execute(request, response);
-	    	} catch(Exception e){
-	    		e.printStackTrace();
-	    	}
-	    	
-		} 
-		
-		
-		
-		
-	
-		
-// ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		
-		
+//		else if(command.equals("/MemberReservationList.re")){
+//			System.out.println(" C : /MemberReservationList.re");
+//			
+//			action = new MemberReservationListAction();
+//			
+//			forward = new ActionForward();
+//			forward.setPath("./reservation/memberReservationListForm.jsp");
+//			forward.setRedirect(false);	
+//		}
+//		else if(command.equals("/MemberReservationListAction.re")){
+//	    	System.out.println(" C : /MemberReservationListAction.re 호출");
+//	    	System.out.println(" C : DB작업 필요 o, 페이지 이동");
+//	    	
+//	    	//ReservationAction() 객체 생성
+
+//	    	try{
+//	    		forward = action.execute(request, response);
+//	    	} catch(Exception e){
+//	    		e.printStackTrace();
+//	    	}
+//	    	
+//		} 
+
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 끝----------------
 		System.out.println("--------- 2. 가상 주소 매핑 완료 ---------");

@@ -74,6 +74,7 @@ public class ReservationDAO {
 		int res_num = 0;
 		int mem_num = 0;
 		int table_occupied = 0;
+		
 		try {
 			con = getConnect();
 
@@ -89,15 +90,13 @@ public class ReservationDAO {
 
 			if ((month > 0 && month < 13) && (day > 0 && day < 32) && (hour > 12 && hour < 22)) {
 
-				sql = "select max(res_num), max(mem_num), max(table_occupied) from reservations";
+				sql = "select max(res_num), max(table_occupied) from reservations";
 				pstmt = con.prepareStatement(sql);
 
 				rs = pstmt.executeQuery();
 
 				if (rs.next()) {
-
 					res_num = rs.getInt(1) + 1;
-					mem_num = rs.getInt(2) + 1;
 					table_occupied = rs.getInt(2) + 1;
 				}
 
@@ -196,7 +195,6 @@ public class ReservationDAO {
 	}
 	
 	public List<ReservationDTO> memberReservationList(int mem_num){
-		int res_num = 0;
 		
 		List<ReservationDTO> memberReservationList = new ArrayList<ReservationDTO>();
 		
@@ -204,28 +202,24 @@ public class ReservationDAO {
 		try{
 		con = getConnect();
 		
-		sql = "select res_num, mem_num, res_date, res_num_of_persons from reservations where mem_num = ? ";  
+		sql = "select res_num, mem_num, res_date, res_num_of_persons from reservations where mem_num = ? order by res_date desc;";  
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setInt(1, mem_num);
 		
 		rs = pstmt.executeQuery();	
-		
-			
+
 			while(rs.next()){
 				
 				ReservationDTO dto = new ReservationDTO();
 				
-				res_num = res_num + 1;
-				
-				dto.setRes_num(res_num);
-				dto.setMem_num(rs.getInt(2));
+//				res_num = res_num + 1; 
+				dto.setRes_num(rs.getInt("res_num"));
+				dto.setMem_num(mem_num);
 				dto.setRes_date(rs.getString(3));
 				dto.setRes_num_of_persons(rs.getInt(4));
-			
 				
 				memberReservationList.add(dto);
-				
 			}
 					
 		} catch(SQLException e){
@@ -233,11 +227,7 @@ public class ReservationDAO {
 		} finally{
 			closeDB();
 		}
-		
-		
-		
-		
-		
+		System.out.println("회원 예약 목록 불러오기 완료");
 		return memberReservationList;
 	}
 

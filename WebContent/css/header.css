@@ -1,0 +1,154 @@
+@import url(./theme.css);
+
+@font-face {
+    font-family: 'D2Coding';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+header{
+     font-family: var(--font-kor);
+     color: var(--color-gray-900);
+}
+
+.header_area{
+  border-bottom-width: 1px;
+  border-bottom-color: var(--color-gray-200);
+  border-bottom-style: solid;
+}
+
+.navbar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--color-white);
+} 
+
+
+.navbar a{
+   text-decoration: none;
+   color: var(--color-gray-900);
+   
+}
+
+.logo_area{
+  margin-left: 20px;
+}
+
+.logo_area a{
+	font-size: 20px;
+  font-family: var(--font-eng);
+}
+
+.menu_area_ul{
+  list-style: none;
+  display: flex;
+  padding: 0;
+  
+}
+
+.menu_area_ul li{
+  padding: 8px 20px;
+}
+
+.menu_area_ul li a {
+  font-size: 13px;
+}
+
+.menu_area_ul li a:hover{
+  color: var(--color-point-2);
+}
+
+.login_area{
+  margin-right: 20px;
+}
+
+.login_area_ul{
+  list-style: none;
+  display: flex;
+  padding: 0;
+
+}
+
+.login_area_ul li{
+  padding: 4px 6px;
+}
+
+.login_area_ul li a{
+  font-size: 8px;
+
+}
+
+.login_area_ul li a:hover{
+  color: var(--color-gray-300);
+
+}
+
+.togglebtn{
+  display: none;
+  position:absolute;
+  right: 32px;
+  font-size: 24px;
+}
+
+
+@media screen and (max-width:768px) {
+  .navbar{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo_area{
+    margin: 20px;
+  }
+
+
+
+  .menu_area{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+  }
+
+  .menu_area_ul{
+    flex-direction: column;
+
+  }
+
+
+  .menu_area li{
+    width: 100%;
+    text-align: center;
+  }
+
+  .login_area{
+    display: none;
+    justify-content: flex-end;
+    width: 95%;
+  }
+
+  .togglebtn{
+    display: block;
+    padding-top: 10px;
+
+  }
+
+  .fa-bars{
+    font-weight: 600 !important;
+    }
+
+  .menu_area.active, .login_area.active {
+    display: flex;
+  }
+
+
+}
+

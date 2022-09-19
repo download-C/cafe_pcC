@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String phone;
 	private String password;
 	private String name;
-	private Timestamp reg_date;
+	private Timestamp regdate;
 	
 	public int getMem_num() {
 		return mem_num;
@@ -35,17 +35,17 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Timestamp getReg_date() {
-		return reg_date;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
 	public void setReg_date(Timestamp reg_date) {
-		this.reg_date = reg_date;
+		this.regdate = reg_date;
 	}
 	
 	@Override
 	public String toString() {
 		return "memberDTO [mem_num=" + mem_num + ", phone=" + phone + ", password=" + password + ", name=" + name
-				+ ", reg_date=" + reg_date + "]";
+				+ ", reg_date=" + regdate + "]";
 	}
 	
 }

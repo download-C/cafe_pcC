@@ -43,7 +43,7 @@ public class MemberFrontController extends HttpServlet {
 		// 2-2. 마이페이지 화면
 		
 
-		if(command.equals("/mypageContent.me")){
+		if(command.equals("/MyPageContent.me")){
 	        
 			action = new MyPageContentAction();
 			
@@ -56,7 +56,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		// 2-3. 마이페이지 수정 화면
 		
-		else if(command.equals("/mypageUpdate.me")){
+		else if(command.equals("/MyPageUpdate.me")){
 			action = new MypageUpdate();
 			try{
 				forward  = action.execute(request, response);
@@ -65,7 +65,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}
 		
-		else if(command.equals("/mypageUpdateAction.me")){
+		else if(command.equals("/MyPageUpdateAction.me")){
 			action = new MypageUpdateAction();
 			try{
 				forward  = action.execute(request, response);
@@ -76,7 +76,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		// 2-4. 마이페이지 삭제 화면
 		
-		else if(command.equals("/mypageDelete.me")){
+		else if(command.equals("/MyPageDelete.me")){
 			action = new MypageDelete();
 			try{
 				forward = action.execute(request, response);
@@ -85,12 +85,15 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}
 		
-		else if(command.equals("/mypageDeleteAction.me")){
+		else if(command.equals("/MyPageDeleteAction.me")){
 			action = new MypageDeleteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
-
+				e.printStackTrace();
+			}
+		}
+			
 //회원가입 폼
 		else if(command.equals("/JoinForm.me")){
 			forward = new ActionForward();

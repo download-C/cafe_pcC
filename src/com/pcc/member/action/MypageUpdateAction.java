@@ -42,7 +42,7 @@ public class MypageUpdateAction implements Action{
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script type='text/javascript'>alert('회원 수정 성공!'); "
-		     + "location.href='./mypageContent.me';</script>");
+		     + "location.href='./MyPageContent.me';</script>");
 	    out.flush();
 		
 		return forward;

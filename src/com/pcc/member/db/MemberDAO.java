@@ -282,6 +282,7 @@ public class MemberDAO {
 				closeDB();
 			}
 			return result;
+		}
 	
 // 8. 마이페이지 리스트  -----------------------------------------
 	public MemberDTO memberContent(MemberDTO dto){

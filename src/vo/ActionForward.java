@@ -4,7 +4,6 @@ public class ActionForward {
 	private String path; 
 	private boolean redirect;
 	
-	
 	public String getPath() {
 		return path;
 	}
@@ -17,4 +16,7 @@ public class ActionForward {
 	public void setRedirect(boolean redirect) {
 		this.redirect = redirect;
 	}
+	
+	
+
 }

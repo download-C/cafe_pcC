@@ -1,0 +1,81 @@
+
+@import url("./theme.css");
+
+@CHARSET "UTF-8";
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+	font-family: var(--font-kor);
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+ul,li{
+	list-style:none;
+}
+
+[name="slide"] {
+	display:none;
+}
+
+.slide_area{
+	max-width:2000px;
+	width:100%;
+	margin: 0 auto;
+}
+
+.slide_area img{
+	max-width:100%;
+}
+
+.slide_area .slide_list{
+	white-space:nowrap;
+	font-size:0;
+	over-flow:hidden;/* 영역을 벗어날 때 보이지 않게 함 */
+}
+
+.slide_area .slide_item label{
+	position:absolute;
+	z-index: 1;/* 위치 지정 요소와 자손, 하위 플렉스 아이템의 Z축 순서를 지정, 더 큰 값을 가진 요소가 덮음 */
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 20px;
+	border-radius: 50%;
+	cursor:pointer:/* 마우스가 올라갔을 때 마우스포인터가 뜨도록 */
+}
+
+label.left{
+	left:20px;
+	background-color: #5f5f5f;
+	background-img: url('./img/left.png');
+	background-position: center center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+}
+
+label.right{
+	left:20px;
+	background-color: #5f5f5f;
+	background-img: url('./img/right.png');
+	background-position: center center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+
+

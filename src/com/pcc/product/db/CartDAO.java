@@ -316,11 +316,10 @@ public class CartDAO {
 					pstmt = con.prepareStatement(sql);
 					
 					//???
-					CartDTO dto = new CartDTO();
 
-					pstmt.setInt(1, dto.getCart_num());
-					pstmt.setInt(2,  dto.getProd_count());
-					pstmt.setInt(3,  dto.getTotal_price());
+					pstmt.setInt(1,  cart_dto.getProd_count());
+					pstmt.setInt(2,  cart_dto.getTotal_price());
+					pstmt.setInt(3, cart_dto.getCart_num());
 					
 					//4. sql 실행
 					pstmt.executeUpdate();

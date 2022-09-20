@@ -11,7 +11,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
     <nav class="navbar">
       <!-- 로고 영역 시작 -->
       <div class="logo_area">
-        <a href="./MainPage.pcc" >public class cafe</a>
+        <a href="./MainPage.pcc" >public class Cafe</a>
       </div>
       <!-- 로고 영역 끝 -->
       

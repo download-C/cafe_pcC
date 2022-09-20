@@ -18,7 +18,7 @@
 	
 	<fieldset>
 		<h3>리뷰 글 수정하기</h3>
-		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post">
+		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post" enctype="multipart/form-data">
 			<div>
 				<table>
 					<tr>

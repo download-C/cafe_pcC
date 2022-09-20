@@ -341,6 +341,7 @@ public class QnABoardDAO {
 				dto.setQna_file(rs.getString("qna_file"));
 
 				System.out.println(qna_num+"의 dto: "+dto);
+				System.out.println("QnA DB 저장 완료!");
 			}
 	
 		} catch (SQLException e) {

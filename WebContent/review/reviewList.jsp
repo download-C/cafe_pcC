@@ -16,7 +16,7 @@
 
 <%-- 	회원번호 :${sessionScope.mem_num } --%>
 	<input type="button" name="reviewWrite" value="리뷰 남기기(new)"
-		onclick="location.href='./ReviewWrite.rv';">
+		onclick="location.href='./ReviewWriteForm.rv';">
 	<fieldset>
 		<table>
 			<tr>
@@ -31,7 +31,7 @@
 					<td>${dto.review_num }</td>
 					<td><a
 						href="./ReviewContent.rv?review_num=${dto.review_num }&pageNum=${requestScope.pageNum}">${dto.review_subject }</a>
-					<td>${dto.review_name }</td>
+					<td>${dto.name }</td>
 					<td>${dto.review_readcount }</td>
 					<td>${dto.review_date }</td>
 				</tr>

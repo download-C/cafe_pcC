@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pcc.board.review.action.ReviewReplyAction;
+import com.pcc.board.review.action.ReviewReplyFormAction;
+
 import action.Action;
 import vo.ActionForward;
 
@@ -175,7 +178,7 @@ public class QnAFrontController extends HttpServlet {
 			}
 		}
 		
-		// 2-8. 문의사항 삭제하기
+		// 2-9. 문의사항 삭제하기
 		else if(command.equals("/QnADelete.qna")) {
 			action = new QnADelete();
 			try {
@@ -184,6 +187,26 @@ public class QnAFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// 2-10. 매니저 Q&A 답글 적는 페이지 이동
+		else if(command.equals("/QnAReplyForm.rv")){
+			action = new QnAReplyFormAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 2-11. 매니저 Q&A 답글 달기
+		else if(command.equals("/QnAReply.rv")) {
+			action = new QnAReplyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+				
 			
 
 

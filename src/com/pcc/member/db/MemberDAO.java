@@ -142,6 +142,8 @@ public class MemberDAO {
 			
 			}catch(Exception e){
 				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
 			return name;
 		}
@@ -173,6 +175,8 @@ public class MemberDAO {
 			
 			}catch(Exception e){
 				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
 			return dto;
 		}
@@ -205,6 +209,8 @@ public class MemberDAO {
 				System.out.println(" DAO : 로그인 체크 완료("+result+")");
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
 			return result;
 		}
@@ -242,6 +248,8 @@ public class MemberDAO {
 				System.out.println(" DAO : 로그인 체크 완료("+result+")");
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
 			return result;
 		}
@@ -352,7 +360,9 @@ public class MemberDAO {
 			System.out.println(" DAO : 디비동작 처리 끝(수정처리)("+mem_num+")");
 		 } catch (Exception e) {
 			e.printStackTrace();
-		 }
+		 } finally {
+			 closeDB();
+		}
 		
 		
 	}	

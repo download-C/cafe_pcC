@@ -13,12 +13,14 @@
 <title>리뷰 확인하기</title>
 <%
 	System.out.println(request.getAttribute("rmn"));
-
 	session = request.getSession();
 	String mgr_num = (String)session.getAttribute("mgr_num");
 	String mem_num = (String)session.getAttribute("mem_num");
 	String rmn = (String)request.getAttribute("rmn");
-	System.out.println(rmn);
+	
+	
+	if(request.getAttribute("rmn") != null) {
+	}
 	
 	if(mgr_num == null && mem_num == null) {
 		%>
@@ -59,7 +61,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td>${dto.review_name }</td>
+				<td>${dto.name }</td>
 				<td>작성일</td>
 				<td>${dto.review_date }</td>
 			</tr>
@@ -73,7 +75,7 @@
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td colspan="3">${dto.review_file }</td>
+				<td colspan="3"><a href="./upload/${dto.review_file }" download>${dto.review_file }</a></td>
 			</tr>
 		</table>
 	</fieldset>

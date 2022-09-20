@@ -43,9 +43,6 @@ public class QnAContentAction implements Action {
 				dao.updateReadCount(qna_num);
 			System.out.println("본인이 쓴 글이 아니므로 "+qna_num + "번 문의사항 조회수 1 증가 ");
 			}
-			//dao.getQnAReadCount(qna_num);
-			
-			System.out.println("DTO 완료");
 			
 			request.setAttribute("dto", dto);
 			request.setAttribute("pageNum", Integer.parseInt(pageNum));

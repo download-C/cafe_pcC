@@ -45,19 +45,19 @@ public class ReviewContentAction implements Action {
 			System.out.println("본인이 쓴 글이 아니므로 "+review_num + "번 문의사항 조회수 1 증가 ");
 			}
 			//dao.getReviewReadCount(review_num);
-			
-			System.out.println( "DTO : " + dto );
-			 
+			System.out.println("request.setAttribute()");
 			request.setAttribute("dto", dto);
 			request.setAttribute("pageNum", Integer.parseInt(pageNum));
 //			System.out.println("pageNum" + pageNum);
 			request.setAttribute("review_num", review_num);
 //			System.out.println("pageNum : " + pageNum);		
-			request.setAttribute("review_name", dto.getReview_name());
+			request.setAttribute("name", dto.getName());
+//			System.out.println("mem_num: "+dto.getMem_num());
+			request.setAttribute("rmn", Integer.toString(dto.getMem_num()));
+//			System.out.println("rmn : "+dto.getMem_num());
 			
 			ActionForward forward = new ActionForward();
-			
-			forward.setPath("./Review/ReviewContent.jsp");
+			forward.setPath("./review/reviewContent.jsp");
 			forward.setRedirect(false);
 			
 			return forward;
@@ -73,7 +73,8 @@ public class ReviewContentAction implements Action {
 			request.setAttribute("dto", dto);
 			request.setAttribute("pageNum", Integer.parseInt(pageNum));
 			request.setAttribute("review_num", review_num);
-			request.setAttribute("rmn", Integer.toString(dto.getMem_num()));
+
+
 			
 			ActionForward forward = new ActionForward();
 			

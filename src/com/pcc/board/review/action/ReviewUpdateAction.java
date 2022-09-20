@@ -1,9 +1,14 @@
 package com.pcc.board.review.action;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 import com.pcc.board.review.db.ReviewDAO;
 import com.pcc.board.review.db.ReviewDTO;
 
@@ -15,17 +20,23 @@ public class ReviewUpdateAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
+		String uploadPath = request.getRealPath("/upload");
+		MultipartRequest multipartRequest 
+		= new MultipartRequest(request, uploadPath, 10*1024*1024, new DefaultFileRenamePolicy()); 
+			
+			
+	
 		
 		HttpSession session = request.getSession();
 		String mem_num = (String)session.getAttribute("mem_num");
 		String mgr_num = (String)session.getAttribute("mgr_num");
-		String review_num = request.getParameter("review_num");
+		String review_num = multipartRequest.getParameter("review_num");
 		
-		String review_password = request.getParameter("review_password");
-		String review_subject = request.getParameter("review_subject");
-		String review_content = request.getParameter("review_content");
-		String review_file = request.getParameter("review_file");
+		String review_password = multipartRequest.getParameter("review_password");
+		String review_subject = multipartRequest.getParameter("review_subject");
+		String review_content = multipartRequest.getParameter("review_content");
+		String review_file = multipartRequest.getParameter("review_file");
 		
 				
 		ReviewDAO dao = new ReviewDAO();

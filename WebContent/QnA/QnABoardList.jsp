@@ -15,7 +15,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>QnABoardList.jsp</h1>
+	<h1>QnAList.jsp</h1>
 	<%
  	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
 	

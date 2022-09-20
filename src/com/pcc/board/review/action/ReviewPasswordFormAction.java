@@ -28,11 +28,12 @@ public class ReviewPasswordFormAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		System.out.println("세션값에 따른 페이지 이동");
+		// 1. 회원이 로그인했을 때 
 		if(mem_num != null){
 			forward.setPath("./review/reviewReplyForm.jsp");
 			forward.setRedirect(false);
-			
 			return forward;
+		// 2. 매니저가 로그인했을 때
 		} else if(mgr_num != null) {
 			forward.setPath("/ReviewPasswordCheck.rv?review_num="+review_num);
 			forward.setRedirect(true);

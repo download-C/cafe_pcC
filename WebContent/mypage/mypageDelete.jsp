@@ -41,7 +41,7 @@
      <% 
        // 회원탈퇴 메서드 호출
       
-       int result = dao.deleteMember(dto.getMem_num());
+       int result = dao.deleteMember(dto);
        
        if(result == 1){
     	   // 탈퇴시 로그인 정보 삭제(세션값 삭제, 초기화)

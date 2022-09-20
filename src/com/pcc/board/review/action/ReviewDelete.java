@@ -19,6 +19,7 @@ public class ReviewDelete implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		System.out.println("ReviewDelete_execute() 호출");
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -39,26 +40,33 @@ public class ReviewDelete implements Action {
 			
 			ReviewDAO dao = new ReviewDAO();
 			ReviewDTO dto = dao.getReviewContent(review_num);
-			if(mem_num != null)
-			if(dto.getReview_password() == Integer.parseInt(review_password)) {
-				dao.ReviewDelete(session, review_num, Integer.parseInt(mem_num));
-				dao.alert(response, "글이 삭제되었습니다.", "./ReviewList.rv");
-				return null;
+			// 1. 회원이 로그인했을 때 
+			if(mem_num != null) {
+				// 1-1.비밀번호가 일치할 경우
+				if(dto.getReview_password() == Integer.parseInt(review_password)) {
+					dao.ReviewDelete(session, review_num, Integer.parseInt(mem_num));
+					dao.alert(response, "글이 삭제되었습니다.", "./ReviewList.rv");
+					return null;
+				// 1-2. 비밀번호가 틀릴 경우
+				}else {
+					dao.alert(response, "비밀번호가 일치하지 않습니다.", "history.back()");
+					return null;
+				}
+			// 2. 매니저가 로그인했을 때
 			} else if(mgr_num != null) {
-				dao.ReviewDelete(session, review_num, Integer.parseInt(mgr_num));
-				out.println("<script>");
-				out.println("alert('삭제되었습니다.';");
-				out.println("location.href='./ReviewList.rv';");
-				out.println("</script>");
+					dao.ReviewDelete(session, review_num, Integer.parseInt(mgr_num));
+					dao.alert(response, "글이 삭제되었습니다.", "location.href='./ReviewList.rv?pageNum=1';");
+					return null;
+			} else {
+				dao.alert(response, "세션이 만료되어 로그인 페이지로 돌아갑니다.", 
+						"location.href='./MainPage.pcc';");
 				return null;
-			} 
-			
+			}
 		} else {
 			MemberDAO dao = new MemberDAO();
-			dao.alert(response, "세션이 만료되어 로그인 페이지로 돌아갑니다.", "location.href='./MainPage.pcc';");
-					
+			dao.alert(response, "세션이 만료되어 로그인 페이지로 돌아갑니다.", 
+					"location.href='./MainPage.pcc';");
+			return null;
 		}
-		return null;
 	}
-
 }

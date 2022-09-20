@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.sun.org.apache.bcel.internal.generic.DASTORE;
+
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
 public class ReviewDAO {
@@ -111,7 +113,11 @@ public class ReviewDAO {
 			pstmt.setString(6, dto.getReview_subject());
 			pstmt.setString(7, dto.getReview_content());
 			pstmt.setInt(8, dto.getReview_readcount());
-			pstmt.setInt(9, review_num);
+			if(dto.getReview_re_ref() ==0 ){
+				pstmt.setInt(9, review_num);
+			} else {
+				pstmt.setInt(9, dto.getReview_re_ref());
+			}
 			pstmt.setInt(10, 0);
 			pstmt.setInt(11, 0);
 			pstmt.setString(12, dto.getReview_ip());
@@ -130,9 +136,10 @@ public class ReviewDAO {
 	
 	// 3-2. 관리자가 리뷰에 답글 다는 메서드 ------------------------------
 	public int reviewReply(int review_num, ReviewDTO dto) {
-		
+		int review_re_ref= review_num;
 		try {
 			con = getConnect();
+			
 			sql = "select max(review_num) from review_boards";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -141,7 +148,7 @@ public class ReviewDAO {
 				review_num = rs.getInt(1)+1;
 			}
 			
-			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, review_name, "
+			sql = "insert into review_boards(review_num, review_writer_type, mgr_num, name, "
 					+ "review_password, review_subject, review_content, review_readcount, review_re_ref, review_re_lev,"
 					+ "review_re_seq, review_date, review_ip, review_file) "
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
@@ -156,8 +163,8 @@ public class ReviewDAO {
 			pstmt.setString(6, dto.getReview_subject());
 			pstmt.setString(7, dto.getReview_content());
 			pstmt.setInt(8, dto.getReview_readcount());
-			pstmt.setInt(9, review_num);
-			pstmt.setInt(10, 1);
+			pstmt.setInt(9, review_re_ref);
+			pstmt.setInt(10, dto.getReview_re_ref());
 			pstmt.setInt(11, 1);
 			pstmt.setString(12, dto.getReview_ip());
 			pstmt.setString(13, dto.getReview_file());
@@ -259,7 +266,8 @@ public class ReviewDAO {
 		
 		try {
 			con = getConnect();
-			sql = "select * from review_boards";
+			sql = "select * from review_boards order by review_re_ref , review_re_seq asc, " 
+					+"review_num desc, review_re_lev desc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -300,7 +308,8 @@ public class ReviewDAO {
 		
 		try {
 			con = getConnect();
-			sql = "select * from review_boards order by review_num desc limit ?, 10";
+			sql = "select * from review_boards order by review_re_ref desc, review_re_lev " 
+						+"limit ?, 10";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
 //			pstmt.setInt(2, pageSize);
@@ -368,12 +377,13 @@ public class ReviewDAO {
 		try {
 			con = getConnect();
 			sql = "update review_boards set review_subject=?, review_content=?, "
-					+ "review_file=? where review_num = ?";
+					+ "review_file=?, name=? where review_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getReview_subject());
 			pstmt.setString(2, dto.getReview_content());
 			pstmt.setString(3, dto.getReview_file());
-			pstmt.setInt(4, dto.getReview_num());
+			pstmt.setString(4,  dto.getName());
+			pstmt.setInt(5, dto.getReview_num());
 			
 			pstmt.executeUpdate();
 				

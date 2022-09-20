@@ -20,6 +20,7 @@
 	<%
 		String mgr_num = (String)session.getAttribute("mgr_num");
 		String mem_num = (String)session.getAttribute("mem_num");
+		System.out.println("MEM_NUM: "+mem_num);
 		if(mgr_num != null) {
 			%>
 			

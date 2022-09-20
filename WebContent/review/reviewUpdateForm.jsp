@@ -23,8 +23,8 @@
 				<table>
 					<tr>
 						<td>
-						<input type="hidden" name="review_num" id="review_num"
-							value="${review_num }"></td>
+						<input type="hidden" name="review_num" id="name"
+							value="${name }"></td>
 					</tr>
 					<tr>
 						<td>
@@ -43,8 +43,11 @@
 								id="review_contnet">${dto.review_content }</textarea></td>
 					</tr>
 					<tr>
-						<td><input type="file" name="review_file"
-							id="review_file"></td>
+						<td>
+							<img src="./upload/${dto.review_file }"> <br>
+							<input type="file" name="review_file" id="review_file">
+							<input type="hidden" name="oldfile" value="${dto.review_file }">
+						</td>
 					</tr>
 				</table></div>
 		<div>

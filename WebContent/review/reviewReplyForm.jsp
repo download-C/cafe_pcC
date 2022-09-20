@@ -1,25 +1,18 @@
-<%@page import="com.pcc.member.db.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-
-<title>리뷰 확인하기</title>
+<title>리뷰 답글 달기</title>
 <%
 	System.out.println(request.getAttribute("rmn"));
-	session = request.getSession();
+// 	session = request.getSession();
 	String mgr_num = (String)session.getAttribute("mgr_num");
 	String mem_num = (String)session.getAttribute("mem_num");
 	String rmn = (String)request.getAttribute("rmn");
-	String review_file = (String)request.getAttribute("review_file");
 	
-	System.out.println("review_file : "+review_file);
 %>
 </head>
 <body>
@@ -27,7 +20,7 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<h1>reviewContent.jsp</h1>
+	<h1>${dto.review_num }번 리뷰 답글 달기</h1>
 	<fieldset>
 	<% if(mem_num != null) {
 	%>
@@ -68,37 +61,25 @@
 			</tr>
 		</table>
 	</fieldset>
-	<%
-	if(mem_num != null) {
-		if(mem_num.equals(rmn)) {
-	%>
-		<input type="button" name="review_update" id="update" value="수정"
-	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
-	
-		<input type="button" name="review_delete" id="delete" value="삭제" 
-		onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
-	<%
-		}
-	}
+	<hr>
+		<fieldset>
+		<legend>리뷰 답글 작성하기</legend>
+		<form action="./ReviewReply.rv?review_num=${dto.review_num }" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
+		<div>
 		
-	if(mgr_num != null) {
-	%>
-	<input type="button" name="riview_reply" id="reply" value="답글 달기"
-	 onclick="location.href='./ReviewReplyForm.rv?review_num=${dto.review_num}';">
-	 
-	<input type="button" name="review_update" id="update" value="수정"
-	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
-	
-	<input type="button" name="review_delete" id="delete" value="삭제" 
-	onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
-    <%
-	}
-%>
-	<input type="button" name="review_list" id="list" value="목록" 
-     onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">
-<%
-
-%>
+	 	<input type="hidden" name="name" id="review_name" 
+	 			value="관리자" readonly="readonly">
+		비밀번호 <input type="password" name="review_password" 
+					maxlength="4" placeholder="4자리 숫자로 적으세요"> <br>
+		제목 <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
+		내용 <textarea rows="30" cols="80 " name="review_content"></textarea> <br>
+		</div>
+		<div>
+		<input type="submit" value="작성"> &nbsp;&nbsp;
+		<input type="button" value="취소">
+		</div>
+		</form>
+	</fieldset>
 <!-- 푸터 시작 -->
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

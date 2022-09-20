@@ -85,8 +85,17 @@ public class ReviewFrontController extends HttpServlet {
 			System.out.println(button);
 			request.setAttribute("button", button);
 			forward = new ActionForward();
-			forward.setPath("./review/reviewPassword.jsp");
-			forward.setRedirect(false);
+			forward.setPath("/ReviewPasswordFormAction.rv");
+			forward.setRedirect(true);
+		}
+		
+		else if(command.equals("/ReviewPasswordFormAction.rv")){
+			action = new ReviewPasswordFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// 2-6. 비밀번호 입력 시 DB와 일치 여부 확인
 		else if(command.equals("/ReviewPasswordCheck.rv")) {

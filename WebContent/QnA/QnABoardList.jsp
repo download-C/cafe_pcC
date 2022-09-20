@@ -28,7 +28,7 @@
 
 	%>
 	 <h3><input type="button" name="qnaWrite" value="새 글 쓰기(new)"
-	  onclick="location.href='./QnAWrite.qna';"></h3> 
+	  onclick="location.href='./QnAWriteForm.qna';"></h3> 
 	 
 	<fieldset>
 		<table>

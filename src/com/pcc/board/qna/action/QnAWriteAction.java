@@ -22,42 +22,51 @@ public class QnAWriteAction implements Action {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println(" 한글처리 완료! ");
 		HttpSession session = request.getSession();
-		String mem_num = (String)session.getAttribute("mem_num");
-		System.out.println("mem_num"+mem_num);
-
-		int qna_password = Integer.parseInt(request.getParameter("qna_password"));
-		String qna_subject = request.getParameter("qna_subject");
-		String qna_content = request.getParameter("qna_content");
-		String qna_file = request.getParameter("qna_file");
-		String name = request.getParameter("name");
-		
-		// 1. QnAWriteForm.jsp에서 받은 정보(제목, 내용, 첨부파일)를 담을 BoardDTO 생성 후 저장
-		QnABoardDTO dto = new QnABoardDTO();
-		System.out.println("DTO 객체 생성 완료");
-		System.out.println(" 값 불러오기!");
-		
-		MemberDAO daoM = new MemberDAO();
-		
-		dto.setMem_num(Integer.parseInt(mem_num));
-		dto.setName(name);
-		dto.setQna_password(qna_password);
-		dto.setQna_subject(qna_subject);
-		dto.setQna_content(qna_content);
-		dto.setQna_file(qna_file);
-		dto.setQna_ip(request.getRemoteAddr());
-		
-		System.out.println(" M : " + dto);
-		
-		// 2. DB에 정보 저장
-		
-		QnABoardDAO dao = new QnABoardDAO();
-		
-		int qna_num = dao.QnAWrite(dto);
+		if(session != null) {
+			String mem_num = (String)session.getAttribute("mem_num");
+			String mgr_num = (String)session.getAttribute("mgr_num");
+	//		System.out.println("mem_num"+mem_num);
 	
-		System.out.println(" DAO 객체 생성 후 DB에 저장 완료");
+			int qna_password = Integer.parseInt(request.getParameter("qna_password"));
+			String qna_subject = request.getParameter("qna_subject");
+			String qna_content = request.getParameter("qna_content");
+			String qna_file = request.getParameter("qna_file");
+			String name = request.getParameter("name");
+			
+			// 1. QnAWriteForm.jsp에서 받은 정보(제목, 내용, 첨부파일)를 담을 BoardDTO 생성 후 저장
+			QnABoardDTO dto = new QnABoardDTO();
+			System.out.println("DTO 객체 생성 완료");
+			System.out.println(" 값 불러오기!");
+			
+			MemberDAO daoM = new MemberDAO();
+			if(mem_num != null){
+				dto.setMem_num(Integer.parseInt(mem_num));
+			} else if(mgr_num != null) {
+				dto.setMem_num(Integer.parseInt(mgr_num));
+			}
+			
+			dto.setName(name);
+			dto.setQna_password(qna_password);
+			dto.setQna_subject(qna_subject);
+			dto.setQna_content(qna_content);
+			dto.setQna_file(qna_file);
+			dto.setQna_ip(request.getRemoteAddr());
+			
+			System.out.println(" M : " + dto);
+			
+			// 2. DB에 정보 저장
+			
+			QnABoardDAO dao = new QnABoardDAO();
+			
+			int qna_num = dao.QnAWrite(dto);
 		
-		daoM.alert(response, "리뷰를 작성했습니다.", 
-				"location.href='./QnAContent.qna?qna_num="+qna_num+"&pageNum=1';");
+			System.out.println(" DAO 객체 생성 후 DB에 저장 완료");
+			
+			daoM.alert(response, "리뷰를 작성했습니다.", 
+					"location.href='./QnAContent.qna?qna_num="+qna_num+"&pageNum=1';");
+			
+			return null;
+		}
 		
 		return null;
 	}	

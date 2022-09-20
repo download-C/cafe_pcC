@@ -7,26 +7,38 @@
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script src="../script/jquery-3.6.0.js"></script>
-<script>
-$(document).ready(function(){
-	$("#write").submit(function(){
-		alert("전송");
-		if($("#password").val()==""){
-			alert("비밀번호를 입력하세요.");
-			$("#password").focus();
-			return false;
-		}	
-		if($("#subject").val()==""){
-			alert("제목을 입력하세요.");
-			$("#subject").focus();
-			return false;
-		}	
-		if($("#content").val()==""){
-			alert("내용을 입력하세요.");
-			$("#content").focus();
-			return false;
-		}	
+<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#btn").submit(function () {
+		alert("click submit");
+		
+	    // 입력한 아이디 없을 때 처리
+	    /* if ($("#password").val() == "") {
+					// 알림창 띄우기
+	        alert("비밀번호를를 입력하세요");
+	        $("#password").focus();
+					// submit 실행 X
+	        return false;
+	    }
+	    // 입력한 비밀번호 없을 때 처리
+	    if ($("#subject").val() == "") {
+			// 알림창 띄우기
+	        alert("제목을 입력하세요");
+	        // 해당 부분에 커서 깜빡이기
+	        $("#subject").focus();
+					// submit 실행 X
+	        return false;
+	    }
+	    
+	    if ($("#content").val() == "") {
+			// 알림창 띄우기
+		    alert("내용을 입력하세요");
+		    // 해당 부분에 커서 깜빡이기
+		    $("#content").focus();
+					// submit 실행 X
+		    return false; 
+		}*/
 	});
 });
 </script>
@@ -42,7 +54,15 @@ $(document).ready(function(){
 	<legend>문의사항 작성하기</legend>
 	<form action="./QnAWriteAction.qna" method="post">
 		<div>
-		작성자 : <input type="text" name="name" readonly="readonly" value="${name}"> <br>
+		<%
+			String mem_num = (String)session.getAttribute("mem_num");
+			String mgr_num = (String)session.getAttribute("mgr_num");
+			String name = (String)request.getAttribute("name");
+		if(	mgr_num != null ) {%>
+		작성자 : <input type="text" name="name" readonly="readonly" value="관리자"> <br>
+		<%} else if(mem_num != null) {%>
+		작성자 : <input type="text" name="name" readonly="readonly" value="${name }"> <br>			
+		<%} %>
 		비밀번호 : <input type="password" name="qna_password" maxlength="4" id="password" 
 		placeholder="4자리 숫자로 입력하세요."> <br>
 		<div id="passdiv"></div>
@@ -54,7 +74,7 @@ $(document).ready(function(){
 		<div id="filediv"></div>
 		</div>	
 		<div>
-			<input type="submit" id="write" value="작성" onclick="location.href='./QnAWriteAction.qna';">
+			<input type="submit" id="btn" value="작성" onclick="location.href='./QnAWriteAction.qna';">
 			<input type="button" value="취소">
 		</div>
 	</form>

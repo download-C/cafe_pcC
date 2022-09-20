@@ -57,7 +57,7 @@ public class QnAFrontController extends HttpServlet {
 		
 		// 2-1. 공지사항 글 쓰기 양식
 		if(command.equals("/QnAWrite.qna")) {
-			action = new QnAAction();
+			action = new QnAWrite();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -33,6 +33,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 <%if(mem_num != null)  {%>
       <div class="login_area">
       <ul class="login_area_ul">
+        <li><a href="./#">${name }님</a></li>
         <li><a href="./Logout.me">LOGOUT</a></li>
         <li><a href="./Cart.pr">CART</a></li>
       </ul>

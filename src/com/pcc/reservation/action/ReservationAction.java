@@ -35,7 +35,7 @@ public class ReservationAction implements Action {
 			Date date = new Date();
 
 	        long timeInMilliSeconds = date.getTime();
-	        java.sql.Date res_date = new java.sql.Date(timeInMilliSeconds);
+	        java.sql.Date res_date2 = new java.sql.Date(timeInMilliSeconds);
 			
 
 			int res_time = Integer.parseInt(request.getParameter("res_time"));

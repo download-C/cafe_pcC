@@ -11,17 +11,24 @@
 <body>
 	<h1>reservationList.jsp</h1>
 
-	<table border="1">
+	
 	<% 
 	List<ReservationDTO> reservationList = (List<ReservationDTO>)request.getAttribute("reservationList");
+	
+	String pageNum = (String) request.getAttribute("pageNum");
+    int cnt = (int) request.getAttribute("cnt");
+    int pageCount = (int) request.getAttribute("pageCount");
+    int pageBlock = (int) request.getAttribute("pageBlock");
+    int startPage = (int) request.getAttribute("startPage");
+    int endPage = (int) request.getAttribute("endPage");
+    
 	%>
+	
+	<table border="1">
 		<tr>
 			<td>예약 번호</td>
-			<td>멤버 번호</td>
 			<td>예약 날짜 및 시간</td>
 			<td>예약 인원</td>
-			<td>전체 테이블 개수</td>
-			<td>현재 예약된 테이블 개수</td>
 		</tr>
 		<%
 			for(int i = 0; i<reservationList.size(); i++){
@@ -31,14 +38,47 @@
 		
 		<tr>
 			<td><%=dto.getRes_num()%></td>
-			<td><%=dto.getMem_num()%></td>
 			<td><%=dto.getRes_date()%></td>
-			<td><%=dto.getRes_num_of_persons()%></td>
-			<td><%=dto.getTable_total()%></td>
-			<td><%=dto.getTable_occupied()%></td>
+			<td><%=dto.getRes_persons()%></td>
 		</tr>
 		<%} %>
 	</table>
+	
+	<%
+   		//하단 페이징 처리
+   		if(cnt != 0){
+   			
+   			 
+   			// 이전
+   			if(startPage > pageBlock){
+   					%>
+   					<a href ="./ReservationList.re?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+   					<% 
+   				
+   			}
+   			
+   		// 1,2,3,4,5
+   		for(int i = startPage; i<=endPage; i++){
+   			%>
+   			
+   			<a href="./ReservationList.re?pageNum =<%= i%>">[<%=i %>]</a>
+   			
+   			<% 		
+   			
+   				} 
+   
+   			// 다음
+   			if(endPage < pageCount){
+   				%>
+   					<a href ="./ReservationList.re?pageNum=<%=startPage + pageBlock %>">[다음]</a>	
+   				
+   				<% 
+   							
+   					}
+   			
+   			}
+   			%>
+   
 
 </body>
 </html>

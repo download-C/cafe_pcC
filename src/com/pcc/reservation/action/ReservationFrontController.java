@@ -45,7 +45,7 @@ public class ReservationFrontController extends HttpServlet {
 			System.out.println(" C : /Reservation.re");
 			
 			forward = new ActionForward();
-			forward.setPath("./reservationForm.jsp");
+			forward.setPath("./reservation/reservationForm.jsp");
 			forward.setRedirect(false);	
 		} 
 		else if(command.equals("/ReservationAction.re")){
@@ -65,7 +65,7 @@ public class ReservationFrontController extends HttpServlet {
 			System.out.println(" C : /ReservationContent.re");
 			
 			forward = new ActionForward();
-			forward.setPath("./reservationContent.jsp");
+			forward.setPath("./reservation/reservationContent.jsp");
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/ReservationList.re")){

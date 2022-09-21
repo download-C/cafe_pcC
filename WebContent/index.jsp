@@ -9,7 +9,10 @@
 <%
 	//index.jsp
 	
-	response.sendRedirect("./MainPage.pcc");
+	//response.sendRedirect("./MainPage.pcc");
+	response.sendRedirect("./Reservation.re");
+	//response.sendRedirect("./ReservationList.re");
+	//response.sendRedirect("./MemberReservationList.re");
 %>
 </body>
 </html>

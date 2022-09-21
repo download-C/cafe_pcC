@@ -1,0 +1,44 @@
+
+@import url("./theme.css");
+
+@CHARSET "UTF-8";
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+	font-family: var(--font-kor);
+}
+
+.container{
+	margin:0;
+	overflow: hidden;	
+}
+.slide_area{
+	width:400vw; /* 400%로 보면 됨 */
+	transition: transform 0.5s; /* transform이 변경될 때 0.5초에 걸쳐 변경해달라 */
+	
+
+}
+
+.slide{
+	width:100vw;
+	float: left;
+}
+.slide img{
+	width:100%;
+}
+
+
+
+
+
+
+
+
+

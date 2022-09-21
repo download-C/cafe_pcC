@@ -10,6 +10,7 @@
 
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/productList.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
@@ -34,7 +35,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>productList.jsp</h1>
+<!-- 	<h1>productList.jsp</h1> -->
 	
 	<h2>상품 목록</h2>
 	

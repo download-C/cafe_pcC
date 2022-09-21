@@ -19,6 +19,11 @@
   font-style: normal;
 }
 
+*{
+		font-family: var(--font-kor);
+	
+}
+
 ::selection {
   background-color: var(--color-point-3);
   color: var(--color-base);

@@ -82,70 +82,103 @@ public class ReservationDAO {
 			// 예약 시간이 오전(10시~13시)일 때
 			if(dto.getRes_time() < 13) {
 				// 특정 날의 오전 예약 개수 구하기
-				sql = "select sum(res_table) from reservations where res_date = ? and res_time between 10 and 13";
-				
+				sql = "select sum(res_table) from reservations "
+						+ "where res_date = ? and res_time <= 13";			
 				pstmt = con.prepareStatement(sql);
-				
 				pstmt.setDate(1, dto.getRes_date());
-				
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){					
-					// 예약된 테이블 총 개수가 15개 이하일 때 예약 가능
-					if(rs.getInt("count(res_num)") < 15) {
-						res_num = rs.getInt("res_num") + 1;
-					} else {result = 0;}
+					System.out.println(dto.getRes_date()+"의 오전 테이블 예약 수  : "
+							+ rs.getInt(1));
 					
-					sql = "insert into reservations (res_num, mem_num, name, res_date, "
-							+ "res_time, res_persons, res_table values(?,?,?,?,?,?,?)";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, res_num);
-					pstmt.setInt(2, dto.getMem_num());
-					pstmt.setString(3, dto.getName());
-					pstmt.setDate(4, dto.getRes_date());
-					pstmt.setInt(5, dto.getRes_time());
-					pstmt.setInt(6, dto.getRes_persons());
-						res_table = (dto.getRes_persons()/4) +(dto.getRes_persons()%4==0?0:1);
-					pstmt.setInt(6, res_table);
-					
-					pstmt.executeUpdate();
-					result = 1;
+					// 예약 가능한 테이블이 남아있을 때 
+					if(rs.getInt(1)  == 13 ||  // 예약 가능한 테이블이 2개 이상일 때
+							rs.getInt(1) < 14 && dto.getRes_persons() <5 ) { // 예약 가능한 테이블이 한 개이고 예약인원이 4명 이하일 때
+						sql = "select max(res_num) from reservations";
+						pstmt = con.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						
+						// 예약번호 부여
+						if(rs.next()) {							
+							res_num = rs.getInt("res_num") + 1;
+						}
+						System.out.println("예약번호 : "+res_num);
+						
+						sql = "insert into reservations (res_num, mem_num, name, "
+								+ "res_date, res_time, res_persons, res_table) "
+								+"values (?,?,?,?,?,?,?)";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setInt(1, res_num);
+						pstmt.setInt(2,  dto.getMem_num());
+						pstmt.setString(3, dto.getName());
+						pstmt.setDate(4, dto.getRes_date());
+						pstmt.setInt(5,  dto.getRes_time());
+						pstmt.setInt(6, dto.getRes_persons());
+							res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
+						pstmt.setInt(7, res_table);
+						
+						pstmt.executeQuery();
+						System.out.println(dto.getRes_date() +" "+dto.getRes_time() 
+							+ dto.getRes_persons()+"명 예약 완료");
+					// 예약 가능한 테이블이 없을 때
+					} else {
+						result = 0;
+					}
+			
 				} 
+			}
 
 			// 예약 시간이 오후(13시~17시)일 때
-			} else if(dto.getRes_time() >17) {
-				sql = "select sum(table) from reservations where res_date = ? and res_time between 13 and 17";
-				
+			else if(dto.getRes_time() < 13) {
+				// 특정 날의 오전 예약 개수 구하기
+				sql = "select sum(res_table) from reservations "
+						+ "where res_date = ? and res_time between > 13";			
 				pstmt = con.prepareStatement(sql);
-				
 				pstmt.setDate(1, dto.getRes_date());
-				
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){					
-					// 예약된 테이블 총 개수가 15개 이하일 때 예약 가능
-					if(rs.getInt("count(res_num)") < 15) {
-						res_num = rs.getInt("res_num") + 1;
-					} else {result = -1;}
+					System.out.println(dto.getRes_date()+"의 오전 테이블 예약 수  : "
+							+ rs.getInt(1));
 					
-					sql = "insert into reservations (res_num, mem_num, name, res_date, "
-							+ "res_time, res_persons, res_table values(?,?,?,?,?,?,?)";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, res_num);
-					pstmt.setInt(2, dto.getMem_num());
-					pstmt.setString(3, dto.getName());
-					pstmt.setDate(4, dto.getRes_date());
-					pstmt.setInt(5, dto.getRes_time());
-					pstmt.setInt(6, dto.getRes_persons());
-						res_table = (dto.getRes_persons()/4) +(dto.getRes_persons()%4==0?0:1);
-					pstmt.setInt(6, res_table);
-					
-					pstmt.executeUpdate();
-					
-					result = 1;
-				}
+					// 예약 가능한 테이블이 남아있을 때 
+					if(rs.getInt(1)  == 13 ||  // 예약 가능한 테이블이 2개 이상일 때
+							rs.getInt(1) < 14 && dto.getRes_persons() <5 ) { // 예약 가능한 테이블이 한 개이고 예약인원이 4명 이하일 때
+						sql = "select max(res_num) from reservations";
+						pstmt = con.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						
+						// 예약번호 부여
+						if(rs.next()) {							
+							res_num = rs.getInt("res_num") + 1;
+						}
+						System.out.println("예약번호 : "+res_num);
+						
+						sql = "insert into reservations (res_num, mem_num, name, "
+								+ "res_date, res_time, res_persons, res_table) "
+								+"values (?,?,?,?,?,?,?)";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setInt(1, res_num);
+						pstmt.setInt(2,  dto.getMem_num());
+						pstmt.setString(3, dto.getName());
+						pstmt.setDate(4, dto.getRes_date());
+						pstmt.setInt(5,  dto.getRes_time());
+						pstmt.setInt(6, dto.getRes_persons());
+							res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
+						pstmt.setInt(7, res_table);
+						
+						pstmt.executeQuery();
+						System.out.println(dto.getRes_date() +" "+dto.getRes_time() 
+							+ dto.getRes_persons()+"명 예약 완료");
+					// 오후에 예약 가능한 테이블이 없을 때
+					} else {
+						result = 0;
+					}				
+				} 
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

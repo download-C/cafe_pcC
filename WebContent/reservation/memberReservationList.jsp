@@ -39,7 +39,7 @@
 		
 			<td><%=dto.getRes_num()%></td>
 			<td><%=dto.getRes_date()%></td>
-			<td><%=dto.getRes_num_of_persons()%></td>
+			<td><%=dto.getRes_persons()%></td>
 		<%} %>
 		</tr>
 	</table>

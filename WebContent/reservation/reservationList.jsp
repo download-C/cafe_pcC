@@ -23,7 +23,8 @@
     int endPage = (int) request.getAttribute("endPage");
     
 	%>
-	
+	<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+	onclick="location.href='./Reservation.re';"> <br><br>
 	<table border="1">
 		<tr>
 			<td>예약 번호</td>
@@ -34,51 +35,24 @@
 			for(int i = 0; i<reservationList.size(); i++){
 			ReservationDTO dto = reservationList.get(i);
 		%>
-		
-		
 		<tr>
 			<td><%=dto.getRes_num()%></td>
 			<td><%=dto.getRes_date()%></td>
-			<td><%=dto.getRes_num_of_persons()%></td>
+			<td><%=dto.getRes_persons()%></td>
 		</tr>
 		<%} %>
 	</table>
-	
-	<%
-   		//하단 페이징 처리
-   		if(cnt != 0){
-   			
-   			 
-   			// 이전
-   			if(startPage > pageBlock){
-   					%>
-   					<a href ="./ReservationList.re?pageNum=<%=startPage - pageBlock%>">[이전]</a>
-   					<% 
-   				
-   			}
-   			
-   		// 1,2,3,4,5
-   		for(int i = startPage; i<=endPage; i++){
-   			%>
-   			
-   			<a href="./ReservationList.re?pageNum =<%= i%>">[<%=i %>]</a>
-   			
-   			<% 		
-   			
-   				} 
-   
-   			// 다음
-   			if(endPage < pageCount){
-   				%>
-   					<a href ="./ReservationList.re?pageNum=<%=startPage + pageBlock %>">[다음]</a>	
-   				
-   				<% 
-   							
-   					}
-   			
-   			}
-   			%>
-   
+	<%if(cnt != 0){
+		if(startPage > pageBlock){%>
+			<a href ="./ReservationList.re?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+	<%}
+    	for(int i = startPage; i<=endPage; i++){%>
+ 			<a href="./ReservationList.re?pageNum =<%= i%>">[<%=i %>]</a>
+	<%} 
+		if(endPage < pageCount){%>
+			<a href ="./ReservationList.re?pageNum=<%=startPage + pageBlock %>">[다음]</a>	
+	<% 	}
 
+ 	  }%>
 </body>
 </html>

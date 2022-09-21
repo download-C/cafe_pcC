@@ -101,7 +101,7 @@ public class ReservationListAction implements Action {
 		System.out.println("M :  페이징 처리정보 완료");
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./reservationList.jsp");
+		forward.setPath("./reservation/reservationList.jsp");
 		forward.setRedirect(false);
 
 		return forward;

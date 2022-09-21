@@ -1,11 +1,13 @@
 package com.pcc.reservation.action;
 
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pcc.member.db.MemberDAO;
 import com.pcc.reservation.db.ReservationDAO;
 import com.pcc.reservation.db.ReservationDTO;
 
@@ -18,78 +20,55 @@ public class ReservationAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// 한글처리
-		request.setCharacterEncoding("UTF-8"); // request라는 내장객체는 자바에 없잖아 JSP에만
-												// 있으니까 ㅇㅇ
-												// JSP의 정보를 자바에 넣으려면 Controller가
-												// 있어야함 그 역할이 Servlet임.
-												// 액션태그는 못씀 jsp에서만 쓸 수 있음 여기는
-												// java니까
+		request.setCharacterEncoding("UTF-8"); 
 
-		// 전달정보를 저장(제목,비밀번호,이름,내용)
-		// BoardDTO 객체 생성
 		ReservationDTO dto = new ReservationDTO();
 		System.out.println("DTO객체 생성");
 
 		HttpSession session = request.getSession();
-		String res_date = request.getParameter("res_date");
-		String res_num_of_persons = request.getParameter("res_num_of_persons");
+		if(session != null) {
+			String mem_num = (String)session.getAttribute("mem_num");
+			
+			SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.sql.Date res_date = (java.sql.Date) dFormat.parse(request.getParameter("res_date"));
+			
+			Date date = new Date();
 
-		dto.setRes_date(res_date);
-		dto.setRes_num_of_persons(Integer.parseInt(res_num_of_persons));
+	        long timeInMilliSeconds = date.getTime();
+	        java.sql.Date res_date = new java.sql.Date(timeInMilliSeconds);
+			
+
+			int res_time = Integer.parseInt(request.getParameter("res_time"));
+			int res_persons = Integer.parseInt(request.getParameter("res_persons"));
+			
+			dto.setMem_num(Integer.parseInt(mem_num));
+			dto.setRes_date(res_date);
+			dto.setRes_time(res_time);
+			dto.setRes_persons(res_persons);
+			
+			ReservationDAO dao = new ReservationDAO();
 	
-		// 병합 후 로그인 아이디 세션으로 받을꺼 
-		//String loginID = session.getAttribute("loginID");
+			int result = dao.reservation(dto);
+			
+			
+			MemberDAO daoM = new MemberDAO();
+	
+			if (result == 1) {
 
-		// ReservationDAO 객체 생성
-		ReservationDAO dao = new ReservationDAO();
-		System.out.println("DAO객체 생성");
+				request.getAttribute("dto");
+	
+				daoM.alert(response, "예약이 완료되었습니다.", "location.href = 'ReservationContent.re';");
+	
+				return null;
+	
+			} else if (result == 0 || result == -1) {
+				
+				daoM.alert(response, "해당 날짜는 예약이 불가능합니다.", "location.href = 'history.back()';");
 
-		System.out.println("reservation 메서드 생성");
-		int result = dao.reservation(dto);
-
-		session.setAttribute("res_date", res_date.substring(0, 10) + " " + res_date.substring(11, 16));
-		session.setAttribute("res_num", res_num_of_persons);
-
-		if (result == 1) {
-
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter pr = response.getWriter();
-
-			pr.println("<script type = 'text/javascript'>");
-			pr.println("alert('예약이 완료되었습니다.')");
-			pr.println("location.href = 'ReservationContent.re'");
-			pr.println("</script>");
-			pr.close();
-
-			return null;
-
-		} else if (result == 2) {
-
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter pr = response.getWriter();
-
-			pr.println("<script type = 'text/javascript'>");
-			pr.println("alert('예약이 완료되었습니다.')");
-			pr.println("location.href = 'ReservationContent.re'");
-			pr.println("</script>");
-			pr.close();
-
-			return null;
-
-		} else if (result == 3) {
-
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter pr = response.getWriter();
-
-			pr.println("<script type = 'text/javascript'>");
-			pr.println("alert('당일 예약인원이 가득 찼습니다.')");
-			pr.println("location.href = 'Reservation.re'");
-			pr.println("</script>");
-			pr.close();
-			return null;
-		} 
+				return null;	
+			}
+		}
 		
 		return null;
-
 	}
 }

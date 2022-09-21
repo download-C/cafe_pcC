@@ -5,10 +5,26 @@ import java.sql.Date;
 public class ReservationDTO {
 	private int res_num;
 	private int mem_num;
-	private String res_date;
-	private int res_num_of_persons;
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private Date res_date;
+	private int res_time;
+	private int res_persons;
+	private int res_table;
 	
 	
+	public int getRes_table() {
+		return res_table;
+	}
+	public void setRes_table(int res_table) {
+		this.res_table = res_table;
+	}
 	public int getRes_num() {
 		return res_num;
 	}
@@ -21,19 +37,30 @@ public class ReservationDTO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public String getRes_date() {
+	public Date getRes_date() {
 		return res_date;
 	}
-	public void setRes_date(String res_date) {
+	public void setRes_date(Date res_date) {
 		this.res_date = res_date;
 	}
-	public int getRes_num_of_persons() {
-		return res_num_of_persons;
+	public int getRes_time() {
+		return res_time;
 	}
-	public void setRes_num_of_persons(int res_num_of_persons) {
-		this.res_num_of_persons = res_num_of_persons;
+	public void setRes_time(int res_time) {
+		this.res_time = res_time;
 	}
-	
+	public int getRes_persons() {
+		return res_persons;
+	}
+	public void setRes_persons(int res_persons) {
+		this.res_persons = res_persons;
+	}
+	@Override
+	public String toString() {
+		return "ReservationDTO [res_num=" + res_num + ", mem_num=" + mem_num + ", name=" + name + ", res_date="
+				+ res_date + ", res_time=" + res_time + ", res_persons=" + res_persons + ", res_table=" + res_table
+				+ "]";
+	}
 	
 	
 }

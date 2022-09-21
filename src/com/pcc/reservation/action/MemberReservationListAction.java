@@ -109,7 +109,7 @@ public class MemberReservationListAction implements Action {
 		System.out.println("M :  페이징 처리정보 완료");
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./memberReservationList.jsp");
+		forward.setPath("./reservation/memberReservationList.jsp");
 		forward.setRedirect(false);
 
 		return forward;

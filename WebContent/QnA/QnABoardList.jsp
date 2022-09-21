@@ -18,18 +18,13 @@
 	<h1>QnAList.jsp</h1>
 	<%
  	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
-	
-//  	String pageNum = (String)request.getAttribute("pageNum");
-//  	int cnt = (Integer)request.getAttribute("cnt");
-//  	int pageCount = (Integer)request.getAttribute("pageCount");
-//  	int pageBlock = (Integer)request.getAttribute("pageBlock");
-//  	int startPage = (Integer)request.getAttribute("startPage");
-//  	int endPage = (Integer)request.getAttribute("endPage");
-
+	String mgr_num = (String)session.getAttribute("mgr_num");
+	String mem_num = (String)session.getAttribute("mem_num");
 	%>
-	 <h3><input type="button" name="qnaWrite" value="새 글 쓰기(new)"
-	  onclick="location.href='./QnAWrite.qna';"></h3> 
-	 
+	<%if(mem_num != null) { %>
+	<input type="button" name="qnaWrite" value="새 글 쓰기(new)"
+	  onclick="location.href='./QnAWriteForm.qna';"> 
+ 	<%} %>
 	<fieldset>
 		<table>
 			<tr>

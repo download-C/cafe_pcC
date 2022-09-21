@@ -23,7 +23,8 @@ public class ReviewContentAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String mem_num = (String)session.getAttribute("mem_num");
-		String mgr_num = (String)session.getAttribute("mgr_mum");
+		String mgr_num = (String)session.getAttribute("mgr_num");
+//		System.out.println("MGR_NUM: "+mgr_num);
 		
 		int review_num = Integer.parseInt(request.getParameter("review_num"));
 		String pageNum = (String)request.getAttribute("pageNum");
@@ -33,13 +34,11 @@ public class ReviewContentAction implements Action {
 //			System.out.println("pageNum : " + pageNum);
 		}
 		
-		if(mem_num != null) {
+		if(mem_num != null ) {
 			
 			ReviewDAO dao = new ReviewDAO();
 			ReviewDTO dto = dao.getReviewContent(review_num);
-			System.out.println("===========================");
-			System.out.println("dto:"+dto);
-			System.out.println("===========================");
+
 			if(Integer.parseInt(mem_num) != dto.getMem_num()){
 				dao.updateReviewReadcount(review_num);
 			System.out.println("본인이 쓴 글이 아니므로 "+review_num + "번 문의사항 조회수 1 증가 ");
@@ -53,6 +52,7 @@ public class ReviewContentAction implements Action {
 //			System.out.println("pageNum : " + pageNum);		
 			request.setAttribute("name", dto.getName());
 //			System.out.println("mem_num: "+dto.getMem_num());
+			request.setAttribute("review_file", dto.getReview_file());
 			request.setAttribute("rmn", Integer.toString(dto.getMem_num()));
 //			System.out.println("rmn : "+dto.getMem_num());
 			
@@ -73,14 +73,13 @@ public class ReviewContentAction implements Action {
 			request.setAttribute("dto", dto);
 			request.setAttribute("pageNum", Integer.parseInt(pageNum));
 			request.setAttribute("review_num", review_num);
+			request.setAttribute("review_file", dto.getReview_file());
 
-
-			
 			ActionForward forward = new ActionForward();
 			
-			forward.setPath("./Review/ReviewContent.jsp");
+			forward.setPath("./review/reviewContent.jsp");
 			forward.setRedirect(false);
-			
+			System.out.println("MGR_NUM: "+mgr_num);
 			return forward;
 			
 		} else {

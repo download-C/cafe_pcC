@@ -13,7 +13,11 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-
+<%
+	
+	System.out.println("MGR_NUM: "+session.getAttribute("mgr_num"));
+	String mgr_num = (String)session.getAttribute("mgr_num");
+%>
 <%-- 	회원번호 :${sessionScope.mem_num } --%>
 	<input type="button" name="reviewWrite" value="리뷰 남기기(new)"
 		onclick="location.href='./ReviewWriteForm.rv';">

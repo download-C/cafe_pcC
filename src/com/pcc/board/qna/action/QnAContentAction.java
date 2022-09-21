@@ -22,7 +22,7 @@ public class QnAContentAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String mem_num = (String)session.getAttribute("mem_num");
-		String mgr_num = (String)session.getAttribute("mgr_mum");
+		String mgr_num = (String)session.getAttribute("mgr_num");
 		
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		String pageNum = (String)request.getAttribute("pageNum");

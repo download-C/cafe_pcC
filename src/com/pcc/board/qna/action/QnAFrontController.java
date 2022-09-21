@@ -57,7 +57,7 @@ public class QnAFrontController extends HttpServlet {
 		
 		// 2-1. 공지사항 글 쓰기 양식
 		if(command.equals("/QnAWrite.qna")) {
-			action = new QnAAction();
+			action = new QnAWrite();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -67,12 +67,12 @@ public class QnAFrontController extends HttpServlet {
 		}
 		
 		
-		else if(command.equals("/QnAWriteForm.qna")) {
-			forward = new ActionForward();
-			forward.setPath("./QnA/QnAWriteForm.jsp");
-			forward.setRedirect(false);
-			System.out.println(" QnAWriteForm.qna 가상 주소로 이동 ");
-		}
+//		else if(command.equals("/QnAWriteForm.qna")) {
+//			forward = new ActionForward();
+//			forward.setPath("./QnA/QnAWriteForm.jsp");
+//			forward.setRedirect(false);
+//			System.out.println(" QnAWriteForm.qna 가상 주소로 이동 ");
+//		}
 		
 		// 2-2. 공지사항 글 DB에 올리기
 		else if (command.equals("/QnAWriteAction.qna")) {
@@ -188,7 +188,7 @@ public class QnAFrontController extends HttpServlet {
 			}
 		}
 		// 2-10. 매니저 Q&A 답글 적는 페이지 이동
-		else if(command.equals("/QnAReplyForm.rv")){
+		else if(command.equals("/QnAReplyForm.qna")){
 			action = new QnAReplyFormAction();
 			try{
 				forward = action.execute(request, response);
@@ -198,7 +198,7 @@ public class QnAFrontController extends HttpServlet {
 		}
 		
 		// 2-11. 매니저 Q&A 답글 달기
-		else if(command.equals("/QnAReply.rv")) {
+		else if(command.equals("/QnAReply.qna")) {
 			action = new QnAReplyAction();
 			try {
 				forward = action.execute(request, response);

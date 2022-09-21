@@ -37,7 +37,7 @@ public class ManagerLoginAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("mgr_num", mgr_num);
 			session.setAttribute("message", message);
-			session.setMaxInactiveInterval(600);
+			session.setMaxInactiveInterval(3000);
 
 			System.out.println("세션값 생성 성공!");
 			

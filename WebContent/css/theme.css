@@ -84,10 +84,13 @@
   --font-kor:'S-CoreDream-3Light';
   --font-eng:'D2Coding';
   
+  
+  /* 우리카페 포인트 컬러 */
   --color-base: #fef5ed;
   --color-point-1: #d3e4cd;
   --color-point-2: #adc2a9;
   --color-point-3: #adc2a9;
+  
 /*   --base-size: 10px; */
 /*   --font-family: 'Noto Sans KR', sans-serif; */
 }

@@ -62,6 +62,25 @@
 				$(this).html(order_price);
 				$(this).val(order_price);
 			});	
+			
+			//==================================================
+
+			
+			//데이터 정보 넘기기
+// 			alert($(this).attr('data-text'));
+			$.ajax({
+				type: "post",
+				url: "./CartUpdate.pr",
+				data: {
+					cart_num: $(this).attr('data-text'),
+					prod_count: count,
+					total_price: total_price,
+				},
+				dataType: "text",
+				success: function() {
+					alelrt("update 성공");
+				}
+			});
 		});
 		
 		
@@ -102,21 +121,24 @@
 				$(this).val(order_price);
 			});
 			
-//데이터 정보 넘기기
+			//==================================================
+
 			
-// 			$.ajax({
-// 				type: "post",
-// 				url: "./CartUpdate.pr",
-// 				data: {
-// 					cart_num: $(this).attr('data-text'),
-// 					prod_count: count,
-// 					total_price: total_price,
-// 				},
-// 				dataType: "text",
-// 				success: function() {
-// 					alelrt("update 성공");
-// 				}
-// 			});
+			//데이터 정보 넘기기
+// 			alert($(this).attr('data-text'));
+			$.ajax({
+				type: "post",
+				url: "./CartUpdate.pr",
+				data: {
+					cart_num: $(this).attr('data-text'),
+					prod_count: count,
+					total_price: total_price,
+				},
+				dataType: "text",
+				success: function() {
+					alelrt("update 성공");
+				}
+			});
 			
 		});
 		
@@ -153,7 +175,24 @@
 				$(this).val(order_price);
 			});
 			
+			//==================================================
+
 			
+			//데이터 정보 넘기기
+// 			alert($(this).attr('data-text'));
+			$.ajax({
+				type: "post",
+				url: "./CartUpdate.pr",
+				data: {
+					cart_num: $(this).attr('data-text'),
+					prod_count: count,
+					total_price: total_price,
+				},
+				dataType: "text",
+				success: function() {
+					alelrt("update 성공");
+				}
+			});
 			
 		});
 			//==================================================

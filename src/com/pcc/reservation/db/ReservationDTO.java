@@ -7,8 +7,7 @@ public class ReservationDTO {
 	private int mem_num;
 	private String res_date;
 	private int res_num_of_persons;
-	private int table_total;
-	private int table_occupied;
+	
 	
 	public int getRes_num() {
 		return res_num;
@@ -34,18 +33,7 @@ public class ReservationDTO {
 	public void setRes_num_of_persons(int res_num_of_persons) {
 		this.res_num_of_persons = res_num_of_persons;
 	}
-	public int getTable_total() {
-		return table_total;
-	}
-	public void setTable_total(int table_total) {
-		this.table_total = table_total;
-	}
-	public int getTable_occupied() {
-		return table_occupied;
-	}
-	public void setTable_occupied(int table_occupied) {
-		this.table_occupied = table_occupied;
-	}
+	
 	
 	
 }

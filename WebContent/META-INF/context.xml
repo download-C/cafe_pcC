@@ -7,9 +7,9 @@
 		auth = "Container"
 		type = "javax.sql.DataSource"
 		driverClassName = "com.mysql.cj.jdbc.Driver"
-		username = "itwillbs9"
-		password = "itwillbs8030909"
-		url = "jdbc:mysql://localhost/itwillbs9"
+		username = "root"
+		password = "1234"
+		url = "jdbc:mysql://localhost/cafe_pcc"
 		maxWait = "5000"
 	/>
 	

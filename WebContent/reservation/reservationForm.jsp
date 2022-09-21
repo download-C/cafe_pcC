@@ -16,11 +16,10 @@
 	인원 <input type="number" name="res_num_of_persons" placeholder="숫자만 입력하세요.">
 	
 	<br><br>
-	
 	예약날짜 <input type="datetime-local" name="res_date">
 	
 	<hr>
-	예약 최대 가능 인원은 8명 이며, 예약 가능 시간은 오후 1시 ~ 9시까지 입니다.
+	예약 최대 가능 인원은 8명 이며, 예약 가능 날짜 및 시간은 금일로부터 7일, 오후 1시 00분 ~ 8시 59분까지 입니다.
 	<br><br>
 	<input type="submit" value="예약하기"> 
 	</form>

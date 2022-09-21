@@ -32,22 +32,11 @@ public class QnAWrite implements Action {
 				forward.setRedirect(false);
 				return forward;
 				
-			} else if (mgr_num != null) {
-				
-				request.setAttribute("name", "관리자");
-				
-				ActionForward forward = new ActionForward();
-					forward.setPath("./QnA/QnAWriteForm.jsp");
-					forward.setRedirect(false);
-				return forward;
 			} else {
 				MemberDAO dao = new MemberDAO();
 				dao.alert(response, "로그인 후 이용 가능합니다.", "location.href='./LoginForm.me';");
 				return null;
 			}
-
-		}else {
-			
 		}
 		return null;
 	}

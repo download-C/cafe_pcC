@@ -49,7 +49,7 @@ public class LoginAction implements Action {
 				HttpSession session = request.getSession();
 				session.setAttribute("mem_num", mem_num);
 				session.setAttribute("message", message);
-				session.setMaxInactiveInterval(600);
+				session.setMaxInactiveInterval(3000);
 			
 				System.out.println("mem_num 세션값 생성 성공!");
 				

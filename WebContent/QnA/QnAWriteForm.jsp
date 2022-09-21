@@ -10,11 +10,11 @@
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-	$("#btn").submit(function () {
-		alert("click submit");
+	$('#btn').click(function () {
+// 		alert("click submit");
 		
 	    // 입력한 아이디 없을 때 처리
-	    /* if ($("#password").val() == "") {
+	    if ($("#password").val() == "") {
 					// 알림창 띄우기
 	        alert("비밀번호를를 입력하세요");
 	        $("#password").focus();
@@ -38,7 +38,7 @@ $(document).ready(function () {
 		    $("#content").focus();
 					// submit 실행 X
 		    return false; 
-		}*/
+		}
 	});
 });
 </script>
@@ -52,7 +52,7 @@ $(document).ready(function () {
 <br>
 <fieldset>
 	<legend>문의사항 작성하기</legend>
-	<form action="./QnAWriteAction.qna" method="post">
+	<form action="./QnAWriteAction.qna" method="post" enctype="multipart/form-data">
 		<div>
 		<%
 			String mem_num = (String)session.getAttribute("mem_num");
@@ -62,9 +62,12 @@ $(document).ready(function () {
 		작성자 : <input type="text" name="name" readonly="readonly" value="관리자"> <br>
 		<%} else if(mem_num != null) {%>
 		작성자 : <input type="text" name="name" readonly="readonly" value="${name }"> <br>			
-		<%} %>
-		비밀번호 : <input type="password" name="qna_password" maxlength="4" id="password" 
+		<%} 
+		if(mem_num != null) {
+		%>
+		비밀번호 : <input type="password" name="qna_password" maxlength="4" id="password"
 		placeholder="4자리 숫자로 입력하세요."> <br>
+		<%} %> 
 		<div id="passdiv"></div>
 		제목 : <input type="text" name="qna_subject" id="subject"> <br>
 		<div id="subdiv"></div>
@@ -74,7 +77,7 @@ $(document).ready(function () {
 		<div id="filediv"></div>
 		</div>	
 		<div>
-			<input type="submit" id="btn" value="작성" onclick="location.href='./QnAWriteAction.qna';">
+			<input type="submit" id="btn" value="작성" >
 			<input type="button" value="취소">
 		</div>
 	</form>

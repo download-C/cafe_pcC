@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.pcc.member.db.MemberDAO;
+
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
@@ -118,7 +120,11 @@ public class QnABoardDAO {
 			pstmt.setInt(2, 2); // 회원은 타입 2
 			pstmt.setInt(3, dto.getMem_num());
 			pstmt.setString(4, dto.getName());
-			pstmt.setInt(5, dto.getQna_password());
+			if(dto.getMem_num() != 0) {
+				pstmt.setInt(5, dto.getQna_password());
+			} else if(dto.getMgr_num() != 0) {
+				pstmt.setInt(5, 9090);
+			}
 			pstmt.setString(6, dto.getQna_subject());
 			pstmt.setString(7, dto.getQna_content());
 //			System.out.println(" content 완료 ");
@@ -613,6 +619,54 @@ public class QnABoardDAO {
 		}finally {
 			closeDB();
 		}
+	}
+
+	public int qnaReply(int qna_num, QnABoardDTO dto) {
+		int qna_re_ref= qna_num;
+		try {
+			con = getConnect();
+			
+			sql = "select max(qna_num) from qna_boards";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				qna_num = rs.getInt(1)+1;
+			}
+			
+			sql = "insert into qna_boards(qna_num, qna_writer_type, mgr_num, name, "
+					+ "qna_password, qna_subject, qna_content, qna_readcount, qna_re_ref, qna_re_lev,"
+					+ "qna_re_seq, qna_date, qna_ip, qna_file) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
+			pstmt.setInt(3, dto.getMgr_num());
+			pstmt.setString(4,  "관리자");
+			pstmt.setInt(5, 9090);
+//			System.out.println("글 제목:"+dto.getQna_subject());
+			pstmt.setString(6, dto.getQna_subject());
+			pstmt.setString(7, dto.getQna_content());
+			pstmt.setInt(8, dto.getQna_readcount());
+			pstmt.setInt(9, qna_re_ref);
+			pstmt.setInt(10, dto.getQna_re_ref());
+			pstmt.setInt(11, 1);
+			pstmt.setString(12, dto.getQna_ip());
+			pstmt.setString(13, dto.getQna_file());
+			
+			pstmt.executeUpdate();
+			
+			System.out.println(qna_re_ref+"번 글의 답글 작성 완료!");
+			
+			return qna_num;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return 0;
 	}
 	
 	

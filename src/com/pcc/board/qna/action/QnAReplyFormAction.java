@@ -22,7 +22,7 @@ public class QnAReplyFormAction implements Action {
 		request.setAttribute("qna_num", qna_num);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./qna/qnaReplyForm.jsp");
+		forward.setPath("./QnA/QnAReplyForm.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

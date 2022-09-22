@@ -9,20 +9,21 @@
 <title>문의사항 게시판 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/qnaboardlist.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>QnAList.jsp</h1>
+	<h1>문의사항</h1>
 	<%
  	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
 	String mgr_num = (String)session.getAttribute("mgr_num");
 	String mem_num = (String)session.getAttribute("mem_num");
 	%>
 	<%if(mem_num != null) { %>
-	<input type="button" name="qnaWrite" value="새 글 쓰기(new)"
+	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
 	  onclick="location.href='./QnAWriteForm.qna';"> 
  	<%} %>
 	<fieldset>

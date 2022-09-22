@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주문하기</title>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-<script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	//alert("test1");

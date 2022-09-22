@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품 상세 내용</title>
-<script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		//alert("시험");
@@ -76,6 +76,9 @@
 		
 		<form action="./CartWrite.pr" method="post">
 			<input type='hidden' name='prod_num' value="${dto.prod_num }" >
+			<input type="hidden" name="mem_num" value="${sessionScope.mem_num }">
+<%-- 			회원 번호 : ${sessionScope.mem_num } --%>
+			
 <%-- 			<input type='hidden' name='prod_name' value="${dto.prod_name }" > --%>
 <%-- 			<input type='hidden' name='prod_img' value="${dto.prod_img }" > --%>
 <%-- 			<input type='hidden' name='prod_real_img' value="${dto.prod_real_img }" > --%>

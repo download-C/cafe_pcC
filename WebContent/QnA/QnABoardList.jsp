@@ -24,7 +24,7 @@
 	%>
 	<%if(mem_num != null) { %>
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
-	  onclick="location.href='./QnAWriteForm.qna';"> 
+	  onclick="location.href='./QnAWrite.qna';"> 
  	<%} %>
 	<fieldset>
 		<table>
@@ -34,7 +34,10 @@
 		  		<td>작성자</td>
 				<td>조회수</td>
 				<td>작성일</td>
+			<% if(mgr_num != null) { %>
 				<td>IP</td>
+			<% } %>
+				
 			</tr>
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
 			<tr>
@@ -44,7 +47,9 @@
 				<td>${dto.name }</td>
 				<td>${dto.qna_readcount }</td>
 				<td>${dto.qna_date }</td>
+			<% if(mgr_num != null) { %>
 				<td>${dto.qna_ip }</td>
+			<% } %>
 			</tr>
 		</c:forEach>
 		</table>

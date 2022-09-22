@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pcc.member.db.MemberDAO;
 import com.pcc.reservation.db.ReservationDAO;
 import com.pcc.reservation.db.ReservationDTO;
 import com.sun.org.apache.bcel.internal.generic.DASTORE;
@@ -21,7 +22,7 @@ public class ReservationListAction implements Action {
 		request.setCharacterEncoding("UTF-8"); // request라는 내장객체는 자바에 없잖아 JSP에만
 												// 있으니까 ㅇㅇ
 		
-		
+		MemberDAO daoM = new MemberDAO();
 
 		// ReservationDAO 객체 생성
 		ReservationDAO dao = new ReservationDAO();
@@ -65,16 +66,21 @@ public class ReservationListAction implements Action {
 		HttpSession session = request.getSession();
 		List<ReservationDTO> reservationList = null;
 		if(session != null) {
-			String mem_num = (String)request.getAttribute("mem_num");
+			String mem_num = (String)session.getAttribute("mem_num");
+			String mgr_num = (String)session.getAttribute("mgr_num");
+					
 			if(mem_num != null) {
 				reservationList = 
 						dao.reservationList(Integer.parseInt(mem_num), startRow, pageSize);
 				request.setAttribute("reservationList", reservationList);
-			} else {
+			} else if(mgr_num != null ){
 				reservationList = dao.reservationList(startRow, pageSize);
 				request.setAttribute("reservationList", reservationList);
+			} else {
+				daoM.alert(response, "로그인 후 이용 가능합니다.", "location.href='./MainPage.pcc';");
+				return null;
 			}
-		}
+		}	
 		
 		int pageCount = (cnt/pageSize)+(cnt%pageSize==0 ? 0:1);
 		int pageBlock = 5;

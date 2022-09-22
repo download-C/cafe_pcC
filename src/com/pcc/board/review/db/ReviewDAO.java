@@ -158,13 +158,13 @@ public class ReviewDAO {
 			pstmt.setInt(2, 1); // 1은 관리자, 2는 회원
 			pstmt.setInt(3, dto.getMgr_num());
 			pstmt.setString(4,  "관리자");
-			pstmt.setInt(5, dto.getReview_password());
+			pstmt.setInt(5, 9090);
 			System.out.println("글 제목:"+dto.getReview_subject());
-			pstmt.setString(6, dto.getReview_subject());
+			pstmt.setString(6, " "+dto.getReview_subject());
 			pstmt.setString(7, dto.getReview_content());
 			pstmt.setInt(8, dto.getReview_readcount());
 			pstmt.setInt(9, review_re_ref);
-			pstmt.setInt(10, dto.getReview_re_ref());
+			pstmt.setInt(10, 1);
 			pstmt.setInt(11, 1);
 			pstmt.setString(12, dto.getReview_ip());
 			pstmt.setString(13, dto.getReview_file());

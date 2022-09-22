@@ -18,8 +18,7 @@
 	String mem_num = (String)session.getAttribute("mem_num");
 
 	if(mem_num != null) {
-%>
-		<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+%>		<input type="button" name="res_btn" id="res_btn" value="예약하기" 
 		onclick="location.href='./Reservation.re';"> <br><br>
 <%
 	} else {}

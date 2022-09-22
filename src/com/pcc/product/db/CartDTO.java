@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 public class CartDTO {
 	private int cart_num;
+	private int mem_num;
 	private int prod_num;
 	private String prod_name;
 	private String prod_img;//원본 파일명
@@ -17,6 +18,12 @@ public class CartDTO {
 	private Timestamp checked;
 	
 	
+	public int getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
 
 	public Timestamp getChecked() {
 		return checked;
@@ -81,9 +88,10 @@ public class CartDTO {
 	
 	@Override
 	public String toString() {
-		return "CartDTO [cart_num=" + cart_num + ", prod_num=" + prod_num + ", prod_name=" + prod_name + ", prod_img="
-				+ prod_img + ", prod_real_img=" + prod_real_img + ", requirements=" + requirements + ", prod_count="
-				+ prod_count + ", price=" + price + ", total_price=" + total_price + ", checked=" + checked + "]";
+		return "CartDTO [cart_num=" + cart_num + ", mem_num=" + mem_num + ", prod_num=" + prod_num + ", prod_name="
+				+ prod_name + ", prod_img=" + prod_img + ", prod_real_img=" + prod_real_img + ", requirements="
+				+ requirements + ", prod_count=" + prod_count + ", price=" + price + ", total_price=" + total_price
+				+ ", checked=" + checked + "]";
 	}
 	
 }

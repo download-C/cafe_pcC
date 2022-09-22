@@ -26,6 +26,16 @@ public class CartListAction implements Action {
 		//CartDAO 객체 생성
 		CartDAO dao = new CartDAO();
 		
+		//한글 처리
+		request.setCharacterEncoding("UTF-8");
+		
+		//전달정보 저장
+		//CartDTO 객체 생성
+		CartDTO dto = new CartDTO();
+		dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
+		
+		System.out.println(Integer.parseInt(request.getParameter("mem_num")));
+
 		//dao 메서드 중에서 카트에 담긴 상품을 모두 가져오는 메서드 호출
 		List<CartDTO> cartList = dao.getCartList();
 		

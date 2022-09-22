@@ -100,17 +100,18 @@ public class CartDAO {
 			
 			//카트 데이터 입력
 			//3. sql 작성 & pstmt 객체
-			sql = "insert into carts(cart_num, prod_num, prod_count, requirements, total_price) "+
-			"values(?,?,?,?,?);";
+			sql = "insert into carts(cart_num, mem_num, prod_num, prod_count, requirements, total_price) "+
+			"values(?,?,?,?,?,?);";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			//???
 			pstmt.setInt(1, cart_num);
-			pstmt.setInt(2,  dto.getProd_num());
-			pstmt.setInt(3,  dto.getProd_count());
-			pstmt.setString(4, dto.getRequirements());
-			pstmt.setInt(5, dto.getTotal_price());
+			pstmt.setInt(2,  dto.getMem_num());
+			pstmt.setInt(3,  dto.getProd_num());
+			pstmt.setInt(4,  dto.getProd_count());
+			pstmt.setString(5, dto.getRequirements());
+			pstmt.setInt(6, dto.getTotal_price());
 			
 			//4. sql 실행
 			pstmt.executeUpdate();//insert 구문은 Update 사용
@@ -209,8 +210,8 @@ public class CartDAO {
 	
 	
 	// 6.  카트에 담긴 상품 목록 (all) - getCartList() -----------------------------------------
-	
-	public List<CartDTO> getCartList() {
+
+	public List<CartDTO> getCartList(CartDTO dto) {
 		System.out.println("4. cartList DAO");
 		
 		//카트의 상품 모두를 저장하는 배열(가변길이)
@@ -220,16 +221,25 @@ public class CartDAO {
 			//1. 드라이버 로드
 			//2. 디비 연결
 			con = getConnect();
+			
+			
 			//3. sql 작성 & pstmt 객체
-			sql ="select c.cart_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
-					"c.requirements, c.prod_count, p.price, c.total_price "+
-					"from products p join carts c "+
+			sql ="select c.cart_num, m.mem_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img "+
+					"c.requirements, c.prod_count, p.price, c.total_price "+ 
+					"from products p join carts c "+  
 					"on c.prod_num = p.prod_num "+
-					"where c.checked is null";
+                    "join members m "+
+                    "on c.mem_num = m.mem_num "+
+					"where c.checked is null "+
+                    "and m.mem_num =?;";
 //			sql_prod = "select c.prod_num, p.prod_name, p.prod_img, p.prod_real_img " +
 //						"from products p join carts c on c.prod_num = p.prod_num;";
 					
 			pstmt = con.prepareStatement(sql);
+			
+
+			//			// ???
+			pstmt.setInt(1, dto.getMem_num());
 			
 			//4. sql 실행
 			rs = pstmt.executeQuery();
@@ -239,8 +249,8 @@ public class CartDAO {
 				//데이터가 있을 때, true면 DB에 저장된 정보를 DTO에 저장 -> List저장
 
 				//DB -> DTO로 저장
-				CartDTO dto = new CartDTO();
 				dto.setCart_num(rs.getInt("cart_num"));
+				dto.setMem_num(rs.getInt("mem_num"));
 				dto.setProd_num(rs.getInt("prod_num"));
 				dto.setProd_name(rs.getString("prod_name"));
 				dto.setProd_img(rs.getString("prod_img"));
@@ -332,6 +342,8 @@ public class CartDAO {
 				
 		
 	}
+
+
 	
 	
 	

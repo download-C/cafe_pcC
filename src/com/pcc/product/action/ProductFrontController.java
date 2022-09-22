@@ -21,13 +21,10 @@ public class ProductFrontController extends HttpServlet {
 			
 			// 1-1. URI 불러오기
 			String requestURI = request.getRequestURI();
-//			System.out.println(" Controller : requestUIR = "+requestURI);
 			// 1-2. context Path 불러오기
 			String ctxPath = request.getContextPath();
-//			System.out.println(" Controller : ctxPath = "+ctxPath);
 			// 1-3. URI를 context Path 길이만큼 자르기
 			String command = requestURI.substring(ctxPath.length());
-//			System.out.println(" Controller : command = "+command);
 		
 		System.out.println("2. 입력받은 주소 : " + command);
 		
@@ -48,8 +45,6 @@ public class ProductFrontController extends HttpServlet {
 			//    이전의 요청 주소인 서블릿 주소("/ProductWrite.pr")를 그대로 유지해야하므로
 			//    Dispatcher 방식으로 포워딩을 수행해야한다!
 			// => 파라미터로 현재 위치(= Root)에서 하위 디렉토리의 writeForm.js 페이지 지정
-//			System.out.println(" C : /ProductWrite.pr 호출 ");
-//			System.out.println(" C : DB정보가 필요없음-view페이지로 이동 ");
 			
 			forward = new ActionForward();
 			forward.setPath("./product/writeForm.jsp");
@@ -58,14 +53,10 @@ public class ProductFrontController extends HttpServlet {
 		
 		//상품 등록 넘기기
 		else if(command.equals("/ProductSave.pr")){
-//			System.out.println(" C : /ProductWriteAction.pr 호출 ");
 
 			// ProductWriteAction() 객체 생성
-			//ProductWriteAction pwAction = new ProductWriteAction();
 			action = new ProductWriteAction();
-//			System.out.println(" C : DB작업 o, 페이지 이동");
 			try {
-//			    forward = pwAction.execute(request, response);
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -73,14 +64,10 @@ public class ProductFrontController extends HttpServlet {
 		}
 		//상품 리스트 보는 페이지
 		else if(command.equals("/ProductList.pr")){
-//			System.out.println(" C : /ProductList.pr 호출");
-//			System.out.println(" C : DB정보가 필요, 페이지 이동 X, 페이지 출력");
 			
 			//ProductListAction() 객체 생성
-			//ProductListAction listAction = new ProductListAction();
 			action = new ProductListAction();
 			try{
-//				System.out.println(" C : 해당 Model 객체 호출");
 				forward = action.execute(request, response);
 			} catch (Exception e){
 				e.printStackTrace();
@@ -88,8 +75,6 @@ public class ProductFrontController extends HttpServlet {
 		}
 		//상품 상세 페이지 
 		else if (command.equals("/ProductContent.pr")) {
-//			System.out.println(" C : /ProductContent.pr 호출 ");
-//			System.out.println(" C : DB정보 사용, 출력");
 			
 			// ProductContentAction 객체
 			action = new ProductContentAction();
@@ -101,8 +86,6 @@ public class ProductFrontController extends HttpServlet {
 		}
 		//상품 주문 옵션 정보 작성 -> DB 필요
 		else if(command.equals("/CartWrite.pr")){
-//			System.out.println(" C : /CartWriteAction.pr 호출");
-//			System.out.println(" C : DB 정보 사용, 출력");
 			
 			//CartWriteAction 객체
 			action = new CartWriteAction();

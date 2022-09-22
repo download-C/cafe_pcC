@@ -14,12 +14,16 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 	<h1>reservationList.jsp</h1>
-	<%
-		System.out.println(session.getAttribute("mem_num"));
-	%>
+<%
+	String mem_num = (String)session.getAttribute("mem_num");
 
-	<input type="button" name="res_btn" id="res_btn" value="예약하기" 
-	onclick="location.href='./Reservation.re';"> <br><br>
+	if(mem_num != null) {
+%>
+		<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+		onclick="location.href='./Reservation.re';"> <br><br>
+<%
+	} else {}
+%>
 	<fieldset>
 		<table >
 			<tr>

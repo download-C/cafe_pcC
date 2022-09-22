@@ -4,6 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품 상세 내용</title>
+
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){

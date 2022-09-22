@@ -211,7 +211,7 @@ public class CartDAO {
 	
 	// 6.  카트에 담긴 상품 목록 (all) - getCartList() -----------------------------------------
 
-	public List<CartDTO> getCartList(CartDTO dto) {
+	public List<CartDTO> getCartList(CartDTO dto, String mem_num) {
 		System.out.println("4. cartList DAO");
 		
 		//카트의 상품 모두를 저장하는 배열(가변길이)
@@ -232,14 +232,12 @@ public class CartDAO {
                     "on c.mem_num = m.mem_num "+
 					"where c.checked is null "+
                     "and m.mem_num =?;";
-//			sql_prod = "select c.prod_num, p.prod_name, p.prod_img, p.prod_real_img " +
-//						"from products p join carts c on c.prod_num = p.prod_num;";
 					
 			pstmt = con.prepareStatement(sql);
 			
 
-			//			// ???
-			pstmt.setInt(1, dto.getMem_num());
+			// ???
+			pstmt.setString(1, mem_num);
 			
 			//4. sql 실행
 			rs = pstmt.executeQuery();

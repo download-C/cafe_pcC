@@ -33,11 +33,6 @@ public class CartWriteAction implements Action {
 		dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));
 		
 		
-		
-//		System.out.println(" M : " + dto);
-		
-		//int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-		
 		//DB에 정보 저장
 		//ProductDAO 객체 생성
 		CartDAO dao = new CartDAO();

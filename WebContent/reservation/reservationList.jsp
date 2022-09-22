@@ -21,38 +21,44 @@
 	<input type="button" name="res_btn" id="res_btn" value="예약하기" 
 	onclick="location.href='./Reservation.re';"> <br><br>
 	<fieldset>
-		<table border="1">
+		<table >
 			<tr>
 				<td>예약 번호</td>
 				<td>예약자</td>
 				<td>예약 날짜 및 시간</td>
 				<td>예약 인원</td>
+				<td> 수정/삭제 </td>
 			</tr>
 		<c:forEach var="dto" items="${reservationList }"> 
 			<tr>
 				<td>${dto.res_num }</td>
+				
 				<td>${dto.name }</td>
 				<td>
-					<a href="./ReservationContent.re?res_num=${dto.res_num }&pageNum=${requestScope.pageNum}">
 					${dto.res_date } / ${dto.res_time }시
-					</a>
 				</td>
-				<td>${dto.res_persons }명</td>				
-			</tr>
+				<td>${dto.res_persons }명</td>	
+				<td>
+					<input type="button" value="예약 수정" name="res_update" 
+					onclick="location.href='./ReservationUpdateForm.re?res_num=${dto.res_num }';">  
+					<input type="button" value="예약 삭제" name="res_delete" 
+					onclick="location.href='./ReservationDeleteAction.re?res_num=${dto.res_num}';">
+				</td>			
+			</tr>	
 		</c:forEach>
+		
 		</table>
-		<input type="button" value="예약 수정" name="res_update" onclick=""> 
-		<input type="button" value="예약 삭제" name="res_delete" onclick=""> 
+		
 	</fieldset>
 		<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
-			<a href="./ReviewList.rv?pageNum=${startPage-pageBlock }">[이전]</a>
+			<a href="./ReservationList.rv?pageNum=${startPage-pageBlock }">[이전]</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-			<a href="./ReviewList.rv?pageNum=${i }">[${i }]</a>
+			<a href="./ReservationList.rv?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-			<a href="./ReviewList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
+			<a href="./ReservationList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
 <!-- 푸터들어가는 곳 -->

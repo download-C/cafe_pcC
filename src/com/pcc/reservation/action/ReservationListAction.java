@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.pcc.reservation.db.ReservationDAO;
 import com.pcc.reservation.db.ReservationDTO;
+import com.sun.org.apache.bcel.internal.generic.DASTORE;
 
 import action.Action;
 import vo.ActionForward;
@@ -19,6 +20,8 @@ public class ReservationListAction implements Action {
 
 		request.setCharacterEncoding("UTF-8"); // request라는 내장객체는 자바에 없잖아 JSP에만
 												// 있으니까 ㅇㅇ
+		
+		
 
 		// ReservationDAO 객체 생성
 		ReservationDAO dao = new ReservationDAO();

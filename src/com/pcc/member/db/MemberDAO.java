@@ -168,7 +168,7 @@ public class MemberDAO {
 										
 					dto.setMem_num(rs.getInt("mem_num"));
 					dto.setName(rs.getString("name"));
-					dto.setReg_date(rs.getTimestamp("regdate"));
+					dto.setRegdate(rs.getTimestamp("regdate"));
 					
 					System.out.println("rs dto:"+dto);
 					
@@ -201,7 +201,7 @@ public class MemberDAO {
 					dto.setMem_num(mem_num);
 					dto.setName(rs.getString("name"));
 					dto.setPassword(rs.getString("password"));
-					dto.setReg_date(rs.getTimestamp("regdate"));
+					dto.setRegdate(rs.getTimestamp("regdate"));
 					dto.setPhone(rs.getString("phone"));
 					
 					System.out.println("rs dto:"+dto);
@@ -293,8 +293,10 @@ public class MemberDAO {
 // 7.  리뷰 글 수정 메서드 -----------------------------------------
 	
 // 8. 마이페이지 리스트  -----------------------------------------
-	public MemberDTO memberContent(MemberDTO dto){
+	public MemberDTO memberContent(int mem_num){
 		System.out.println("\n DAO : memberContent(BoardDTO dto) 호출 ");
+		
+		MemberDTO dto = null;
 		
 		try{
 			//1.드라이버로드
@@ -307,18 +309,21 @@ public class MemberDAO {
 			
 			// ???
 			// pstmt.setInt(1, dto.getMem_num());
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, mem_num);
 			
 			//4. sql 실행
 			rs = pstmt.executeQuery();
 			
 			// 5. 데이터 처리
 			if(rs.next()){
+			
+				dto = new MemberDTO();
+				
 				dto.setMem_num(rs.getInt("mem_num"));
 				dto.setPassword(rs.getString("password"));
 				dto.setName(rs.getString("name"));
 				dto.setPhone(rs.getString("phone"));
-				dto.setReg_date(rs.getTimestamp("regdate"));
+				dto.setRegdate(rs.getTimestamp("regdate"));
 				
 				System.out.println(" DAO : 회원정보 저장 완료");
 				System.out.println(" DAO : "+dto.toString());

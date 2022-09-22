@@ -2,6 +2,7 @@ package com.pcc.member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.member.db.MemberDAO;
 import com.pcc.member.db.MemberDTO;
@@ -13,27 +14,41 @@ public class MyPageContentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println(" M : MypageListAction_execute() 호출 ");
+		System.out.println(" M : MypageContentAction_execute() 호출 ");
 		
-		// 한글처리
-		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		
-		// 전달정보 저장(제목,비밀번호,이름,내용)
-		MemberDTO dto = new MemberDTO();
-		
-		// DB에 정보 저장
-		// MemberDAO 객체 생성
-		MemberDAO dao = new MemberDAO();
+		if(session != null) {
+			
+			String mem_num = (String)session.getAttribute("mem_num");
+			
+			if(mem_num != null) {
 				
-		dao.memberContent(dto);
+				// 한글처리
+				request.setCharacterEncoding("UTF-8");
+				
+				// 전달정보 저장(제목,비밀번호,이름,내용)
+				MemberDTO dto = new MemberDTO();
+				
+				// DB에 정보 저장
+				// MemberDAO 객체 생성
+				MemberDAO dao = new MemberDAO();
+				
+				dto = dao.memberContent(Integer.parseInt(mem_num));
+				
+				request.setAttribute("dto", dto);
+				
+				//페이지 이동정보 저장(리턴)
+				ActionForward forward = new ActionForward();
+				forward.setPath("./mypage/myPage.jsp");
+				forward.setRedirect(false);
+				
+				return forward;
+			}
+			
+			
+		}
 		
-		request.setAttribute("dto", dto);
-				
-		//페이지 이동정보 저장(리턴)
-		ActionForward forward = new ActionForward();
-		forward.setPath("./mypage/mypageContent.jsp");
-		forward.setRedirect(true);
-				
-		return forward;
+		return null;
 	}
 }

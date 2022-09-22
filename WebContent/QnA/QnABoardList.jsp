@@ -25,8 +25,10 @@
 	<%if(mem_num != null) { %>
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
 	  onclick="location.href='./QnAWriteForm.qna';"> 
+	  <br><br>
  	<%} %>
 	<fieldset>
+		<div class="boardlist">
 		<table>
 			<tr>
 				<td>번호</td>
@@ -48,6 +50,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+		</div>
 	</fieldset>
 	
 	<c:if test="${cnt !=0 }">

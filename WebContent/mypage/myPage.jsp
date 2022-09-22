@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.SendResult"%>
 <%@page import="com.pcc.member.db.MemberDAO"%>
 <%@page import="com.pcc.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,18 +15,17 @@
      <%
        // 로그인 여부 체크
        if(session != null){
-          String mem_num = (String) session.getAttribute("loginMem_num");
-    	  response.sendRedirect("loginForm.jsp");
+          String mem_num = (String) session.getAttribute("mem_num");
+          System.out.println("회원번호 : "+mem_num);
+          if(mem_num == null) {
+        	  response.sendRedirect("./Login.pcc");
+          }
        }
 
      %>
      
      <h2>개인정보 조회</h2>
-     http://localhost:8088/cafe_pcc/img/slide1.jpg
      <table border="1">
-        <tr>
-        <td>회원번호</td><td>${dto.mem_num }</td>
-        </tr>
         <tr>
         <td>휴대폰 번호</td><td>${dto.phone }</td>
         </tr>
@@ -36,7 +36,7 @@
         <td>이름</td><td>${dto.name }</td>
         </tr>
         <tr>
-        <td>회원가입일</td><td>${dto.reg_date }</td>
+        <td>회원가입일</td><td>${dto.regdate }</td>
         </tr>
         <tr>
         <td colspan="2">

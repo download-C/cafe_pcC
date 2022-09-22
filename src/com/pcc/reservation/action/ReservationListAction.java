@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.reservation.db.ReservationDAO;
 import com.pcc.reservation.db.ReservationDTO;
@@ -21,11 +22,8 @@ public class ReservationListAction implements Action {
 
 		// ReservationDAO 객체 생성
 		ReservationDAO dao = new ReservationDAO();
-		System.out.println("DAO객체 생성");
-
-		// 게시판에 작성되어 있는 전체 글 개수
 		int cnt = dao.getReservationCount();
-
+		System.out.println("예약 목록 총 개수 : "+cnt);
 		// 페이징
 		// 처리---------------------------------------------------------------------------
 
@@ -37,60 +35,56 @@ public class ReservationListAction implements Action {
 		// 한 페이지에 보여줄 글의 개수 설정
 
 		// ./BoardList.com?pageNum=2&pageSize=3
-		String urlPageSize = request.getParameter("pageSize");  // 글 5개 행 5개 보여줌
-		urlPageSize = "5";
-		int pageSize = Integer.parseInt(urlPageSize);
-		// URL에 ?pageSize = 15 이런식으로 입력하면 페이지 사이즈 조절 됨.
+		
+		String urlPageSize = "10";
 
-		// 현재 페이지가 몇번째 페이지인지 계산
-		// 페이지 정보가 없을경우 항상 1페이지
-		String pageNum = request.getParameter("pageNum");      // 5개씩 1페이지
+		urlPageSize = request.getParameter("pageSize");
+		if (urlPageSize == null) {
+			urlPageSize = "10";
+		}
+
+		int pageSize = Integer.parseInt(urlPageSize);
+//		System.out.println("페이지 사이즈 : "+pageSize);
+
+		String pageNum = request.getParameter("pageNum");
+//		System.out.println("페이지 번호 : "+pageNum);
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		// 시작행 번호 계산 1 6 11 16 .....
-		
+//		System.out.println("페이지 번호 : "+pageNum);
+
 		int currentPage = Integer.parseInt(pageNum);
-	
 		int startRow = (currentPage - 1) * pageSize + 1;
-
-		// 끝행 번호 계산 5 10 15 20 ....
-
 		int endRow = currentPage * pageSize;
 
+		// 페이징 처리 2 : 목록 하단 숫자 버튼 --------------------------
 		
-		List<ReservationDTO> reservationList = dao.reservationList(startRow, pageSize);
-		
-		
-		int pageCount = cnt / pageSize + (cnt % pageSize == 0 ? 0 : 1);
-
-		// 한 화면에 보여줄 페이지수(페이지 블럭)
-		int pageBlock = 3;
-
-		// 페이지블럭 시작번호 1 ~ 10 => 1, 11~20 => 11, 21~30 => 21
-		int startPage = ((currentPage - 1) / pageBlock) * pageBlock+ 1;
-
-		// 페이지 블럭 끝번호
-		int endPage = startPage + pageBlock - 1;
-
-		// view 페이지 정보 전달을 위해서 request영역
-		// int는 소수점이하 자리를 버림.
-		
-		// 총 페이지, 페이지 블럭(끝번호) 비교
-		if(endPage > pageCount){
-				endPage = pageCount;
+		HttpSession session = request.getSession();
+		List<ReservationDTO> reservationList = null;
+		if(session != null) {
+			String mem_num = (String)request.getAttribute("mem_num");
+			if(mem_num != null) {
+				reservationList = 
+						dao.reservationList(Integer.parseInt(mem_num), startRow, pageSize);
+				request.setAttribute("reservationList", reservationList);
+			} else {
+				reservationList = dao.reservationList(startRow, pageSize);
+				request.setAttribute("reservationList", reservationList);
+			}
 		}
+		
+		int pageCount = (cnt/pageSize)+(cnt%pageSize==0 ? 0:1);
+		int pageBlock = 5;
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+		int endPage = startPage+pageBlock-1;
+
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		System.out.println("M :  페이징 처리정보 완료");
 
 		// 페이징 처리 2(하단 페이지
 		// 링크)-----------------------------------------------------------------------------
-		
-	
-
-		request.setAttribute("reservationList", reservationList);
-
-		System.out.println(" M :  페이징 정보처리 ");
-
-		// 페이지 처리 정보 전달(request 영역)
 
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("cnt", cnt);
@@ -98,8 +92,8 @@ public class ReservationListAction implements Action {
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		System.out.println("M :  페이징 처리정보 완료");
-
+		
+		System.out.println("reservationList 정보 전달 완료");
 		ActionForward forward = new ActionForward();
 		forward.setPath("./reservation/reservationList.jsp");
 		forward.setRedirect(false);

@@ -44,17 +44,19 @@ public class ReservationAction implements Action {
 			int result = dao.reservation(dto);
 	
 			if (result == 1) {
-				request.getAttribute("dto");
-				daoM.alert(response, "예약이 완료되었습니다.", "location.href = 'ReservationContent.re';");
+				
+				request.setAttribute("dto", dto);
+				daoM.alert(response, "예약이 완료되었습니다.", 
+						"location.href='ReservationContent.re?res_num="+dto.getRes_num()+"&pageNum=1';");
 				return null;
 	
 			} else if (result == 0) {
-				
-				daoM.alert(response, "해당 날짜의 오전에는 예약이 불가능합니다.", "location.href = 'history.back()';");
-
+				daoM.alert(response, "해당 날짜의 오전에는 예약이 불가능합니다.", 
+						"history.back();");
 				return null;	
 			} else {
-				daoM.alert(response, "해당 날짜의 오후에는 예약이 불가능합니다.", "location.href = 'history.back()';");
+				daoM.alert(response, "해당 날짜의 오후에는 예약이 불가능합니다.", 
+						"history.back()");
 				return null;
 			}
 		}

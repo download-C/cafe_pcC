@@ -40,10 +40,8 @@ public class ReservationDAO {
 
 			System.out.println("DAO : DB 연결 완료");
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -62,7 +60,6 @@ public class ReservationDAO {
 				con.close();
 			System.out.println("DAO : DB 자원(rs, pstmt, con) 해제 완료");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("DAO : DB 연결 해제");
@@ -89,7 +86,7 @@ public class ReservationDAO {
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){					
-					System.out.println(dto.getRes_date()+"의 오전 테이블 예약 수  : "
+					System.out.println(dto.getRes_date()+" 오전 예약되어있는 테이블 수  : "
 							+ rs.getInt(1));
 					
 					// 예약 가능한 테이블이 남아있을 때 
@@ -100,33 +97,35 @@ public class ReservationDAO {
 						rs = pstmt.executeQuery();
 						
 						// 예약번호 부여
-						if(rs.next()) {							
-							res_num = rs.getInt("res_num") + 1;
-						}
-						System.out.println("예약번호 : "+res_num);
+						if(rs.next()) {
+							res_num = rs.getInt(1) + 1;
 						
-						sql = "insert into reservations (res_num, mem_num, name, "
-								+ "res_date, res_time, res_persons, res_table) "
-								+"values (?,?,?,?,?,?,?)";
-						pstmt = con.prepareStatement(sql);
-						
-						pstmt.setInt(1, res_num);
-						pstmt.setInt(2,  dto.getMem_num());
-						pstmt.setString(3, dto.getName());
-						pstmt.setDate(4, dto.getRes_date());
-						pstmt.setInt(5,  dto.getRes_time());
-						pstmt.setInt(6, dto.getRes_persons());
-							res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
-						pstmt.setInt(7, res_table);
-						
-						pstmt.executeQuery();
-						System.out.println(dto.getRes_date() +" "+dto.getRes_time() 
-							+ dto.getRes_persons()+"명 예약 완료");
+							System.out.println("예약번호 : "+res_num);
+							
+							sql = "insert into reservations (res_num, mem_num, name, "
+									+ "res_date, res_time, res_persons, res_table) "
+									+"values (?,?,?,?,?,?,?)";
+							pstmt = con.prepareStatement(sql);
+							
+							pstmt.setInt(1, res_num);
+							pstmt.setInt(2,  dto.getMem_num());
+							pstmt.setString(3, dto.getName());
+							pstmt.setDate(4, dto.getRes_date());
+							pstmt.setInt(5,  dto.getRes_time());
+							pstmt.setInt(6, dto.getRes_persons());
+								res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
+							pstmt.setInt(7, res_table);
+							
+							pstmt.executeUpdate();
+							System.out.println(dto.getRes_date() +" "+dto.getRes_time()+"시" 
+								+ dto.getRes_persons()+"명 예약 완료");
+							
+							result = 1;
+						}	
 					// 예약 가능한 테이블이 없을 때
 					} else {
 						result = 0;
 					}
-			
 				} 
 			}
 
@@ -140,44 +139,48 @@ public class ReservationDAO {
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){					
-					System.out.println(dto.getRes_date()+"의 오전 테이블 예약 수  : "
+					System.out.println(dto.getRes_date()+" 오전 예약되어있는 테이블 수  : "
 							+ rs.getInt(1));
 					
 					// 예약 가능한 테이블이 남아있을 때 
-					if(rs.getInt(1)  == 13 ||  // 예약 가능한 테이블이 2개 이상일 때
-							rs.getInt(1) < 14 && dto.getRes_persons() <5 ) { // 예약 가능한 테이블이 한 개이고 예약인원이 4명 이하일 때
+					if(rs.getInt(1	)  == 13 ||  // 예약 가능한 테이블이 2개 이상일 때
+							rs.getInt(1) < 14 && dto.getRes_persons() <5 ) { 
+							// 예약 가능한 테이블이 한 개이고 예약인원이 4명 이하일 때
 						sql = "select max(res_num) from reservations";
 						pstmt = con.prepareStatement(sql);
 						rs = pstmt.executeQuery();
 						
 						// 예약번호 부여
-						if(rs.next()) {							
-							res_num = rs.getInt("res_num") + 1;
-						}
-						System.out.println("예약번호 : "+res_num);
+						if(rs.next()) {
+							res_num = rs.getInt(1) + 1;
 						
-						sql = "insert into reservations (res_num, mem_num, name, "
-								+ "res_date, res_time, res_persons, res_table) "
-								+"values (?,?,?,?,?,?,?)";
-						pstmt = con.prepareStatement(sql);
-						
-						pstmt.setInt(1, res_num);
-						pstmt.setInt(2,  dto.getMem_num());
-						pstmt.setString(3, dto.getName());
-						pstmt.setDate(4, dto.getRes_date());
-						pstmt.setInt(5,  dto.getRes_time());
-						pstmt.setInt(6, dto.getRes_persons());
-							res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
-						pstmt.setInt(7, res_table);
-						
-						pstmt.executeQuery();
-						System.out.println(dto.getRes_date() +" "+dto.getRes_time() 
-							+ dto.getRes_persons()+"명 예약 완료");
-					// 오후에 예약 가능한 테이블이 없을 때
+							System.out.println("예약번호 : "+res_num);
+							
+							sql = "insert into reservations (res_num, mem_num, name, "
+									+ "res_date, res_time, res_persons, res_table) "
+									+"values (?,?,?,?,?,?,?)";
+							pstmt = con.prepareStatement(sql);
+							
+							pstmt.setInt(1, res_num);
+							pstmt.setInt(2,  dto.getMem_num());
+							pstmt.setString(3, dto.getName());
+							pstmt.setDate(4, dto.getRes_date());
+							pstmt.setInt(5,  dto.getRes_time());
+							pstmt.setInt(6, dto.getRes_persons());
+								res_table = (dto.getRes_persons()/4) + (dto.getRes_persons()%4==0?0:1);
+							pstmt.setInt(7, res_table);
+							
+							pstmt.executeUpdate();
+							System.out.println(dto.getRes_date() +" "+dto.getRes_time()+"시" 
+								+ dto.getRes_persons()+"명 예약 완료");
+							
+							result = 1;
+						}	
+					// 예약 가능한 테이블이 없을 때
 					} else {
-						result = 0;
-					}				
-				} 
+						result = -1;
+					}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,8 +190,6 @@ public class ReservationDAO {
 		return result;
 	}
 
-	
-	
 	public List<ReservationDTO> reservationList() {
 		List<ReservationDTO> reservationList = new ArrayList<ReservationDTO>();
 		
@@ -232,7 +233,7 @@ public class ReservationDAO {
 		try{
 			con = getConnect();
 			
-			sql = "select * from reservations where res_date > 2022-09-19 and res_date < 2022-09-25 limit ?, ?";   
+			sql = "select * from reservations limit ?, ?";   
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow - 1);
@@ -245,13 +246,14 @@ public class ReservationDAO {
 				ReservationDTO dto = new ReservationDTO();
 				
 				
-				dto.setRes_num(rs.getInt(1));
-				dto.setMem_num(rs.getInt(2));
-				dto.setRes_date(rs.getDate(3));
-				dto.setRes_persons(rs.getInt(4));
+				dto.setRes_num(rs.getInt("res_num"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setName(rs.getString("name"));
+				dto.setRes_date(rs.getDate("res_date"));
+				dto.setRes_time(rs.getInt("res_time"));
+				dto.setRes_persons(rs.getInt("res_persons"));
 				
 				reservationList.add(dto);
-				
 			}
 			
 		} catch(SQLException e){
@@ -259,111 +261,98 @@ public class ReservationDAO {
 		} finally{
 			closeDB();
 		}
-		 
-		
-		
 		return reservationList;
-		
 	}
-	
-	
-	
-	
-	public List<ReservationDTO> memberReservationList(int mem_num){
-		int res_num = 0;
 		
-		List<ReservationDTO> memberReservationList = new ArrayList<ReservationDTO>();
+	public List<ReservationDTO> reservationList(int mem_num, int startRow, int pageSize) {
+		List<ReservationDTO> reservationList = new ArrayList<>();
 		
 		try{
-		con = getConnect();
-		
-		sql = "select res_num, mem_num, res_date, res_num_of_persons from reservations where mem_num = ? ";  
-		pstmt = con.prepareStatement(sql);
-		
-//		ReservationDTO dto = new ReservationDTO();
-		
-		pstmt.setInt(1, mem_num);
-		
-		rs = pstmt.executeQuery();	
-		
-			
-			while(rs.next()){
-				ReservationDTO dto = new ReservationDTO();
+				con = getConnect();
 				
-				res_num = res_num + 1;
-				dto.setRes_num(res_num);
-				dto.setMem_num(rs.getInt(2));
-				dto.setRes_date(rs.getDate(3));
-				dto.setRes_persons(rs.getInt(4));
-				System.out.println("dto: "+dto);
+				sql = "select * from reservations where mem_num = ? limit ?, ?";   
+				pstmt = con.prepareStatement(sql);
 				
-				memberReservationList.add(dto);
-			}
+				pstmt.setInt(1,  mem_num);
+				pstmt.setInt(2, startRow - 1);
+				pstmt.setInt(3, pageSize);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					ReservationDTO dto = new ReservationDTO();
 					
+					dto.setRes_num(rs.getInt("res_num"));
+					dto.setMem_num(rs.getInt("mem_num"));
+					dto.setName(rs.getString("name"));
+					dto.setRes_date(rs.getDate("res_date"));
+					dto.setRes_time(rs.getInt("res_time"));
+					dto.setRes_persons(rs.getInt("res_persons"));
+						
+					reservationList.add(dto);
+				}
 		} catch(SQLException e){
 			e.printStackTrace();
 		} finally{
 			closeDB();
 		}
-
-		return memberReservationList;
+		return reservationList;
 	}
+
 	
-	public List<ReservationDTO> memberreservationList(int mem_num, int startRow, int pageSize) {
-		List<ReservationDTO> memberreservationList = new ArrayList<ReservationDTO>();
+	// 매니저용 예약 내역 조회
+	public ReservationDTO getReservationContent(int res_num){
+		ReservationDTO dto = null;
 		
 		try{
 			con = getConnect();
-			
-			sql = "select * from reservations where mem_num = ? and res_date > 2022-09-19 and res_date < 2022-09-25 limit ?, ?";   
+			sql = "select count(*) from reservations where res_num = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, res_num);
 			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new ReservationDTO();
+				dto.setRes_num(res_num);
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setName(rs.getString("name"));
+				dto.setRes_date(rs.getDate("res_date"));
+				dto.setRes_time(rs.getInt("res_time"));
+				dto.setRes_persons(rs.getInt("res_persons"));
+				dto.setRes_table(rs.getInt("res_table"));
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally{
+			closeDB();
+		}
+		return dto;
+	}
+	// 회원용 예약 내역 조회
+	public ReservationDTO getReservationContent(int res_num, int mem_num){
+		ReservationDTO dto = null;
+		
+		try{
+			con = getConnect();
+			sql = "select count(*) from reservations where res_num = ? and mem_num = ?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
-			pstmt.setInt(2, startRow - 1);
-			pstmt.setInt(3, pageSize);
+			pstmt.setInt(2,  res_num);
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				
-				ReservationDTO dto = new ReservationDTO();
-
-				dto.setRes_num(rs.getInt(1));
-				dto.setMem_num(rs.getInt(2));
-				dto.setRes_date(rs.getDate(3));
-				dto.setRes_persons(rs.getInt(4));
-				
-				memberreservationList.add(dto);
+			if(rs.next()) {
+				dto = new ReservationDTO();
+				dto.setRes_num(res_num);
+				dto.setMem_num(mem_num);
+				dto.setName(rs.getString("name"));
+				dto.setRes_date(rs.getDate("res_date"));
+				dto.setRes_time(rs.getInt("res_time"));
+				dto.setRes_persons(rs.getInt("res_persons"));
+				dto.setRes_table(rs.getInt("res_table"));
 			}
-		} catch(SQLException e){
-			e.printStackTrace();
-		} finally{
-			closeDB();
-		}
-		return memberreservationList;	
-	}
-	
-	// 예약
-	public int getReservationCount(){
-		int cnt=0;
-		
-		// 1.2. 디비 연결(커넥션 풀)
-		try{
-			con = getConnect();
-			// 3. sql 작성(select) & pstmt 객체
-			sql = "select count(*) from reservations";
-			pstmt = con.prepareStatement(sql);
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			
-			// 5. 데이터 처리
-			if(rs.next()){
-				//  데이터 있을때
-				 cnt = rs.getInt(1);
-				//cnt = rs.getInt(1); // 1번 인덱스
-			}
-//			
-			System.out.println(" DAO : 예약 개수 - 총 : "+cnt+"개");
 			
 		} catch(Exception e){
 			e.printStackTrace();
@@ -371,7 +360,26 @@ public class ReservationDAO {
 			closeDB();
 		}
 
+		return dto;
+	}
+
+	public int getReservationCount() {
+		int cnt = 0;
+		try {
+			con = getConnect();
+			sql = "select count(*) from reservations";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				return cnt = rs.getInt(1)+1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 		return cnt;
 	}
+	
 
 }

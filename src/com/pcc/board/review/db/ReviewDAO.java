@@ -183,14 +183,14 @@ public class ReviewDAO {
 	
 	// 4-1. DB에 저장된 조회수 가져와서 1 올리기 -----------------------------------------
 	public int getReviewCount() {
-		int ctn = 0;
+		int cnt = 0;
 		try {
 			con = getConnect();
 			sql = "select count(*) from review_boards";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				return ctn = rs.getInt(1)+1;
+				return cnt = rs.getInt(1)+1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

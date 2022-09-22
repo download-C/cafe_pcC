@@ -48,6 +48,7 @@ public class LoginAction implements Action {
 				message = dto.getName()+"님, 환영합니다!";
 				HttpSession session = request.getSession();
 				session.setAttribute("mem_num", mem_num);
+				session.setAttribute("name", dto.getName()	);
 				session.setAttribute("message", message);
 				session.setMaxInactiveInterval(3000);
 			

@@ -4,22 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>예약 목록</title>
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
+
 	<h1>memberReservationListForm.jsp</h1>
 	
 	
 	<form action="./MemberReservationListAction.re" method = "post">
 	
-	회원번호 <input type="text" name="mem_num" placeholder="회원번호를 입력해주세요.">
+	회원번호 <input type="text" name="mem_num" placeholder="회원번호 1자리를 입력해주세요.">
 	
-<!-- 	이건 임시로 MemberResrvationList작동 test용  -->
-<!-- 	나중에 merge하면 로그인 한 아이디나 비밀번호로 조회 예정 -->
-
 	<br><br>
 	<input type="submit" value="예약내역 조회"> 
 	</form>
-
+<!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp" />
+<!-- 푸터들어가는 곳 -->
 </body>
 </html>

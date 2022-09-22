@@ -1,5 +1,5 @@
-<%@page import="com.pcc.member.db.MemberDTO"%>
 <%@page import="com.pcc.member.db.MemberDAO"%>
+<%@page import="com.pcc.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,28 +13,15 @@
      
      <%
        // 로그인 여부 체크
-//        String mem_num = (String) session.getAttribute("loginMem_num");
-//        if(mem_num == null){
-//     	   response.sendRedirect("loginForm.jsp");
-//        }
-     
-     
+       if(session != null){
+          String mem_num = (String) session.getAttribute("loginMem_num");
+    	  response.sendRedirect("loginForm.jsp");
+       }
+
      %>
      
      <h2>개인정보 조회</h2>
-     
-     <%
-       // DB에 접근해서 해당유저(로그인한 유저)의 정보만 가져오기
-       
-       //MemberDAO 객체
-       // MemberDAO dao = new MemberDAO();
-     
-       // 정보조회 메서드 호출
-       // MemberDTO dto = new MemberDTO();
-       
-       // dao.memberContent(dto);
-       
-     %>
+     http://localhost:8088/cafe_pcc/img/slide1.jpg
      <table border="1">
         <tr>
         <td>회원번호</td><td>${dto.mem_num }</td>
@@ -53,8 +40,8 @@
         </tr>
         <tr>
         <td colspan="2">
-          <input type="submit" value="회원수정" onclick="location.href='./mypageUpdate.me?mem_num=${dto.mem_num }';">
-          <input type="submit" value="회원탈퇴" onclick="location.href='./mypageDelete.me?mem_num=${dto.mem_num }';">
+          <input type="button" value="회원수정" onclick="location.href='./mypageUpdate.me?mem_num=${dto.mem_num }';">
+          <input type="button" value="회원탈퇴" onclick="location.href='./mypageDelete.me?mem_num=${dto.mem_num }';">
         </td>
         </tr>
       </table>

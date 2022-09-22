@@ -32,7 +32,7 @@ public class MyPageContentAction implements Action {
 		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage/mypageContent.jsp");
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 				
 		return forward;
 	}

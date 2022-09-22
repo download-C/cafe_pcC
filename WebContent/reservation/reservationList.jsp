@@ -1,44 +1,62 @@
-<%@page import="com.pcc.reservation.db.ReservationDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>내 예약 목록</title>
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
 	<h1>reservationList.jsp</h1>
-
-	<table border="1">
-	<% 
-	List<ReservationDTO> reservationList = (List<ReservationDTO>)request.getAttribute("reservationList");
+	<%
+		System.out.println(session.getAttribute("mem_num"));
 	%>
-		<tr>
-			<td>예약 번호</td>
-			<td>멤버 번호</td>
-			<td>예약 날짜 및 시간</td>
-			<td>예약 인원</td>
-			<td>전체 테이블 개수</td>
-			<td>현재 예약된 테이블 개수</td>
-		</tr>
-		<%
-			for(int i = 0; i<reservationList.size(); i++){
-			ReservationDTO dto = reservationList.get(i);
-		%>
-		
-		
-		<tr>
-			<td><%=dto.getRes_num()%></td>
-			<td><%=dto.getMem_num()%></td>
-			<td><%=dto.getRes_date()%></td>
-			<td><%=dto.getRes_num_of_persons()%></td>
-			<td><%=dto.getTable_total()%></td>
-			<td><%=dto.getTable_occupied()%></td>
-		</tr>
-		<%} %>
-	</table>
 
+	<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+	onclick="location.href='./Reservation.re';"> <br><br>
+	<fieldset>
+		<table border="1">
+			<tr>
+				<td>예약 번호</td>
+				<td>예약자</td>
+				<td>예약 날짜 및 시간</td>
+				<td>예약 인원</td>
+			</tr>
+		<c:forEach var="dto" items="${reservationList }"> 
+			<tr>
+				<td>${dto.res_num }</td>
+				<td>${dto.name }</td>
+				<td>
+					<a href="./ReservationContent.re?res_num=${dto.res_num }&pageNum=${requestScope.pageNum}">
+					${dto.res_date } / ${dto.res_time }시
+					</a>
+				</td>
+				<td>${dto.res_persons }명</td>				
+			</tr>
+		</c:forEach>
+		</table>
+		<input type="button" value="예약 수정" name="res_update" onclick=""> 
+		<input type="button" value="예약 삭제" name="res_delete" onclick=""> 
+	</fieldset>
+		<c:if test="${cnt != 0 }">
+		<c:if test="${startPage > pageBlock }">
+			<a href="./ReviewList.rv?pageNum=${startPage-pageBlock }">[이전]</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+			<a href="./ReviewList.rv?pageNum=${i }">[${i }]</a>
+		</c:forEach>
+		<c:if test="${endPage < pageCount }">
+			<a href="./ReviewList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
+		</c:if>
+	</c:if>
+<!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp" />
+<!-- 푸터들어가는 곳 -->	
 </body>
 </html>

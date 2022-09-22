@@ -27,6 +27,7 @@ public class CartWriteAction implements Action {
 		
 		//dto.setCart_num(Integer.parseInt(request.getParameter("cart_num")));
 		dto.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
+		dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
 		dto.setRequirements(request.getParameter("requirements"));
 		dto.setProd_count(Integer.parseInt(request.getParameter("prod_count")));
 		dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));

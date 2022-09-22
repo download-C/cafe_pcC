@@ -13,11 +13,11 @@
 <link href="./css/productList.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('button').click(function() {
-		
+			//alert("테스트");
 			$('.' + $(this).attr('data-text')).show();
 			$('.category').not("."+$(this).attr('data-text')).hide();
 			
@@ -26,9 +26,9 @@
 </script>
 
 <%
-String mem_num = (String)session.getAttribute("mem_num");
-String mgr_num = (String)session.getAttribute("mgr_num");
-%>
+	//String mem_num = (String)session.getAttribute("mem_num");
+	String mgr_num = (String)session.getAttribute("mgr_num"); 
+ %>
 
 </head>
 <body>
@@ -40,10 +40,12 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 	<h2>상품 목록</h2>
 	
 	<input type="button" value="장바구니로 이동" onclick="location.href='./Cart.pr';">
-	<!-- 관리자 계정(name : admin) 으로 로그인 시 보이도록 구현 -->
-	<%if(mgr_num != null) { %>
-	<h3><a href="./ProductWrite.pr">상품등록하기</a></h3>
-	<%} %>
+	
+	
+	<!-- 관리자 계정(name : admin) 으로 로그인 시 보이도록 구현 --> 
+ 	<%if(mgr_num != null) { %> --%>
+ 	<h3><a href="./ProductWrite.pr">상품등록하기</a></h3> -->
+ 	<%} %>
 	
 	<!-- category 클릭 시 카테고리별 상품 리스트만 뜨도록 구현 -->
 	
@@ -56,8 +58,6 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 	</div>
 	<br>
 
-	
-	
 	
 	<div class="product">
 		<c:forEach var="dto" items="${requestScope.productList }">

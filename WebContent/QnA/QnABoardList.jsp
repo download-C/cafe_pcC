@@ -29,11 +29,11 @@
 	<fieldset>
 		<table>
 			<tr>
-				<td>번호</td>
-				<td>제목</td>
-		  		<td>작성자</td>
-				<td>조회수</td>
-				<td>작성일</td>
+				<td><sapn class="qna_underbar">번호</sapn></td>
+				<td><sapn class="qna_underbar">제목</sapn></td>
+		  		<td><sapn class="qna_underbar">작성자</sapn></td>
+				<td><sapn class="qna_underbar">조회수</sapn></td>
+				<td><sapn class="qna_underbar">작성일</sapn></td>
 			<% if(mgr_num != null) { %>
 				<td>IP</td>
 			<% } %>

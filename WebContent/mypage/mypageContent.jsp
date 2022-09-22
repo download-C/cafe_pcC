@@ -2,20 +2,25 @@
 <%@page import="com.pcc.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>마이 페이지</title>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/qnaboardlist.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
     <h1>mypageContent.jsp</h1>
      
      <%
        // 로그인 여부 체크
        if(session != null){
-          String mem_num = (String) session.getAttribute("loginMem_num");
-    	  response.sendRedirect("loginForm.jsp");
+          String mem_num = (String) session.getAttribute("mem_num");
+    	  
        }
 
      %>
@@ -45,7 +50,9 @@
         </td>
         </tr>
       </table>
-      
+<!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp" />
+<!-- 푸터들어가는 곳 -->      
       
 </body>
 </html>

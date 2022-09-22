@@ -44,11 +44,11 @@ public class OrderWriteAction implements Action {
 		CartDTO cart_dto = new CartDTO();
 		CartDAO cart_dao = new CartDAO();
 		//dao 메서드 중에서 카트에 담긴 상품을 모두 가져오는 메서드 호출
-		List<CartDTO> cartList = cart_dao.getCartList();
+//		List<CartDTO> cartList = cart_dao.getCartList();
 		
 
 		//VIEW 페이지 정보 전달을 위해서 request 영역에 저장
-		request.setAttribute("cartList", cartList);
+//		request.setAttribute("cartList", cartList);
 		request.setAttribute("order", order_dto.getOrder_price());
 
 		

@@ -9,9 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>mypageDelete.jsp</h1>
-     <h2> 회원 탈퇴(삭제) </h2>
-     
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
+
+     <div class="mp_container">
+         <img src="mypageDelete.jsp">
+     </div>
+
      <%
        // 로그인 여부 체크
        String mem_num = (String) session.getAttribute("loginMem_num");
@@ -23,13 +28,15 @@
      <% 
      // 사용자 비밀번호를 입력 전달
      %>
+     <fieldset>
+     <legend>회원탈퇴</legend>
       <form action="./mypageDeleteAction.me" method="POST" onsubmit="return checkData()" name="fr"> 
         <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
         비밀번호를 한 번 더 입력하세요 <br>
         <input type="password" name="password"> <br>
-         <input type="submit" value="탈퇴하기">
+         <input type="submit" class="delete_btn" value="탈퇴하기">
       </form>
-      
+     </fieldset> 
       <script type="text/javascript">
         // alert("document.fr.pw.value : "+document.fr.pw.value);
         function checkData(){
@@ -44,5 +51,8 @@
         }
      </script>
 
+<!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp"  />
+<!-- 푸터들어가는 곳 --> 
 </body>
 </html>

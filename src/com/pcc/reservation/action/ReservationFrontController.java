@@ -74,15 +74,15 @@ public class ReservationFrontController extends HttpServlet {
 		    		e.printStackTrace();
 		    	}
 			}
-			else if(command.equals("/ReservationUpdateForm.re")){
-				action = new ReservationUpdateForm();
-				try{
-		    		forward = action.execute(request, response);
-		    	} catch(Exception e){
-		    		e.printStackTrace();
-		    	}
-			}
-		
+//			else if(command.equals("/ReservationUpdateForm.re")){
+//				action = new ReservationUpdateForm();
+//				try{
+//		    		forward = action.execute(request, response);
+//		    	} catch(Exception e){
+//		    		e.printStackTrace();
+//		    	}
+//			}
+	
 
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------

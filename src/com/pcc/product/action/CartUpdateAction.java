@@ -35,8 +35,10 @@ public class CartUpdateAction implements Action {
 		
 		cart_dao.updateCart(cart_dto);
 		
+		System.out.println("5. CartUpdateAction 돌아옴");
+		System.out.println("==============================");
+		System.out.println();
 		
-				
 		return null;
 	}
 

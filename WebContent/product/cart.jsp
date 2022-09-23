@@ -196,8 +196,22 @@
 			
 		});
 			//==================================================
-				
-				
+
+// 		$('.delete').click(function(){
+// 			alert($(this).attr('data-text'));
+// 			$.ajax({
+// 				type: "post",
+// 				url: "./CartDelete.pr",
+// 				data: {
+// 					cart_num: $(this).attr('data-text'),
+// 				},
+// 				dataType: "text",
+// 				success: function(response) {
+// 					alert("성공");
+// // 					opener.location.href='Cart.pr';
+// 				}
+// 			});
+// 		});		
 				
 		
 				
@@ -210,7 +224,7 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<h1>cart.jsp</h1>
+<!-- 	<h1>cart.jsp</h1> -->
 	
 	<h2>카트 목록</h2>
 	<form action="./OrderWrite.pr">
@@ -222,6 +236,7 @@
 		     </tr>
 			<c:forEach var="dto" items="${requestScope.cartList }">
 			<input type="hidden" name="cart_num" id="cart_num" value="${dto.cart_num}">
+<%-- 			${dto.cart_num} --%>
 		     <tr>
 		     	<!-- 상품 정보 -->
 		        <td>
@@ -245,6 +260,10 @@
 		        <td>
 		        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원<br>
 		        	<input type="hidden" class="total_price_hidden${dto.cart_num}" value="${dto.total_price}">
+<%-- 					<div class="delete${dto.cart_num}">장바구니 삭제</div>   --%>
+<%-- 					<input type="button" class="delete"  data-text="${dto.cart_num}" value="X">   	 --%>
+					<a href="./CartDelete.pr?cart_num=${dto.cart_num}">X</a>
+<%-- 					<input type="button" value="X" onclick="location.href='./CartDelete.pr?cart_num=${dto.cart_num}';">   	 --%>
 	        	</td>
 		      </tr>
 	     </c:forEach>

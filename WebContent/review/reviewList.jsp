@@ -17,10 +17,14 @@
 	
 	System.out.println("MGR_NUM: "+session.getAttribute("mgr_num"));
 	String mgr_num = (String)session.getAttribute("mgr_num");
+	String mem_num = (String)session.getAttribute("mem_num");
+
+	if(session != null && mem_num != null){
 %>
-<%-- 	회원번호 :${sessionScope.mem_num } --%>
+
 	<input type="button" name="reviewWrite" value="리뷰 남기기(new)"
 		onclick="location.href='./ReviewWriteForm.rv';">
+<% } %>
 	<fieldset>
 		<table>
 			<tr>

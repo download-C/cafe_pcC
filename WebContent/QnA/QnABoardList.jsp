@@ -24,29 +24,31 @@
 	%>
 	<%if(mem_num != null) { %>
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
-	  onclick="location.href='./QnAWriteForm.qna';"> 
-	  <br><br>
+	  onclick="location.href='./QnAWrite.qna';"> 
  	<%} %>
 	<fieldset>
 		<table>
 			<tr>
-				<td><div class="boardlist">번호</div></td>
-				<td><div class="boardlist">제목</div></td>
-		  		<td><div class="boardlist">작성자</div></td>
-				<td><div class="boardlist">조회수</div></td>
-				<td><div class="boardlist">작성일</div></td>
-				<td><div class="boardlist">IP</div></td>	
-				<!-- ▲ IP는 숨길 예정 -->
+				<td><sapn class="qna_underbar">번호</sapn></td>
+				<td><sapn class="qna_underbar">제목</sapn></td>
+		  		<td><sapn class="qna_underbar">작성자</sapn></td>
+				<td><sapn class="qna_underbar">조회수</sapn></td>
+				<td><sapn class="qna_underbar">작성일</sapn></td>
+			<% if(mgr_num != null) { %>
+				<td>IP</td>
+			<% } %>
 			</tr>
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
 			<tr>
-				<td><div class="boardlist">${dto.qna_num }</div></td>
-				<td><div class="boardlist">
-					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a></div>
-				<td><div class="boardlist">${dto.name }</div></td>
-				<td><div class="boardlist">${dto.qna_readcount }</div></td>
-				<td><div class="boardlist">${dto.qna_date }</div></td>
-				<td><div class="boardlist">${dto.qna_ip }</div></td>
+				<td>${dto.qna_num }</td>
+				<td>
+					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
+				<td>${dto.name }</td>
+				<td>${dto.qna_readcount }</td>
+				<td>${dto.qna_date }</td>
+			<% if(mgr_num != null) { %>
+				<td>${dto.qna_ip }</td>
+			<% } %>
 			</tr>
 		</c:forEach>
 		</table>

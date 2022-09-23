@@ -57,7 +57,7 @@ public class ReviewWriteAction implements Action {
 			dto.setReview_subject(review_subject);			// 제목
 			dto.setReview_content(review_content);			// 내용
 			dto.setReview_file(review_file);				// 파일
-			dto.setReview_file(request.getRemoteAddr());	// 아이피
+			dto.setReview_ip(request.getRemoteAddr());	// 아이피
 			dto.setReview_file(review_file);				// 파일 이름
 			
 			

@@ -26,43 +26,45 @@ public class ReviewUpdateAction implements Action {
 		= new MultipartRequest(request, uploadPath, 10*1024*1024, "utf-8", new DefaultFileRenamePolicy()); 
 
 		HttpSession session = request.getSession();
-		String mem_num = (String)session.getAttribute("mem_num");
-		String mgr_num = (String)session.getAttribute("mgr_num");
-		
-		String review_num = multipartRequest.getParameter("review_num");
-		String name = multipartRequest.getParameter("name");
-		String review_password = multipartRequest.getParameter("review_password");
-		String review_subject = multipartRequest.getParameter("review_subject");
-		String review_content = multipartRequest.getParameter("review_content");
-		String review_oldfile = multipartRequest.getParameter("review_oldfile");
-		
+			if(session != null){
+			String mem_num = (String)session.getAttribute("mem_num");
+			String mgr_num = (String)session.getAttribute("mgr_num");
+			
+			String review_num = multipartRequest.getParameter("review_num");
+			String name = multipartRequest.getParameter("name");
+			String review_password = multipartRequest.getParameter("review_password");
+			String review_subject = multipartRequest.getParameter("review_subject");
+			String review_content = multipartRequest.getParameter("review_content");
+			String review_oldfile = multipartRequest.getParameter("review_oldfile");
+			String review_ip = request.getRemoteAddr();
+			
+					
+			ReviewDAO dao = new ReviewDAO();
+			ReviewDTO dto = dao.getReviewContent(Integer.parseInt(review_num)); 
+			dto.setName(name);
+			dto.setReview_password(Integer.parseInt(review_password));
+			dto.setReview_subject(review_subject);
+			dto.setReview_content(review_content);
+			
+			if(mem_num != null) {
+				if(multipartRequest.getFilesystemName(review_oldfile) != null ) {
+				dto.setReview_file(review_oldfile);
+			}
+				dao.ReviewUpdate(dto, Integer.parseInt(mem_num));
 				
-		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.getReviewContent(Integer.parseInt(review_num)); 
-		dto.setName(name);
-		dto.setReview_password(Integer.parseInt(review_password));
-		dto.setReview_subject(review_subject);
-		dto.setReview_content(review_content);
-		
-		if(mem_num != null) {
-			if(multipartRequest.getFilesystemName(review_oldfile) != null ) {
-			dto.setReview_file(review_oldfile);
+				dao.alert(response, "리뷰 수정에 성공하였습니다.", "location.href='./ReviewContent.rv?review_num="+review_num+"&pageNum=1';");
+				
+				return null;
+				
+			
+			} else if(mgr_num != null) {
+				dao.ReviewUpdate(dto);
+				
+				dao.alert(response, "리뷰 수정에 성공하였습니다.", "location.href='./ReviewContent.rv?review_num="+review_num+"&pageNum=1';");
+				
+				return null;
+			}
 		}
-			dao.ReviewUpdate(dto, Integer.parseInt(mem_num));
-			
-			dao.alert(response, "리뷰 수정에 성공하였습니다.", "location.href='./ReviewContent.rv?review_num="+review_num+"&pageNum=1';");
-			
-			return null;
-			
-		
-		} else if(mgr_num != null) {
-			dao.ReviewUpdate(dto);
-			
-			dao.alert(response, "리뷰 수정에 성공하였습니다.", "location.href='./ReviewContent.rv?review_num="+review_num+"&pageNum=1';");
-			
-			return null;
-		}
-		
 		return null;
 	}
 

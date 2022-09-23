@@ -57,15 +57,15 @@ public class ReservationFrontController extends HttpServlet {
 		    	}
 		    	
 			} 
-			else if(command.equals("/ReservationContent.re")){
-				action = new ReservationContentAction();
-				try{
-		    		forward = action.execute(request, response);
-		    	} catch(Exception e){
-		    		e.printStackTrace();
-		    	}
-				
-			}
+//			else if(command.equals("/ReservationContent.re")){
+//				action = new ReservationContentAction();
+//				try{
+//		    		forward = action.execute(request, response);
+//		    	} catch(Exception e){
+//		    		e.printStackTrace();
+//		    	}
+//				
+//			}
 			else if(command.equals("/ReservationList.re")){					
 				action = new ReservationListAction();
 		    	try{
@@ -76,6 +76,22 @@ public class ReservationFrontController extends HttpServlet {
 			}
 			else if(command.equals("/ReservationUpdateForm.re")){
 				action = new ReservationUpdateForm();
+				try{
+		    		forward = action.execute(request, response);
+		    	} catch(Exception e){
+		    		e.printStackTrace();
+		    	}
+			}
+			else if(command.equals("/ReservationUpdateAction.re")) {
+				action = new ReservationUpdateAction();
+				try{
+					forward = action.execute(request, response);
+				} catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			else if(command.equals("/ReservationDeleteAction.re")) {
+				action = new ReservationDeleteAction();
 				try{
 		    		forward = action.execute(request, response);
 		    	} catch(Exception e){

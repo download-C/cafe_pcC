@@ -16,6 +16,7 @@ public class CartDTO {
 	private int price;
 	private int total_price;
 	private Timestamp checked;
+	private String mem_phone;
 	
 	
 	public int getMem_num() {
@@ -91,7 +92,13 @@ public class CartDTO {
 		return "CartDTO [cart_num=" + cart_num + ", mem_num=" + mem_num + ", prod_num=" + prod_num + ", prod_name="
 				+ prod_name + ", prod_img=" + prod_img + ", prod_real_img=" + prod_real_img + ", requirements="
 				+ requirements + ", prod_count=" + prod_count + ", price=" + price + ", total_price=" + total_price
-				+ ", checked=" + checked + "]";
+				+ ", checked=" + checked + ", mem_phone=" + mem_phone + "]";
+	}
+	public String getMem_phone() {
+		return mem_phone;
+	}
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
 	}
 	
 }

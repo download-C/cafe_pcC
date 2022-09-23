@@ -21,10 +21,11 @@ public class CartWriteAction implements Action {
 		//한글 처리
 		request.setCharacterEncoding("UTF-8");
 		
+//		System.out.println(request.getParameter("prod_num"));
+		
 		//전달정보 저장
 		//CartDTO 객체 생성
 		CartDTO dto = new CartDTO();
-		
 		//dto.setCart_num(Integer.parseInt(request.getParameter("cart_num")));
 		dto.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
 		dto.setMem_num(Integer.parseInt(request.getParameter("mem_num")));
@@ -32,11 +33,6 @@ public class CartWriteAction implements Action {
 		dto.setProd_count(Integer.parseInt(request.getParameter("prod_count")));
 		dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));
 		
-		
-		
-//		System.out.println(" M : " + dto);
-		
-		//int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 		
 		//DB에 정보 저장
 		//ProductDAO 객체 생성
@@ -52,18 +48,18 @@ public class CartWriteAction implements Action {
 		
 		
 		ActionForward forward = new ActionForward();
-		boolean skip_cart = false;
+//		boolean skip_cart = false;
 		
 		//productContent.jsp 파일의 "담기"버튼을 눌렸을 때
-		if(skip_cart == false){
+//		if(skip_cart == false){
 			forward.setPath("./Cart.pr");
 			forward.setRedirect(true);				
-		}
+//		}
 		//productContent.jsp 파일의 "주문하기"버튼을 눌렸을 때
-		else{
-			forward.setPath("./OrderWrite.pr");
-			forward.setRedirect(true);				
-		}
+//		else{
+//			forward.setPath("./OrderWrite.pr");
+//			forward.setRedirect(true);				
+//		}
 		
 		
 		

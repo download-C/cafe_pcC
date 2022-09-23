@@ -3,10 +3,41 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" contet="text/html; charset=UTF-8">
 <title>회원가입 창</title>
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js"
+	crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+	window.onload = function(){
+	document.querySelector("form").onsubmit = function(){
+		var req = document.querySelectorAll("input[name='req']");
+		var cnt = 0;
+			for(var i=0; i<req.length; i++){
+			cnt= cnt+req[i].checked;
+			}
+			if(cnt <2 ){
+				alert("전체 동의 하셔야 합니다.");
+				return false;
+			}else 
+				return true;
+			}
+}
+</script>
+
+
+
 </head>
+
 <body>
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
+
+<form action="./Sign.me" method="post">
  <table width="1400" height="650">
   <tr>
    <td width="100%" height="10%"><span style="padding-left: 160px"></span>&nbsp; <b>회원가입</b>
@@ -182,6 +213,10 @@ pageEncoding="UTF-8"%>
    <input type="checkbox" name="req"> 이용약관 동의(필수)
    </td>
   </tr>
+ 
+ 
+ 
+ 
   
    <tr>
    <td width="100%" height="50%" align="center">
@@ -321,9 +356,15 @@ cafepcc 플러스 멤버십 서비스 혜택 중복 제공 방지
   <tr>
    <td align="center" valign="top">
     <input type="button" value="취소"/>&nbsp;&nbsp;&nbsp;
-    <input type="button" value="가입하기"/>
+    <input type="submit" value="가입하기" />
    </td>
   </tr>
  </table>
+ </form>
+ 
+ <!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp" />
+<!-- 푸터들어가는 곳 -->
+ 
 </body>
 </html>

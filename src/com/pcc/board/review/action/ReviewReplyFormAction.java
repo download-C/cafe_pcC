@@ -23,19 +23,17 @@ public class ReviewReplyFormAction implements Action {
 		
 		ReviewDAO dao = new ReviewDAO();
 		ReviewDTO dto = dao.getReviewContent(review_num);
+		System.out.println(review_num+"번 글 정보 조회완료");
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("review_num", review_num);
 		
 		ActionForward forward = new ActionForward();
-		if(mem_num != null){
+		if(mgr_num != null){
 			forward.setPath("./review/reviewReplyForm.jsp");
 			forward.setRedirect(false);
 			
 			return forward;
-		} else if(mgr_num != null) {
-			forward.setPath("./ReviewPasswordCheck.rv?review_num="+review_num);
-			forward.setRedirect(true);
 		}
 		return null;
 	}

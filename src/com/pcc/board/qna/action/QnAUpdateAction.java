@@ -1,4 +1,4 @@
-package com.pcc.board.qna.action;
+ package com.pcc.board.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

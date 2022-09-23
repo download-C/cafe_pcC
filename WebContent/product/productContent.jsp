@@ -4,6 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품 상세 내용</title>
+
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -78,7 +83,7 @@
 			<input type='hidden' name='prod_num' value="${dto.prod_num }" >
 			<input type="hidden" name="mem_num" value="${sessionScope.mem_num }">
 <%-- 			회원 번호 : ${sessionScope.mem_num } --%>
-			
+				상품 번호 : ${dto.prod_num }
 <%-- 			<input type='hidden' name='prod_name' value="${dto.prod_name }" > --%>
 <%-- 			<input type='hidden' name='prod_img' value="${dto.prod_img }" > --%>
 <%-- 			<input type='hidden' name='prod_real_img' value="${dto.prod_real_img }" > --%>
@@ -104,7 +109,7 @@
 			
 			<!-- 장바구니 담기 버튼 -->
 			<div>
-				<input type="submit" value="담기" onclick="location.href='./CartWrite.pr?skip_cart=false';">
+				<input type="submit" value="담기" onclick="location.href='./CartWrite.pr;">
 <!-- 				<input type="submit" value="주문하기" onclick="location.href='./CartWrite.pr?skip_cart=true';"> -->
 	        	<input type="button" value="상품 목록" onclick="location.href='./ProductList.pr';">
 			</div>

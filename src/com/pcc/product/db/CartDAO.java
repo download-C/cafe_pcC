@@ -211,7 +211,8 @@ public class CartDAO {
 	
 	// 6.  카트에 담긴 상품 목록 (all) - getCartList() -----------------------------------------
 
-	public List<CartDTO> getCartList(CartDTO dto) {
+//	public List<CartDTO> getCartList(CartDTO dto, String mem_num) {
+		public List<CartDTO> getCartList(String mem_num) {
 		System.out.println("4. cartList DAO");
 		
 		//카트의 상품 모두를 저장하는 배열(가변길이)
@@ -221,33 +222,37 @@ public class CartDAO {
 			//1. 드라이버 로드
 			//2. 디비 연결
 			con = getConnect();
-			
+//			System.out.println("세션값 1 : " + mem_num);
 			
 			//3. sql 작성 & pstmt 객체
-			sql ="select c.cart_num, m.mem_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img "+
-					"c.requirements, c.prod_count, p.price, c.total_price "+ 
+			sql ="select c.cart_num, m.mem_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
+					"c.requirements, c.prod_count, p.price, c.total_price, m.phone "+ 
 					"from products p join carts c "+  
 					"on c.prod_num = p.prod_num "+
                     "join members m "+
                     "on c.mem_num = m.mem_num "+
 					"where c.checked is null "+
                     "and m.mem_num =?;";
-//			sql_prod = "select c.prod_num, p.prod_name, p.prod_img, p.prod_real_img " +
-//						"from products p join carts c on c.prod_num = p.prod_num;";
+//			sql ="select c.cart_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
+//					"c.requirements, c.prod_count, p.price, c.total_price "+ 
+//					"from products p join carts c "+  
+//					"on c.prod_num = p.prod_num "+
+//					"where c.checked is null;";
 					
 			pstmt = con.prepareStatement(sql);
+//			System.out.println("세션값 2 : " + mem_num);
 			
 
-			//			// ???
-			pstmt.setInt(1, dto.getMem_num());
-			
+			// ???
+			pstmt.setString(1, mem_num);
+//			
 			//4. sql 실행
 			rs = pstmt.executeQuery();
 			
 			//5. 데이터 처리
 			while(rs.next()){
 				//데이터가 있을 때, true면 DB에 저장된 정보를 DTO에 저장 -> List저장
-
+				CartDTO dto = new CartDTO();
 				//DB -> DTO로 저장
 				dto.setCart_num(rs.getInt("cart_num"));
 				dto.setMem_num(rs.getInt("mem_num"));
@@ -259,11 +264,12 @@ public class CartDAO {
 				dto.setProd_count(rs.getInt("prod_count"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setTotal_price(rs.getInt("total_price"));
+				dto.setMem_phone(rs.getString("phone"));
 				//dto.setChecked(rs.getTimestamp("checked"));
-				
+//				System.out.println(rs.getInt("cart_num"));
 				//DTO -> List
 				cartList.add(dto);
-				
+//				System.out.println(dto.getMem_phone());
 				
 				
 			}
@@ -274,6 +280,7 @@ public class CartDAO {
 		finally {
 			closeDB();
 		}
+//		System.out.println("1번"+cartList);
 		return cartList;
 	}
 
@@ -315,39 +322,63 @@ public class CartDAO {
 	public void updateCart(CartDTO cart_dto) {
 		System.out.println("4. updateCart DAO");
 		//장바구니에서 변경된 prod_count, total_price -> update
-				try{
-					//1. 드라이버 로드
-					//2. 디비 연결
-					con = getConnect();
-					//3. sql 작성 & pstmt 객체
-					//checked값이 null 인 경우 다 가져오기
-					sql = "update carts set prod_count =?, total_price =? "+
-							"where cart_num =?;";
-					pstmt = con.prepareStatement(sql);
-					
-					//???
+		try{
+			//1. 드라이버 로드
+			//2. 디비 연결
+			con = getConnect();
+			//3. sql 작성 & pstmt 객체
+			//checked값이 null 인 경우 다 가져오기
+			sql = "update carts set prod_count =?, total_price =? "+
+					"where cart_num =?;";
+			pstmt = con.prepareStatement(sql);
+			
+			//???
 
-					pstmt.setInt(1,  cart_dto.getProd_count());
-					pstmt.setInt(2,  cart_dto.getTotal_price());
-					pstmt.setInt(3, cart_dto.getCart_num());
-					
-					//4. sql 실행
-					pstmt.executeUpdate();
-					
-				}catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					closeDB();
-				}
+			pstmt.setInt(1,  cart_dto.getProd_count());
+			pstmt.setInt(2,  cart_dto.getTotal_price());
+			pstmt.setInt(3, cart_dto.getCart_num());
+			
+			//4. sql 실행
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 				
 		
 	}
+
 
 
 	
 	
 	
 	// 9.   -----------------------------------------
+	public void deleteCart(int cart_num) {
+		System.out.println("4. deleteCart() DAO");
+		try{
+			//1. 드라이버 로드
+			//2. 디비 연결
+			con = getConnect();
+			//3. sql 작성 & pstmt 객체
+			//checked값이 null 인 경우 다 가져오기
+			sql = "delete from carts where cart_num =?;";
+			pstmt = con.prepareStatement(sql);
+			
+			//???
+			pstmt.setInt(1, cart_num);
+			
+			//4. sql 실행
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
 	
 	
 	

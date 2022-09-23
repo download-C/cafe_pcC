@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pcc.product.db.CartDAO;
 import com.pcc.product.db.CartDTO;
@@ -51,8 +52,12 @@ public class OrderAction implements Action {
 		CartDAO cart_dao = new CartDAO();
 		cart_dao.checked(cart_dto);
 		
+		//세션값 가져오기
+		HttpSession session=request.getSession();
+		String mem_num = (String)session.getAttribute("mem_num");
+		
 		//dao 메서드 중에서 카트에 담긴 상품을 모두 가져오는 메서드 호출
-		List<CartDTO> cartList = cart_dao.getCartList();
+		List<CartDTO> cartList = cart_dao.getCartList(mem_num);
 		System.out.println("5. OrderAction 돌아옴");
 
 		//VIEW 페이지 정보 전달을 위해서 request 영역에 저장

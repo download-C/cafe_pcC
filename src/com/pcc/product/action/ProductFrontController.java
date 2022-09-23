@@ -121,6 +121,20 @@ public class ProductFrontController extends HttpServlet {
 			
 		}
 		
+		
+		//카트에 담은 상품 리스트 보는 페이지
+		else if(command.equals("/CartDelete.pr")){
+			
+			//CartListAction() 객체 생성
+			action = new CartDeleteAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 		//결제 정보를 담는 페이지
 		else if(command.equals("/OrderWrite.pr")){
 			

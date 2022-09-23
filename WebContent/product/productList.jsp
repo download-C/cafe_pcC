@@ -43,8 +43,8 @@
 	
 	
 	<!-- 관리자 계정(name : admin) 으로 로그인 시 보이도록 구현 --> 
- 	<%if(mgr_num != null) { %> --%>
- 	<h3><a href="./ProductWrite.pr">상품등록하기</a></h3> -->
+ 	<%if(mgr_num != null) { %>
+ 	<h3><a href="./ProductWrite.pr">상품등록하기</a></h3>
  	<%} %>
 	
 	<!-- category 클릭 시 카테고리별 상품 리스트만 뜨도록 구현 -->

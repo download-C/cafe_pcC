@@ -4,12 +4,16 @@
 
 <%
 	int order = (Integer)request.getAttribute("order");
+// 	HttpSession session = new HttpSession();
+// 	int number = session.getAttribute("number");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주문하기</title>
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -67,7 +71,6 @@ $(document).ready(function(){
 				
 		}
 	});
-	
 
 	
 });//jQuery
@@ -80,11 +83,11 @@ $(document).ready(function(){
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 	<h1>order.jsp</h1>
-	<div>주문자 정보</div>
-	<div>이름</div>
-	<div>연락처</div>
+	<div>주문자 정보 </div>
+	<div>이름 : ${sessionScope.name}</div>
+<%-- 	<div>연락처 : ${cartList.mem_phone} </div> --%>
 <!-- 	주문자 정보 -->
-<%-- 	${sessionScope.mem_name} --%>
+<%-- 	${sessionScope.name} --%>
 <%-- 	${sessionScope.phone} --%>
 	
 	<form action="./Order.pr">
@@ -102,6 +105,7 @@ $(document).ready(function(){
 							<img src="img/product/${dto.prod_img}"><br>
 							${dto.prod_name }<br>
 							${dto.price}
+<%-- 							${dto.mem_phone } --%>
 							</a>
 		      			</td>
 		      			
@@ -127,7 +131,7 @@ $(document).ready(function(){
 		<input type="hidden" name="order_price" value="${order}">
 		<input type="submit" value="결제하기" id="order_test">
 		<input type="button" value="결제 테스트" id="order">
-		<input type="button" value="제이쿼리 테스트" >
+		<input type="button" value="제이쿼리 테스트" id="join" >
 	</form>	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

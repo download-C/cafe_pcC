@@ -83,7 +83,7 @@
 			<input type='hidden' name='prod_num' value="${dto.prod_num }" >
 			<input type="hidden" name="mem_num" value="${sessionScope.mem_num }">
 <%-- 			회원 번호 : ${sessionScope.mem_num } --%>
-			
+				상품 번호 : ${dto.prod_num }
 <%-- 			<input type='hidden' name='prod_name' value="${dto.prod_name }" > --%>
 <%-- 			<input type='hidden' name='prod_img' value="${dto.prod_img }" > --%>
 <%-- 			<input type='hidden' name='prod_real_img' value="${dto.prod_real_img }" > --%>
@@ -109,7 +109,7 @@
 			
 			<!-- 장바구니 담기 버튼 -->
 			<div>
-				<input type="submit" value="담기" onclick="location.href='./CartWrite.pr?skip_cart=false';">
+				<input type="submit" value="담기" onclick="location.href='./CartWrite.pr;">
 <!-- 				<input type="submit" value="주문하기" onclick="location.href='./CartWrite.pr?skip_cart=true';"> -->
 	        	<input type="button" value="상품 목록" onclick="location.href='./ProductList.pr';">
 			</div>

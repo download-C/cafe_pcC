@@ -33,29 +33,71 @@
 			<tr>
 				<td>글번호</td>
 				<td>${dto.qna_num }</td>
+			</tr>
+				
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+				
+			<tr>	
 				<td>조회수</td>
 				<td>${dto.qna_readcount }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>작성자</td>
 				<td>${dto.name }</td>
+			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
+			<tr>
 				<td>작성일</td>
 				<td>${dto.qna_date }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>제목</td>
 				<td colspan="3">${dto.qna_subject }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>내용</td>
 				<td colspan="3">${dto.qna_content }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>첨부파일</td>
 				<td colspan="3"><a href="./upload/${dto.qna_file }" download>
 				<img src="./upload/${dto.qna_file }"></a>
 				</td>
 			</tr>
+			
+			
 		</table>
 	</fieldset>
 	<hr>

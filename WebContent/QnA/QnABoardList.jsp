@@ -23,11 +23,16 @@
 	String mem_num = (String)session.getAttribute("mem_num");
 	%>
 	<%if(mem_num != null) { %>
+
+	<div class=>
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
-	  onclick="location.href='./QnAWrite.qna';"> 
+	  onclick="location.href='./QnAWrite.qna';" > 
+	</div>
+
  	<%} %>
+ 	
 	<fieldset>
-		<table>
+		<table class="qna_list">
 			<tr>
 				<td><sapn class="qna_underbar">번호</sapn></td>
 				<td><sapn class="qna_underbar">제목</sapn></td>

@@ -22,3 +22,9 @@
 h2{
 	text-align: center;
 }
+
+fieldset{
+	
+	margin : 50px 50px;
+	border : solid 1px grey;
+}

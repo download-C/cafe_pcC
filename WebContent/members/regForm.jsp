@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
 <title>회원가입 창</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/regForm.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js"
 	crossorigin="anonymous"></script>
 
@@ -27,9 +28,6 @@ pageEncoding="UTF-8"%>
 			}
 }
 </script>
-
-
-
 </head>
 
 <body>
@@ -38,7 +36,10 @@ pageEncoding="UTF-8"%>
 <!-- 헤더들어가는 곳 -->
 
 <form action="./Sign.me" method="post">
- <table width="1400" height="650">
+
+
+
+ <table width="1400" height="650" id="tb">
   <tr>
    <td width="100%" height="10%"><span style="padding-left: 160px"></span>&nbsp; <b>회원가입</b>
     <br>
@@ -213,11 +214,7 @@ pageEncoding="UTF-8"%>
    <input type="checkbox" name="req"> 이용약관 동의(필수)
    </td>
   </tr>
- 
- 
- 
- 
-  
+
    <tr>
    <td width="100%" height="50%" align="center">
  
@@ -360,8 +357,9 @@ cafepcc 플러스 멤버십 서비스 혜택 중복 제공 방지
    </td>
   </tr>
  </table>
- </form>
  
+ </form>
+ <br><br>
  <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

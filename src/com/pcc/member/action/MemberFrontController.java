@@ -101,17 +101,6 @@ public class MemberFrontController extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-		
-		// 마이페이지
-		} else if(command.equals("/mypageContent.me")){
-					action = new MyPageContentAction();
-					try{
-						forward  = action.execute(request, response);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
-				
-				
 		// 마이페이지 수정 화면
 				
 		}else if(command.equals("/mypageUpdate.me")){

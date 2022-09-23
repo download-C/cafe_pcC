@@ -24,21 +24,23 @@
      </div>
      <%
        // 로그인 여부 체크
-//       if(session != null){
-//           String mem_num = (String) session.getAttribute("loginMem_num");
-//     	  response.sendRedirect("loginForm.jsp");
-//        }
+       if(session != null){
+    	   String mem_num = (String) session.getAttribute("mem_num");
+           System.out.println("회원번호 : "+mem_num);
+           if(mem_num == null) {
+         	  response.sendRedirect("./Login.pcc");
+           }
+       }
 
      %>
      
      <h2>개인정보 조회</h2>
      
      <table border="1">
-        <tr><td><div id="co_mem_num">회원번호</div></td><td>${dto.mem_num }</td></tr>
-        <tr><td>휴대폰 번호</td><td>${dto.phone }</td></tr>
-        <tr><td>비밀번호</td><td>${dto.password }</td></tr>
-        <tr><td>이름</td><td>${dto.name }</td></tr>
-        <tr><td>회원가입일</td><td>${dto.reg_date }</td></tr>
+        <tr><td><div id="co_phone">휴대폰 번호</div></td><td>${dto.phone }</td></tr>
+        <tr><td><div id="co_password">비밀번호</div></td><td>${dto.password }</td></tr>
+        <tr><td><div id="co_name">이름</div></td><td>${dto.name }</td></tr>
+        <tr><td><div id="co_regate">회원가입일</div></td><td>${dto.regdate }</td></tr>
         <tr><td colspan="2">
           <input type="button" value="회원수정" class="content_btn1" onclick="location.href='./mypageUpdate.me?mem_num=${dto.mem_num }';">
           <input type="button" value="회원탈퇴" class="content_btn2" onclick="location.href='./mypageDelete.me?mem_num=${dto.mem_num }';">

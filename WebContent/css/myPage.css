@@ -15,7 +15,7 @@
 	font-family: var(--font-kor);
 }
 
-.container{
+.mp_container{
 	width: auto; height: 100;
 	margin-top: 0px; margin-left: 0.6px;
 	border-top-left-radius: 30px;
@@ -24,7 +24,19 @@
     border-bottom-right-radius: 30px;
 }
 
-#co_mem_num{
+#co_phone{
+	border-bottom: 1px solid black;
+	
+}
+#co_password{
+	border-bottom: 1px solid black;
+	
+}
+#co_name{
+	border-bottom: 1px solid black;
+	
+}
+#co_regdate{
 	border-bottom: 1px solid black;
 	
 }

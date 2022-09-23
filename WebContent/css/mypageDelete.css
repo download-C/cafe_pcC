@@ -10,3 +10,16 @@
   font-weight: normal;
   font-style: normal;
 }
+
+*{
+	font-family: var(--font-kor);
+}
+
+.mp_container{
+	width: auto; height: 100;
+	margin-top: 0px; margin-left: 0.6px;
+	border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}

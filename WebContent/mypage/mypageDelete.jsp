@@ -28,15 +28,15 @@
      <% 
      // 사용자 비밀번호를 입력 전달
      %>
+     <form action="./mypageDeleteAction.me" method="POST" id="delete" onsubmit="return checkData()" name="fr"> 
      <fieldset>
      <legend>회원탈퇴</legend>
-      <form action="./mypageDeleteAction.me" method="POST" onsubmit="return checkData()" name="fr"> 
         <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
         비밀번호를 한 번 더 입력하세요 <br>
         <input type="password" name="password"> <br>
          <input type="submit" class="delete_btn" value="탈퇴하기">
-      </form>
      </fieldset> 
+     </form>
       <script type="text/javascript">
         // alert("document.fr.pw.value : "+document.fr.pw.value);
         function checkData(){

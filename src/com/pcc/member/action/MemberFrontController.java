@@ -40,15 +40,21 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
+		//이용 약관
+		 if(command.equals("/Reg.me")){
+			forward = new ActionForward();
+			forward.setPath("./members/regForm.jsp");
+			forward.setRedirect(false);
+		
 		
 		//회원가입 폼
-				if(command.equals("/Sign.me")){
+		 }else if(command.equals("/Sign.me")){
 					forward = new ActionForward();
 					forward.setPath("./members/SignForm.jsp");
 					forward.setRedirect(false);
 					
-				//아이디 중복 체크
-				} else if(command.equals("/IdCheck.me")){
+		//아이디 중복 체크
+		} else if(command.equals("/IdCheck.me")){
 					action = new IdCheck();
 					try{
 					forward=action.execute(request, response);
@@ -56,8 +62,8 @@ public class MemberFrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				//회원가입 정보 db이동
-				} else if(command.equals("/JoinAction.me")){
+		//회원가입 정보 db이동
+		} else if(command.equals("/JoinAction.me")){
 					action = new JoinAction();
 					try {
 						forward = action.execute(request, response);
@@ -65,15 +71,15 @@ public class MemberFrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				//로그인 폼
-				} else if(command.equals("/LoginForm.me")){
+		//로그인 폼
+		} else if(command.equals("/LoginForm.me")){
 					System.out.println("로그인 폼으로 가기");
 					forward = new ActionForward();
 					forward.setPath("./main/loginForm.jsp");
 					forward.setRedirect(false);
 					
-				//로그인 정보 확인
-				} else if(command.equals("/LoginAction.me")){
+		//로그인 정보 확인
+		} else if(command.equals("/LoginAction.me")){
 					action=new LoginAction();
 					try {
 						forward = action.execute(request, response);
@@ -81,61 +87,59 @@ public class MemberFrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-				//마이페이지 폼
-				} else if(command.equals("/MyPage.me")){
+		//마이페이지 폼
+		} else if(command.equals("/MyPage.me")){
 					forward = new ActionForward();
 					forward.setPath("./members/MyPage.jsp");
 					forward.setRedirect(false);
 					
-				// 로그아웃 후 세션 초기화
-				} else if(command.equals("/Logout.me")){
+		// 로그아웃 후 세션 초기화
+		} else if(command.equals("/Logout.me")){
 					action = new LogoutAction();
 					try {
 						forward = action.execute(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				}
-				// 마이페이지
-				else if(command.equals("/mypageContent.me")){
-			        
+		
+		// 마이페이지
+		} else if(command.equals("/mypageContent.me")){
 					action = new MyPageContentAction();
-					
 					try{
 						forward  = action.execute(request, response);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}
 				
-				// 마이페이지 수정 화면
 				
-				else if(command.equals("/mypageUpdate.me")){
+		// 마이페이지 수정 화면
+				
+		}else if(command.equals("/mypageUpdate.me")){
 					action = new MypageUpdate();
 					try{
 						forward  = action.execute(request, response);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}
-				// DB에 업데이트 된 내용 저장
-				else if(command.equals("/mypageUpdateAction.me")){
+				
+		// DB에 업데이트 된 내용 저장
+		}else if(command.equals("/mypageUpdateAction.me")){
 					action = new MypageUpdateAction();
 					try{
 						forward  = action.execute(request, response);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}
-				// 회원 탈퇴를 위한 비밀번호 입력 페이지 이동
-				else if(command.equals("/mypageDelete.me")){
+				
+		// 회원 탈퇴를 위한 비밀번호 입력 페이지 이동
+		}else if(command.equals("/mypageDelete.me")){
 					forward = new ActionForward();
 					forward.setPath("./mypage/mypageDelete.jsp");
 					forward.setRedirect(false);
-				}
 				
-				// 회원 정보 DB에서 삭제
-				else if(command.equals("/mypageDeleteAction.me")){
+				
+		// 회원 정보 DB에서 삭제
+		}else if(command.equals("/mypageDeleteAction.me")){
 					action = new MypageDelete();
 					try{
 						forward = action.execute(request, response);

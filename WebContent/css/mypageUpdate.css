@@ -1,0 +1,25 @@
+
+@import url("./theme.css");
+
+@CHARSET "UTF-8";
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+	font-family: var(--font-kor);
+}
+
+.mp_container{
+	width: auto; height: 100;
+	margin-top: 0px; margin-left: 0.6px;
+	border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}

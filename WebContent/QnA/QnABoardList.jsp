@@ -16,7 +16,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>문의사항</h1>
+	<h2>문의사항</h2>
 	<%
  	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
 	String mgr_num = (String)session.getAttribute("mgr_num");
@@ -37,7 +37,6 @@
 			<% if(mgr_num != null) { %>
 				<td>IP</td>
 			<% } %>
-				
 			</tr>
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
 			<tr>

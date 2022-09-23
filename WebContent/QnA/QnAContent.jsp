@@ -7,6 +7,7 @@
 <title>문의사항 확인하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/qnacontent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <%
 	System.out.println(request.getAttribute("qmn"));
@@ -33,7 +34,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>문의사항 확인</h1>
+<h2>문의사항</h2>
 
 <fieldset>
 <% if(mem_num != null) {
@@ -48,20 +49,24 @@
 	%>
 		<table>
 			<tr>
+			<tr>
 				<td>글번호</td>
 				<td>${dto.qna_num }</td>
-				<td>조회수</td>
-				<td>${dto.qna_readcount }</td>
+			</tr>
+				<td>제목</td>
+				<td colspan="3">${dto.qna_subject}</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
 				<td>${dto.name}</td>
+			</tr>
+			<tr>	
+				<td>조회수</td>
+				<td>${dto.qna_readcount }</td>
+			</tr>
+			<tr>	
 				<td>작성일</td>
 				<td>${dto.qna_date }</td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td colspan="3">${dto.qna_subject}</td>
 			</tr>
 			<tr>
 				<td>내용</td>

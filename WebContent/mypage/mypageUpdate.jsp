@@ -23,9 +23,9 @@
  
      <fieldset>
        <form action="./mypageUpdateAction.me" method="post" onsubmit="return checkData()" name="fr">
-          회원 번호 : <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
+          <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
           휴대폰 번호 : <input type="text" name="phone" value="${dto.phone }" readonly="readonly"> <br>
-          비밀번호 : <input type="password" name="password"> <br>
+          비밀번호 : <input type="password" name="password" value="${dto.password }"> <br>
           이름 : <input type="text" name="name" value="${dto.name }"> <br>
           <hr>
              <input type="submit" value="개인정보수정"> 

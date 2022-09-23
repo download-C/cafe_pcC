@@ -10,19 +10,13 @@
   font-style: normal;
 }
 
-/* <button class="button button--antiman button--round-l button--text-medium"><i class="button__icon icon icon-plus"></i> */
-
-.writebtn{
+#update{
   background: none;
   border: none;
   height: 30px;
   transition: color 0.3s;
-  background-color: #adc2a9;
-  border-radius: 20px;
-}
-
-.boardlist{
-	text-align: center;
+  background-color: #d3e4cd;
+  border-radius: 10px;
 }
 
 h2{

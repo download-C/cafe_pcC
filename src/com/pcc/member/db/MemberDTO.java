@@ -38,14 +38,14 @@ public class MemberDTO {
 	public Timestamp getRegdate() {
 		return regdate;
 	}
-	public void setReg_date(Timestamp reg_date) {
-		this.regdate = reg_date;
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
 	
 	@Override
 	public String toString() {
 		return "memberDTO [mem_num=" + mem_num + ", phone=" + phone + ", password=" + password + ", name=" + name
-				+ ", reg_date=" + regdate + "]";
+				+ ", regdate=" + regdate + "]";
 	}
 	
 }

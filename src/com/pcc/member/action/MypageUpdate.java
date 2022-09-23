@@ -30,12 +30,14 @@ public class MypageUpdate implements Action {
 //		dto.setPassword(request.getParameter("password"));
 //		dto.setName(request.getParameter("name"));
 		
-		dao.updateMember(dto);
+		dto = dao.getMember(mem_num);
+		
+		request.setAttribute("dto", dto);
 		
 		//페이지 이동정보 저장(리턴)
 		ActionForward forward = new ActionForward();
 		forward.setPath("./mypage/mypageUpdate.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		
 		return forward;
 		

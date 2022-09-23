@@ -87,11 +87,19 @@ public class MemberFrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
+
 		//마이페이지 폼
 		} else if(command.equals("/MyPage.me")){
-					forward = new ActionForward();
-					forward.setPath("./mypage/mypageContent.jsp");
-					forward.setRedirect(false);
+			action = new MyPageContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+//					forward = new ActionForward();
+//					forward.setPath("./mypage/myPage.jsp");
+//					forward.setRedirect(false);
+
 					
 		// 로그아웃 후 세션 초기화
 		} else if(command.equals("/Logout.me")){
@@ -101,17 +109,7 @@ public class MemberFrontController extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-		
-		// 마이페이지
-		} else if(command.equals("/mypageContent.me")){
-					action = new MyPageContentAction();
-					try{
-						forward  = action.execute(request, response);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
-				
-				
+						
 		// 마이페이지 수정 화면
 				
 		}else if(command.equals("/mypageUpdate.me")){

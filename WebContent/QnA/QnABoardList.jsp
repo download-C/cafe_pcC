@@ -16,7 +16,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>문의사항</h1>
+	<h2>문의사항</h2>
 	<%
  	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
 	String mgr_num = (String)session.getAttribute("mgr_num");
@@ -29,27 +29,23 @@
 	<fieldset>
 		<table>
 			<tr>
-				<td><sapn class="qna_underbar">번호</sapn></td>
-				<td><sapn class="qna_underbar">제목</sapn></td>
-		  		<td><sapn class="qna_underbar">작성자</sapn></td>
-				<td><sapn class="qna_underbar">조회수</sapn></td>
-				<td><sapn class="qna_underbar">작성일</sapn></td>
-			<% if(mgr_num != null) { %>
-				<td>IP</td>
-			<% } %>
-				
+				<td><span class="boardlist">번호</span></td>
+				<td><span class="boardlist">제목</span></td>
+		  		<td><span class="boardlist">작성자</span></td>
+				<td><span class="boardlist">조회수</span></td>
+				<td><span class="boardlist">작성일</span></td>
+				<td><span class="boardlist">IP</span></td>	
+				<!-- ▲ IP는 숨길 예정 -->
 			</tr>
 		<c:forEach var="dto" items="${requestScope.qnaboardlist}">
 			<tr>
-				<td>${dto.qna_num }</td>
-				<td>
-					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a>
-				<td>${dto.name }</td>
-				<td>${dto.qna_readcount }</td>
-				<td>${dto.qna_date }</td>
-			<% if(mgr_num != null) { %>
-				<td>${dto.qna_ip }</td>
-			<% } %>
+				<td><span class="boardlist">${dto.qna_num }</span></td>
+				<td><span class="boardlist">
+					<a href="./QnAContent.qna?qna_num=${dto.qna_num }&pageNum=${requestScope.pageNum}">${dto.qna_subject }</a></span>
+				<td><span class="boardlist">${dto.name }</span></td>
+				<td><span class="boardlist">${dto.qna_readcount }</span></td>
+				<td><span class="boardlist">${dto.qna_date }</span></td>
+				<td><span class="boardlist">${dto.qna_ip }</span></td>
 			</tr>
 		</c:forEach>
 		</table>

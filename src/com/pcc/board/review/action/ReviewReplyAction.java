@@ -29,17 +29,21 @@ public class ReviewReplyAction implements Action {
 			int review_password = Integer.parseInt(multipartRequest.getParameter("review_password"));
 			String review_subject = multipartRequest.getParameter("review_subject");
 			String review_content = multipartRequest.getParameter("review_content");
+			String review_file = multipartRequest.getParameter("review_file");
+			String review_ip = request.getRemoteAddr();
+			
 	
 			ReviewDTO dto = new ReviewDTO();
 			dto.setMgr_num(Integer.parseInt(mgr_num));
 			dto.setReview_password(review_password);
 			dto.setReview_subject(review_subject);
 			dto.setReview_content(review_content);
+			dto.setReview_ip(review_ip);
+			dto.setReview_file(review_file);
 			
 			review_num = dao.reviewReply(review_num, dto);
 			
 			request.setAttribute("dto", dto);
-			request.setAttribute("review_file", dto.getReview_file());
 		
 			ActionForward forward = new ActionForward();
 			forward.setPath("/ReviewContent.rv?review_num="+review_num+"&pageNum=1");

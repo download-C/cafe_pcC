@@ -34,7 +34,7 @@ public class ReviewContentAction implements Action {
 //			System.out.println("pageNum : " + pageNum);
 		}
 		
-		if(mem_num != null ) {
+		if(mem_num != null) {
 			
 			ReviewDAO dao = new ReviewDAO();
 			ReviewDTO dto = dao.getReviewContent(review_num);

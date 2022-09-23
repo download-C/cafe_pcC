@@ -84,7 +84,7 @@ public class MemberFrontController extends HttpServlet {
 				//마이페이지 폼
 				} else if(command.equals("/MyPage.me")){
 					forward = new ActionForward();
-					forward.setPath("./members/MyPage.jsp");
+					forward.setPath("./mypage/mypageContent.jsp");
 					forward.setRedirect(false);
 					
 				// 로그아웃 후 세션 초기화

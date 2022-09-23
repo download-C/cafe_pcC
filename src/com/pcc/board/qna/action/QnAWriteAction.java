@@ -35,7 +35,7 @@ public class QnAWriteAction implements Action {
 				
 			if(mem_num != null) {
 				String name = multipartRequest.getParameter("name");
-				int qna_password = Integer.parseInt(request.getParameter("qna_password"));
+				int qna_password = Integer.parseInt(multipartRequest.getParameter("qna_password"));
 				String qna_subject = multipartRequest.getParameter("qna_subject");
 				String qna_content = multipartRequest.getParameter("qna_content");
 				String qna_file = multipartRequest.getParameter("qna_file");
@@ -59,7 +59,7 @@ public class QnAWriteAction implements Action {
 				
 				System.out.println(" M : " + dto);
 				
-				daoM.alert(response, "리뷰를 작성했습니다.", 
+				daoM.alert(response, "문의사항 작성에 성공했습니다.", 
 						"location.href='./QnAContent.qna?qna_num="+qna_num+"&pageNum=1';");
 				
 				return null;

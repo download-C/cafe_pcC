@@ -70,7 +70,7 @@
 	 	<input type="hidden" name="name" id="review_name" 
 	 			value="관리자" readonly="readonly">
 		비밀번호 <input type="password" name="review_password" 
-					maxlength="4" placeholder="4자리 숫자로 적으세요"> <br>
+					maxlength="4" placeholder="9090" value="9090"> <br>
 		제목 <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
 		내용 <textarea rows="30" cols="80 " name="review_content"></textarea> <br>
 		</div>

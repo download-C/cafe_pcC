@@ -28,3 +28,7 @@ fieldset{
 	margin : 50px 50px;
 	border : solid 1px grey;
 }
+
+table{
+	font-size: small;
+}

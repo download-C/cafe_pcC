@@ -29,9 +29,13 @@ fieldset{
 	
 	margin : 50px 50px;
 	border : solid 1px grey;
+/* 	border-color: #adc2a9; */
 }
 
 h2{
 	text-align: center;
 }
 
+table{
+	font-size: small;
+}

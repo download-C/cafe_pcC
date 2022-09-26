@@ -7,30 +7,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script src="./JavaScript/main.js" defer></script>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/mypageUpdate.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-     <h1>myPageUpdate.jsp</h1>
-     
+<!-- 헤더들어가는 곳 -->
+<jsp:include page="../inc/top.jsp" />
+<!-- 헤더들어가는 곳 -->
+
      <%
        // 로그인 여부 체크
-       String mem_num = (String) session.getAttribute("loginMem_num");
+       String mem_num = (String) session.getAttribute("mem_num");
 //     if(mem_num == null){
 //         response.sendRedirect("loginForm.jsp");
 //     }
      %>
      
-     <h2>회원수정 페이지</h2>
- 
+     
+     <img class="img3" src="./img/mypageUpdate.jpg">
+     
+     
+     
+     <form action="./mypageUpdateAction.me" method="post" id="update" onsubmit="return checkData()" name="fr">
      <fieldset>
-       <form action="./mypageUpdateAction.me" method="post" onsubmit="return checkData()" name="fr">
-          <input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"> <br>
-          휴대폰 번호 : <input type="text" name="phone" value="${dto.phone }" readonly="readonly"> <br>
-          비밀번호 : <input type="password" name="password" value="${dto.password }"> <br>
-          이름 : <input type="text" name="name" value="${dto.name }"> <br>
+     <legend>회원수정</legend>
+     <hr>
+     <ul>
+        <li><input type="hidden" name="mem_num" value="${dto.mem_num }" readonly="readonly"></li>
+        <li><label>휴대폰 번호</label>
+          <input type="text" name="phone" id="phone" value="${dto.phone }" readonly="readonly"></li>
+        <li><label>비밀번호</label>
+          <input type="password" name="password" id="password" value="${dto.password }"></li>
+        <li><label>이름</label>
+          <input type="text" name="name" id="name" value="${dto.name }"></li>
+     </ul>
           <hr>
-             <input type="submit" value="개인정보수정"> 
-       </form>
+             <input type="submit" class="update_btn" value="개인정보수정"> 
      </fieldset>
+     </form>
      
      <script type="text/javascript">
         // alert("document.fr.pw.value : "+document.fr.pw.value);
@@ -51,6 +69,8 @@
         }
      </script>
      
-     
+<!-- 푸터들어가는 곳 -->
+<jsp:include page="../inc/bottom.jsp"  />
+<!-- 푸터들어가는 곳 -->     
 </body>
 </html>

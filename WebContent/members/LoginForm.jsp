@@ -17,9 +17,10 @@ pageEncoding="UTF-8"%>
 		<form action="./LoginAction.me" method="post">
 			<input type="text" name="phone" placeholder="아이디/휴대폰 번호"> <br>
 			<input type="password" name="password" placeholder="비밀번호"> <br>
-			<input type="submit" value="로그인">
+			<input type="submit" value="로그인"> <br>
+			<input type="button" value="회원가입" onclick= "location.href='./Reg.me';">
 		</form>
-	</fieldset>
+	</fieldset><br>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

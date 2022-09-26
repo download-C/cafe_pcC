@@ -10,14 +10,14 @@
   font-style: normal;
 }
 
-#update{
-  background: none;
-  border: none;
-  height: 30px;
-  transition: color 0.3s;
-  background-color: #d3e4cd;
-  border-radius: 10px;
-}
+/* #update{ */
+/*   background: none; */
+/*   border: none; */
+/*   height: 30px; */
+/*   transition: color 0.3s; */
+/*   background-color: #d3e4cd; */
+/*   border-radius: 10px; */
+/* } */
 
 h2{
 	text-align: center;
@@ -30,5 +30,5 @@ fieldset{
 }
 
 table{
-	font-size: small;
+	font-size: 14px;
 }

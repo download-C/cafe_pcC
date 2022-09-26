@@ -7,19 +7,24 @@
 <title>내 예약 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardlist.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>reservationList.jsp</h1>
+<!-- 	<h1>reservationList.jsp</h1> -->
+	<h2>예약확인</h2>
 <%
 	String mem_num = (String)session.getAttribute("mem_num");
 
 	if(mem_num != null) {
-%>		<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+%>		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" name="res_btn" class="writebtn" id="res_btn" value="예약하기" 
 		onclick="location.href='./Reservation.re';"> <br><br>
+
 <%
 	} else {}
 %>

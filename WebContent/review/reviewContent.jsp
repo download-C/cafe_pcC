@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 <title>리뷰 확인하기</title>
@@ -26,8 +27,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+<h2>고객리뷰</h2>
 
-	<h1>reviewContent.jsp</h1>
 	<fieldset>
 	<% if(mem_num != null) {
 	%>
@@ -43,29 +44,70 @@
 			<tr>
 				<td>글번호</td>
 				<td>${dto.review_num }</td>
+			</tr>
+				
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+			
+			<tr>
 				<td>조회수</td>
 				<td>${dto.review_readcount }</td>
 			</tr>
+			
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+		
 			<tr>
 				<td>작성자</td>
 				<td>${dto.name }</td>
+			</tr>
+				
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+				
+			<tr>	
 				<td>작성일</td>
 				<td>${dto.review_date }</td>
 			</tr>
+			
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+			
 			<tr>
 				<td>제목</td>
 				<td colspan="3">${dto.review_subject }</td>
 			</tr>
+			
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+			
 			<tr>
 				<td>내용</td>
 				<td colspan="3">${dto.review_content }</td>
 			</tr>
+	
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+	
 			<tr>
 				<td>첨부파일</td>
 				<td colspan="3"><a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>
 				</td>
 			</tr>
+			
 		</table>
 	</fieldset>
 	<%

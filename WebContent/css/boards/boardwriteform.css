@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+@import url("./theme.css");
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+   	   format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+fieldset {
+	margin : 50px 50px;
+	border : solid 1px grey;
+	font-size: small;
+}
+
+legend{
+	text-align: center;
+	font-weight: bold;
+	font-size: medium;
+}
+
+.div{
+	font-weight: bold;
+	font-size: medium;
+	margin:0 auto;
+}
+
+#center{
+	text-align: center;
+}
+
+hr{
+	border: none;
+}
+
+.td{
+	font-weight: bold;
+}
+
+/*  ▼ reservation css */
+
+#res {
+	font-weight: bold;
+	font-size: medium;
+}
+
+#res_date {
+	font-weight: bold;
+	font-size: medium;	
+}

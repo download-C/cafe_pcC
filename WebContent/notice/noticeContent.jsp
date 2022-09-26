@@ -6,6 +6,7 @@
 <title>공지사항 보기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 <% 
@@ -20,28 +21,77 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+<h2>공지사항</h2>
 	 <fieldset>
 		<table>
 			<tr>
 				<td>글번호</td>
 				<td>${dto.notice_num }</td>
+			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
+			<tr>
 				<td>조회수</td>
 				<td>${dto.notice_readcount }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>작성자</td>
+			</tr>	
+				
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
+			<tr>
 				<td>관리자</td>
+			</tr>
+	
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+	
+			<tr>
 				<td>작성일</td>
 				<td>${dto.notice_date }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>제목</td>
 				<td colspan="3">${dto.notice_subject }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>내용</td>
 				<td colspan="3">${dto.notice_content }</td>
 			</tr>
+	
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+	
 			<tr>
 				<td>첨부파일</td>
 				<td colspan="3">${dto.notice_file }</td>
@@ -53,10 +103,10 @@
 		// 매니저 로그인 시 수정, 삭제버튼 보이게 함
  		if(mgr_num != null) {
 	 %>		
-		<input type="button" name="notice_update" value="수정"
+		<input type="button" name="notice_update" id="update" value="수정"
 	     onclick="location.href='./NoticeUpdate.no?notice_num=${dto.notice_num}';">
 	
-		<input type="button" name="notice_delete" value="삭제"
+		<input type="button" name="notice_delete" id="delete" value="삭제"
 	    onclick="location.href='./NoticeDelete.no?notice_num=${dto.notice_num}';">
 			 
     <%

@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardreplyform.css" rel="stylesheet" type="text/css">
 <title>리뷰 답글 달기</title>
 <%
 	System.out.println(request.getAttribute("rmn"));
@@ -20,7 +21,8 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<h1>${dto.review_num }번 리뷰 답글 달기</h1>
+	<h4>${dto.review_num }번 리뷰 답글 달기</h4>
+	
 	<fieldset>
 	<% if(mem_num != null) {
 	%>
@@ -36,29 +38,70 @@
 			<tr>
 				<td>글번호</td>
 				<td>${dto.review_num }</td>
+			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+
+			<tr>				
 				<td>조회수</td>
 				<td>${dto.review_readcount }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>작성자</td>
 				<td>${dto.name }</td>
+			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
+			<tr>
 				<td>작성일</td>
 				<td>${dto.review_date }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>제목</td>
 				<td colspan="3">${dto.review_subject }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>내용</td>
 				<td colspan="3">${dto.review_content }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>첨부파일</td>
 				<td colspan="3"><a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>
 				</td>
 			</tr>
+			
 		</table>
 	</fieldset>
 	<hr>
@@ -70,9 +113,12 @@
 	 	<input type="hidden" name="name" id="review_name" 
 	 			value="관리자" readonly="readonly">
 		비밀번호 <input type="password" name="review_password" 
-					maxlength="4" placeholder="9090" value="9090"> <br>
-		제목 <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
-		내용 <textarea rows="30" cols="80 " name="review_content"></textarea> <br>
+					maxlength="4" placeholder="비밀번호는 9090으로 자동 입력됩니다." value="9090"> 
+		<hr>
+		제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
+		<hr>
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea rows="4" cols="60 " name="review_content"></textarea> <br>
+		<hr>
 		</div>
 		<div>
 		<input type="submit" value="작성"> &nbsp;&nbsp;

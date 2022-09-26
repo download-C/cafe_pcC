@@ -8,16 +8,17 @@
 <title>리뷰 수정하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardupdateform.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>reviewUpdateForm.jsp</h1>
+<!-- 	<h1>reviewUpdateForm.jsp</h1> -->
 	
 	<fieldset>
-		<h3>리뷰 글 수정하기</h3>
+		<legend>리뷰 수정하기</legend>
 		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post" enctype="multipart/form-data">
 			<div>
 				<table>
@@ -27,21 +28,27 @@
 							value="${name }"></td>
 					</tr>
 					<tr>
-						<td>
+						<td class="td">
 						비밀번호
 						<input type="password" name="review_password"
 							id="review_password" value="${dto.review_password }"></td>
 					</tr>
 					<tr>
-						<td>
+						<td class="td">
 						제목
 						<input type="text" name="review_subject"
 							id="review_subject" value="${dto.review_subject }"></td>
 					</tr>
+					<tr><td class="td">내용
+						<td><textarea rows="3" cols="60" name="review_content" id="review_contnet"
+						placeholder="수정하실 내용을 입력하세요." >${dto.review_content }</textarea>
+					</td></tr>
+								
 					<tr>
-						<td><textarea rows="30" cols="100" name="review_content"
-								id="review_contnet">${dto.review_content }</textarea></td>
 					</tr>
+					<tr>
+					</tr>			
+								
 					<tr>
 						<td>
 							<img src="./upload/${dto.review_file }"> <br>
@@ -49,6 +56,12 @@
 							<input type="hidden" name="oldfile" value="${dto.review_file }">
 						</td>
 					</tr>
+					
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+					
 				</table></div>
 		<div>
 			<input type="submit" value="수정">

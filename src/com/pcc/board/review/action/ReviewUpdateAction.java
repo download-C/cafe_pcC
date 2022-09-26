@@ -35,9 +35,7 @@ public class ReviewUpdateAction implements Action {
 			String review_password = multipartRequest.getParameter("review_password");
 			String review_subject = multipartRequest.getParameter("review_subject");
 			String review_content = multipartRequest.getParameter("review_content");
-			String review_oldfile = multipartRequest.getParameter("review_oldfile");
-			String review_ip = request.getRemoteAddr();
-			
+			String review_oldfile = multipartRequest.getParameter("review_oldfile");			
 					
 			ReviewDAO dao = new ReviewDAO();
 			ReviewDTO dto = dao.getReviewContent(Integer.parseInt(review_num)); 

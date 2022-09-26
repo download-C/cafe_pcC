@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.pcc.board.qna.db.QnABoardDTO"%>
+<%@page import="com.pcc.board.qna.db.QnADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +18,7 @@
 <!-- 헤더들어가는 곳 -->
 	<h2>문의사항</h2>
 	<%
- 	ArrayList<QnABoardDTO> qnaboardlist = (ArrayList<QnABoardDTO>)request.getAttribute("qnaboardlist");
+ 	ArrayList<QnADTO> qnaboardlist = (ArrayList<QnADTO>)request.getAttribute("qnaboardlist");
 	String mgr_num = (String)session.getAttribute("mgr_num");
 	String mem_num = (String)session.getAttribute("mem_num");
 	%>
@@ -59,16 +59,16 @@
 		</table>
 	</fieldset>
 	
-	<c:if test="${cnt !=0 }">
+	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
-        	<a href="./QnABoardList.qna?pageNum=${startPage-pageBlock }">[이전]</a>
-    	</c:if>
-    	<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-        	<a href="./QnABoardList.qna?pageNum=${i }">[${i }]</a>
-    	</c:forEach>
+			<a href="./QnAList.qna?pageNum=${startPage-pageBlock }">[이전]</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+			<a href="./QnAList.qna?pageNum=${i }">[${i }]</a>
+		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-        	<a href="./QnABoardList.qna?pageNum=${startPage + pageBlock }">[다음]</a>
-      	</c:if>	
+			<a href="./QnAList.qna?pageNum=${startPage + pageBlock }">[다음]</a>
+		</c:if>
 	</c:if>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

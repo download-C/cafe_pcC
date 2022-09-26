@@ -3,8 +3,8 @@
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.member.db.MemberDAO;
 
 import action.Action;
@@ -20,7 +20,7 @@ System.out.println("QnAUpdateProAction_execute() 호출");
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("한글 처리 완료");
 
-		QnABoardDAO dao = new QnABoardDAO();
+		QnADAO dao = new QnADAO();
 		//System.out.println("DAO : " +dao);
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		
@@ -28,8 +28,8 @@ System.out.println("QnAUpdateProAction_execute() 호출");
 		
 		System.out.println("qna_num : " + qna_num);
 	
-		QnABoardDTO dto = dao.getQnAContent(qna_num);
-		System.out.println(qna_num + "번의 글을 정보를 가진 QnABoardDTO 객체 생성");
+		QnADTO dto = dao.getQnAContent(qna_num);
+		System.out.println(qna_num + "번의 글을 정보를 가진 QnADTO 객체 생성");
 		System.out.println("==============================");
 		System.out.println("DTO : " + dto);
 		System.out.println("==============================");

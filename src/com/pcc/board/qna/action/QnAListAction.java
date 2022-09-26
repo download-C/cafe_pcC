@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 
 import action.Action;
 import vo.ActionForward;
@@ -17,10 +17,10 @@ public class QnAListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
 		
-	System.out.println(" M : QnABoardList_execute() 호출 ");
+	System.out.println(" M : QnAList_execute() 호출 ");
 	
-	QnABoardDAO dao = new QnABoardDAO();
-	int cnt = dao.getQnABoardCount();
+	QnADAO dao = new QnADAO();
+	int cnt = dao.getQnACount();
 
 	System.out.println(" M : 게시판 글 정보 저장 완료 ");
 
@@ -50,7 +50,7 @@ public class QnAListAction implements Action{
 	int endRow = currentPage*pageSize;
 	
 	// 페이징처리 2. 목록 하단에 페이지 이동 버튼 만들기 -------------------------------
-	List<QnABoardDTO> qnaboardlist = dao.getQnABoardList(startRow, pageSize);
+	List<QnADTO> qnaboardlist = dao.getQnAList(startRow, pageSize);
 	
 	int pageCount = (cnt/pageSize)+(cnt%pageSize==0 ? 0:1);
 	int pageBlock = 5;
@@ -70,7 +70,7 @@ public class QnAListAction implements Action{
 	
 	
 	ActionForward forward = new ActionForward();
-	forward.setPath("./QnA/QnABoardList.jsp");
+	forward.setPath("./QnA/QnAList.jsp");
 	forward.setRedirect(false);
 	
 	return forward;

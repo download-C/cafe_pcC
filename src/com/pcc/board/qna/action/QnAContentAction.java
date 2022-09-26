@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.member.db.MemberDAO;
 
 import action.Action;
@@ -34,11 +34,8 @@ public class QnAContentAction implements Action {
 		
 		if(mem_num != null) {
 			
-			QnABoardDAO dao = new QnABoardDAO();
-			QnABoardDTO dto = dao.getQnAContent(qna_num);
-			System.out.println("===========================");
-			System.out.println("dto:"+dto);
-			System.out.println("===========================");
+			QnADAO dao = new QnADAO();
+			QnADTO dto = dao.getQnAContent(qna_num);
 			if(Integer.parseInt(mem_num) != dto.getMem_num()){
 				dao.updateReadCount(qna_num);
 			System.out.println("본인이 쓴 글이 아니므로 "+qna_num + "번 문의사항 조회수 1 증가 ");
@@ -46,9 +43,7 @@ public class QnAContentAction implements Action {
 			
 			request.setAttribute("dto", dto);
 			request.setAttribute("pageNum", Integer.parseInt(pageNum));
-			System.out.println("pageNum" + pageNum);
 			request.setAttribute("qna_num", qna_num);
-			System.out.println("pageNum : " + pageNum);		
 			request.setAttribute("qna_name", dto.getName());
 			request.setAttribute("qmn", Integer.toString(dto.getMem_num()));
 			
@@ -60,9 +55,9 @@ public class QnAContentAction implements Action {
 			return forward;
 			
 		} else if (mgr_num != null) {
-			QnABoardDTO dto = new QnABoardDTO();
+			QnADTO dto = new QnADTO();
 			
-			QnABoardDAO dao = new QnABoardDAO();
+			QnADAO dao = new QnADAO();
 			dto = dao.getQnAContent(qna_num);
 
 			System.out.println( "DTO : " + dto );

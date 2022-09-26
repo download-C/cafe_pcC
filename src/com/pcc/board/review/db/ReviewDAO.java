@@ -12,12 +12,10 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import com.sun.org.apache.bcel.internal.generic.DASTORE;
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 

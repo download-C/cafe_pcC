@@ -17,30 +17,33 @@
 <!-- 	<h1> noticeWriteForm.jsp </h1> -->
 	
 	<!-- 공지사항 게시판 등록 -->
-	<fieldset id="noticeWriteForm">
+	<fieldset>
 		<legend>공지사항 작성하기</legend>
 		<form action="./NoticeWriteAction.no" method="post">
-		<div class="div">
-			<table>
-				<tr><td class="td">
+	<!-- <div class="div"> -->
+			<table style="margin:auto;">
+				<tr><td class="center">
 					제목 <input type="text" name="notice_subject"  id="notice_subject"
 					       placeholder="제목을 입력하세요." >
 				</td></tr>
-				<tr><td class="td">
+				<tr><td class="center">
 					내용 <textarea rows="3" cols="60" name="notice_content" id="notice_content"
 						   placeholder="내용을 입력하세요." ></textarea>
 				</td></tr>
-				<tr><td class="td">
+				<tr><td class="center">
 					첨부파일 <input type="file" name="notice_file" id="notice_file" >
 				</td></tr>
 			</table>
-		</div>
-		<div id="commandCell">
-			<input type="button" value="임시 등록"> &nbsp;&nbsp;
+		<!-- </div> -->
+		
+		<div id="commandCell" style="text-align: center;">
+			<input type="button" value="임시 등록"> &nbsp;
 			<input type="submit" value="등록"> 
 		</div>
+		
 		</form>
 	</fieldset>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->	

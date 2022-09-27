@@ -32,7 +32,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>reviewPassword.jsp</h1>
+<!-- 	<h1>reviewPassword.jsp</h1> -->
 	<% 
 		String button = request.getParameter("button");
 		String review_num = request.getParameter("review_num");

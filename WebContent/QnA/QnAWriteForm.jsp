@@ -54,39 +54,56 @@ $(document).ready(function () {
 	<legend>문의사항 작성하기</legend>
 	<br>
 	<form action="./QnAWriteAction.qna" method="post" enctype="multipart/form-data">
-		<div class="div" style="text-align:center;">
+<!-- 		<div class="div"> -->
+			<table style="margin:auto;">
+				<tr><td class="center">
 		<%
 			String mem_num = (String)session.getAttribute("mem_num");
 			String mgr_num = (String)session.getAttribute("mgr_num");
 			String name = (String)request.getAttribute("name");
 		if(	mgr_num != null ) {%>
-		작성자 <input type="text" name="name" id="center" readonly="readonly" value="관리자">
+		작성자 <input type="text" name="name" readonly="readonly" value="관리자"> <br> </td></tr>
+		
+			<tr><td class="center">
 		<hr>
 		<%} else if(mem_num != null) {%>
-		작성자 <input type="text" name="name" id="center" readonly="readonly" value="${name }">
+		작성자 <input type="text" name="name" readonly="readonly" value="${name }"> <br> </td></tr>
+		
+			<tr><td class="center">
 		<hr>		
 		<%} 
 		if(mem_num != null) {
 		%>
-		비밀번호 <input type="password" name="qna_password" id="center" maxlength="4" id="password"
-		placeholder="4자리 숫자로 입력하세요.">
-		<hr>
+		비밀번호 <input type="password" name="qna_password" maxlength="4" id="password"
+		placeholder="4자리 숫자로 입력하세요."> <br> </td></tr>
+		
+			
 		<%} %> 
-		<div id="passdiv"></div>
-		제목 <input type="text" name="qna_subject" id="subject">
+<!-- 		<div id="passdiv"></div> -->
+			<tr><td class="center">
 		<hr>
-		<div id="subdiv"></div>
-		내용 <textarea rows="3" cols="60" name="qna_content" id="content"></textarea>
+		제목 <input type="text" name="qna_subject" id="subject"> <br> </td></tr>
+		
+			<tr><td class="center">
 		<hr>
-		<div id="contdiv"></div>
-		첨부파일 <input type="text" name="qna_file" id="file">
+<!-- 		<div id="subdiv"></div> -->
+		내용 <textarea rows="3" cols="40" name="qna_content" id="content"></textarea> <br> </td></tr>
+		
+			<tr><td class="center">
 		<hr>
-		<div id="filediv"></div>
-		</div>	
+<!-- 		<div id="contdiv"></div> -->
+		첨부파일 <input type="text" name="qna_file"  id="file"> <hr> </td></tr>
+		
+		
+		</table>
+<!-- 		<div id="filediv"></div> -->
+<!-- 		</div>	 -->
+
 		<div style="text-align: center;">
 			<input type="submit" id="btn" value="작성" >
 			<input type="button" value="취소">
 		</div>
+		
 	</form>
 </fieldset>
 

@@ -22,7 +22,9 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <h2>공지사항</h2>
+
 	 <fieldset>
+	 	<hr>
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -46,14 +48,6 @@
 			
 			<tr>
 				<td>작성자</td>
-			</tr>	
-				
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
 				<td>관리자</td>
 			</tr>
 	
@@ -98,7 +92,10 @@
 			</tr>
 	
 	     </table>
-	</fieldset>
+	     
+	     <hr>
+	     
+	     <div class="btn">
 	<%
 		// 매니저 로그인 시 수정, 삭제버튼 보이게 함
  		if(mgr_num != null) {
@@ -114,6 +111,13 @@
 	%>
 		<input type="button" name="notice_list" value="목록" 
 	     onclick="location.href='./NoticeList.no?pageNum=${pageNum}}';">
+		
+		<hr>
+	
+	     </div>
+	     
+	</fieldset>
+
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

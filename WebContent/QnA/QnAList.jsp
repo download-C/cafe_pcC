@@ -16,6 +16,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<br>
 	<h2>문의사항</h2>
 	<%
  	ArrayList<QnADTO> qnaboardlist = (ArrayList<QnADTO>)request.getAttribute("qnaboardlist");
@@ -24,8 +25,7 @@
 	%>
 	<%if(mem_num != null) { %>
 
-	<div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="btn">
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
 	  onclick="location.href='./QnAWrite.qna';" > 
 	</div>
@@ -33,13 +33,13 @@
  	<%} %>
  	
 	<fieldset>
-		<table class="qna_list" style="text-align: center;">
+		<table class="boardlist" style="margin:auto;">
 			<tr>
-				<td><sapn class="qna_underbar">번호</sapn></td>
-				<td><sapn class="qna_underbar">제목</sapn></td>
-		  		<td><sapn class="qna_underbar">작성자</sapn></td>
-				<td><sapn class="qna_underbar">조회수</sapn></td>
-				<td><sapn class="qna_underbar">작성일</sapn></td>
+				<td>번호</td>
+				<td>제목</td>
+		  		<td>작성자</td>
+				<td>조회수</td>
+				<td>작성일</td>
 			<% if(mgr_num != null) { %>
 				<td>IP</td>
 			<% } %>
@@ -60,6 +60,7 @@
 		</table>
 	</fieldset>
 	
+	<div style="text-align: center;">
 	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
 			<a href="./QnAList.qna?pageNum=${startPage-pageBlock }">[이전]</a>
@@ -71,6 +72,9 @@
 			<a href="./QnAList.qna?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
+	</div>
+	<br>
+
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

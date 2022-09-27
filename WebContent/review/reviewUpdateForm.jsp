@@ -21,7 +21,7 @@
 		<legend>리뷰 수정하기</legend>
 		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post" enctype="multipart/form-data">
 			<div>
-				<table>
+				<table style="margin:auto;">
 					<tr>
 						<td>
 						<input type="hidden" name="name" id="name"
@@ -40,7 +40,7 @@
 							id="review_subject" value="${dto.review_subject }"></td>
 					</tr>
 					<tr><td class="td">내용
-						<td><textarea rows="3" cols="60" name="review_content" id="review_contnet"
+						<textarea rows="3" cols="40" name="review_content" id="review_contnet"
 						placeholder="수정하실 내용을 입력하세요." >${dto.review_content }</textarea>
 					</td></tr>
 								
@@ -50,7 +50,7 @@
 					</tr>			
 								
 					<tr>
-						<td>
+						<td class="td"> 첨부파일
 							<img src="./upload/${dto.review_file }"> <br>
 							<input type="file" name="review_file" id="review_file">
 							<input type="hidden" name="oldfile" value="${dto.review_file }">
@@ -63,11 +63,13 @@
 				</tr>
 					
 				</table></div>
-		<div>
+		<div style="text-align:center;">
 			<input type="submit" value="수정">
 		</div>
+		
 		</form>
 	</fieldset>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

@@ -67,7 +67,7 @@
 			<input type="submit" value="예약하기">
 		</form>
 	</div>
-<!-- 푸터들어가는 곳 -->
+<!-- 푸터들어가는 곳 --> 
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->
 </body>

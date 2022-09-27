@@ -19,7 +19,7 @@
 		<legend>문의사항 수정하기</legend>
 		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }" method="post" >
 		<div>
-			<table>
+			<table style="margin:auto;">
 				<tr>
 					<td>
 						<input type="hidden" name="qna_num" id="qna_num"
@@ -33,7 +33,7 @@
 				</td></tr>
 
 				<tr><td class="td">내용
-					<textarea rows="3" cols="60" name="qna_content" id="qna_content"
+					<textarea rows="3" cols="40" name="qna_content" id="qna_content"
 					placeholder="수정하실 내용을 입력하세요.">${dto.qna_content }</textarea>
 				</td></tr>
 				
@@ -53,7 +53,8 @@
 				
 			</table>
 		</div>
-		<div id="commanCell">
+		
+		<div id="commanCell" style="text-align:center;">
 			<input type="submit" value="수정" >
 		</div>
 		</form>

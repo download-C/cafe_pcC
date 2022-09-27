@@ -22,7 +22,6 @@
 <!-- 헤더들어가는 곳 -->
 
 	<h4>${dto.review_num }번 리뷰 답글 달기</h4>
-	
 	<fieldset>
 	<% if(mem_num != null) {
 	%>
@@ -34,7 +33,7 @@
 	<%
 	}
 	%>
-		<table>
+		<table class="tb1">
 			<tr>
 				<td>글번호</td>
 				<td>${dto.review_num }</td>
@@ -108,22 +107,41 @@
 		<fieldset>
 		<legend>리뷰 답글 작성하기</legend>
 		<form action="./ReviewReply.rv?review_num=${dto.review_num }" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
-		<div>
+	
+	<!-- <div> -->
 		
 	 	<input type="hidden" name="name" id="review_name" 
 	 			value="관리자" readonly="readonly">
+	 	<table class="tb2">
+	 	
+	 	<tr>
+	 		<td class="center">
 		비밀번호 <input type="password" name="review_password" 
 					maxlength="4" placeholder="비밀번호는 9090으로 자동 입력됩니다." value="9090"> 
 		<hr>
+		</td></tr>
+		
+		<tr>
+			<td class="center">
 		제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
 		<hr>
+		</td></tr>
+		
+		<tr>
+			<td class="center">
 		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea rows="4" cols="60 " name="review_content"></textarea> <br>
 		<hr>
-		</div>
-		<div>
+		</td></tr>
+		
+	 	</table>		
+		
+	<!-- </div> -->
+		
+		<div class="btn">
 		<input type="submit" value="작성"> &nbsp;&nbsp;
 		<input type="button" value="취소">
 		</div>
+		
 		</form>
 	</fieldset>
 <!-- 푸터 시작 -->

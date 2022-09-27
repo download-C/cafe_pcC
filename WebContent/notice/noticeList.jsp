@@ -23,8 +23,7 @@
 if(mgr_num != null) {
 	%>
 	
-	<div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="btn">
 	<input type="button" name="noticeWrite" class="writebtn" value="새 글 쓰기(new)"
  	onclick="location.href='./NoticeWrite.no';">
 	</div>	
@@ -34,7 +33,7 @@ if(mgr_num != null) {
  } else {}
  %>
 	<fieldset>
-		<table>
+		<table class="boardlist">
 			<tr>
 				<td>글번호</td>
 				<td>제목</td>
@@ -45,8 +44,8 @@ if(mgr_num != null) {
 			<c:forEach var="dto" items="${requestScope.noticeList}">
 				<tr>
 					<td>${dto.notice_num }</td>
-					<td><a
-						href="./NoticeContent.no?notice_num=${dto.notice_num }&pageNum=${requestScope.pageNum}">${dto.notice_subject }</a>
+					<td>
+					<a href="./NoticeContent.no?notice_num=${dto.notice_num }&pageNum=${requestScope.pageNum}">${dto.notice_subject }</a>
 					<td>관리자</td>
 					<td>${dto.notice_readcount }</td>
 					<td>${dto.notice_date }</td>
@@ -54,6 +53,8 @@ if(mgr_num != null) {
 			</c:forEach>
 		</table>
 	</fieldset>
+	
+	<div style="text-align: center;">
 	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
 			<a href="./NoticeList.no?pageNum=${startPage-pageBlock }">[이전]</a>
@@ -65,6 +66,9 @@ if(mgr_num != null) {
 			<a href="./NoticeList.no?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
+	</div>
+	<br>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

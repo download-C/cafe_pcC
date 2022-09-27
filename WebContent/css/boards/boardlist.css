@@ -21,14 +21,21 @@
   border-radius: 20px;  
 }
 
+.btn{
+	text-align:right;
+}
+
 .boardlist{
 	text-align: center;
+	margin: auto;
+	font-size: 16px;
 }
 
 fieldset{
-	
 	margin : 50px 50px;
 	border : solid 1px grey;
+	text-align: center;
+	
 /* 	border-color: #adc2a9; */
 }
 

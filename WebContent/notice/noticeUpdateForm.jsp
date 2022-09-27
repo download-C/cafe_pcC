@@ -20,9 +20,10 @@
 	<!-- 공지사항 게시판 등록 -->
 	<fieldset>
 		<legend>공지사항 수정하기</legend>
+		<br>
 		<form action="./NoticeUpdateAction.no?notice_num=${dto.notice_num }&pageNum=${pageNum }" method="get">
 		<div>
-			<table>
+			<table style="margin:auto;">
 				<tr>
 					<td class="td">작성자 <input type="text" value="관리자"  readonly="readonly"></td>
 				</tr>
@@ -38,7 +39,7 @@
 				</td></tr>
 				
 				<tr><td class="td">
-					내용 <textarea rows="3" cols="60" name="notice_content" id="notice_content"
+					내용 <textarea rows="3" cols="40" name="notice_content" id="notice_content"
 					placeholder="수정하실 내용을 입력하세요.">${dto.notice_content }</textarea>
 				</td></tr>
 				
@@ -56,13 +57,21 @@
 				<tr>
 				</tr>
 				
+				
 			</table>
 		</div>
-		<div id="commandCell">
+		
+		<br>
+	<!--▲ 수정버튼 위 공백 -->
+				
+		<div id="commandCell" style="text-align:center;">
 			<input type="submit" value="수정" > 
 		</div>
+		
 		</form>	
+		
 	</fieldset>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

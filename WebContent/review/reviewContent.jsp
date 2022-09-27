@@ -109,7 +109,11 @@
 			</tr>
 			
 		</table>
-	</fieldset>
+		
+			<hr>
+			
+		<div class="btn">
+		
 	<%
 	if(mem_num != null) {
 		if(mem_num.equals(rmn)) {
@@ -138,6 +142,13 @@
 %>
 	<input type="button" name="review_list" id="list" value="목록" 
      onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">
+	
+	<hr>
+	     
+     </div>	
+     
+	</fieldset>
+     
 <%
 
 %>

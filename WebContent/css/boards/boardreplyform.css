@@ -43,13 +43,28 @@ fieldset{
 	border : solid 1px grey;
 }
 
-table{
-	font-size: small;
+.tb1{
+	font-size: 16px;
+	margin: auto;
+}
+
+.tb2{
+	font-size: 16px;
+	margin: auto;	
 }
 
 legend{
 	text-align: center;
 	font-weight: bold;
+}
+
+.center{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.btn{
+	text-align: center;
 }
 
 .div{

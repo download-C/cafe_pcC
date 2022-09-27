@@ -48,6 +48,7 @@
 	<%
 	}
 	%>
+		<hr>
 		<table>
 			<tr>
 				<td>글번호</td>
@@ -117,7 +118,10 @@
 			
 			
 		</table>
-	</fieldset>
+		
+			<hr>
+		
+		<div class="btn">
 <%
 	if(mem_num != null) {
 		if(mem_num.equals(qmn)) {
@@ -140,6 +144,12 @@
 %>
 	<input type="button" name="qna_list" id="list" value="목록" 
      onclick="location.href='./QnAList.qna?pageNum=${pageNum}';">
+     
+     <hr>
+     
+     </div>
+     
+</fieldset>
 <%
 }
 %><!-- 푸터들어가는 곳 -->

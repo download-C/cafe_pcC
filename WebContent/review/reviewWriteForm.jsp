@@ -32,25 +32,47 @@
 	<fieldset>
 		<legend>리뷰 작성하기</legend>
 		<form action="./ReviewWriteAction.rv" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
-		<div class="div">
+<!-- 		<div class="div"> -->
+
+		<table style="margin:auto;">
 		
+		<tr><td class="center">
+	 	<hr>
 	 	<input type="hidden" name="name" id="review_name" 
 	 			value="${name }" readonly="readonly">
+	 	<hr>
+	 	</td></tr>		
+		
+		<tr><td class="center">	 	
+	 	
 		비밀번호 <input type="password" name="review_password" 
 					maxlength="4" placeholder="4자리 숫자로 입력하세요."> 
-		<hr>			
+		<hr>	
+		</td></tr>
+		
+		<tr><td class="center">		
 		제목 <input type="text" name="review_subject"> 
 		<hr>
+		</td></tr>
+		
+		<tr><td class="center">
 		내용 <textarea rows="4" cols="60 " name="review_content"></textarea> 
 		<hr>
+		</td></tr>
+		
+		<tr><td class="center">
 		첨부파일 <input type="file" name="review_file" id="review_file"> 
 		<hr>
+		</td></tr>
 		
-		</div>
-		<div>
+<!-- 		</div> -->
+		</table>
+		
+		<div style="text-align: center;">
 		<input type="submit" value="작성"> &nbsp;&nbsp;
 		<input type="button" value="취소">
 		</div>
+		
 		</form>
 	</fieldset>
 	

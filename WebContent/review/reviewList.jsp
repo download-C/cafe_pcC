@@ -14,6 +14,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<br>
 	<h2>고객후기</h2>
 	
 	<%
@@ -24,21 +25,20 @@
 
 	if(session != null && mem_num != null){
 	%>
-	<div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div class="btn">
 	<input type="button" name="reviewWrite" class="writebtn" value="새 글 쓰기(new)"
 		onclick="location.href='./ReviewWriteForm.rv';">
 	</div>
 
 	<% } %>
 	<fieldset>
-		<table>
+		<table class="boardlist" style="margin:auto;">
 			<tr>
-				<td><span class="board_underbar">글번호</span></td>
-				<td><span class="board_underbar">제목</span></td>
-				<td><span class="board_underbar">글쓴이</span></td>
-				<td><span class="board_underbar">조회수</span></td>
-				<td><span class="board_underbar">작성일</span></td>
+				<td>글번호</td>
+				<td>제목</td>
+				<td>글쓴이</td>
+				<td>조회수</td>
+				<td>작성일</td>
 			</tr>
 			<c:forEach var="dto" items="${reviewList}">
 				<tr>
@@ -52,6 +52,8 @@
 			</c:forEach>
 		</table>
 	</fieldset>
+	
+	<div style="text-align: center;">
 	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
 			<a href="./ReviewList.rv?pageNum=${startPage-pageBlock }">[이전]</a>
@@ -63,6 +65,9 @@
 			<a href="./ReviewList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
+	</div>
+	<br>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

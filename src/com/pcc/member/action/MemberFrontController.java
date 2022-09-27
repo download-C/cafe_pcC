@@ -50,7 +50,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		//이용 약관
 		 }else if(command.equals("/Reg.me")){
-			forward = new ActionForward();
+			forward = new ActionForward();	
 			forward.setPath("./members/RegForm.jsp");
 			forward.setRedirect(false);
 		

@@ -14,19 +14,18 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-
 <div class="wrapper">
 	<div class="content">
+		<div id="exterior_div">
 		<img src="./img/about/exterior.jpg" id="exterior">
+		</div>
 		<h1>카페 pcC</h1>
 		<div>
-			cafe pcC는 코딩을 사랑하는(또는 그냥하는) 개발자 6명이 모여 만든 카페입니다. 
+			cafe pcC는 코딩을 사랑하는(또는 그냥하는) <span><div class="ppp_img"><img src="./img/about/ppp.png"></div>	<b>개발자 6명</b></span>이 모여 만든 카페입니다. 
 		</div>
 		<br>
 		<div>
-			pcC는 <b>"public class Cafe"</b>의 줄임말로 객체 지향이라는 개념을 처음 공부할 때 만났던 <img src="./img/about/public_class_Cafe.PNG">처럼 
-		</div>
-		<div>
+			pcC는 <b>"public class Cafe"</b>의 줄임말로 객체 지향이라는 개념을 처음 공부할 때 만났던 <img src="./img/about/public_class_Cafe.PNG" id="">처럼 
 			초심으로 돌아가자는 뜻을 담고 있는 이름입니다.
 		</div>
 		<br>

@@ -86,7 +86,7 @@ public class ProductFrontController extends HttpServlet {
 		}
 		//상품 주문 옵션 정보 작성 -> DB 필요
 		else if(command.equals("/CartWrite.pr")){
-			
+
 			//CartWriteAction 객체
 			action = new CartWriteAction();
 			try{
@@ -163,6 +163,18 @@ public class ProductFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}
+		
+		//주문 내역을 볼 수 있는 개인 페이지
+		else if(command.equals("/OrderList.pr")){
+			//OrderAction()객체 생성
+			action = new OrderListAction();
+			try{
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

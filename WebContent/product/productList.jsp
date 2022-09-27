@@ -1,5 +1,3 @@
-<%@page import="com.pcc.product.db.ProductDTO"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,11 +14,14 @@
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('button').click(function() {
+		$('button').click(function(){
 			//alert("테스트");
-			$('.' + $(this).attr('data-text')).show();
-			$('.category').not("."+$(this).attr('data-text')).hide();
 			
+			$('.' + $(this).attr('data-text')).show();
+			//class 값이 coffee인 상품을 보여주라
+			
+			$('.category').not("."+$(this).attr('data-text')).hide();
+			//class가 category인 상품의 class 값이 coffee가 아닌 상품은 가려라
 		});
 	});
 </script>
@@ -36,13 +37,15 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>productList.jsp</h1> -->
-	
-	<h2>상품 목록</h2>
-	
+		<div style="position: relative; height: 50px"></div>
+		
+	<h1>상품 목록</h1>
+	<c:if test="${not empty sessionScope.mem_num}">
 	<input type="button" value="장바구니로 이동" onclick="location.href='./Cart.pr';">
+	</c:if>
 	
 	
-	<!-- 관리자 계정(name : admin) 으로 로그인 시 보이도록 구현 --> 
+	<!-- 관리자 계정(name : admin) 으로 로그인 시 보이도록 구현  -->
  	<%if(mgr_num != null) { %>
  	<h3><a href="./ProductWrite.pr">상품등록하기</a></h3>
  	<%} %>

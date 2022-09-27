@@ -13,8 +13,11 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>writeForm.jsp</h1>
-	  <h2> 상품 등록 페이지 </h2>
+
+	<div style="position: relative; height: 50px"></div>
+
+	<h1>상품 등록 페이지</h1>
+<!-- 	  <h2> 상품 등록 페이지 </h2> -->
    
    <fieldset>
       <form action="./ProductSave.pr" method="post" enctype="multipart/form-data">

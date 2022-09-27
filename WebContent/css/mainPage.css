@@ -17,19 +17,20 @@
 
 .container{
 	margin:0;
-	overflow: hidden;	
+	overflow: hidden;
 }
-.slide_area{
-	width:400vw; /* 400%로 보면 됨 */
-	transition: transform 0.5s; /* transform이 변경될 때 0.5초에 걸쳐 변경해달라 */
-	
 
+.slide_area{
+	width:100vw; /* 400%로 보면 됨 */
+/* 	transition: transform 0.5s; transform이 변경될 때 0.5초에 걸쳐 변경해달라 */
 }
 
 .slide{
-	width:100vw;
-	float: left;
-
+width: 100vw;
+/*   height: auto; */
+/*   object-fit: cover; */
+  /* 	float: left; */
+}
 
 
 

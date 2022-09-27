@@ -1,5 +1,6 @@
 package com.pcc.product.action;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +23,8 @@ public class CartListAction implements Action {
 		//세션값 가져오기
 		HttpSession session=request.getSession();
 		String mem_num = (String)session.getAttribute("mem_num");
-//
 
-//		System.out.println(mem_num);
-		
-		
+
 		//==================================================
 		
 		

@@ -15,6 +15,7 @@
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,28 +34,11 @@ $(document).ready(function(){
 			merchant_uid: "pcc_"+now, //주문번호
 			name: "cafe_pcc",//상호명
 			amount: "${order}",//결제 금액
-// 			buyer_name: "${sessionScope.mem_name}",
+			buyer_name: "${sessionScope.name}",
 // 			buyer_tel: "${sessionScope.phone}",
 		}, function(rsp) {
 			if(rsp.success) {
 				alert("결제가 정상적으로 완료되었습니다.");
-				
-				//데이터 정보 넘기기
-				$.ajax({
-					type: "post",
-					url: "./Order.pr",
-					data: {
-						order_price: "${order}",
-// 						mem_num: "${sessionScope.mem_num}",
-// 						phone: "${sessionScope.phone}"
-// 						checked: date + now
-					},
-					dataType: "text",
-					success: function(response) {
-						//opener.location.href='OrderList.pr'
-						window.close();
-					}
-				});
 				
 			} else {
 				alert("결제에 실패하였습니다.");
@@ -68,70 +52,65 @@ $(document).ready(function(){
 		if(blank == false ){
 			alert("픽업 시간을 체크하세요.");
 				return false;
-				
 		}
 	});
-
-	
 });//jQuery
-
-
 </script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>order.jsp</h1>
-	<div>주문자 정보 </div>
-	<div>이름 : ${sessionScope.name}</div>
-<%-- 	<div>연락처 : ${cartList.mem_phone} </div> --%>
-<!-- 	주문자 정보 -->
-<%-- 	${sessionScope.name} --%>
-<%-- 	${sessionScope.phone} --%>
+	<div style="position: relative; height: 50px"></div>
+
+	<h1>결제하기</h1>
 	
 	<form action="./Order.pr">
+	<div>주문 정보</div>
 		<table border="1">
 	     	<tr>
-		       <td>주문 정보</td>
+		       <td>상품 정보</td>
 		       <td>수량/옵션</td>
 		       <td>주문금액</td>
 		     </tr>
+		     
 			<c:forEach var="dto" items="${requestScope.cartList }">
-				<input type="hidden" name="cart_num" value="${dto.cart_num}">
-					<tr>
-		      			<td>
-							<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
-							<img src="img/product/${dto.prod_img}"><br>
-							${dto.prod_name }<br>
-							${dto.price}
-<%-- 							${dto.mem_phone } --%>
-							</a>
-		      			</td>
-		      			
-		       			<td>
-		       				${dto.prod_count}<br>
-							${dto.requirements}<br>
-		       			</td>
-		       			
-		       			<td>
-		       				${dto.total_price} 원
-		       			</td>
-		    	 	</tr>
+			<input type="hidden" name="cart_num" value="${dto.cart_num}">
+				<tr>
+	      			<td>
+						<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
+							<div><img src="img/product/${dto.prod_img}"></div>
+							<div>${dto.prod_name }</div>
+							<div>${dto.price}</div>							
+						</a>
+	      			</td>
+	      			
+	       			<td>
+						<div>${dto.prod_count}</div>
+						<div>${dto.requirements}</div>
+	       			</td>
+	       			
+	       			<td>
+						<div>${dto.total_price}원</div>
+	       			</td>
+	    	 	</tr>
 			</c:forEach>
 		</table>
+		
+		<div>주문자명 : ${sessionScope.name}</div>
+		
+		<div>총 주문 금액 : ${order} 원</div>
+		
+		<div>
+			<label for="pickup_time">수령 예정 시간 : </label>
+	        <input type="radio" name="pickup_time" id="pickup_time" value="5">5분 뒤
+			<input type="radio" name="pickup_time" id="pickup_time" value="10">10분 뒤
+		 	<input type="radio" name="pickup_time" id="pickup_time" value="15">15분 뒤<br>
 		</div>
-	총 주문 금액 : ${order} 원<br>
-	
-		<label for="pickup_time">수령 예정 시간 : </label>
-        <input type="radio" name="pickup_time" id="pickup_time" value="5">5분 뒤
-		<input type="radio" name="pickup_time" id="pickup_time" value="10">10분 뒤
-	 	<input type="radio" name="pickup_time" id="pickup_time" value="15">15분 뒤<br>
 	 	
 		<input type="hidden" name="order_price" value="${order}">
 		<input type="submit" value="결제하기" id="order_test">
 		<input type="button" value="결제 테스트" id="order">
-		<input type="button" value="제이쿼리 테스트" id="join" >
 	</form>	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

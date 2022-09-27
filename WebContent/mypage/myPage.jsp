@@ -19,9 +19,17 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <!-- 헤더들어가는 곳 -->
     <h1>mypageContent.jsp</h1>
 
-    <% // 로그인 여부 체크 if(session != null){ String mem_num = (String)
-    session.getAttribute("mem_num"); System.out.println("회원번호 : "+mem_num);
-    if(mem_num == null) { response.sendRedirect("./Login.pcc"); } } %>
+    <% 
+    // 로그인 여부 체크 
+    if(session != null){ String mem_num = (String)
+	    session.getAttribute("mem_num"); 
+	    System.out.println("회원번호 : "+mem_num);
+	    if(mem_num == null) { 
+	    	response.sendRedirect("./Login.pcc"); 
+    	} 
+    } 
+    %>
+    
 
     <img class="img1" src="./img/mypage.jpg" />
 

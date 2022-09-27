@@ -6,7 +6,7 @@
 <title>문의사항 수정하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/qnaupdateform.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardupdateform.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,8 +16,8 @@
 <!-- 	<h1>QnAUpdateForm.jsp</h1> -->
 	
 	<fieldset>
-		<h3>문의사항 글 수정하기</h3>
-		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }" method="post">
+		<legend>문의사항 수정하기</legend>
+		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }" method="post" >
 		<div>
 			<table>
 				<tr>
@@ -33,13 +33,24 @@
 				</td></tr>
 
 				<tr><td class="td">내용
-					<textarea class="textarea" rows="3" cols="60" name="qna_content" id="qna_content"
+					<textarea rows="3" cols="60" name="qna_content" id="qna_content"
 					placeholder="수정하실 내용을 입력하세요.">${dto.qna_content }</textarea>
 				</td></tr>
+				
+				<tr>
+				</tr>
+				<tr>
+				</tr>
 				
 				<tr><td class="td">첨부파일
 					<input type="file" name="qna_file" id="qna_file">
 				</td></tr>
+				
+				<tr>
+				</tr>
+				<tr>
+				</tr>
+				
 			</table>
 		</div>
 		<div id="commanCell">
@@ -47,6 +58,7 @@
 		</div>
 		</form>
 	</fieldset>
+	<hr>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

@@ -7,7 +7,7 @@
 <title>문의사항 확인하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/qnacontent.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
 <link href="./css/span_css.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <%
@@ -56,8 +56,6 @@
 			
 			<tr>
 			</tr>
-<!-- 			<span> -->
-<!-- 			</span> -->
 			<tr>
 			</tr>
 			

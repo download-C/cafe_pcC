@@ -7,26 +7,30 @@
 <title>리뷰 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/boardlist.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardlist.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<%
+	<h2>고객후기</h2>
+	
+	<%
 	
 	System.out.println("MGR_NUM: "+session.getAttribute("mgr_num"));
 	String mgr_num = (String)session.getAttribute("mgr_num");
 	String mem_num = (String)session.getAttribute("mem_num");
 
 	if(session != null && mem_num != null){
-%>
-	<div class="write_btn">
-		<input type="button" name="reviewWrite" value="리뷰 남기기(new)"
-			onclick="location.href='./ReviewWriteForm.rv';">
+	%>
+	<div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="reviewWrite" class="writebtn" value="새 글 쓰기(new)"
+		onclick="location.href='./ReviewWriteForm.rv';">
 	</div>
-<% } %>
+
+	<% } %>
 	<fieldset>
 		<table>
 			<tr>

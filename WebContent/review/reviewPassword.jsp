@@ -7,6 +7,7 @@
 <title>리뷰 비밀번호 확인</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardpassword.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <script src="./script/jquery-3.6.0.js"></script>
 <script>
@@ -38,8 +39,9 @@
 	
 	if(button.equals("delete")) {
 	%>
-	<fieldset>
+	<fieldset class="field1">
 	삭제하려는 글의 비밀번호를 입력하세요. <br>
+	<hr>
 	<form action = "./ReviewDelete.rv?review_num=<%=review_num %>" method="post">
 	<div>	
 		<input type="password" id="password" name="review_password" maxlength="4" placeholder="숫자 4자리">
@@ -53,7 +55,7 @@
 	<%
 	} else if(button.equals("update")){
 	%>
-	<fieldset>
+	<fieldset class="field2">
 	수정하려는 글의 비밀번호를 입력하세요. <br>
 	<form action = "./ReviewPasswordCheck.rv?review_num=<%=review_num %>&button=update" method="post">
 	<div>	

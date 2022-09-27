@@ -9,7 +9,7 @@
 <title>문의사항 게시판 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/qnaboardlist.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardlist.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -24,7 +24,8 @@
 	%>
 	<%if(mem_num != null) { %>
 
-	<div class=>
+	<div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
 	  onclick="location.href='./QnAWrite.qna';" > 
 	</div>
@@ -32,7 +33,7 @@
  	<%} %>
  	
 	<fieldset>
-		<table class="qna_list">
+		<table class="qna_list" style="text-align: center;">
 			<tr>
 				<td><sapn class="qna_underbar">번호</sapn></td>
 				<td><sapn class="qna_underbar">제목</sapn></td>

@@ -7,20 +7,28 @@
 <title>공지사항 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardlist.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
-<!-- 헤더들어가는 곳 --><% 
+<!-- 헤더들어가는 곳 -->
+	<h2>공지사항</h2>
+	<% 
 // 매니저로 로그인했을 때만 글 쓰기 버튼이 보이게
 	String mem_num = (String)session.getAttribute("mem_num");
 	String mgr_num = (String)session.getAttribute("mgr_num");
 if(mgr_num != null) {
 	%>
-<input type="button" name="noticeWrite" value="새 글 쓰기(new)"
- onclick="location.href='./NoticeWrite.no';">
+	
+	<div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="noticeWrite" class="writebtn" value="새 글 쓰기(new)"
+ 	onclick="location.href='./NoticeWrite.no';">
+	</div>	
+
  <%
  // 회원 로그인 시 글쓰기 버튼 안 보임
  } else {}

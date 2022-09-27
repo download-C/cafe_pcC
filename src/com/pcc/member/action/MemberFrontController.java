@@ -40,10 +40,18 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		//이용 약관
-		 if(command.equals("/Reg.me")){
+		
+		//sns 연동 페이지
+		 if(command.equals("/SignMain.me")){
 			forward = new ActionForward();
-			forward.setPath("./members/regForm.jsp");
+			forward.setPath("./members/SignMain.jsp");
+			forward.setRedirect(false);		
+		
+		
+		//이용 약관
+		 }else if(command.equals("/Reg.me")){
+			forward = new ActionForward();	
+			forward.setPath("./members/RegForm.jsp");
 			forward.setRedirect(false);
 		
 		
@@ -87,20 +95,18 @@ public class MemberFrontController extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-
-		//마이페이지 폼
-		} else if(command.equals("/MyPage.me")){
-			action = new MyPageContentAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+    //마이페이지 폼
+				} else if(command.equals("/MyPage.me")){
+					action = new MyPageContentAction();
+					
+					try {
+						forward = action.execute(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 //					forward = new ActionForward();
 //					forward.setPath("./mypage/myPage.jsp");
 //					forward.setRedirect(false);
-
-					
 		// 로그아웃 후 세션 초기화
 		} else if(command.equals("/Logout.me")){
 					action = new LogoutAction();
@@ -109,9 +115,7 @@ public class MemberFrontController extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-						
 		// 마이페이지 수정 화면
-				
 		}else if(command.equals("/mypageUpdate.me")){
 					action = new MypageUpdate();
 					try{

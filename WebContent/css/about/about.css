@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'D2Coding';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: 400;
+     font-style: normal;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.content {
+	width: 50%;
+	overflow: hidden;
+}
+
+#exterior {
+	width: 100%;
+	max-width:800px;
+	min-width: 400px;
+	height: auto;
+	object-fit: cover;
+}
+
+#exterior_div {
+	text-align: center;
+}
+
+.ppp_img {
+	position: absolute;
+	height: auto;
+	width: 30%;
+	left: 41%;
+	top: 50%;
+	width: 30%;
+	text-align: center;
+	display: none;
+}
+
+span:hover .ppp_img {
+	font-size: 23px; 
+	display: block;
+	transition: 0.3s;
+}
+
+@media screen and (max-width:768px) {
+	.ppp_img {
+	position: absolute;
+	width: 50%;
+	height: inherit;
+	max-width: 50px;
+	left: 41%;
+	top: 45%;
+	width: 30%;
+	text-align: center;
+	display: none;
+	transition: 0.5s;
+	}
+	
+	span:hover .ppp_img {
+		font-size: 23px; 
+		display: block;
+		transition: 0.3s;
+	}
+}

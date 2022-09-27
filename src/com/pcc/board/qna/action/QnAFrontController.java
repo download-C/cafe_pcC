@@ -99,12 +99,8 @@ public class QnAFrontController extends HttpServlet {
 		// 2-3. QnA게시판 목록으로 이동
 		 
 			else if (command.equals("/QnAList.qna")) {
-				System.out.println(" C : QnABoardList.qna 호출 ");
-				System.out.println(" C : DB정보가 필요함, 페이지 이동 X, 해당 페이지 출력O ");
-				
 				 action = new QnAListAction();
 		try {
-			System.out.println(" C : 해당 Model 객체 호출 ");
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,7 +140,7 @@ public class QnAFrontController extends HttpServlet {
 		// 2-5. 문의사항 수정/삭제 버튼 눌렀을때 비밀번호 입력 폼으로 연결
 		else if (command.equals("/QnAPasswordForm.qna")) {
 			String button = request.getParameter("button");
-			System.out.println(button);
+			System.out.println("button: "+button);
 			request.setAttribute("button", button);
 			forward = new ActionForward();
 			forward.setPath("./QnA/QnAPassword.jsp");

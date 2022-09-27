@@ -6,6 +6,7 @@
 <title>문의사항 비밀번호 확인</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardpassword.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <script src="./script/jquery-3.6.0.js"></script>
 </head>
@@ -13,7 +14,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>QnAPassword.jsp</h1>
+<!-- 	<h1>QnAPassword.jsp</h1> -->
 	
 	<%
 		String button = request.getParameter("button");
@@ -21,8 +22,13 @@
 
 		if(button.equals("delete")){
 	%>
-	<fieldset>
-	삭제하려는 글의 비밀번호를 입력하세요. <br>
+	<fieldset class="field1">
+
+	<br>
+	삭제하려는 글의 비밀번호를 입력하세요. 
+	<br>
+	<br>
+	<hr>
 	<form action = "./QnADelete.qna?qna_num=<%=qna_num %>" method="post">
 	<div>
 		<input type="password" id="password" name="qna_password" maxlength="4" placeholder="숫자 4자리">
@@ -36,8 +42,10 @@
 	<%
 		} else if (button.equals("update")) {	
 	%>
-	<fieldset>
-	수정하려는 글의 비밀번호를 입력하세요. <br>
+	<fieldset class="field2">
+	<br>
+	수정하려는 글의 비밀번호를 입력하세요. 
+	<br>
 	<form action="./QnAPasswordCheck.qna?qna_num=<%=qna_num %>&button=update" method="post">
 	<div>
 		<input type="password" id="qna_password" name="qna_password" maxlength="4" placeholder="숫자 4자리">

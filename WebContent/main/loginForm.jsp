@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +7,7 @@
 
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/loginForm.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 </head>
@@ -16,13 +16,22 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<form action="./LoginAction.me" method="post">
+<br><br>
+
+<img src="./img/logo.jpg" id="logo"><br>
+<fieldset>
+<h3>로그인하기</h3>
+<br>
+	<form action="./LoginAction.me" method="post" id="lg">
 		<input type="text" name="phone" placeholder="아이디/휴대폰 번호"> <br> 
-		<input type="password" name="password" placeholder="비밀번호"> <input
-			type="submit" value="로그인">
+		<input type="password" name="password" placeholder="비밀번호"> <br>
+		<br>
+		<input type="submit" value="로그인">
+		<input type="button" value="회원가입" onclick= "location.href='./Reg.me';"><br>
+			<a href="./LoginManager.mgr">매니저 로그인하기</a>
 	</form>
-	
-	<a href="./LoginManager.mgr">매니저 로그인하기</a>
+</fieldset>	
+<br><br>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

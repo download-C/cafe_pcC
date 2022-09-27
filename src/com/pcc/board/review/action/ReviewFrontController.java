@@ -85,7 +85,7 @@ public class ReviewFrontController extends HttpServlet {
 			System.out.println(button);
 			request.setAttribute("button", button);
 			forward = new ActionForward();
-			forward.setPath("/ReviewPasswordFormAction.rv");
+			forward.setPath("./review/reviewPassword.jsp");
 			forward.setRedirect(true);
 		}
 		

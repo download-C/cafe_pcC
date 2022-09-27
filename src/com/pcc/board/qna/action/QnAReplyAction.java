@@ -6,8 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.member.db.MemberDAO;
 
 import action.Action;
@@ -20,7 +20,7 @@ public class QnAReplyAction implements Action {
 		// 한글 처리
 		String uploadPath = request.getRealPath("/upload");
 		MultipartRequest multipartRequest = new MultipartRequest(request, uploadPath , 10*1024*1024, "utf-8", new DefaultFileRenamePolicy());
-		QnABoardDAO dao = new QnABoardDAO();
+		QnADAO dao = new QnADAO();
 		MemberDAO daoM = new MemberDAO();
 		
 		// 매니저 로그인 여부 확인
@@ -33,7 +33,7 @@ public class QnAReplyAction implements Action {
 			String qna_content = multipartRequest.getParameter("qna_content");
 			String qna_ip = request.getRemoteAddr();
 	
-			QnABoardDTO dto = new QnABoardDTO();
+			QnADTO dto = new QnADTO();
 			dto.setMgr_num(Integer.parseInt(mgr_num));
 //			dto.setQna_password(qna_password);
 			dto.setQna_subject(qna_subject);

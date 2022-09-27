@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>public class Cafe - cafe pcC</title>
 
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
@@ -36,13 +36,7 @@
 			${sessionScope.message } <br>
 
 			<%
-		} else {
-			%>
-			로그인이 필요합니다. <br>
-			<%
-		}
-	
-		
+		} else {}		
 	%>
 	
 	<!-- 메인 이미지 시작 -->
@@ -74,7 +68,7 @@
 	
 	
 	
-	<!-- 푸터들어가는 곳 -->
+<!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp"  />
 <!-- 푸터들어가는 곳 -->
 </body>

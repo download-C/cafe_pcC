@@ -7,7 +7,8 @@
 <title>문의사항 확인하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/qnacontent.css" rel="stylesheet" type="text/css">
+<link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
+<link href="./css/span_css.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <%
 	System.out.println(request.getAttribute("qmn"));
@@ -49,33 +50,72 @@
 	%>
 		<table>
 			<tr>
-			<tr>
 				<td>글번호</td>
 				<td>${dto.qna_num }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
+			<tr>
 				<td>제목</td>
 				<td colspan="3">${dto.qna_subject}</td>
 			</tr>
+			
+
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>작성자</td>
 				<td>${dto.name}</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>	
 				<td>조회수</td>
 				<td>${dto.qna_readcount }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>	
 				<td>작성일</td>
 				<td>${dto.qna_date }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>내용</td>
 				<td colspan="3">${dto.qna_content }</td>
 			</tr>
+			
+			<tr>
+			</tr>
+			<tr>
+			</tr>
+			
 			<tr>
 				<td>첨부파일</td>
 				<td colspan="3">${dto.qna_file}</td>
 			</tr>
+			
+			
 		</table>
 	</fieldset>
 <%

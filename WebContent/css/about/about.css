@@ -18,6 +18,38 @@
 	min-height: 100vh;
 }
 
+.content {
+	width: 90%;
+	overflow: hidden;
+}
+
 #exterior {
-	resize: 100%;
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+}
+
+#exterior_div {
+	text-align: center;
+}
+
+.ppp_img {
+	position: absolute;
+	height: auto;
+	width: 30%;
+	left: 55%;
+	top: 43%;
+	width: 30%;
+	text-align: center;
+	display: none;
+}
+
+span:hover .ppp_img {
+	font-size: 23px; 
+	display: block;
+	transition: 0.3s;
+}
+
+@media screen and (max-width:768px) {
+	
 }

@@ -16,8 +16,12 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+<br><br>
+
+<img src="./img/logo.jpg" id="logo"><br>
+<fieldset>
+<h3>로그인하기</h3>
 <br>
-<div >
 	<form action="./LoginAction.me" method="post" id="lg">
 		<input type="text" name="phone" placeholder="아이디/휴대폰 번호"> <br> 
 		<input type="password" name="password" placeholder="비밀번호"> <br>
@@ -26,9 +30,8 @@
 		<input type="button" value="회원가입" onclick= "location.href='./Reg.me';"><br>
 			<a href="./LoginManager.mgr">매니저 로그인하기</a>
 	</form>
-
-</div>	
-
+</fieldset>	
+<br><br>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

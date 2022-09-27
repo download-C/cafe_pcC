@@ -10,25 +10,11 @@
   font-style: normal;
 }
 
-#update{
-  background: none;
-  border: none;
-  height: 30px;
-  transition: color 0.3s;
-  background-color: #d3e4cd;
-  border-radius: 10px;
+#tb{
+    margin-left:auto; 
+    margin-right:auto;
 }
 
-h2{
-	text-align: center;
-}
-
-fieldset{
-	
-	margin : 50px 50px;
-	border : solid 1px grey;
-}
-
-table{
-	font-size: small;
+#con{
+	font-size: xx-large;
 }

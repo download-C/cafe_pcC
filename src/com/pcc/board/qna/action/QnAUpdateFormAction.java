@@ -3,8 +3,8 @@ package com.pcc.board.qna.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 
 import action.Action;
 import vo.ActionForward;
@@ -20,9 +20,9 @@ public class QnAUpdateFormAction implements Action{
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		String pageNum = request.getParameter("pageNum");
 				
-		QnABoardDAO dao = new QnABoardDAO();
+		QnADAO dao = new QnADAO();
 		
-		QnABoardDTO dto = dao.getQnAUpdateContent(qna_num);
+		QnADTO dto = dao.getQnAUpdateContent(qna_num);
 		System.out.println(" 수정 할 데이터 " + dto);
 		
 		request.setAttribute("dto", dto);

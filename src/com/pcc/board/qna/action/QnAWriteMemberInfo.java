@@ -19,14 +19,14 @@ public class QnAWriteMemberInfo implements Action {
 		
 //		sessionID = Integer.parseInt(session.);
 //		
-//		QnABoardDAO dao = new QnABoardDAO();
+//		QnADAO dao = new QnADAO();
 //		
 //		dao.getMemberInfo(sessionID);
 //		
 //		if(sessionID.equals()) {
 //			
 //		
-//		QnABoardDAO dao = new QnABoardDAO();
+//		QnADAO dao = new QnADAO();
 //		
 //		dao.getMem_num(request.getAttribute("phone"));
 //		

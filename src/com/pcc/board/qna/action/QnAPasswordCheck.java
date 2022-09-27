@@ -24,6 +24,7 @@ public class QnAPasswordCheck implements Action {
 		ReviewDTO dto = new ReviewDTO();
 		ReviewDAO dao = new ReviewDAO();
 		dto = dao.getReviewContent(qna_num);
+		System.out.println(qna_num+"번 글의 비밀번호 : "+ dto.getReview_password());
 		
 		if(qna_password == dto.getReview_password()) {
 //			dao.ReviewDelete(session, review_num, mem_num, review_password);
@@ -58,14 +59,15 @@ public class QnAPasswordCheck implements Action {
 				
 				return null;
 			}
-		} 
-		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('비밀번호가 다릅니다.');");
-		out.println("history.back();");
-		out.println("</script>");
+		} else {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('비밀번호가 다릅니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
 		
 		return null;
 	}

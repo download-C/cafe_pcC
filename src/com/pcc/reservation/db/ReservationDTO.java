@@ -6,13 +6,6 @@ public class ReservationDTO {
 	private int res_num;
 	private int mem_num;
 	private String name;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	private Date res_date;
 	private int res_time;
 	private int res_persons;
@@ -36,6 +29,12 @@ public class ReservationDTO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Date getRes_date() {
 		return res_date;

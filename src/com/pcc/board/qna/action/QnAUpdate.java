@@ -3,8 +3,8 @@ package com.pcc.board.qna.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 
 import action.Action;
 import vo.ActionForward;
@@ -18,9 +18,9 @@ public class QnAUpdate implements Action {
 		
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		
-		QnABoardDAO dao = new QnABoardDAO();
+		QnADAO dao = new QnADAO();
 		
-		QnABoardDTO dto = dao.getQnAContent(qna_num);
+		QnADTO dto = dao.getQnAContent(qna_num);
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("qna_num", qna_num);

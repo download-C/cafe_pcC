@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.member.db.MemberDAO;
 import com.pcc.member.db.MemberDTO;
 

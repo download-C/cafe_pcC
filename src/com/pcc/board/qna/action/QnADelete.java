@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 
 import action.Action;
 import vo.ActionForward;
@@ -29,7 +29,7 @@ public class QnADelete implements Action{
 			String mem_num = (String)session.getAttribute("mem_num");
 			String mgr_num = (String)session.getAttribute("mgr_num");
 			
-			QnABoardDAO dao = new QnABoardDAO();
+			QnADAO dao = new QnADAO();
 			if(mem_num != null) {
 				dao.QnADelete(Integer.parseInt(qna_num), Integer.parseInt(mem_num));				
 				dao.alert(response, "글이 삭제되었습니다","location.href='./QnAList.qna?pageNum=1';");

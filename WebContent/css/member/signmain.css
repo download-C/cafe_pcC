@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-
 @import url("./theme.css");
 
 @font-face {
@@ -10,25 +9,18 @@
   font-style: normal;
 }
 
-#update{
-  background: none;
-  border: none;
-  height: 30px;
-  transition: color 0.3s;
-  background-color: #d3e4cd;
-  border-radius: 10px;
+
+
+#i{
+	dispaly:block;
+	margin:0px auto;
+	padding: 0px auto;
+	width: 300px;
+
 }
 
-h2{
-	text-align: center;
-}
-
-fieldset{
-	
-	margin : 50px 50px;
-	border : solid 1px grey;
-}
-
-table{
-	font-size: small;
+input{
+text-align:center; 
+display:block; 
+margin: 0px auto;
 }

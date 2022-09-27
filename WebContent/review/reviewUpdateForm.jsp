@@ -23,7 +23,7 @@
 				<table>
 					<tr>
 						<td>
-						<input type="hidden" name="review_num" id="name"
+						<input type="hidden" name="name" id="name"
 							value="${name }"></td>
 					</tr>
 					<tr>

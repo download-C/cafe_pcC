@@ -7,6 +7,7 @@
 <title>내 예약 목록</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/reservationList.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -53,15 +54,15 @@
 		</table>
 		
 	</fieldset>
-		<c:if test="${cnt != 0 }">
+	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
-			<a href="./ReservationList.rv?pageNum=${startPage-pageBlock }">[이전]</a>
+			<a href="./ReservationList.re?pageNum=${startPage-pageBlock }">[이전]</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-			<a href="./ReservationList.rv?pageNum=${i }">[${i }]</a>
+			<a href="./ReservationList.re?pageNum=${i }">[${i }]</a>
 		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-			<a href="./ReservationList.rv?pageNum=${startPage + pageBlock }">[다음]</a>
+			<a href="./ReservationList.re?pageNum=${startPage + pageBlock }">[다음]</a>
 		</c:if>
 	</c:if>
 <!-- 푸터들어가는 곳 -->

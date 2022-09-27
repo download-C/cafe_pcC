@@ -6,8 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.pcc.board.qna.db.QnABoardDAO;
-import com.pcc.board.qna.db.QnABoardDTO;
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.member.db.MemberDAO;
 
 import action.Action;
@@ -40,7 +40,7 @@ public class QnAWriteAction implements Action {
 				String qna_content = multipartRequest.getParameter("qna_content");
 				String qna_file = multipartRequest.getParameter("qna_file");
 				
-				QnABoardDTO dto = new QnABoardDTO();
+				QnADTO dto = new QnADTO();
 				System.out.println("DTO 객체 생성 완료");
 				System.out.println(" 값 불러오기!");
 				
@@ -53,7 +53,7 @@ public class QnAWriteAction implements Action {
 				dto.setMem_num(Integer.parseInt(mem_num));
 				dto.setQna_password(qna_password);	
 				
-				QnABoardDAO dao = new QnABoardDAO();
+				QnADAO dao = new QnADAO();
 				
 				int qna_num = dao.QnAWrite(dto);
 				

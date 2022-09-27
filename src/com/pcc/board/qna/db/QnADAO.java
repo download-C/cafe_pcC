@@ -22,7 +22,7 @@ import com.pcc.member.db.MemberDAO;
 
 // 게시판 관련 모든 메서드를 생성하는 클래스
 
-public class QnABoardDAO {
+public class QnADAO {
 
 	private Connection con = null;
 	private String sql ="";
@@ -30,7 +30,7 @@ public class QnABoardDAO {
 	private ResultSet rs = null;
 
 	
-	public QnABoardDAO () {
+	public QnADAO () {
 		System.out.println("DAO : DB 연결을 위한 모든 정보 준비 완료");
 	}
 	
@@ -92,7 +92,7 @@ public class QnABoardDAO {
 	
 	// 3. 문의사항 글쓰기 메서드  -----------------------------------------
 	
-	public int QnAWrite (QnABoardDTO dto) {
+	public int QnAWrite (QnADTO dto) {
 		int qna_num = 0;
 		try {
 			con = getConnect();
@@ -173,11 +173,11 @@ public class QnABoardDAO {
 
 	// 4. 문의사항 목록 조회  -----------------------------------------
 	
-	// 글 전체 목록 조회 메서드 - getQnABoardList()
+	// 글 전체 목록 조회 메서드 - getQnAList()
 	
-		public List<QnABoardDTO> getQnABoardList() {
+		public List<QnADTO> getQnAList() {
 			
-			List<QnABoardDTO> qnaboardlist = new ArrayList<QnABoardDTO>();
+			List<QnADTO> qnaboardlist = new ArrayList<QnADTO>();
 			
 			try {
 				con = getConnect();
@@ -189,7 +189,7 @@ public class QnABoardDAO {
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
-					QnABoardDTO dto = new QnABoardDTO();
+					QnADTO dto = new QnADTO();
 					
 					dto.setQna_num(rs.getInt("qna_num"));
 					dto.setQna_writer_type(rs.getInt("qna_writer_type"));
@@ -224,9 +224,9 @@ public class QnABoardDAO {
 			return qnaboardlist;
 		}
 
-		public List<QnABoardDTO> getQnABoardList(int startRow, int pageSize) {
+		public List<QnADTO> getQnAList(int startRow, int pageSize) {
 			
-			List<QnABoardDTO> qnaboardlist = new ArrayList<QnABoardDTO>();
+			List<QnADTO> qnaboardlist = new ArrayList<QnADTO>();
 			
 			try {
 				con = getConnect();
@@ -241,7 +241,7 @@ public class QnABoardDAO {
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
-					QnABoardDTO dto = new QnABoardDTO();
+					QnADTO dto = new QnADTO();
 					
 					dto.setQna_num(rs.getInt("qna_num"));
 					dto.setQna_writer_type(rs.getInt("qna_writer_type"));
@@ -261,11 +261,7 @@ public class QnABoardDAO {
 					
 					qnaboardlist.add(dto);
 					
-				} // while 
-				
-				System.out.println(" C : 게시판 목록 모두 저장 완료! ");
-				System.out.println(" C : " + qnaboardlist);
-				
+				} // while 				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -280,8 +276,8 @@ public class QnABoardDAO {
 	
 	
 		
-		public int getQnABoardCount() {
-			System.out.println( " \n DAO : getQnABoardCount() 메서드 실행 ");
+		public int getQnACount() {
+			System.out.println( " \n DAO : getQnACount() 메서드 실행 ");
 			int cnt = 0;
 			
 			try {
@@ -311,10 +307,10 @@ public class QnABoardDAO {
 	
 	// 6. 조회수 올리는 메서드  -----------------------------------------
 	
-	public QnABoardDTO getQnAContent (int qna_num) {
+	public QnADTO getQnAContent (int qna_num) {
 		System.out.println( "DAO : getQnAContent() 메서드 실행" );
 		
-		QnABoardDTO dto = null;
+		QnADTO dto = null;
 		
 		try {
 			con = getConnect();
@@ -329,7 +325,7 @@ public class QnABoardDAO {
 
 			if(rs.next()) {
 				
-				dto = new QnABoardDTO();
+				dto = new QnADTO();
 				
 				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setQna_writer_type(rs.getInt("qna_writer_type"));
@@ -409,8 +405,8 @@ public class QnABoardDAO {
 		
 	// 7. 문의사항 글 수정을 위한 DB 정보 호출 메서드  -----------------------------------------
 	
-	public QnABoardDTO getQnAUpdateContent(int qna_num) {
-		QnABoardDTO dto = null;
+	public QnADTO getQnAUpdateContent(int qna_num) {
+		QnADTO dto = null;
 		
 		try {
 			
@@ -425,7 +421,7 @@ public class QnABoardDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto = new QnABoardDTO();
+				dto = new QnADTO();
 				dto.setQna_subject(rs.getString("qna_subject"));
 				System.out.println(qna_num+"번 제목 가져오기 완료 ");
 				dto.setQna_content(rs.getString("qna_content"));
@@ -445,7 +441,7 @@ public class QnABoardDAO {
 	}
 	
 	// 8. 문의사항 글 수정 메서드  -----------------------------------------
-			public QnABoardDTO QnAUpdate(QnABoardDTO dto, int qna_num) {
+			public QnADTO QnAUpdate(QnADTO dto, int qna_num) {
 				System.out.println(" QnAUpdate() 호출 ");
 				
 				System.out.println("dto : " + dto + "=======================");
@@ -482,7 +478,7 @@ public class QnABoardDAO {
 	
 	// 8. 문의사항 글 수정 메서드 (매니저)  -----------------------------------------
 
-//	public QnABoardDTO QnAUpdate(QnABoardDTO dto) {
+//	public QnADTO QnAUpdate(QnADTO dto) {
 //		
 //		System.out.println("QnAUpdate() 호출");
 //		
@@ -510,7 +506,7 @@ public class QnABoardDAO {
 
 	// 9. 문의사항 글 수정 메서드 (회원)  -----------------------------------------
 		
-//		public QnABoardDTO QnAUpdate (QnABoardDTO dto, int mem_num) {
+//		public QnADTO QnAUpdate (QnADTO dto, int mem_num) {
 //			
 //			System.out.println("QnAUpdate() 호출");
 //			
@@ -558,10 +554,10 @@ public class QnABoardDAO {
 	
 	// 11. 특정 글 1개의 정보 조회   -----------------------------------------
 	
-	public QnABoardDTO getBoard(int qna_num) {
-		System.out.println(" C: getBoard(qna_num) 호출");
+	public QnADTO getQna(int qna_num) {
+		System.out.println(" C: getQnA(qna_num) 호출");
 		
-		QnABoardDTO dto = null;
+		QnADTO dto = null;
 		
 		try {
 			con = getConnect();
@@ -572,7 +568,7 @@ public class QnABoardDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto = new QnABoardDTO();
+				dto = new QnADTO();
 				
 				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setQna_writer_type(rs.getInt("qna_writer_type"));
@@ -621,7 +617,7 @@ public class QnABoardDAO {
 		}
 	}
 
-	public int qnaReply(int qna_num, QnABoardDTO dto) {
+	public int qnaReply(int qna_num, QnADTO dto) {
 		int qna_re_ref= qna_num;
 		try {
 			con = getConnect();

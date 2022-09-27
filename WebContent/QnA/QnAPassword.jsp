@@ -25,7 +25,7 @@
 	
 	<fieldset class="field1">
 	삭제하려는 글의 비밀번호를 입력하세요. <br>
-	<form action = "./QnADelete.qna?qna_num=<%=qna_num %>" method="post">
+	<form action = "./QnAPasswordCheck.qna?qna_num=<%=qna_num %>" method="post">
 	<div>
 		<input type="password" id="password" name="qna_password" maxlength="4" placeholder="숫자 4자리">
 <!-- 		<input type="button" name="password_match" id="password_btn" value="확인"> <br>	 -->

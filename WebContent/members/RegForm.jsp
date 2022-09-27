@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <title>회원가입 창</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
-<link href="./css/regForm.css" rel="stylesheet" type="text/css">
+<link href="./css/member/regForm.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js"
 	crossorigin="anonymous"></script>
 
@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
 
  <table width="1400" height="650" id="tb">
   <tr>
-   <td width="100%" height="10%"><span style="padding-left: 160px"></span>&nbsp; <b>회원가입</b>
+   <td width="100%" height="10%"><span style="padding-left: 160px"></span>&nbsp; <b id="con">회원가입</b>
     <br>
     <hr>
    </td>
@@ -49,8 +49,8 @@ pageEncoding="UTF-8"%>
   <tr>
    <td width="100%" height="50%" align="center">
    <p align="left">
-   <span style="padding-left: 160px">
-   pcc 약관동의</span>
+<!--    <span style="padding-left: 160px"> -->
+<!--    pcc 약관동의</span> -->
    </p>
    <br>
    <textarea

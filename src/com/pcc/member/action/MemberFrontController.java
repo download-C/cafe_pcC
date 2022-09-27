@@ -40,10 +40,18 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 // ----------------- URI에 따른 if(command.equals(""))-else 문 생성 자리 시작----------------
-		//이용 약관
-		 if(command.equals("/Reg.me")){
+		
+		//sns 연동 페이지
+		 if(command.equals("/SignMain.me")){
 			forward = new ActionForward();
-			forward.setPath("./members/regForm.jsp");
+			forward.setPath("./members/SignMain.jsp");
+			forward.setRedirect(false);		
+		
+		
+		//이용 약관
+		 }else if(command.equals("/Reg.me")){
+			forward = new ActionForward();
+			forward.setPath("./members/RegForm.jsp");
 			forward.setRedirect(false);
 		
 		

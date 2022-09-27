@@ -49,7 +49,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
       <div class="login_area">
       <ul class="login_area_ul">
         <li><a href="./Login.pcc">LOGIN</a></li>
-        <li><a href="./Reg.me">SIGN</a></li>
+        <li><a href="./SignMain.me">SIGN</a></li>
       </ul>
       </div>
 <%} %>

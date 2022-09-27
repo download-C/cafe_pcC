@@ -8,14 +8,6 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/about/about.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script>
-	function show(){
-	    document.getElementById('ppp').src="./img/about/public_class_Cafe.PNG";
-	}
-	function hide(){
-	    document.getElementById('ppp').src="";
-	}
-</script>
 </head>
 <body style="font-size: 20">
 <!-- 헤더들어가는 곳 -->

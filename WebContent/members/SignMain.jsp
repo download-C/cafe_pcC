@@ -13,15 +13,18 @@ pageEncoding="UTF-8"%>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+<br>
+<img src="./img/logo.jpg" id="logo"><br>
 	<fieldset id="f">
 		<form action="./Reg.me" method="post">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<div id="i">
+
+
+	 <div id="kko" onclick="kakaoLogin();" >
 	 <a href="javascript:void(0)">
-	 <img src="./img/kakao_login.jpg" onclick="kakaoLogin();" >
-            </a>
+           카카오로 가입하기 </a>
             </div>
      
 <script>
@@ -49,7 +52,7 @@ function kakaoLogin() {
 
 </script>
 			<hr>
-			<input type="submit" value="ID/PW 회원가입">
+			<input type="submit" value="ID/PW로 회원가입" id="sign">
 		</form>
 	</fieldset><br>
 <!-- 푸터들어가는 곳 -->

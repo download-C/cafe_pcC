@@ -15,3 +15,31 @@ display:block;
 margin: 0px auto;
 }
 	
+#logo{
+text-align:center; 
+display:block; 
+margin: 0px auto;
+width: 100px;
+height: 100px;
+}
+
+h3{
+	text-align:center; 
+display:block; 
+margin: 0px auto;
+	
+}
+
+fieldset {
+	width: 300px;
+	text-align:center; 
+display:block; 
+margin: 0px auto;
+}
+
+a {
+	
+	color: black;
+	text-decoration: none;
+}
+	

@@ -45,6 +45,7 @@
         <tr><td colspan="2">
           <input type="button" value="회원수정" class="content_btn1" onclick="location.href='./mypageUpdate.me?mem_num=${dto.mem_num }';">
           <input type="button" value="회원탈퇴" class="content_btn2" onclick="location.href='./mypageDelete.me?mem_num=${dto.mem_num }';">
+          <input type="button" value="주문내역" onclick="location.href='./OrderList.pr';">
         </td>
         </tr>
       </table>

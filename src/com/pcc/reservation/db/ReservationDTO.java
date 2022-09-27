@@ -12,12 +12,6 @@ public class ReservationDTO {
 	private int res_table;
 	
 	
-	public int getRes_table() {
-		return res_table;
-	}
-	public void setRes_table(int res_table) {
-		this.res_table = res_table;
-	}
 	public int getRes_num() {
 		return res_num;
 	}
@@ -54,12 +48,14 @@ public class ReservationDTO {
 	public void setRes_persons(int res_persons) {
 		this.res_persons = res_persons;
 	}
-	@Override
-	public String toString() {
-		return "ReservationDTO [res_num=" + res_num + ", mem_num=" + mem_num + ", name=" + name + ", res_date="
-				+ res_date + ", res_time=" + res_time + ", res_persons=" + res_persons + ", res_table=" + res_table
-				+ "]";
+	public int getRes_table() {
+		return res_table;
 	}
+	public void setRes_table(int res_table) {
+		this.res_table = res_table;
+	}
+	
+	
 	
 	
 }

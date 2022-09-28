@@ -57,7 +57,6 @@ public class OrderWriteAction implements Action {
 		//VIEW 페이지 정보 전달을 위해서 request 영역에 저장
 		request.setAttribute("cartList", cartList);
 		request.setAttribute("order", order_dto.getOrder_price());
-		System.out.println("회원 phone : " + cart_dto.getMem_phone());
 		
 		//==================================================
 

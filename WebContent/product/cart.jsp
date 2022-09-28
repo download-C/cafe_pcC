@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <html>
+
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
@@ -223,10 +224,17 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 50px"></div>
 
-<!-- 	<h1>cart.jsp</h1> -->
+
+	<c:if test="${empty cartList}">
+	<div>장바구니에 담긴 상품이 없습니다.</div>
+	<input type="button" value="상품 목록으로 가기" class="return_product" onclick="location.href='./ProductList.pr';">
+	</c:if>
 	
-	<h2>카트 목록</h2>
+	
+	<c:if test="${not empty cartList}">
+	<h1>장바구니</h1>
 	<form action="./OrderWrite.pr">
 		<table border="1">
 	     	<tr>
@@ -260,8 +268,6 @@
 		        <td>
 		        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원<br>
 		        	<input type="hidden" class="total_price_hidden${dto.cart_num}" value="${dto.total_price}">
-<%-- 					<div class="delete${dto.cart_num}">장바구니 삭제</div>   --%>
-<%-- 					<input type="button" class="delete"  data-text="${dto.cart_num}" value="X">   	 --%>
 					<a href="./CartDelete.pr?cart_num=${dto.cart_num}">X</a>
 <%-- 					<input type="button" value="X" onclick="location.href='./CartDelete.pr?cart_num=${dto.cart_num}';">   	 --%>
 	        	</td>
@@ -273,10 +279,10 @@
 		<span class="order_price"></span>원 <br>
 		<input type="hidden" class="order_price" name="order_price" val="">
 		<input type="submit" value="주문하기">
-		<input type="button" value="상품 목록 돌아가기" onclick="location.href='./ProductList.pr';">
+		<input type="button" value="상품 목록 돌아가기" class="return_product" onclick="location.href='./ProductList.pr';">
 		
 	</form>
-	
+	</c:if>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->	

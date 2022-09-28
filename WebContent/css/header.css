@@ -15,27 +15,31 @@
 
 header{
      font-family: var(--font-kor);
-     color: var(--color-gray-900);
-/*      position:fixed; */
+     color: var(--color-white);
+     position: absolute;
+	width: 100%;
 }
 
 .header_area{
   border-bottom-width: 1px;
   border-bottom-color: var(--color-gray-200);
   border-bottom-style: solid;
+  position: relative;
 }
 
 .navbar{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--color-white);
+	background-color: none;
+/* 	opacity: 0; */
 } 
 
 
 .navbar a{
    text-decoration: none;
-   color: var(--color-gray-900);
+   color: var(--color-white);
+/*    color: var(--color-gray-900); */
    
 }
 
@@ -44,15 +48,18 @@ header{
 }
 
 .logo_area a{
-	font-size: 20px;
+	font-size: 22px;
   font-family: var(--font-eng);
 }
+
+/* #logo_top{ */
+/* 	width : 20px; */
+/* } */
 
 .menu_area_ul{
   list-style: none;
   display: flex;
   padding: 0;
-  
 }
 
 .menu_area_ul li{
@@ -60,7 +67,7 @@ header{
 }
 
 .menu_area_ul li a {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .menu_area_ul li a:hover{
@@ -79,11 +86,11 @@ header{
 }
 
 .login_area_ul li{
-  padding: 4px 6px;
+  padding: 4px 10px;
 }
 
 .login_area_ul li a{
-  font-size: 8px;
+  font-size: 11px;
 
 }
 
@@ -100,7 +107,7 @@ header{
 }
 
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:900px) {
   .navbar{
     flex-direction: column;
     align-items: flex-start;

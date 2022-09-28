@@ -61,9 +61,11 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>productContent.jsp</h1>
+
+<!-- 	<h1>productContent.jsp</h1> -->
+	<div style="position: relative; height: 50px"></div>
 	
-	<h2>상품 상세 페이지</h2>
+	<h1>상품 상세 페이지</h1>
 	
 	<!-- 상품 정보 & 장바구니 담기 버튼 -->
 	<div>
@@ -99,6 +101,7 @@
 			<div>
 				옵션
 				<textarea rows="1" cols="30" placeholder="샷 2번 추가" name="requirements" ></textarea>
+				
 			</div>
 			
 			<!-- 수량에 따른 실시간 가격 -->
@@ -109,7 +112,7 @@
 			
 			<!-- 장바구니 담기 버튼 -->
 			<div>
-				<input type="submit" value="담기" onclick="location.href='./CartWrite.pr;">
+				<input type="submit" value="담기">
 <!-- 				<input type="submit" value="주문하기" onclick="location.href='./CartWrite.pr?skip_cart=true';"> -->
 	        	<input type="button" value="상품 목록" onclick="location.href='./ProductList.pr';">
 			</div>

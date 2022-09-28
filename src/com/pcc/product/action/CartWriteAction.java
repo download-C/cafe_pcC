@@ -1,6 +1,8 @@
 package com.pcc.product.action;
 
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +19,27 @@ public class CartWriteAction implements Action {
 			HttpServletResponse response) throws Exception {
 		
 		System.out.println("3. CartWriteAction");
-		
 		//한글 처리
 		request.setCharacterEncoding("UTF-8");
+		
+		System.out.println("옵션 1 : "+ request.getParameter("requirements"));
+
+		
+		String mem_num = request.getParameter("mem_num");
+		
+//		System.out.println("mem_num : "+ mem_num);
+		
+		if(mem_num == ""){
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인 후 이용하실 수 있습니다.');");
+			out.println("location.href='LoginForm.me';");
+			out.println("</script>");
+			out.close();
+		}
+		
+		//======================================================================
 		
 //		System.out.println(request.getParameter("prod_num"));
 		
@@ -33,6 +53,7 @@ public class CartWriteAction implements Action {
 		dto.setProd_count(Integer.parseInt(request.getParameter("prod_count")));
 		dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));
 		
+		System.out.println("옵션 2 : "+ dto.getRequirements());
 		
 		//DB에 정보 저장
 		//ProductDAO 객체 생성

@@ -10,7 +10,7 @@
 <link href="./css/mainPage.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
-<script type="text/javascript" uri="./jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
@@ -25,15 +25,15 @@
 		if(mgr_num != null) {
 			%>
 			
-			매니저번호 : ${sessionScope.mgr_num } <br>
-			${sessionScope.message } <br>
+<%-- 			매니저번호 : ${sessionScope.mgr_num } <br> --%>
+<%-- 			${sessionScope.message } <br> --%>
 		
 
 			<%
 			
 		} else if(mem_num != null) {
 			%>
-			${sessionScope.message } <br>
+<%-- 			${sessionScope.message } <br> --%>
 
 			<%
 		} else {}		
@@ -46,24 +46,24 @@
 				<img src="./img/slide1.jpg">
 			</div>
 			
-			<div class="slide">
-				<img src="./img/slide2.jpg">
-			</div>
+<!-- 			<div class="slide"> -->
+<!-- 				<img src="./img/slide2.jpg"> -->
+<!-- 			</div> -->
 			
-			<div class="slide">
-				<img src="./img/slide3.jpg">
-			</div>
+<!-- 			<div class="slide"> -->
+<!-- 				<img src="./img/slide3.jpg"> -->
+<!-- 			</div> -->
 			
-			<div class="slide">
-				<img src="./img/slide4.jpg">
-			</div>
+<!-- 			<div class="slide"> -->
+<!-- 				<img src="./img/slide4.jpg"> -->
+<!-- 			</div> -->
 		</div>
 	</div>
 	
-	<button class="slide_btn1">1</button>
-	<button class="slide_btn2">2</button>
-	<button class="slide_btn3">3</button>
-	<button class="slide_btn4">4</button>
+<!-- 	<button class="slide_btn1">1</button> -->
+<!-- 	<button class="slide_btn2">2</button> -->
+<!-- 	<button class="slide_btn3">3</button> -->
+<!-- 	<button class="slide_btn4">4</button> -->
 	<!-- 메인 이미지 종료 -->
 	
 	

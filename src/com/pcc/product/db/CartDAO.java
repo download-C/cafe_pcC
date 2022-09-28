@@ -226,7 +226,7 @@ public class CartDAO {
 			
 			//3. sql 작성 & pstmt 객체
 			sql ="select c.cart_num, m.mem_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
-					"c.requirements, c.prod_count, p.price, c.total_price, m.phone "+ 
+					"c.requirements, c.prod_count, p.price, c.total_price "+ 
 					"from products p join carts c "+  
 					"on c.prod_num = p.prod_num "+
                     "join members m "+
@@ -264,12 +264,12 @@ public class CartDAO {
 				dto.setProd_count(rs.getInt("prod_count"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setTotal_price(rs.getInt("total_price"));
-				dto.setMem_phone(rs.getString("phone"));
-				//dto.setChecked(rs.getTimestamp("checked"));
+			
+//				dto.setChecked(rs.getTimestamp("checked"));
 //				System.out.println(rs.getInt("cart_num"));
 				//DTO -> List
 				cartList.add(dto);
-//				System.out.println(dto.getMem_phone());
+				
 				
 				
 			}
@@ -290,8 +290,8 @@ public class CartDAO {
 	
 	// 7. checked(cart_dto)  -----------------------------------------
 	
-	public void checked(CartDTO cart_dto) {
-		System.out.println("4. checked DAO");
+	public void checked(CartDTO cart_dto, String mem_num) {
+		System.out.println("4-1. checked DAO");
 		
 		//결제한 카트의 상품들은 checked를 현재 일시로 변경
 		try{
@@ -300,8 +300,12 @@ public class CartDAO {
 			con = getConnect();
 			//3. sql 작성 & pstmt 객체
 			//checked값이 null 인 경우 다 가져오기
-			sql = "update carts set checked = now() where checked is null;";
+			sql = "update carts set checked = now() where checked is null and mem_num =?;";
 			pstmt = con.prepareStatement(sql);
+			
+			//???
+			pstmt.setString(1, mem_num);
+			
 			//4. sql 실행
 			pstmt.executeUpdate();
 			
@@ -346,14 +350,7 @@ public class CartDAO {
 		} finally {
 			closeDB();
 		}
-				
-		
 	}
-
-
-
-	
-	
 	
 	// 9.   -----------------------------------------
 	public void deleteCart(int cart_num) {
@@ -379,17 +376,7 @@ public class CartDAO {
 			closeDB();
 		}
 	}
-	
-	
-	
-	
-	// 10.   -----------------------------------------
-	
-	
-	
-	
-	
-	
+
 	
 }
 

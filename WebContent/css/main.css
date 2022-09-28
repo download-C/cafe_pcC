@@ -20,9 +20,12 @@
 }
 
 *{
-		font-family: var(--font-kor);
-	
+	font-family: var(--font-kor);
 }
+
+
+
+
 
 ::selection {
   background-color: var(--color-point-3);

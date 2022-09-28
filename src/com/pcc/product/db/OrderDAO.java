@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -64,8 +65,8 @@ public class OrderDAO {
 	
 	
 	// 3. orderWrite() 메서드  -----------------------------------------
-	public void orderWrite(OrderDTO order_dto) {
-		System.out.println("4. orderWrite DAO");
+	public void orderWrite(OrderDTO order_dto, String mem_num) {
+		System.out.println("4-2. orderWrite DAO");
 		
 		int order_num = 0;
 		
@@ -88,24 +89,22 @@ public class OrderDAO {
 				order_num = 1;
 			}
 			
-//			System.out.println(" DAO : 카트번호  cart_num : " + cart_num);
-			
+			//checked
 			//카트 데이터 입력
 			//3. sql 작성 & pstmt 객체
-			sql = "insert into orders(order_num, order_price, pickup_time)"
-					+ " values(?,?,?);";
+			sql = "insert into orders"
+					+ " values(?,?,?,?,now());";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			//???
 			pstmt.setInt(1, order_num);
-			pstmt.setInt(2,  order_dto.getOrder_price());
-			pstmt.setInt(3,  order_dto.getPickup_time());
+			pstmt.setString(2, mem_num);
+			pstmt.setInt(3,  order_dto.getOrder_price());
+			pstmt.setInt(4,  order_dto.getPickup_time());
 			
 			//4. sql 실행
 			pstmt.executeUpdate();//insert 구문은 Update 사용
-			
-//			System.out.println(" DAO : 카트 담기 완료");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -113,24 +112,117 @@ public class OrderDAO {
 			closeDB();
 		}
 		
-		
-		
-		
+	
 	}
 
 	
 	
 	
 	
-	// 4.   -----------------------------------------
-	
+	// 4. 결제 목록 가져오기 getOrderProductList(mem_num)  -----------------------------------------
+	public List<OrderDTO> getOrderProductList(String mem_num) {
+
+		System.out.println("4-1. getOrderProductList DAO");
+		
+		//주문한 상품의 정보 모두를 저장하는 배열(가변길이)
+		List<OrderDTO> orderProductList = new ArrayList<OrderDTO>();
+		
+		try{
+			con = getConnect();
+			
+			sql ="select c.cart_num, m.mem_num, c.prod_num, p.prod_name, p.prod_img, p.prod_real_img, "+
+					"c.requirements, c.prod_count, p.price, c.total_price, c.checked "+ 
+					"from products p join carts c "+  
+					"on c.prod_num = p.prod_num "+
+                    "join members m "+
+                    "on c.mem_num = m.mem_num "+
+//	                    "join orders o "+
+//	                    "on o.mem_num = m.mem_num "+
+                    "where c.checked is not null "+
+                    "and m.mem_num =?;";
+					
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			
+			//5. 데이터 처리
+			while(rs.next()){
+				OrderDTO dto = new OrderDTO();
+				//DB -> DTO로 저장
+				dto.setCart_num(rs.getInt("cart_num"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setProd_num(rs.getInt("prod_num"));
+				dto.setProd_name(rs.getString("prod_name"));
+				dto.setProd_img(rs.getString("prod_img"));
+				dto.setProd_real_img(rs.getString("prod_real_img"));
+				dto.setRequirements(rs.getString("requirements"));
+				dto.setProd_count(rs.getInt("prod_count"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setTotal_price(rs.getInt("total_price"));
+				dto.setChecked((rs.getTimestamp("checked")));
+				
+				//DTO -> List
+				orderProductList.add(dto);
+
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			closeDB();
+		}
+		return orderProductList;
+	}
+
+			
 	
 	
 	
 	// 5.   -----------------------------------------
-	
-	
-	
+	public List<OrderDTO> getOrderList(String mem_num) {
+		
+		System.out.println("4-2. getOrderList DAO");
+
+		//주문정보 모두를 저장하는 배열(가변길이)
+		List<OrderDTO> orderList = new ArrayList<OrderDTO>();
+		
+		try{
+			con = getConnect();
+			
+			sql ="select * from orders where mem_num =?;";
+					
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			
+			//5. 데이터 처리
+			while(rs.next()){
+				OrderDTO dto = new OrderDTO();
+				//DB -> DTO로 저장
+				dto.setOrder_num(rs.getInt("order_num"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setOrder_price(rs.getInt("order_price"));
+				dto.setPickup_time(rs.getInt("pickup_time"));
+				dto.setOrder_time(rs.getTimestamp("order_time"));
+				
+				//DTO -> List
+				orderList.add(dto);
+
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			closeDB();
+		}
+		return orderList;
+				}
 	
 	// 6.   -----------------------------------------
 	

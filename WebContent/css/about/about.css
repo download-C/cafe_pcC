@@ -25,15 +25,16 @@
 
 #exterior {
 	width: 100%;
-	max-width:800px;
+	max-width:950px;
 	min-width: 400px;
-	height: auto;
+	height: 500px;
 	object-fit: cover;
 }
 
 #exterior_div {
 	text-align: center;
 }
+
 
 .ppp_img {
 	position: absolute;

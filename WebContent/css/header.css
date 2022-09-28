@@ -15,40 +15,52 @@
 
 header{
      font-family: var(--font-kor);
-     color: var(--color-white);
-     position: absolute;
+     color: var(--color-gray-900);
+/*      position: absolute; */
 	width: 100%;
+	
 }
 
 .header_area{
   border-bottom-width: 1px;
   border-bottom-color: var(--color-gray-200);
   border-bottom-style: solid;
-  position: relative;
+/*   position: relative; */
 }
 
 .navbar{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: none;
+	background-color: var(--color-white);
 /* 	opacity: 0; */
+	height: 100px;
+
 } 
 
 
 .navbar a{
    text-decoration: none;
-   color: var(--color-white);
-/*    color: var(--color-gray-900); */
+/*    color: var(--color-white); */
+   color: var(--color-gray-900);
    
 }
 
+
+/* .a{ */
+/*    text-decoration: none; */
+/* /*    color: var(--color-white); */ */
+/*    color: var(--color-gray-900); */
+   
+/* } */
+
 .logo_area{
-  margin-left: 20px;
+    margin: 35px;
+/*     padding: 20px; */
 }
 
 .logo_area a{
-	font-size: 22px;
+	font-size: 25px;
   font-family: var(--font-eng);
 }
 
@@ -63,11 +75,11 @@ header{
 }
 
 .menu_area_ul li{
-  padding: 8px 20px;
+  padding: 8px 45px;
 }
 
 .menu_area_ul li a {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .menu_area_ul li a:hover{
@@ -75,7 +87,7 @@ header{
 }
 
 .login_area{
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .login_area_ul{
@@ -86,11 +98,13 @@ header{
 }
 
 .login_area_ul li{
-  padding: 4px 10px;
+  padding: 4px 20px;
+  min-width: 45px;
+  
 }
 
 .login_area_ul li a{
-  font-size: 11px;
+  font-size: 15px;
 
 }
 
@@ -114,7 +128,7 @@ header{
   }
 
   .logo_area{
-    margin: 20px;
+    margin: 35px;
   }
 
 
@@ -145,7 +159,7 @@ header{
 
   .togglebtn{
     display: block;
-    padding-top: 10px;
+    padding-top: 30px;
 
   }
 

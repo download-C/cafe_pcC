@@ -23,7 +23,10 @@
 	font-family: var(--font-kor);
 }
 
-
+body{
+	margin : 0;
+	padding: 0;
+}
 
 
 

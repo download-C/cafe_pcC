@@ -49,12 +49,14 @@ $(document).ready(function () {
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-<br>
-<fieldset>
-	<legend>문의사항 작성하기</legend>
 	<br>
+	<fieldset>
+	<legend>문의사항 작성하기</legend>
+		<br>
+	<table style="margin: auto;">
 	<form action="./QnAWriteAction.qna" method="post" enctype="multipart/form-data">
-		<div class="div" style="text-align:center;">
+	<!-- <div class="div" style="text-align:center;"> -->
+	<tr><td class="td">
 		<%
 			String mem_num = (String)session.getAttribute("mem_num");
 			String mgr_num = (String)session.getAttribute("mgr_num");
@@ -62,32 +64,54 @@ $(document).ready(function () {
 		if(	mgr_num != null ) {%>
 		작성자 <input type="text" name="name" id="center" readonly="readonly" value="관리자">
 		<hr>
+		</td></tr>
+		
+		<tr><td class="td">
 		<%} else if(mem_num != null) {%>
 		작성자 <input type="text" name="name" id="center" readonly="readonly" value="${name }">
 		<hr>		
+		</td></tr>
+		
 		<%} 
 		if(mem_num != null) {
 		%>
+		
+		<tr><td class="td">
 		비밀번호 <input type="password" name="qna_password" id="center" maxlength="4" id="password"
 		placeholder="4자리 숫자로 입력하세요.">
 		<hr>
+		</td></tr>
+		
+		<tr><td class="td">
 		<%} %> 
 		<div id="passdiv"></div>
 		제목 <input type="text" name="qna_subject" id="subject">
 		<hr>
+		</td></tr>
+		
+		<tr><td class="td">
 		<div id="subdiv"></div>
 		내용 <textarea rows="3" cols="60" name="qna_content" id="content"></textarea>
 		<hr>
+		</td></tr>
+		
+		<tr><td class="td">
 		<div id="contdiv"></div>
 		첨부파일 <input type="text" name="qna_file" id="file">
 		<hr>
-		<div id="filediv"></div>
-		</div>	
+		</td></tr>		
+		<!-- <div id="filediv"></div> -->
+		<!-- </div>	-->
+		
+		<tr><td>
 		<div style="text-align: center;">
 			<input type="submit" id="btn" value="작성" >
-			<input type="button" value="취소">
+			<input type="button" id="btn" value="취소">
 		</div>
+		</td></tr>
+		
 	</form>
+		</table>
 </fieldset>
 
 <!-- 푸터들어가는 곳 -->

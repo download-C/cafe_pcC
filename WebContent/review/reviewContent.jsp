@@ -29,7 +29,8 @@
 <!-- 헤더들어가는 곳 -->
 <h2>고객리뷰</h2>
 
-	<fieldset>
+	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
+
 	<% if(mem_num != null) {
 	%>
 	<input type="hidden" value="${dto.mem_num }">
@@ -40,85 +41,57 @@
 	<%
 	}
 	%>
+	<div class="container">
 		<table>
 			<tr>
-				<td>글번호</td>
-				<td>${dto.review_num }</td>
-			</tr>
-				
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-			
-			<tr>
-				<td>조회수</td>
-				<td>${dto.review_readcount }</td>
+				<td class="ss" style="width: 25%;">글번호</td>
+				<td style="width: 25%;">${dto.review_num }</td>
+				<td class="ss" style="width: 20%;">조회수</td>
+				<td style="width: 30%;">${dto.review_readcount }</td>
 			</tr>
 			
-				<tr>
-				</tr>
-				<tr>
-				</tr>
+	
 		
 			<tr>
-				<td>작성자</td>
-				<td>${dto.name }</td>
-			</tr>
-				
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-				
-			<tr>	
-				<td>작성일</td>
-				<td>${dto.review_date }</td>
+				<td class="ss" style="width: 25%;">작성자</td>
+				<td style="width: 25%;">${dto.name }</td>
+				<td class="ss" style="width: 20%;">작성일</td>
+				<td style="width: 30%;">${dto.review_date }</td>
 			</tr>
 			
-				<tr>
-				</tr>
-				<tr>
-				</tr>
+
 			
 			<tr>
-				<td>제목</td>
-				<td colspan="3">${dto.review_subject }</td>
+				<td class="ss" style="width: 20%;">제목</td>
+				<td colspan="3" style="width: 80%;">${dto.review_subject }</td>
 			</tr>
-			
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-			
+
 			<tr>
-				<td>내용</td>
-				<td colspan="3">${dto.review_content }</td>
+				<td class="ss" style="width: 20%;">내용</td>
+				<td colspan="3" style="width: 80%;">${dto.review_content }</td>
 			</tr>
-	
-				<tr>
-				</tr>
-				<tr>
-				</tr>
-	
+
 			<tr>
-				<td>첨부파일</td>
-				<td colspan="3"><a href="./upload/${dto.review_file }" download>
+				<td class="ss" style="width: 20%;">첨부파일</td>
+				<td colspan="2" style="width: 80%;"><a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>
 				</td>
 			</tr>
 			
 		</table>
-	</fieldset>
+		</div>
+		<div class="btndiv">
 	<%
 	if(mem_num != null) {
 		if(mem_num.equals(rmn)) {
-	%>
+	%>s
+	<div class="btndiv" style="margin:auto;">
 		<input type="button" name="review_update" id="update" value="수정"
 	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
 	
 		<input type="button" name="review_delete" id="delete" value="삭제" 
 		onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
+	
 	<%
 		}
 	}
@@ -133,14 +106,18 @@
 	
 	<input type="button" name="review_delete" id="delete" value="삭제" 
 	onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
+	
     <%
 	}
 %>
+
 	<input type="button" name="review_list" id="list" value="목록" 
      onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">
-<%
+	</div>
+	</div>
+	</div>
+			
 
-%>
 <!-- 푸터 시작 -->
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

@@ -15,6 +15,10 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>QnAPassword.jsp</h1> -->
+
+	<br>
+	<br>
+	<!-- ▲ 나중에 보고 삭제하기 -->
 	
 	<%
 		String button = request.getParameter("button");

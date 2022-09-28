@@ -37,7 +37,11 @@
 <!-- 헤더들어가는 곳 -->
 <h2>문의사항</h2>
 
-<fieldset>
+<br>
+<br>
+<!-- ▲ 나중에 보고 삭제하기 -->
+
+<fieldset style="width: 700px;">
 <% if(mem_num != null) {
 	%>
 	<input type="hidden" value="${dto.mem_num }">
@@ -48,7 +52,9 @@
 	<%
 	}
 	%>
-		<table>
+	
+	<br>
+		<table style="margin: auto;">
 			<tr>
 				<td>글번호</td>
 				<td>${dto.qna_num }</td>
@@ -117,7 +123,10 @@
 			
 			
 		</table>
-	</fieldset>
+	
+	<br>
+	
+	<div style="text-align: center;">
 <%
 	if(mem_num != null) {
 		if(mem_num.equals(qmn)) {
@@ -140,6 +149,13 @@
 %>
 	<input type="button" name="qna_list" id="list" value="목록" 
      onclick="location.href='./QnAList.qna?pageNum=${pageNum}';">
+     
+     
+	</div>
+     <br>
+	</fieldset>
+	<br>
+	<br>	
 <%
 }
 %><!-- 푸터들어가는 곳 -->

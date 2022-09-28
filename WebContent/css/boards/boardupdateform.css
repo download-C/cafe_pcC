@@ -13,16 +13,31 @@
 legend{
 	text-align: center;
 	font-weight: bold;
+	margin: auto;
 }
 
 fieldset {
-	margin : 50px 50px;
+/* 	margin: 50px 50px; */
 	border : solid 1px grey;
+	width: 700px;
 }
+
+/* table{ */
+/* 	margin: auto; */
+/* } */
 
 .td{
 	font-weight: bold;
 }
+
 hr{
 	border: none;
+}
+
+table{
+	margin: auto;
+}
+
+#commanCell{
+	text-align: center;
 }

@@ -14,8 +14,13 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>QnAUpdateForm.jsp</h1> -->
-	
-	<fieldset>
+		<br>
+		<br>
+		<br>
+		<div>
+			<hr>
+		</div>
+	<fieldset style="margin:auto;">
 		<legend>문의사항 수정하기</legend>
 		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }" method="post" >
 		<div>

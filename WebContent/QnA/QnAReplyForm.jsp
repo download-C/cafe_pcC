@@ -30,7 +30,7 @@
 	<%
 		}
 	%>
-		<table>
+		<table style="margin: auto;">
 			<tr>
 				<td>글번호</td>
 				<td>${dto.qna_num }</td>
@@ -102,11 +102,11 @@
 		</table>
 	</fieldset>
 	<hr>
-		<fieldset class="field2">
+		<fieldset>
 		<legend>문의사항 답글 작성하기</legend>
 		<form action="./QnAReply.qna?qna_num=${dto.qna_num }" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
 		
-		<div>
+		<div style="margin:auto;" class="">
 		
 	 	<input type="hidden" name="name" id="qna_name" 
 	 			value="관리자" readonly="readonly">
@@ -115,7 +115,7 @@
 		<hr>
 		제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="qna_subject" value="   Re: ${dto.qna_subject }"> 
 		<hr>
-		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea rows="4" cols="60 " name="qna_content"></textarea> 
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea rows="3" cols="40 " name="qna_content"></textarea> 
 		<hr>
 		</div>
 		

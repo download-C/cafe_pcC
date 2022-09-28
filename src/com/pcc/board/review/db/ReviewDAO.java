@@ -233,6 +233,7 @@ public class ReviewDAO {
 				dto.setReview_writer_type(rs.getInt("review_writer_type"));
 				dto.setMgr_num(rs.getInt("mgr_num"));
 				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setName(rs.getString("name"));
 				dto.setReview_password(rs.getInt("review_password"));
 				dto.setReview_subject(rs.getString("review_subject"));
 				dto.setReview_content(rs.getString("review_content"));

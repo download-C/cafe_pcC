@@ -23,12 +23,31 @@ h2{
 	text-align: center;
 }
 
-fieldset{
-	
-	margin : 50px 50px;
-	border : solid 1px grey;
+.wrapper{
+	width: 75%;
 }
 
-table{
-	font-size: 14px;
+.container{
+	margin-left: 25%;
+	margin-right: 25%;
+/* 	width : 70%;	 */
+/* 	display : grid; */
+/* 	grid-template-columns : 0.5fr 2fr 0.5fr 1fr 1fr ; */
+/* 	grid-template-row : 20fr; */
+/* 	grid-gap: 10px 20px; */
+
+	border-top: solid 1px var(--color-gray-500);
+	border-bottom: solid 1px var(--color-gray-500);
 }
+
+/* .container div{ */
+/* 	margin: auto; */
+/* 	padding-top: 20px; */
+/* } */
+
+/* .btndiv{ */
+/* 	text-align: center; */
+/* 	margin: auto; */
+/* 	padding: 25%; */
+/* } */
+

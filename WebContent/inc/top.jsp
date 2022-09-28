@@ -20,40 +20,47 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 	          
 	             
 	            // 내릴때
-	         if ((st > lastScrollTop) && (lastScrollTop>0)) {
+	         if ((st > lastScrollTop) && (lastScrollTop > 0)) {
 // 	             alert("안녕");
 	              $("header").css({
 	                 "position" : "fixed ",
 	                 "transition-duration" : "0.5s",
-	                 "background-color" : "white",
+// 	                 "background-color" : "white",
 // 		             "color": "gray"
 
 	              });
 	              
-	              $(".navbar a").css({
-	            	  "color": "gray",
-	                  "transition-duration" : "0.5s"
-	              });
+// 	              $(".navbar a").css({
+// 	            	  "color": "gray",
+// 	                  "transition-duration" : "0.5s"
+// 	              });
 	             
-	              $(".menu_area_ul li a:hover").css({
-	            	  "color": "#adc2a9",
-	                  "transition-duration" : "0.5s"
-	              });
+// 	              $(".menu_area_ul > li > a:hover").css({
+// 	            	  "color": "#adc2a9",
+// 	            	  "color": "red",
+// 	                  "transition-duration" : "0.5s"
+// 	              });
 	              
 	         // 올릴때
 	         } else {
 // 	        	 alert("하이");
 	        	 $("header").css({
-	                 "background-color":"",
+// 	                 "background-color":"",
 	                 "position" : "fixed",
 	                 "transition-duration" : "0.5s"
 
 	              });
 	        	 
-	        	 $(".navbar a").css({
-	            	  "color": "",
-	                  "transition-duration" : "0.5s"
-	              });
+// 	        	 $(".navbar a").css({
+// 	            	  "color": "gray",
+// 	                  "transition-duration" : "0.5s"
+// 	              });
+	        	 
+// 	        	 $(".menu_area_ul li a:hover").css({
+// 	            	  "color": "#adc2a9",
+// 	            	  "color": "#adc2a9",
+// 	                  "transition-duration" : "0.5s"
+// 	              });
 	              
 	              
 
@@ -73,7 +80,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
     <nav class="navbar">
       <!-- 로고 영역 시작 -->
       <div class="logo_area">
-        <a href="./MainPage.pcc" >
+        <a class="a" href="./MainPage.pcc" >
 <!--         <img id="logo_top" src="./css/logo.png"> -->
         public class Cafe</a>
       </div>
@@ -82,13 +89,13 @@ String mgr_num = (String)session.getAttribute("mgr_num");
       <!-- 메뉴영역 시작 -->
       <div class="menu_area">
           <ul class="menu_area_ul">
-              <li><a href="./About.pcc">ABOUT</a></li>
-              <li><a href="./NoticeList.no">NOTICE</a></li>
-              <li><a href="./ProductList.pr">MENU</a></li>
-              <li><a href="./ReservationList.re">RESERVATION</a></li>
+              <li><a class="a" href="./About.pcc">ABOUT</a></li>
+              <li><a class="a" href="./NoticeList.no">NOTICE</a></li>
+              <li><a class="a" href="./ProductList.pr">MENU</a></li>
+              <li><a class="a" href="./ReservationList.re">RESERVATION</a></li>
 <!--               <li><a href="./Order">TAKEOUT</a></li> -->
-              <li><a href="./ReviewList.rv">REVIEW</a></li>
-              <li><a href="./QnAList.qna">Q&A</a></li>
+              <li><a class="a" href="./ReviewList.rv">REVIEW</a></li>
+              <li><a class="a" href="./QnAList.qna">Q&A</a></li>
           </ul>
       </div>
       <!-- 메뉴영역 끝 -->
@@ -97,23 +104,23 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 <%if(mem_num != null)  {%>
       <div class="login_area">
       <ul class="login_area_ul">
-        <li><a href="./MyPage.me">${name }님</a></li>
-        <li><a href="./Logout.me">LOGOUT</a></li>
-        <li><a href="./Cart.pr">CART</a></li>
+        <li><a class="a" href="./MyPage.me">${name }님</a></li>
+        <li><a class="a" href="./Logout.me">LOGOUT</a></li>
+        <li><a class="a" href="./Cart.pr">CART</a></li>
       </ul>
       </div>
 <%} else if(mgr_num != null) { %>      
       <div class="login_area">
       <ul class="login_area_ul">
-        <li><a href="./Logout.mgr">LOGOUT</a></li>
-        <li><a href="./main/admin.jsp">ADMIN</a></li>
+        <li><a class="a" href="./Logout.mgr">LOGOUT</a></li>
+        <li><a class="a" href="./main/admin.jsp">ADMIN</a></li>
       </ul>
       </div>
 <%} else {%>
       <div class="login_area">
       <ul class="login_area_ul">
-        <li><a href="./Login.pcc">LOGIN</a></li>
-        <li><a href="./SignMain.me">SIGN</a></li>
+        <li><a class="a" href="./Login.pcc">LOGIN</a></li>
+        <li><a class="a" href="./SignMain.me">SIGN</a></li>
       </ul>
       </div>
 <%} %>
@@ -121,7 +128,7 @@ String mgr_num = (String)session.getAttribute("mgr_num");
 
       <!-- 토글버튼 -->	
     <div class="togglebtn">
-      <a href="#" class="togglebtn_a">
+      <a class="a" href="#" class="togglebtn_a">
             <i class="fa-regular fa-bars"></i>
       </a>
     </div>

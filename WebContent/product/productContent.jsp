@@ -63,7 +63,7 @@
 <!-- 헤더들어가는 곳 -->
 
 <!-- 	<h1>productContent.jsp</h1> -->
-	<div style="position: relative; height: 50px"></div>
+	<div style="position: relative; height: 100px"></div>
 	
 	<h1>상품 상세 페이지</h1>
 	

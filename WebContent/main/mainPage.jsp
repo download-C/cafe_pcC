@@ -6,7 +6,7 @@
 <title>public class Cafe - cafe pcC</title>
 
 <script src="./JavaScript/main.js" defer></script>
-<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/main_main.css" rel="stylesheet" type="text/css">
 <link href="./css/mainPage.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
-<jsp:include page="../inc/top.jsp" />
+<jsp:include page="../inc/top_main.jsp" />
 <!-- 헤더들어가는 곳 -->
 
 <!-- 	<h1>mainPage.jsp</h1> -->

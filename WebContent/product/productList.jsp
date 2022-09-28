@@ -37,8 +37,10 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>productList.jsp</h1> -->
-		<div style="position: relative; height: 50px"></div>
 		
+	<div style="position: relative; height: 100px"></div>
+	
+	
 	<h1>상품 목록</h1>
 	<c:if test="${not empty sessionScope.mem_num}">
 	<input type="button" value="장바구니로 이동" onclick="location.href='./Cart.pr';">

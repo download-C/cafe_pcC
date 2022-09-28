@@ -71,12 +71,23 @@
 				<td colspan="3" style="width: 80%;">${dto.review_content }</td>
 			</tr>
 
+			<%
+		
+			if(review_file != null) {
+				
+			%>
+			
 			<tr>
-				<td class="ss" style="width: 20%;">첨부파일</td>
-				<td colspan="2" style="width: 80%;"><a href="./upload/${dto.review_file }" download>
-				<img src="./upload/${dto.review_file }"></a>
+			<!-- <td class="ss" style="width: 20%;">첨부파일</td> -->
+				<td colspan="4" style="width: 80%;">
+					<a href="./upload/${dto.review_file }" download>
+					<img src="./upload/${dto.review_file }"></a>
 				</td>
 			</tr>
+			
+			<%
+			}
+			%>
 			
 		</table>
 		</div>
@@ -84,12 +95,12 @@
 	<%
 	if(mem_num != null) {
 		if(mem_num.equals(rmn)) {
-	%>s
+	%>
 	<div class="btndiv" style="margin:auto;">
-		<input type="button" name="review_update" id="update" value="수정"
+		<input type="button" class="btn" name="review_update" id="update" value="수정"
 	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
 	
-		<input type="button" name="review_delete" id="delete" value="삭제" 
+		<input type="button" class="btn" name="review_delete" id="delete" value="삭제" 
 		onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
 	
 	<%
@@ -98,25 +109,26 @@
 		
 	if(mgr_num != null) {
 	%>
-	<input type="button" name="riview_reply" id="reply" value="답글 달기"
+	<input type="button" class="btn" name="riview_reply" id="reply" value="답글 달기"
 	 onclick="location.href='./ReviewReplyForm.rv?review_num=${dto.review_num}';">
 	 
-	<input type="button" name="review_update" id="update" value="수정"
+	<input type="button" class="btn" name="review_update" id="update" value="수정"
 	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
 	
-	<input type="button" name="review_delete" id="delete" value="삭제" 
+	<input type="button" class="btn" name="review_delete" id="delete" value="삭제" 
 	onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
 	
     <%
 	}
 %>
 
-	<input type="button" name="review_list" id="list" value="목록" 
+	<input type="button" class="btn" name="review_list" id="list" value="목록" 
      onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">
+     <br>
 	</div>
 	</div>
 	</div>
-			
+	<br>		
 
 <!-- 푸터 시작 -->
 <!-- 푸터들어가는 곳 -->

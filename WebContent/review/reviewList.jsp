@@ -16,7 +16,7 @@
 <!-- 헤더들어가는 곳 -->
 
 
-	<h2>고객후기</h2>
+	<h1>고객 리뷰</h1>
 	
 	<%
 	
@@ -34,7 +34,9 @@
 	<input type="button" name="reviewWrite" class="writebtn" value="새 글 쓰기(new)"
 		onclick="location.href='./ReviewWriteForm.rv';">
 	</div>
-	<br><br>
+	<br>
+	<br>
+	<br>
 	<% } %>
 	
 	

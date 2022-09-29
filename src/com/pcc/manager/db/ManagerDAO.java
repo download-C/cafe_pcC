@@ -140,8 +140,7 @@ public class ManagerDAO {
 					System.out.println("아이디 오류");
 					result = 0;
 				}
-				
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

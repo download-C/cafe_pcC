@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,39 +11,12 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/reservation/reservationForm.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	let dateElement = document.getElementById('res_date');
-       let mindate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-       dateElement.value = mindate;
-       dateElement.setAttribute("min", mindate);
-       
-       function setMinValue() {
-           if(dateElement.value < mindate) {
-               alert('현재 시간보다 이전의 날짜는 설정할 수 없습니다.');
-               dateElement.value = mindate;
-               dateElement.setAttribute("min", mindate);
-           }
-       }
-       
-       let dateElement2 = document.getElementById('res_date');
-       let maxdate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000*20).toISOString().slice(0, 10);
-       dateElement2.value = maxdate;
-       dateElement2.setAttribute("max", maxdate);
-       
-       function setMaxValue() {
-           if(dateElement2.value > maxdate) {
-               alert('오늘로부터 7일 뒤까지만 선택 가능합니다.');
-               dateElement2.value = maxdate;
-               dateElement2.setAttribute("max", maxdate);
-           }
-       }
-</script>
+
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
-<!-- 헤더들어가는 곳 -->	
+<!-- 헤더들어가는 곳 -->
 <div class="wrapper">
 	<div class="title_img">
       <img src="./img/images/img (12).jpg">
@@ -60,8 +35,35 @@
 				</div>
 				<div class="resdiv">
 					<div>예약날짜 &nbsp;&nbsp;&nbsp;
-						<input type="date" name="res_date" id="res_date" value="">
+						<input type="date" name="res_date" id="res_date">
 					</div>
+					<script>
+						let dateElement = document.getElementById('res_date');
+				        let mindate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+				        dateElement.value = mindate;
+				        dateElement.setAttribute("min", mindate);
+				        
+				        function setMinValue() {
+				            if(dateElement.value < mindate) {
+				                alert('현재 시간보다 이전의 날짜는 설정할 수 없습니다.');
+				                dateElement.value = mindate;
+				                dateElement.setAttribute("min", mindate);
+				            }
+				        }
+				        
+				        let dateElement2 = document.getElementById('res_date');
+				        let maxdate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000*20).toISOString().slice(0, 10);
+				        dateElement2.value = maxdate;
+				        dateElement2.setAttribute("max", maxdate);
+				        
+				        function setMaxValue() {
+				            if(dateElement2.value > maxdate) {
+				                alert('오늘로부터 7일 뒤까지만 선택 가능합니다.');
+				                dateElement2.value = maxdate;
+				                dateElement2.setAttribute("max", maxdate);
+				            }
+				        }
+					</script>
 					<div class="ressub">오늘로부터 일주일 안으로만 예약 가능합니다.</div>
 				</div>
 				<div class="resdiv">

@@ -21,6 +21,7 @@ public class ManagerLoginAction implements Action {
 		String mgr_id = request.getParameter("mgr_id");
 		String mgr_password = request.getParameter("mgr_password");
 		
+		System.out.println("매니저 정보"+mgr_id +""+mgr_password);
 		ManagerDAO dao = new ManagerDAO();
 		
 		int result = dao.loginManager(mgr_id, mgr_password);

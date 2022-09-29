@@ -53,7 +53,7 @@ public class ReviewPasswordCheck implements Action {
 						return null;
 					} else {
 						dao.alert(response, "비밀번호가 다릅니다.", 
-								"location.href='history.back()';");
+								"history.back();");
 					}	
 				} else if(mgr_num != null) {
 					dao.alert(response, "관리자이므로 비밀번호 없이 리뷰 수정 페이지로 이동합니다.", 
@@ -62,7 +62,6 @@ public class ReviewPasswordCheck implements Action {
 				}
 			// 삭제 버튼 눌렀을 때 
 			} else if(button.equals("delete")) {
-				
 				if(mem_num != null) {
 					int review_password = Integer.parseInt(request.getParameter("review_password")); 
 					if(review_password == dto.getReview_password()) {
@@ -76,7 +75,7 @@ public class ReviewPasswordCheck implements Action {
 						return null;
 					} else {
 						dao.alert(response, "비밀번호가 다릅니다.", 
-								"location.href='history.back()';");
+								"history.back();");
 						return null;
 					}	
 				} else if(mgr_num != null) {
@@ -88,15 +87,6 @@ public class ReviewPasswordCheck implements Action {
 			} else {
 				dao.alert(response, "로그인이 필요합니다.", "location.href='./Login.pcc';");
 			}
-		
-		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('비밀번호가 다릅니다.');");
-		out.println("history.back();");
-		out.println("</script>");
-		
 		return null;
 	}
 

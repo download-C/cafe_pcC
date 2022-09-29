@@ -29,7 +29,6 @@
 	<% 
 	if(mgr_num != null) {
 	%>
-	
 
 		<div>
 		<input type="button" name="noticeWrite" class="writebtn" value="새 글 쓰기(new)"

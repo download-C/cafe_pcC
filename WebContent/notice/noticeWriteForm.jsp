@@ -18,6 +18,11 @@
 	
 		<br>
 		<div class="wrapper" style="margin: auto;">
+		<div class="title_img">
+	      <img src="./img/images/img (13).jpg">
+	      <h1 class="title">NOTICE LIST</h1>
+	      <div class="img_box"></div>
+	    </div>
 	
 		<h1>공지사항 작성하기</h1>
 		<form action="./NoticeWriteAction.no" method="post">

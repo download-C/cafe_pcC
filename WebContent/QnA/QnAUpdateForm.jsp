@@ -18,8 +18,11 @@
 
 		<br>
 		<div class="wrapper" style="margin: auto;">
-		
-		<h1>문의사항 수정하기</h1>
+		<div class="title_img">
+	      <img src="./img/images/img (19).jpg">
+	      <h1 class="title">Q&A UPDATE</h1>
+	      <div class="img_box"></div>
+	    </div>
 		<form action="./QnAUpdateAction.qna?qna_num=${dto.qna_num }" method="post" >
 		
 		<div class="container">

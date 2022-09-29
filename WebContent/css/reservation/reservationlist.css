@@ -37,24 +37,23 @@
 	  font-size: 20px;
 	  font-weight: bold;
 	}
-	
 
-	
 	.container{
-		width : 100%;	
+		width : 80%;	
 		display : grid;
-		grid-template-columns : 2fr 2fr 4fr 2fr 4fr;
-		grid-template-row : 20fr;
+		grid-template-columns : 1fr 1fr 2fr 1fr 2fr;
+		grid-template-row : 28fr;
 		grid-gap: 10px 20px;
 		box-sizing: 100%;
 		border-top: solid 1px var(--color-gray-500);
 		border-bottom: solid 1px var(--color-gray-500);
-		
+		margin: auto;
 	}
 	
 	.container div{
 		margin: auto;
 		padding-top: 20px;
+		font-size: 20px;
 	}
 	
 	
@@ -69,8 +68,7 @@
 	
 	.numdiv{
 		width: 50px;
-	}
-	
+	}	
 	
 	.boardlist{
 		text-align: center;
@@ -97,6 +95,17 @@
 	  font-weight: bold;
 	  float: inherit;
 	}
+	
+	.pagediv {
+		margin: auto;
+		text-align: center;
+		border: none;
+	}
+	
+	.pagediv a {
+		color: black;
+		text-decoration: none;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -105,7 +114,7 @@
 		text-align: center;
 		width: 90%;
 		color: black;
-		font-size: 12px;
+		font-size: 15px;
 		margin: auto;
 	}
 	
@@ -138,6 +147,7 @@
 	.container div{
 		margin: auto;
 		padding-top: 20px;
+		font-size: 20px;
 	}
 	
 	
@@ -175,6 +185,11 @@
 	  float: right;
 	  margin-right: 4%;
 	  padding: 5px;
+	}
+	
+	.pagediv a {
+		color: black;
+		text-decoration: none;
 	}
 
 }

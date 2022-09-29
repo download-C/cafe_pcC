@@ -197,7 +197,6 @@ public class ReservationDAO {
 				
 				ReservationDTO dto = new ReservationDTO();
 				
-				
 				dto.setRes_num(rs.getInt(1));
 				dto.setMem_num(rs.getInt(2));
 				dto.setName(rs.getString(3));
@@ -206,7 +205,6 @@ public class ReservationDAO {
 				dto.setRes_persons(rs.getInt(6));
 
 				reservationList.add(dto);
-				
 			}
 			
 		} catch(SQLException e){
@@ -214,11 +212,7 @@ public class ReservationDAO {
 		} finally{
 			closeDB();
 		}
-		 
-		
-		
 		return reservationList;
-		
 	}
 	
 	public List<ReservationDTO> reservationList(int startRow, int pageSize) {
@@ -375,6 +369,25 @@ public class ReservationDAO {
 		}
 		return cnt;
 	}
+	
+	public int getReservationCount(int mem_num) {
+		int cnt = 0;
+		try {
+			con = getConnect();
+			sql = "select count(*) from reservations where mem_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				return cnt = rs.getInt(1)+1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return cnt;
+	}
 
 	public int updateReservation(int res_num, ReservationDTO dto) {
 		int result = -1;  // 1: 예약 가능, 0: 오전 예약 가득 참, -1: 오후 예약 가득 참 
@@ -475,7 +488,6 @@ public class ReservationDAO {
 	}
 	
 	public void deleteReservation (ReservationDTO dto) {
-        
  
         try {
         	con = getConnect();

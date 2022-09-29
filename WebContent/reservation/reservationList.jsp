@@ -27,7 +27,7 @@
 	if(mem_num != null) {
 %>		
 	<div class="wrapper">
-	<h1> Reservation </h1>
+	<h1> RESERVATION LIST</h1>
 	<div>
 		<input type="button" name="res_btn" class="writebtn" id="res_btn" value="예약하기" 
 		onclick="location.href='./Reservation.re';"> <br><br>
@@ -56,7 +56,8 @@
 			</c:forEach>
 			<br>
 		</div>
-		<br><br>		
+		<br><br>
+		<div class="pagediv">		
 		<c:if test="${cnt != 0 }">
 			<c:if test="${startPage > pageBlock }">
 				<a href="./ReservationList.re?pageNum=${startPage-pageBlock }">이전</a>
@@ -70,6 +71,7 @@
 				<a href="./ReservationList.re?pageNum=${startPage + pageBlock }">다음</a>
 			</c:if>
 		</c:if>
+		</div>
 		<br>
 		<br>	
 	</div>		

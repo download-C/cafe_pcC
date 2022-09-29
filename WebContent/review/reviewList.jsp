@@ -13,11 +13,7 @@
 <body>
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
-<!-- 헤더들어가는 곳 -->
-
-
-	<h1>고객 리뷰</h1>
-	
+<!-- 헤더들어가는 곳 -->	
 	<%
 	
 	System.out.println("MGR_NUM: "+session.getAttribute("mgr_num"));
@@ -25,6 +21,11 @@
 	String mem_num = (String)session.getAttribute("mem_num");
 %>
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
+		<div class="title_img">
+	      <img src="./img/images/img (14).jpg">
+	      <h1 class="title">REVIEW LIST</h1>
+	      <div class="img_box"></div>
+	    </div>
 <%
 	if(session != null && mem_num != null){
 	%>

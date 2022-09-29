@@ -55,7 +55,7 @@ public class LoginAction implements Action {
 				System.out.println("mem_num 세션값 생성 성공!");
 				
 				out.println("<script>");
-				out.println("alert('로그인에 성공했습니다.');");
+				out.println("alert('"+message+"');");
 				out.println("location.href='./MainPage.pcc';");
 				out.println("</script>");
 				

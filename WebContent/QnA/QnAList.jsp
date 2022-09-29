@@ -16,9 +16,6 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-
-	<h1>QnA</h1>
-	
 	<%
  	ArrayList<QnADTO> qnaboardlist = (ArrayList<QnADTO>)request.getAttribute("qnaboardlist");
 	String mgr_num = (String)session.getAttribute("mgr_num");
@@ -26,6 +23,11 @@
 	%>
 	
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
+	<div class="title_img">
+	      <img src="./img/images/img (19).jpg">
+	      <h1 class="title">Q&A LIST</h1>
+	      <div class="img_box"></div>
+	    </div>
 		<%if(mem_num != null) { %>
 	
 	

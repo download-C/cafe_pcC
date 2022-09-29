@@ -19,11 +19,11 @@
 <div class="wrapper">
 	<div class="title_img">
       <img src="./img/images/img (12).jpg">
-      <h1 class="title">RESERVATION</h1>
+      <h1 class="title">RESERVATION UPDATE</h1>
       <div class="img_box"></div>
     </div>
 	<div class="container">
-		<form action="./ReservationUpdateAction.re" method="post">	
+		<form action="./ReservationUpdateAction.re?res_num=${dto.res_num }" method="post">	
 			<div class="resformdiv">
 				<div class="resdiv">
 					<div>예약 인원 &nbsp;&nbsp;&nbsp;

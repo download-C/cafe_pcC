@@ -19,7 +19,11 @@
 	
 		<br>
 		<div class="wrapper" style="margin: auto;">
-		
+		<div class="title_img">
+	      <img src="./img/images/img (14).jpg">
+	      <h1 class="title">REVIEW UPDATE</h1>
+	      <div class="img_box"></div>
+	    </div>
 		<h1>리뷰 수정하기</h1>
 		<form action="./ReviewUpdateAction.rv?review_num=${review_num }" method="post" enctype="multipart/form-data">
 			

@@ -84,8 +84,8 @@
 			<input type="button" value="중복확인" class="hiddenbtn"><br> 
 			<div class="pass2div"> </div> <br> 
 			<input type="text" name="name" class="name" placeholder="이름">
-			<input type="button" value="중복확인" class="hiddenbtn"><br>
 			<div class="namediv"> </div> <br> 
+			<input type="button" value="중복확인" class="hiddenbtn"><br>
 		</div>
 		
 		<div class="submitdiv">

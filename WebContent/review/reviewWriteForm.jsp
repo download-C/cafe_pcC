@@ -57,9 +57,12 @@
 	
 	%>
 		<br>
-		<div class="wrapper" style="margin: auto;">
-		
-		<h1>리뷰 작성하기</h1>
+		<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
+		<div class="title_img">
+	      <img src="./img/images/img (14).jpg">
+	      <h1 class="title">REVIEW WRITE</h1>
+	      <div class="img_box"></div>
+	    </div>
 		<form action="./ReviewWriteAction.rv" method="post" id="write" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
 		
 		<div class="container">

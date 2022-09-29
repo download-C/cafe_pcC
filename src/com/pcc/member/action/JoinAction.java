@@ -28,7 +28,6 @@ public class JoinAction implements Action {
 		dto.setName(request.getParameter("name"));
 		System.out.println(" name : "+dto.getName());
 		
-		
 		MemberDAO dao = new MemberDAO();
 		System.out.println(" DAO객체생성");
 		dao.JoinMember(dto);

@@ -44,8 +44,12 @@
 
 	<br>
 	<div class="wrapper" style="margin: auto;">
-	
-	<h1>문의사항 작성하기</h1>
+	<div class="title_img">
+	      <img src="./img/images/img (19).jpg">
+	      <h1 class="title">Q&A WRITE</h1>
+	      <div class="img_box"></div>
+	    </div>	
+
 	<form action="./QnAWriteAction.qna" method="post" id="write" enctype="multipart/form-data" >
 	
 		<div class="container">

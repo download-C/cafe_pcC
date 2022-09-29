@@ -29,30 +29,47 @@
 	}
 	
 	%>
-	<fieldset>
-		<legend>리뷰 작성하기</legend>
+		<br>
+		<div class="wrapper" style="margin: auto;">
+		
+		<h1>리뷰 작성하기</h1>
 		<form action="./ReviewWriteAction.rv" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
-		<div class="div">
 		
-	 	<input type="hidden" name="name" id="review_name" 
+		<div class="container">
+			<table>
+			
+	
+		<tr><td class="ss"><input type="hidden" name="name" id="review_name" 
 	 			value="${name }" readonly="readonly">
-		비밀번호 <input type="password" name="review_password" 
-					maxlength="4" placeholder="4자리 숫자로 입력하세요."> 
-		<hr>			
-		제목 <input type="text" name="review_subject"> 
-		<hr>
-		내용 <textarea rows="4" cols="60 " name="review_content"></textarea> 
-		<hr>
-		첨부파일 <input type="file" name="review_file" id="review_file"> 
-		<hr>
+	 	</td></tr>		
+	 	
+	 	<tr><td class="ss0">비밀번호 <input class="conbox0" type="password" name="review_password" 
+				maxlength="4" placeholder="4자리 숫자로 입력하세요."> 
+		</td></tr>
 		
+		<tr><td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject"> 
+		</td></tr>
+		
+		<tr><td class="ss1">
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content"></textarea> 
+		</td></tr>
+		
+		<tr><td class="ss2">
+		첨부파일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox2"  type="file" name="review_file" id="review_file"> 
+		</td></tr>
+		
+			</table>
+			<br>
 		</div>
-		<div>
-		<input type="submit" value="작성"> &nbsp;&nbsp;
-		<input type="button" value="취소">
-		</div>
+			<br>
+			
+			<div class="divbtn">
+				<input class="btn" type="submit" value="작성"> 
+				<input class="btn" type="button" value="취소">
+			</div>
+		<br>
 		</form>
-	</fieldset>
+		</div>
 	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

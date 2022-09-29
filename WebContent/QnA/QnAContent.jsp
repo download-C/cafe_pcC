@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>문의사항 확인하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
 <link href="./css/span_css.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+
+<title>문의사항 확인하기</title>
 <%
 	System.out.println(request.getAttribute("qmn"));
 
@@ -35,14 +36,12 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<h2>문의사항</h2>
+<h1>문의사항</h1>
 
-<br>
-<br>
-<!-- ▲ 나중에 보고 삭제하기 -->
+	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
 
-<fieldset style="width: 700px;">
-<% if(mem_num != null) {
+
+	<% if(mem_num != null) {
 	%>
 	<input type="hidden" value="${dto.mem_num }">
 	<%
@@ -53,109 +52,88 @@
 	}
 	%>
 	
-	<br>
-		<table style="margin: auto;">
-			<tr>
-				<td>글번호</td>
-				<td>${dto.qna_num }</td>
-			</tr>
+		<div class="container">
+			<table style="margin: auto;">
+				<tr>
+					<td class="ss" style="width: 25%;">글번호</td>
+					<td style="width: 25%;">${dto.qna_num }</td>
+					<td>조회수</td>
+					<td>${dto.qna_readcount }</td>
+				</tr>
+	
+	
+				<tr>
+					<td>작성자</td>
+					<td>${dto.name}</td>
+					<td>작성일</td>
+					<td>${dto.qna_date }</td>
+				</tr>
 			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
 			
-			<tr>
-				<td>제목</td>
-				<td colspan="3">${dto.qna_subject}</td>
-			</tr>
-			
+				<tr>
+					<td>제목</td>
+					<td colspan="3">${dto.qna_subject}</td>
+				</tr>
 
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>작성자</td>
-				<td>${dto.name}</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>	
-				<td>조회수</td>
-				<td>${dto.qna_readcount }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>	
-				<td>작성일</td>
-				<td>${dto.qna_date }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>내용</td>
-				<td colspan="3">${dto.qna_content }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>첨부파일</td>
-				<td colspan="3">${dto.qna_file}</td>
-			</tr>
+
+				<tr>
+					<td>내용</td>
+					<td colspan="3">${dto.qna_content }</td>
+				</tr>
+
+				
+				<tr>
+					<td>첨부파일</td>
+					<td colspan="4">${dto.qna_file}</td>
+				</tr>
 			
 			
 		</table>
-	
+		</div>
+
 	<br>
 	
-	<div style="text-align: center;">
+	<div class="btndiv">
 <%
 	if(mem_num != null) {
 		if(mem_num.equals(qmn)) {
 	%>
-		<input type="button" name="qna_update" id="update" value="수정"
+	<div class="btndiv" style="margin:auto;">
+		<input type="button" class="btn" name="qna_update" id="update" value="수정"
 	     onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=update';">
 	
-		<input type="button" name="qna_delete" id="delete" value="삭제" 
+		<input type="button" class="btn" name="qna_delete" id="delete" value="삭제" 
 		onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=delete';">
+
 	<%
 		}
 	}
 		
 	if(mgr_num != null) {
 	%>
-	<input type="button" name="riview_reply" id="reply" value="답글 달기"
+	<input type="button" class="btn" name="riview_reply" id="reply" value="답글"
 	 onclick="location.href='./QnAReplyForm.qna?qna_num=${dto.qna_num}';">
+	<div class="btndiv" style="margin:auto;">
+		<input type="button" class="btn" name="qna_update" id="update" value="수정"
+	     onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=update';">
+	
+		<input type="button" class="btn" name="qna_delete" id="delete" value="삭제" 
+		onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=delete';">
+   
     <%
 	}
 %>
-	<input type="button" name="qna_list" id="list" value="목록" 
-     onclick="location.href='./QnAList.qna?pageNum=${pageNum}';">
      
+	<input type="button" class="btn" name="qna_list" id="list" value="목록" 
+    onclick="location.href='./QnAList.qna?pageNum=${pageNum}';">
      
-	</div>
      <br>
-	</fieldset>
+	</div>
+	</div>
+	</div>
 	<br>
-	<br>	
+	<br>
+	
 <%
 }
 %><!-- 푸터들어가는 곳 -->

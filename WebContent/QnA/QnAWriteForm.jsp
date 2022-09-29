@@ -50,69 +50,62 @@ $(document).ready(function () {
 <!-- 헤더들어가는 곳 -->
 
 	<br>
-	<fieldset>
-	<legend>문의사항 작성하기</legend>
-		<br>
-	<table style="margin: auto;">
+	<div class="wrapper" style="margin: auto;">
+	
+	<h1>문의사항 작성하기</h1>
 	<form action="./QnAWriteAction.qna" method="post" enctype="multipart/form-data">
+	
+	<div class="container">
+	<br>
+	<table>
 	<!-- <div class="div" style="text-align:center;"> -->
-	<tr><td class="td">
+	<tr><td class="ss">
 		<%
 			String mem_num = (String)session.getAttribute("mem_num");
 			String mgr_num = (String)session.getAttribute("mgr_num");
 			String name = (String)request.getAttribute("name");
 		if(	mgr_num != null ) {%>
 		작성자 <input type="text" name="name" id="center" readonly="readonly" value="관리자">
-		<hr>
 		</td></tr>
 		
-		<tr><td class="td">
+		<tr><td class="ss">
 		<%} else if(mem_num != null) {%>
-		작성자 <input type="text" name="name" id="center" readonly="readonly" value="${name }">
-		<hr>		
+		작성자 <input type="text" name="name" id="center" readonly="readonly" value="${name }">	
 		</td></tr>
 		
 		<%} 
 		if(mem_num != null) {
 		%>
 		
-		<tr><td class="td">
-		비밀번호 <input type="password" name="qna_password" id="center" maxlength="4" id="password"
-		placeholder="4자리 숫자로 입력하세요.">
-		<hr>
+		<tr><td class="ss0">비밀번호 <input class="conbox0" type="password" name="qna_password" id="center" maxlength="4" id="password"
+										placeholder="4자리 숫자로 입력하세요.">
 		</td></tr>
 		
-		<tr><td class="td">
+		<tr><td class="ss">
 		<%} %> 
-		<div id="passdiv"></div>
-		제목 <input type="text" name="qna_subject" id="subject">
-		<hr>
+		제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="qna_subject" id="subject">
 		</td></tr>
 		
-		<tr><td class="td">
-		<div id="subdiv"></div>
-		내용 <textarea rows="3" cols="60" name="qna_content" id="content"></textarea>
-		<hr>
+		<tr><td class="ss1">
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="3" cols="60" name="qna_content" id="content"></textarea>
 		</td></tr>
 		
-		<tr><td class="td">
-		<div id="contdiv"></div>
-		첨부파일 <input type="text" name="qna_file" id="file">
-		<hr>
+		<tr><td class="ss2">
+		첨부파일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox2" type="file" name="qna_file" id="file">
 		</td></tr>		
-		<!-- <div id="filediv"></div> -->
-		<!-- </div>	-->
-		
-		<tr><td>
-		<div style="text-align: center;">
-			<input type="submit" id="btn" value="작성" >
-			<input type="button" id="btn" value="취소">
-		</div>
-		</td></tr>
-		
-	</form>
+
 		</table>
-</fieldset>
+		<br>
+	</div>
+		<br>
+
+		<div class="divbtn">
+			<input class="btn" type="submit" id="btn" value="작성" >
+			<input class="btn" type="button" id="btn" value="취소">
+		</div>
+	<br>
+	</form>
+	</div>
 
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

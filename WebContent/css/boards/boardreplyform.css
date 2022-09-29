@@ -10,53 +10,107 @@
   font-style: normal;
 }
 
-/* .field1 { */
-/* 	margin : 50px 50px; */
-/* 	border : solid 1px grey; */
-/* } */
-
-/* table{ */
-/* 	margin : 50px 50px;	 */
-/* } */
-
-/* .field2 { */
-/* 	margin : 50px 50px; */
-/* 	border : solid 1px grey; */
-/* 	text-align: center; */
-/* 	font-size: small; */
-/* } */
-
-/* div{ */
-/* 	margin : 50px 50px; */
-/* 	font-size: small; */
-/* 	text-align: center; */
-/* } */
-
-h4{
+h2 {
 	text-align: center;
-	font-weight: bold;
 }
 
-fieldset{
-	
-	margin : 50px 50px;
-	border : solid 1px grey;
+.wrapper{
+	width: 75%;
+}
+
+.container{
+	margin-left: 10%;
+	margin-right: 10%;
+/* 	width : 70%;	 */
+/* 	display : grid; */
+/* 	grid-template-columns : 0.5fr 2fr 0.5fr 1fr 1fr ; */
+/* 	grid-template-row : 20fr; */
+/* 	grid-gap: 10px 20px; */
+	border-top: solid 1px var(--color-gray-500);
+	margin-top: 0px;
+	border-bottom: solid 1px var(--color-gray-500);
+	margin-bottom: 0px;
+}
+
+.container .ss0{
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 20px;
+}
+
+.container .ss{
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 45px;
+}
+
+
+.container .ss1{
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 45px;
+}
+.container .ss2{
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 55px;
+	padding-bottom: 20px;
+}
+
+.conbox{
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: solid 1px var(--color-gray-500);
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 8px;
+}
+
+.conbox0{
+	width: 15px;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: solid 1px var(--color-gray-500);
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 8px;
+}
+
+.conbox1{
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: solid 1px var(--color-gray-500);
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 8px;
 }
 
 table{
-	font-size: small;
+	margin: auto;
 }
 
-legend{
+.divbtn{
 	text-align: center;
-	font-weight: bold;
 }
 
-.div{
-	font-size: small;
-	
-}
-
-hr{
-	border: none;
+.divbtn .btn{
+  text-align:center;
+  background: none;
+  border: none;
+  height: 40px;
+  width: 100px;
+  transition: color 0.3s;
+  background-color: #adc2a9;
+  border-radius: 10px;
+  display: inline;
+  font-size: 18px;
 }

@@ -17,7 +17,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <!-- 헤더들어가는 곳 -->
     <jsp:include page="../inc/top.jsp" />
     <!-- 헤더들어가는 곳 -->
-    <h1>mypageContent.jsp</h1>
+    
 
     <% 
     // 로그인 여부 체크 

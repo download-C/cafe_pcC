@@ -9,29 +9,81 @@
   font-weight: normal;
   font-style: normal;
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (min-width: 768px) {
+	
 	.wrapper {
 		text-align: center;
-		font-size: 20px;
+		font-size: 25px;
+	}
+	
+	.title_img{
+	   position:relative;
+	   width: 100%;
+	   height:200px;
+	   overflow: hidden;
+	   margin-bottom: 50px;
+/*       justify-content:center;    */
+   
+/*    display:flex; */
+/*    justify-content:center;    */
+}
+
+	.title_img img{
+	   width: 100%;
+	   height: 100%;
+	   object-fit:cover;
+	/*    border-radius : 40px; */
+	}
+
+	.img_box{
+	   width: 100%;
+	   height: 200px;
+	   background-color: black;
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   opacity: 0.33;
+	   z-index: 1;
+	/*    border-radius : 40px; */
+	   
+	}
+
+	.title{
+	   position: absolute;
+	   top: 40%;
+	   left: 50%;
+	   transform: translate(-50%, -50%); 
+	   z-index: 2;
+	   color: white;
+	   font-size: 40px;
+	   font-weight: bold;
+	   
 	}
 	
 	.container {
-	 margin: auto;
-	 text-align: center;
-	}
-	
-	.resformdiv {
-/* 		border: 3px solid blue; */
+		padding: 5% 5%;
 		border: 1px solid var(--color-gray-400);
 		border-radius: 10px;
 		margin: 20px auto;
-		width: 70%;
+		width: 400px;
 		height: 400px;
+		text-align: center;
+	}
+	
+	input {
+		font-size: 20px;
+	}
+	
+	.resformdiv {
+		margin: 20px auto;
+		width: 100%;
+		height: 300px;
 		text-align: left;
 	}
 	
 	.resformdiv div {
-		padding-left: 10%;
+		margin-left: 5%;
 		padding-bottom: 10px;
 	}
 
@@ -39,21 +91,120 @@
 		font-size: 20px;
 	}
 	
-	.inputdiv {
-		text-align: left;
-		margin-left: 17%;
-	}
-	
-	.inputdiv div {
-	 font-size: 12px;
-	 padding: inherit;
+	.resdiv {
+		margin: auto;
 	}
 
 	.btn {
 	  background: none;
 	  border: none;
 	  height: 40px;
-	  width: 20%;
+	  width: 25%;
+	  transition: color 0.3s;
+	  background-color: #adc2a9;
+	  border-radius: 10px;
+/*   	  display: inline;	 */
+	  padding: 5px;
+	  font-size: 18px;
+	  margin-bottom: 10px;
+	}
+		
+	.ressub {
+		font-size: 15px;
+		color: var(--color-gray-700);
+	}
+}
+
+@media screen and (max-width: 768px) {
+
+	.wrapper {
+		text-align: center;
+		font-size: 25px;
+	}
+	
+	.title_img{
+	   position:relative;
+	   width: 100%;
+	   height:200px;
+	   overflow: hidden;
+	   margin-bottom: 50px;
+/*       justify-content:center;    */
+   
+/*    display:flex; */
+/*    justify-content:center;    */
+}
+
+	.title_img img{
+	   width: 100%;
+	   height: 100%;
+	   object-fit:cover;
+	/*    border-radius : 40px; */
+	}
+
+	.img_box{
+	   width: 100%;
+	   height: 200px;
+	   background-color: black;
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   opacity: 0.33;
+	   z-index: 1;
+	/*    border-radius : 40px; */
+	   
+	}
+
+	.title{
+	   position: absolute;
+	   top: 40%;
+	   left: 50%;
+	   transform: translate(-50%, -50%); 
+	   z-index: 2;
+	   color: white;
+	   font-size: 40px;
+	   font-weight: bold;
+	   
+	}
+	
+	.container {
+		padding: 5% 5%;
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 400px;
+		height: 350px;
+		text-align: center;
+	}
+	
+	input {
+		font-size: 20px;
+	}
+	
+	.resformdiv {
+		margin: 20px auto;
+		width: 100%;
+		height: 250px;
+		text-align: left;
+	}
+	
+	.resformdiv div {
+		margin-left: 5%;
+		padding-bottom: 10px;
+	}
+
+	input {
+		font-size: 20px;
+	}
+	
+	.resdiv {
+		margin: auto;
+	}
+
+	.btn {
+	  background: none;
+	  border: none;
+	  height: 40px;
+	  width: 25%;
 	  transition: color 0.3s;
 	  background-color: #adc2a9;
 	  border-radius: 10px;
@@ -64,61 +215,7 @@
 	}
 	
 	.ressub {
-		font-size: 12px;
-	}
-
-
-	
-	.wrapper {
-		text-align: center;
-		font-size: 20px;
-	}
-	
-	.joindiv {
-/* 		border: 3px solid blue; */
-		border: 1px solid var(--color-gray-400);
-		border-radius: 10px;
-		margin: 20px auto;
-		width: 450px;
-		height: 500px;
-		text-align: center;
-	}
-
-	input {
-		font-size: 20px;
-	}
-	
-	.inputdiv {
-		text-align: left;
-		margin-left: 17%;
-	}
-	
-	.hiddenbtn {
-		visibility: hidden;
-		background: none;
-		border: none;
-		height: 40px;
-		idth: 20%;
-		transition: color 0.3s;
-		ackground-color: #adc2a9;
-		border-radius: 10px;
-	/*    display: inline;	 */
-		padding: 5px;
-		font-size: 18px;
-		margin-bottom: 10px;
-	}
-	
-	.btn {
-	  background: none;
-	  border: none;
-	  height: 40px;
-	  width: 20%;
-	  transition: color 0.3s;
-	  background-color: #adc2a9;
-	  border-radius: 10px;
-/*   	  display: inline;	 */
-	  padding: 5px;
-	  font-size: 18px;
-	  margin-bottom: 10px;
+		font-size: 15px;
+		color: var(--color-gray-700);
 	}
 }

@@ -39,19 +39,19 @@
 
       <table border="1">
         <tr>
-          <td><div id="co_phone">휴대폰 번호</div></td>
+          <td><div id="co">휴대폰 번호</div></td>
           <td>${dto.phone }</td>
         </tr>
         <tr>
-          <td><div id="co_password">비밀번호</div></td>
+          <td><div id="co">비밀번호</div></td>
           <td>${dto.password }</td>
         </tr>
         <tr>
-          <td><div id="co_name">이름</div></td>
+          <td><div id="co">이름</div></td>
           <td>${dto.name }</td>
         </tr>
         <tr>
-          <td><div id="co_regate">회원가입일</div></td>
+          <td><div id="co">회원가입일</div></td>
           <td>${dto.regdate }</td>
         </tr>
         <tr>
@@ -71,6 +71,7 @@
             <input
               type="button"
               value="주문내역"
+              class="content_btn3"
               onclick="location.href='./OrderList.pr';"
             />
           </td>

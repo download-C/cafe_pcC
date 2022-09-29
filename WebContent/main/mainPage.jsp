@@ -10,7 +10,7 @@
 <link href="./css/mainPage.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./JavaScript/jquery-3.6.0.js"></script>
 </head>
 <body>
 <!-- 헤더들어가는 곳 -->
@@ -39,33 +39,48 @@
 		} else {}		
 	%>
 	
-	<!-- 메인 이미지 시작 -->
-	<div class="container">
-		<div class="slide_area">
+		<!-- 메인 이미지 시작 -->
+	
+	<div class="container_main">
+	
+			<input type="radio" name="tab" id="tab1" checked="checked">
+			<input type="radio" name="tab" id="tab2" >
+			<input type="radio" name="tab" id="tab3" >
+			
+			
 			<div class="slide">
-				<img src="./img/slide1.jpg">
+				<div class="inner_slide">
+				
+					<div class="bgc"></div>
+
+					<a href="./ProductList.pr">
+						<img alt="메인 이미지1" src="./img/slide1.jpg">
+						<span>MENU</span>
+					</a>
+					
+					<a href="./ReservationList.re">
+						<img alt="메인 이미지2" src="./img/slide2.jpg">
+						<span>RESERVATION</span>
+					</a>
+					
+					<a href="ReviewList.rv">
+						<img alt="메인 이미지3" src="./img/slide3.jpg">
+						<span>REVIEW</span>
+					</a>
+					
+				</div>
 			</div>
-			
-<!-- 			<div class="slide"> -->
-<!-- 				<img src="./img/slide2.jpg"> -->
-<!-- 			</div> -->
-			
-<!-- 			<div class="slide"> -->
-<!-- 				<img src="./img/slide3.jpg"> -->
-<!-- 			</div> -->
-			
-<!-- 			<div class="slide"> -->
-<!-- 				<img src="./img/slide4.jpg"> -->
-<!-- 			</div> -->
-		</div>
-	</div>
 	
-<!-- 	<button class="slide_btn1">1</button> -->
-<!-- 	<button class="slide_btn2">2</button> -->
-<!-- 	<button class="slide_btn3">3</button> -->
-<!-- 	<button class="slide_btn4">4</button> -->
+			<div class="main_btn">
+				<label for="tab1"></label>
+				<label for="tab2"></label>
+				<label for="tab3"></label>
+			</div>
+	
+	</div> 
+	
+	
 	<!-- 메인 이미지 종료 -->
-	
 	
 	
 <!-- 푸터들어가는 곳 -->

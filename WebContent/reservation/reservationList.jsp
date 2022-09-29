@@ -47,10 +47,10 @@
 				<div class="subdiv">${dto.name }</div>
 				<div>${dto.res_date } / ${dto.res_time }시</div>
 				<div>${dto.res_persons }명</div>	
-				<div>
-					<input class="pushbtn" type="button" value="예약 수정" name="res_update" 
+				<div class="btndiv">
+					<input type="button" value="예약 수정" name="res_update" class="btn"
 					onclick="location.href='./ReservationUpdateForm.re?res_num=${dto.res_num }';">
-					<input class="pushbtn" type="button" value="예약 삭제" name="res_delete" 
+					<input  type="button" value="예약 삭제" name="res_delete" class="btn" 
 					onclick="location.href='./ReservationDeleteAction.re?res_num=${dto.res_num}';">
 				</div>
 			</c:forEach>

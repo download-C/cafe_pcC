@@ -1,1 +1,181 @@
 @CHARSET "UTF-8";
+@import url("../theme.css");
+
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+	font-family: var(--font-kor);
+}
+
+.container{
+/* 	padding:0; */
+/* 	border:0; */
+/* 	width:100vw; */
+/* 	height:100vw; */
+/* 	display:flex; */
+/* 	justify-content:center;	 */
+}
+
+.title_img{
+	position:relative;
+	width: 100%;
+	height:400px;
+	overflow: hidden;
+	margin-bottom: 50px;
+/* 		justify-content:center;	 */
+	
+/* 	display:flex; */
+/* 	justify-content:center;	 */
+}
+
+.title_img img{
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+/* 	border-radius : 40px; */
+}
+
+.img_box{
+	width: 100%;
+	height: 400px;
+	background-color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.33;
+	z-index: 1;
+/* 	border-radius : 40px; */
+	
+}
+
+.title{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%); 
+	z-index: 2;
+	color: white;
+	font-size: 60px;
+	font-weight: bold;
+	
+}
+
+.category_div{
+	margin-top: 65px;
+	margin-bottom: 25px;
+	
+	text-align: center;
+	padding-top: 30px; 
+/* 	margin-bottom: 20px; */
+	
+}
+
+
+
+.button_menu{
+/* 	display:flex; */
+/* 	justify-content:center;	 */
+	border:none;
+	text-decoration: none;
+	width: 40px;
+	height: 20px;
+	padding: 7px 10px;
+	background-color: var(--color-point-2);
+	color: var(--color-white);
+	border-radius: 5px;
+/* 	margin: 10px; */
+	
+}
+
+.button_menu:HOVER{
+	background-color: var(--color-point-1);
+	
+}
+
+.category_list{
+	margin-top: 20px;
+}
+
+.category_list button{
+	border:none;
+	background-color: transparent;
+	margin-left: 10px; 
+	font-size: 20px;
+/* 	transition: 1s; */
+}
+
+.category_list button:HOVER {
+	border-bottom: 2px solid #adc2a9;
+	box-sizing: border-box;
+	
+}
+
+.product{
+	
+}
+
+.category{
+	display: inline-block;
+	width: 33%;
+	height: 550px;
+	overflow: hidden;
+	position: relative;
+}
+.category img{
+	object-fit:cover;
+	width: 100%;
+	height: 100%;
+	
+}
+
+
+
+.product_name{
+	visibility:hidden;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 20px;
+	color: var(--color-white);
+	font-weight: bold;
+	z-index: 2;
+	
+}
+
+.product_box{
+	visibility:hidden;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.33;
+	z-index: 1;
+}
+
+
+.category:HOVER .product_name{
+	visibility: visible;
+}
+
+.category:HOVER .product_box{
+	visibility: visible;
+}
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@
 
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/product/productContent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
@@ -20,6 +21,7 @@
 			var count = $(this).val();
 			var price = $('#price').html();
 			price = price * count
+
 			$('.total_price').html(price)
 			$('.total_price_hidden').val(price)
 			
@@ -48,6 +50,7 @@
 				count++				
 			}
 			price = price * count
+
 			$('.prod_count').val(count)
 			$('.total_price').html(price)
 			$('.total_price_hidden').val(price)
@@ -62,62 +65,66 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-<!-- 	<h1>productContent.jsp</h1> -->
-	<div style="position: relative; height: 100px"></div>
+<div style="position: relative; height: 100px"></div>
+		
+	<div class="container1">
 	
-	<h1>상품 상세 페이지</h1>
+	<!-- 상품 사진 -->
+	<div class="img_box">
+		<img src="img/product/${dto.prod_img}">
+	</div>
 	
+	
+	<div class="info_box">	
 	<!-- 상품 정보 & 장바구니 담기 버튼 -->
-	<div>
-		
-		<!-- 상품 정보 -->
-		<div>
+	<form action="./CartWrite.pr" method="post">
+	
+	
+			<div class="info name">${dto.prod_name}</div>
+			<div class="info price"><span id="price">${dto.price}</span>원</div>
 			
-			<div>
-			<img src="img/product/${dto.prod_img}"><br>
-			<%-- ${dto.category }<br> --%>
-			${dto.prod_name }<br>
-			<div id="price">${dto.price }</div><br>
-			</div>
-		</div>
-		
-		<form action="./CartWrite.pr" method="post">
 			<input type='hidden' name='prod_num' value="${dto.prod_num }" >
 			<input type="hidden" name="mem_num" value="${sessionScope.mem_num }">
-<%-- 			회원 번호 : ${sessionScope.mem_num } --%>
-				상품 번호 : ${dto.prod_num }
-<%-- 			<input type='hidden' name='prod_name' value="${dto.prod_name }" > --%>
-<%-- 			<input type='hidden' name='prod_img' value="${dto.prod_img }" > --%>
-<%-- 			<input type='hidden' name='prod_real_img' value="${dto.prod_real_img }" > --%>
-<%-- 			<input type='hidden' name='prod_price' value="${dto.price }" > --%>
+					
 			<!-- 수량 추가하기 구현 -->
-			<div>
-				수량
-				<input type='button' id="minus" value='-'/>
-				<input type='text' class='prod_count' name='prod_count' value="1" >
-	        	<input type='button' id="plus" value='+'/>
+			<div class="info count_box">
+				<div class="count_title">수량</div>
+				<div class="count_input">
+					<input class="count" type='button' id="minus" value='-'/>
+					<input type='text' class='prod_count' name='prod_count' value="1" >
+	    	    	<input class="count" type='button' id="plus" value='+'/>
+				</div>
 			</div>
+			
 			<!-- 요청사항 작성란 -->
-			<div>
-				옵션
-				<textarea rows="1" cols="30" placeholder="샷 2번 추가" name="requirements" ></textarea>
-				
+			<div class="info option">
+				<div class="option_title">옵션</div>
+				<div class="option_text">
+					<textarea rows="1" cols="30" placeholder="샷 2번 추가" name="requirements" ></textarea>
+				</div>
 			</div>
 			
 			<!-- 수량에 따른 실시간 가격 -->
-			<div>
-				금액<span class="total_price">${dto.price }</span>원
+			<div class="info total_price_box">
+				<div class="total_price_title">총 금액</div>
+				<div class="total_price_value"><span class="total_price">${dto.price }</span>원	</div>
 				<input type="hidden" class="total_price_hidden" name="total_price" value="${dto.price }">
 			</div>
-			
+				
 			<!-- 장바구니 담기 버튼 -->
-			<div>
-				<input type="submit" value="담기">
-<!-- 				<input type="submit" value="주문하기" onclick="location.href='./CartWrite.pr?skip_cart=true';"> -->
-	        	<input type="button" value="상품 목록" onclick="location.href='./ProductList.pr';">
+			<div class="info button">
+				<input class="button1" type="submit" value="담기">
+	        	<input class="button2" type="button" value="상품 목록" onclick="location.href='./ProductList.pr';">
 			</div>
-		</form>
-		
+			
+	</form>
+	</div>
+	</div>
+	
+	<div class="container2">
+		<span><a href="./ReviewList.rv">구매 후기</a></span>
+		<span class="line">/</span>
+		<span><a href="./QnAList.qna">Q&A</a></span>
 	</div>
 	
 	

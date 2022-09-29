@@ -18,6 +18,7 @@ header{
      color: var(--color-white);
      position: absolute;
 	width: 100%;
+	z-index: 2;
 }
 
 .header_area{

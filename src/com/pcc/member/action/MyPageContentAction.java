@@ -1,5 +1,7 @@
 package com.pcc.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,6 +49,14 @@ public class MyPageContentAction implements Action {
 			}
 			
 			
+		}else{
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			
+			session.invalidate();
+			out.println("<script type='text/javascript'>alert('세션이 만료되어 로그인 페이지로 이동합니다.'); "
+					+ "location.href='./Login.pcc';</script>");
+			out.flush();
 		}
 		
 		return null;

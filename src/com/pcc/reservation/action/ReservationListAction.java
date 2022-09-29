@@ -77,7 +77,7 @@ public class ReservationListAction implements Action {
 				reservationList = dao.reservationList(startRow, pageSize);
 				request.setAttribute("reservationList", reservationList);
 			} else {
-				daoM.alert(response, "로그인 후 이용 가능합니다.", "location.href='./MainPage.pcc';");
+				daoM.alert(response, "로그인 후 이용 가능합니다.", "location.href='./Login.pcc';");
 				return null;
 			}
 		}	

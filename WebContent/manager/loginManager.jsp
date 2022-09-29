@@ -24,8 +24,8 @@
 			<h1>매니저 로그인</h1>
 			<div class="loginform">
 			<form action="./LoginManagerAction.mgr" method="post" >
-				<input type="text" name="phone" class="input" placeholder="아이디/휴대폰 번호"> <br>  
-				<input type="password" name="password" class="input" placeholder="비밀번호"> <br>
+				<input type="text" name="mgr_id" class="input" placeholder="아이디"> <br>  
+				<input type="password" name="mgr_password" class="input" placeholder="비밀번호"> <br>
 				<br><br>
 				<input type="submit" value="로그인" class="btn">
 			</form>

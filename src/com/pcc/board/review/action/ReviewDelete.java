@@ -44,8 +44,8 @@ public class ReviewDelete implements Action {
 			if(mem_num != null) {
 				// 1-1.비밀번호가 일치할 경우
 				if(dto.getReview_password() == Integer.parseInt(review_password)) {
-					dao.ReviewDelete(session, review_num, Integer.parseInt(mem_num));
-					dao.alert(response, "글이 삭제되었습니다.", "./ReviewList.rv");
+					dao.ReviewDelete(review_num, Integer.parseInt(mem_num));
+					dao.alert(response, "글이 삭제되었습니다.", "location.href='./ReviewList.rv';");
 					return null;
 				// 1-2. 비밀번호가 틀릴 경우
 				}else {

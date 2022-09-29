@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pcc.board.qna.db.QnADAO;
+import com.pcc.board.qna.db.QnADTO;
 import com.pcc.board.review.db.ReviewDAO;
 import com.pcc.board.review.db.ReviewDTO;
 
@@ -21,12 +23,12 @@ public class QnAPasswordCheck implements Action {
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		int qna_password = Integer.parseInt(request.getParameter("qna_password")); 
 		
-		ReviewDTO dto = new ReviewDTO();
-		ReviewDAO dao = new ReviewDAO();
-		dto = dao.getReviewContent(qna_num);
-		System.out.println(qna_num+"번 글의 비밀번호 : "+ dto.getReview_password());
+		QnADTO dto = new QnADTO();
+		QnADAO dao = new  QnADAO();
+		dto = dao.getQnAContent(qna_num);
+		System.out.println(qna_num+"번 글의 비밀번호 : "+ dto.getQna_password());
 		
-		if(qna_password == dto.getReview_password()) {
+		if(qna_password == dto.getQna_password()) {
 //			dao.ReviewDelete(session, review_num, mem_num, review_password);
 //			
 //			response.setContentType("text/html; charset=UTF-8");

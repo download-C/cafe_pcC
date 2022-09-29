@@ -92,7 +92,7 @@
 			<br>
 			
 			<div class="divbtn">
-				<input class="btn" type="submit" value="작성" > 
+				<input class="btn" id="write" type="submit" value="작성" > 
 				<input class="btn" type="button" value="취소">
 			</div>
 		<br>

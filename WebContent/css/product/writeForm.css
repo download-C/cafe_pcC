@@ -1,4 +1,5 @@
 @import url("./theme.css");
+
 @CHARSET "UTF-8";
 
 @font-face {
@@ -7,4 +8,8 @@
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+*{
+	font-family: var(--font-kor);
 }

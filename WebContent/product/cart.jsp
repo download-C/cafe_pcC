@@ -8,6 +8,7 @@
 <title>장바구니</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/product/cart.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -226,63 +227,100 @@
 <!-- 헤더들어가는 곳 -->
 	<div style="position: relative; height: 100px"></div>
 
-
-	<c:if test="${empty cartList}">
-	<div>장바구니에 담긴 상품이 없습니다.</div>
-	<input type="button" value="상품 목록으로 가기" class="return_product" onclick="location.href='./ProductList.pr';">
-	</c:if>
-	
-	
-	<c:if test="${not empty cartList}">
-	<h1>장바구니</h1>
-	<form action="./OrderWrite.pr">
-		<table border="1">
-	     	<tr>
-		       <td>상품 정보</td>
-		       <td>수량/옵션</td>
-		       <td>주문금액</td>
-		     </tr>
-			<c:forEach var="dto" items="${requestScope.cartList }">
-			<input type="hidden" name="cart_num" id="cart_num" value="${dto.cart_num}">
-<%-- 			${dto.cart_num} --%>
-		     <tr>
-		     	<!-- 상품 정보 -->
-		        <td>
-		        	<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
-		        	<img width="200px" src="img/product/${dto.prod_img}"><br>
-		        	${dto.prod_name}
-		        	<div class="price${dto.cart_num}">${dto.price}</div>
-		        	</a>
-		        </td>
-	        	
-	        	<!--  수량/옵션 -->
-		        <td>
-					<input type='button' class="minus" data-text="${dto.cart_num}" value='-'/>
-					<input type='text' class='prod_count prod_count${dto.cart_num}' data-text="${dto.cart_num}" name='prod_count' value="${dto.prod_count}" >
-	      			<input type='button' class="plus" data-text="${dto.cart_num}" value='+'/>
-	      			<div id="requirements_div"><span id="requirements_val">${dto.requirements}</span></div>
-							
-				</td>
-				
-				<!-- 상품수량에 따른 total_price -->
-		        <td>
-		        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원<br>
-		        	<input type="hidden" class="total_price_hidden${dto.cart_num}" value="${dto.total_price}">
-					<a href="./CartDelete.pr?cart_num=${dto.cart_num}">X</a>
-<%-- 					<input type="button" value="X" onclick="location.href='./CartDelete.pr?cart_num=${dto.cart_num}';">   	 --%>
-	        	</td>
-		      </tr>
-	     </c:forEach>
-	</table>			
-
-		주문 금액 
-		<span class="order_price"></span>원 <br>
-		<input type="hidden" class="order_price" name="order_price" val="">
-		<input type="submit" value="주문하기">
-		<input type="button" value="상품 목록 돌아가기" class="return_product" onclick="location.href='./ProductList.pr';">
+	<div class="container1">
 		
-	</form>
-	</c:if>
+		<!-- 제목 -->
+		<div class="title">
+			<h1 class="title_text">장바구니</h1>
+		</div>
+			
+		<!-- 장바구니가 비었을 때 안내 -->
+		<div class="empty_box">
+			<c:if test="${empty cartList}">
+				<div class="empty">장바구니에 담긴 상품이 없습니다.</div>
+				<input class="empty" type="button" value="상품 목록으로 가기" class="return_product" onclick="location.href='./ProductList.pr';">
+			</c:if>
+		</div>
+		
+		<!-- 장바구니에 상품이 있을 때 -->
+			<c:if test="${not empty cartList}">
+			<form action="./OrderWrite.pr">
+			<div class="cart_box">
+			
+				<div class="title_box">
+					<span class="box1">상품 정보</span>
+					<span class="box1">수량/옵션</span>
+					<span class="box1">주문금액</span>
+				</div>
+				
+				<div class="content_box">
+					<c:forEach var="dto" items="${requestScope.cartList }">
+					<input type="hidden" name="cart_num" id="cart_num" value="${dto.cart_num}">
+					
+					
+					<div class="content_box1">
+					
+						<!-- 상품 정보 -->
+						<div class="box2">
+							<div class="content_inner">
+								<a class="content_inner_a" href="./ProductContent.pr?prod_num=${dto.prod_num }">
+								
+							    	<div class="content_img">
+								    	<img src="img/product/${dto.prod_img}">
+							    	</div>
+							    	
+							    	<div class="content_info">
+									    <div class="content_title">${dto.prod_name}</div>    	
+								        <div class="content_price"><span class="price${dto.cart_num}">${dto.price}</span></div>
+							    	</div>
+							    	
+							    </a>
+							    <a class="content_inner_a" href="./CartDelete.pr?cart_num=${dto.cart_num}">X</a>
+							</div>
+						</div>
+							     
+			        	<!--  수량/옵션 -->
+			        	<div class="box2">
+							<div>
+								<input type='button' class="minus" data-text="${dto.cart_num}" value='-'/>
+								<input type='text' class='prod_count prod_count${dto.cart_num}' data-text="${dto.cart_num}" name='prod_count' value="${dto.prod_count}" >
+				      			<input type='button' class="plus" data-text="${dto.cart_num}" value='+'/>
+				      			<div id="requirements_div"><span id="requirements_val">${dto.requirements}</span></div>
+							</div>
+						</div>
+									
+						<!-- 상품수량에 따른 total_price -->
+						<div class="box2">
+							<div>
+					        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원<br>
+					        	<input type="hidden" class="total_price_hidden${dto.cart_num}" value="${dto.total_price}">
+							</div>
+						</div>
+					
+					</div>
+					</c:forEach>
+				</div>
+			</div>
+		
+			
+		<div class="container2">	
+			<!-- 주문 금액 -->
+			<div class="total_area">
+				<div>주문 금액 </div>
+				<div><span class="order_price"></span>원</div>
+				<input type="hidden" class="order_price" name="order_price" val="">
+			</div>
+			
+			<!-- 버튼 -->
+			<div class="button_area">
+				<input type="submit" value="주문하기">
+				<input type="button" value="상품 목록 돌아가기" class="return_product" onclick="location.href='./ProductList.pr';">
+			</div>
+		</div>
+				
+		</form>
+		</c:if>
+	</div>
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->	

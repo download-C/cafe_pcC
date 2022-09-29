@@ -14,9 +14,9 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<div style="position: relative; height: 100px"></div>
+<!-- 	<div style="position: relative; height: 100px"></div> -->
 
-	<h1>상품 등록 페이지</h1>
+	<h1>New 상품 등록</h1>
 <!-- 	  <h2> 상품 등록 페이지 </h2> -->
    
    <fieldset>

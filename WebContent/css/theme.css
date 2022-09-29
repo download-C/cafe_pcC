@@ -1,4 +1,3 @@
-@CHARSET "UTF-8";
 @font-face {
     font-family: 'D2Coding';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
@@ -6,6 +5,7 @@
     font-style: normal;
 }
 
+@CHARSET "UTF-8";
 @font-face {
      font-family: 'S-CoreDream-3Light';
      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
@@ -91,9 +91,9 @@
   --color-point-2: #adc2a9;
   --color-point-3: #adc2a9;
   
-  --base-size: 15px;
-  --big-size: 22px;
-  --small-size: 12px;
+  --base-size: 20px;
+  --big-size: 25px;
+  --small-size: 15px;
   
   
 /*   --font-family: 'Noto Sans KR', sans-serif; */

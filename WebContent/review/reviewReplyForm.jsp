@@ -21,6 +21,7 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
+	<br>
 	<h2>${dto.review_num }번 리뷰 답글 달기</h2>
 	
 	<br>
@@ -38,29 +39,22 @@
 	<div class="container">
 		<table>
 			<tr>
-				<td class="ss">글번호 ${dto.review_num }</td>		
-			</tr>
-			
-			<tr>		
-				<td class="ss">조회수 ${dto.review_readcount }</td>
+				<td class="ss">글번호 </td><td class="ss3">${dto.review_num }</td>				
+				<td class="ss">조회수 </td><td class="ss3">${dto.review_readcount }</td>
 			</tr>
 
 			<tr>
-				<td class="ss">작성자 ${dto.name }
-			</td></tr>
-	
-			<tr>
-				<td class="ss">작성일 ${dto.review_date }
-			</td></tr>
+				<td class="ss">작성자 </td><td class="ss3">${dto.name }</td>
+				<td class="ss">작성일 </td><td class="ss3">${dto.review_date }</td>
+			</tr>
 
 			<tr>
-				<td class="ss">제목 ${dto.review_subject }
-			</td></tr>
+				<td class="ss">제목</td><td colspan="3" class="ss3"> ${dto.review_subject }</td>
+			</tr>
 	
 			<tr>
-				<td class="ss1">내용 ${dto.review_content }
-			</td></tr>
-	
+				<td class="ss">내용</td><td colspan="3" class="ss3 content"> ${dto.review_content }</td>
+			</tr>
 			<tr>
 				<td class="ss2">첨부파일<a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>
@@ -104,8 +98,8 @@
 			<br>
 		
 		<div class="divbtn">
-			<input type="submit" value="작성">
-			<input type="button" value="취소">
+			<input type="submit" class="btn" value="작성">
+			<input type="button" class="btn" value="취소">
 		</div>
 		
 		<br>

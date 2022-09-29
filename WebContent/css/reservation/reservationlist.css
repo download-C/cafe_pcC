@@ -78,6 +78,18 @@
 		text-align: center;
 	}
 	
+	.pushbtn {
+		background: none;
+		border: none;
+		height: 30px;
+		width: 80px;
+		transition: color 0.3s;
+		background-color: #adc2a9;
+		border-radius: 10px;
+		display: inline;
+		margin: auto;
+	}
+	
 }
 
 @media screen and (max-width: 768px) {
@@ -143,5 +155,6 @@
 	h1{
 		text-align: center;
 	}
+
 	
 }

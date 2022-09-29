@@ -36,8 +36,10 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<h1>문의사항</h1>
-
+<h1>QnA</h1>
+	
+	<br>
+	<br>
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
 
 
@@ -91,9 +93,9 @@
 		</table>
 		</div>
 
-	<br>
 	
 	<div class="btndiv">
+     <br>
 <%
 	if(mem_num != null) {
 		if(mem_num.equals(qmn)) {
@@ -113,7 +115,7 @@
 	%>
 	<input type="button" class="btn" name="riview_reply" id="reply" value="답글"
 	 onclick="location.href='./QnAReplyForm.qna?qna_num=${dto.qna_num}';">
-	<div class="btndiv" style="margin:auto;">
+	<!-- <div class="btndiv" style="margin:auto;"> -->
 		<input type="button" class="btn" name="qna_update" id="update" value="수정"
 	     onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=update';">
 	

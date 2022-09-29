@@ -23,7 +23,7 @@
 		<form action="./NoticeWriteAction.no" method="post">
 		
 		<div class="container">
-			<table>
+			<table style="margin:auto; margin-top: 30px; padding-left: 80px;">
 			
 				<tr><td class="ss">제목 &nbsp;&nbsp; <input class="conbox" type="text" name="notice_subject"  id="notice_subject" placeholder="제목을 입력하세요." >
 				</td></tr>
@@ -41,7 +41,7 @@
 			<br>
 			
 		<div class="divbtn">
-			<input class="btn" type="button" value="임시 등록">
+		<!-- <input class="btn" type="button" value="임시 등록"> -->
 			<input class="btn" type="submit" value="등록"> 
 		</div>
 		

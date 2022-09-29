@@ -15,42 +15,50 @@ h2 {
 }
 
 .wrapper{
-	width: 75%;
+	width: 90%;
 }
 
 .container{
 		border: 1px solid var(--color-gray-400);
 		border-radius: 10px;
 		margin: 20px auto;
-		width: 500px;
-		min-height: 400px;
+		width: 75%;
+		min-height: 350px;
 		text-align: center;
-		padding-top: 40px;
+/* 		padding-top: 40px; */
+		padding: 40px 20px;
 }
 
-.container .ss0{
+.ss0{
 	font-weight: bold;
 	font-size: 20px;
 	padding-top: 20px;
 }
 
-.container .ss{
+.ss{
+	font-weight: bold;
+	font-size: 20px;
+	padding: 10px 0px;
+	min-width: 80px;
+}
+
+.ss1{
 	font-weight: bold;
 	font-size: 20px;
 	padding-top: 45px;
 }
-
-
-.container .ss1{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top: 45px;
-}
-.container .ss2{
+.ss2{
 	font-weight: bold;
 	font-size: 20px;
 	padding-top: 55px;
 	padding-bottom: 20px;
+}
+
+.ss3 {
+	padding: 10px 0px;
+	font-size: 20px;
+	min-width: 100px;
+	
 }
 
 .conbox{

@@ -20,7 +20,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-
+	
+	<br>
 	<h2>${dto.qna_num }번 문의사항 답글 달기</h2>
 	
 	<br>

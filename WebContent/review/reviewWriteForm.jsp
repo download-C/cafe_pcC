@@ -36,22 +36,22 @@
 		<form action="./ReviewWriteAction.rv" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
 		
 		<div class="container">
-			<table>
+		<br>
+		<table>
 			
-	
 		<tr><td class="ss"><input type="hidden" name="name" id="review_name" 
 	 			value="${name }" readonly="readonly">
 	 	</td></tr>		
 	 	
-	 	<tr><td class="ss0">비밀번호 <input class="conbox0" type="password" name="review_password" 
+	 	<tr><td class="ss0">비밀번호 &nbsp; <input class="conbox0" type="password" name="review_password" 
 				maxlength="4" placeholder="4자리 숫자로 입력하세요."> 
 		</td></tr>
 		
-		<tr><td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject"> 
+		<tr><td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject"> 
 		</td></tr>
 		
 		<tr><td class="ss1">
-		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content"></textarea> 
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content"></textarea> 
 		</td></tr>
 		
 		<tr><td class="ss2">

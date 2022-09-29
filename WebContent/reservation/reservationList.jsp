@@ -27,7 +27,7 @@
 	if(mem_num != null) {
 %>		
 	<div class="wrapper">
-	<h1> 예약 목록 </h1>
+	<h1> Reservation </h1>
 	<div>
 		<input type="button" name="res_btn" class="writebtn" id="res_btn" value="예약하기" 
 		onclick="location.href='./Reservation.re';"> <br><br>
@@ -48,9 +48,9 @@
 				<div>${dto.res_date } / ${dto.res_time }시</div>
 				<div>${dto.res_persons }명</div>	
 				<div>
-					<input type="button" value="예약 수정" name="res_update" 
-					onclick="location.href='./ReservationUpdateForm.re?res_num=${dto.res_num }';">  
-					<input type="button" value="예약 삭제" name="res_delete" 
+					<input class="pushbtn" type="button" value="예약 수정" name="res_update" 
+					onclick="location.href='./ReservationUpdateForm.re?res_num=${dto.res_num }';">
+					<input class="pushbtn" type="button" value="예약 삭제" name="res_delete" 
 					onclick="location.href='./ReservationDeleteAction.re?res_num=${dto.res_num}';">
 				</div>
 			</c:forEach>

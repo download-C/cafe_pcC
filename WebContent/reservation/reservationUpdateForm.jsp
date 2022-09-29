@@ -14,7 +14,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>reservationUpdateForm.jsp</h1>
+<!-- 	<h1>reservationUpdateForm.jsp</h1> -->
 	
 	<div>
 		<form action="./ReservationUpdateAction.re?res_num=${dto.res_num }" method="post">

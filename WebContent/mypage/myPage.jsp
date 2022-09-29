@@ -1,6 +1,6 @@
-import="com.pcc.member.db.MemberDAO"%> <%@page
-import="com.pcc.member.db.MemberDTO"%> <%@ page language="java"
-contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.pcc.member.db.MemberDAO"%>
+<%@page import="com.pcc.member.db.MemberDTO"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

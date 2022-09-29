@@ -17,7 +17,7 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<h1>문의사항</h1>
+	<h1>QnA</h1>
 	
 	<%
  	ArrayList<QnADTO> qnaboardlist = (ArrayList<QnADTO>)request.getAttribute("qnaboardlist");
@@ -33,10 +33,9 @@
 		<input type="button" name="qnaWrite" class="writebtn" value="새 글 쓰기(new)"
 		  onclick="location.href='./QnAWrite.qna';" > 
 		</div>
-	
-	<br><br>
-	
-	
+		<br>
+		<br>
+		<br>
  		<%} %>
  
  	

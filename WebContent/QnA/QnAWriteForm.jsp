@@ -65,19 +65,19 @@ $(document).ready(function () {
 			String mgr_num = (String)session.getAttribute("mgr_num");
 			String name = (String)request.getAttribute("name");
 		if(	mgr_num != null ) {%>
-		작성자 <input type="text" name="name" id="center" readonly="readonly" value="관리자">
+		작성자 &nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="name" id="center" readonly="readonly" value="관리자">
 		</td></tr>
 		
 		<tr><td class="ss">
 		<%} else if(mem_num != null) {%>
-		작성자 <input type="text" name="name" id="center" readonly="readonly" value="${name }">	
+		작성자 &nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="name" id="center" readonly="readonly" value="${name }">	
 		</td></tr>
 		
 		<%} 
 		if(mem_num != null) {
 		%>
 		
-		<tr><td class="ss0">비밀번호 <input class="conbox0" type="password" name="qna_password" id="center" maxlength="4" id="password"
+		<tr><td class="ss0">비밀번호 &nbsp;&nbsp; <input class="conbox0" type="password" name="qna_password" id="center" maxlength="4" id="password"
 										placeholder="4자리 숫자로 입력하세요.">
 		</td></tr>
 		

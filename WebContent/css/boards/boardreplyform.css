@@ -19,17 +19,13 @@ h2 {
 }
 
 .container{
-	margin-left: 10%;
-	margin-right: 10%;
-/* 	width : 70%;	 */
-/* 	display : grid; */
-/* 	grid-template-columns : 0.5fr 2fr 0.5fr 1fr 1fr ; */
-/* 	grid-template-row : 20fr; */
-/* 	grid-gap: 10px 20px; */
-	border-top: solid 1px var(--color-gray-500);
-	margin-top: 0px;
-	border-bottom: solid 1px var(--color-gray-500);
-	margin-bottom: 0px;
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 500px;
+		min-height: 400px;
+		text-align: center;
+		padding-top: 40px;
 }
 
 .container .ss0{

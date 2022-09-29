@@ -10,6 +10,12 @@
   font-style: normal;
 }
 
+#res_tr1 td{
+	width: 300px;
+	text-align: center;
+}
+
+
 /* <button class="button button--antiman button--round-l button--text-medium"><i class="button__icon icon icon-plus"></i> */
 
 .writebtn{

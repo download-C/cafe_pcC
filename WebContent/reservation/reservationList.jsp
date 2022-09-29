@@ -33,31 +33,42 @@
 		onclick="location.href='./Reservation.re';"> <br><br>
 	</div>
 <%
-	} 
-%>
+	}  else if(mgr_num != null){
+		%>		<input type="button" name="res_btn" id="res_btn" value="예약하기" 
+				onclick="location.href='./Reservation.re';"> <br><br>
+		<% 				
+			}
+		%>
 
-	<br><br>
 
-		<div class="container">
-			<div class="ss">예약 번호</div>
-			<div class="ss">예약자</div>
-			<div class="ss">예약 날짜 및 시간</div>
-			<div class="ss">예약 인원</div>
-			<div class="ss">수정/삭제</div>
-			<c:forEach var="dto" items="${reservationList }"> 
-				<div>${dto.res_num }</div>
-				<div class="subdiv">${dto.name }</div>
-				<div>${dto.res_date } / ${dto.res_time }시</div>
-				<div>${dto.res_persons }명</div>	
-				<div>
+
+	<fieldset>
+		<table id="res_tr1">
+			<tr>
+				<td><h3>예약 번호</h3></td>
+				<td><h3>예약자</h3></td>
+				<td><h3>예약 날짜 및 시간</h3></td>
+				<td><h3>예약 인원</h3></td>
+				<td><h3>수정/삭제</h3></td>
+			</tr>
+		<c:forEach var="dto" items="${reservationList }"> 
+			<tr>
+				<td>${dto.res_num }</td>
+				<td>${dto.name }</td>
+				<td>${dto.res_date } / ${dto.res_time }시</td>
+				<td>${dto.res_persons }명</td>	
+				<td>
 					<input type="button" value="예약 수정" name="res_update" 
 					onclick="location.href='./ReservationUpdateForm.re?res_num=${dto.res_num }';">  
 					<input type="button" value="예약 삭제" name="res_delete" 
 					onclick="location.href='./ReservationDeleteAction.re?res_num=${dto.res_num}';">
-				</div>
-			</c:forEach>
-			<br>
-		</div>
+				</td>			
+			</tr>	
+		</c:forEach>
+		
+		</table>
+		
+	</fieldset>
 		<br><br>		
 		<c:if test="${cnt != 0 }">
 			<c:if test="${startPage > pageBlock }">

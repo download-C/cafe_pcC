@@ -95,9 +95,7 @@ public class ReservationDAO {
 						
 							System.out.println("예약번호 : "+res_num);
 							
-							sql = "insert into reservations (res_num, mem_num, name, "
-									+ "res_date, res_time, res_persons, res_table) "
-									+"values (?,?,?,?,?,?,?)";
+							sql = "insert into reservations values (?,?,?,?,?,?,?)";
 							pstmt = con.prepareStatement(sql);
 							
 							pstmt.setInt(1, res_num);
@@ -148,9 +146,7 @@ public class ReservationDAO {
 						
 							System.out.println("예약번호 : "+res_num);
 							
-							sql = "insert into reservations (res_num, mem_num, name, "
-									+ "res_date, res_time, res_persons, res_table) "
-									+"values (?,?,?,?,?,?,?)";
+							sql = "insert into reservations values (?,?,?,?,?,?,?)";
 							pstmt = con.prepareStatement(sql);
 							
 							pstmt.setInt(1, res_num);

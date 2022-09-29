@@ -32,44 +32,64 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>reviewPassword.jsp</h1>
+<!-- <h1>reviewPassword.jsp</h1> -->
+
 	<% 
 		String button = request.getParameter("button");
 		String review_num = request.getParameter("review_num");
 	
 	if(button.equals("delete")) {
 	%>
-	<fieldset class="field1">
-	삭제하려는 글의 비밀번호를 입력하세요. <br>
-	<hr>
+	
+	<div class="wrapper" style="margin: auto;">
+	
+	<br>
+	<h1>삭제하려는 글의 비밀번호를 입력하세요.</h1>
+	<br>
+	
 	<form action = "./ReviewDelete.rv?review_num=<%=review_num %>" method="post">
-	<div>	
-		<input type="password" id="password" name="review_password" maxlength="4" placeholder="숫자 4자리">
+	<div class="btndiv" style="margin:auto;">	
+		<input class="btn1" type="password" id="password" name="review_password" maxlength="4" placeholder="숫자 4자리">
+		<br>
+		<br>
 <!-- 		<input type="button" name="password_match" id="password_btn" value="확인"> <br> -->
 <!-- 		<div id="password_div"> </div> -->
-		<input type="submit" value="삭제" name="delete_review">
-		<input type="button" value="취소" name="cancel_review">
+		<input class="btn2" type="submit" value="삭제" name="delete_review">
+		<input class="btn2" type="button" value="취소" name="cancel_review">
+	<br>
 	</div>
 	</form>
-	</fieldset>
+	</div>
+	<br>
+	
 	<%
 	} else if(button.equals("update")){
 	%>
-	<fieldset class="field2">
-	수정하려는 글의 비밀번호를 입력하세요. <br>
+	
+	<div class="wrapper" style="margin: auto;">
+	
+	<br>
+	<h1>수정하려는 글의 비밀번호를 입력하세요. </h1>
+	<br>	
+	
 	<form action = "./ReviewPasswordCheck.rv?review_num=<%=review_num %>&button=update" method="post">
-	<div>	
-		<input type="password" id="review_password" name="review_password" maxlength="4" placeholder="숫자 4자리">
+	<div class="btndiv" style="margin:auto;">	
+		<input class="btn1" type="password" id="review_password" name="review_password" maxlength="4" placeholder="숫자 4자리">
+		<br>
+		<br>
 <!-- 		<input type="button" name="password_btn" id="password_btn" value="확인"> <br> -->
 <!-- 		<div id="password_div"> </div> -->
-		<input type="submit" value="수정" name="delete_review">
-		<input type="button" value="취소" name="cancel_review">
+		<input class="btn2" type="submit" value="수정" name="delete_review">
+		<input class="btn2" type="button" value="취소" name="cancel_review">
+	<br>
 	</div>
 	</form>
-	</fieldset>
+	</div>
+	<br>
 	<%
 	}
 	%>
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->

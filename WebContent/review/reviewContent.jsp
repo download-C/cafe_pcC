@@ -27,8 +27,9 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<h2>고객리뷰</h2>
+<h1>고객리뷰</h1>
 
+	<br>
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
 
 	<% if(mem_num != null) {
@@ -51,14 +52,12 @@
 			</tr>
 			
 	
-		
 			<tr>
 				<td class="ss" style="width: 25%;">작성자</td>
 				<td style="width: 25%;">${dto.name }</td>
 				<td class="ss" style="width: 20%;">작성일</td>
 				<td style="width: 30%;">${dto.review_date }</td>
 			</tr>
-			
 
 			
 			<tr>
@@ -92,6 +91,7 @@
 		</table>
 		</div>
 		<div class="btndiv">
+	<br>
 	<%
 	if(mem_num != null) {
 		if(mem_num.equals(rmn)) {
@@ -109,18 +109,20 @@
 		
 	if(mgr_num != null) {
 	%>
-	<input type="button" class="btn" name="riview_reply" id="reply" value="답글 달기"
+	
+	<input type="button" class="btn" name="riview_reply" id="reply" value="답글"
 	 onclick="location.href='./ReviewReplyForm.rv?review_num=${dto.review_num}';">
 	 
-	<input type="button" class="btn" name="review_update" id="update" value="수정"
-	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';">
+<!-- 	<input type="button" class="btn" name="review_update" id="update" value="수정" -->
+<%-- 	     onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=update';"> --%>
 	
 	<input type="button" class="btn" name="review_delete" id="delete" value="삭제" 
 	onclick="location.href='./ReviewPasswordForm.rv?review_num=${dto.review_num}&button=delete';">
 	
     <%
 	}
-%>
+	%>
+	
 
 	<input type="button" class="btn" name="review_list" id="list" value="목록" 
      onclick="location.href='./ReviewList.rv?pageNum=${pageNum}';">

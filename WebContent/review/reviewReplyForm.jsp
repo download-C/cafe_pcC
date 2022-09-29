@@ -21,9 +21,10 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 
-	<h4>${dto.review_num }번 리뷰 답글 달기</h4>
+	<h2>${dto.review_num }번 리뷰 답글 달기</h2>
 	
-	<fieldset>
+	<br>
+	<div class="wrapper" style="margin: auto;">
 	<% if(mem_num != null) {
 	%>
 	<input type="hidden" value="${dto.mem_num }">
@@ -34,98 +35,83 @@
 	<%
 	}
 	%>
+	<div class="container">
 		<table>
 			<tr>
-				<td>글번호</td>
-				<td>${dto.review_num }</td>
+				<td class="ss">글번호 ${dto.review_num }</td>		
 			</tr>
 			
-			<tr>
-			</tr>
-			<tr>
+			<tr>		
+				<td class="ss">조회수 ${dto.review_readcount }</td>
 			</tr>
 
-			<tr>				
-				<td>조회수</td>
-				<td>${dto.review_readcount }</td>
-			</tr>
-			
 			<tr>
-			</tr>
+				<td class="ss">작성자 ${dto.name }
+			</td></tr>
+	
 			<tr>
-			</tr>
-			
+				<td class="ss">작성일 ${dto.review_date }
+			</td></tr>
+
 			<tr>
-				<td>작성자</td>
-				<td>${dto.name }</td>
-			</tr>
-			
+				<td class="ss">제목 ${dto.review_subject }
+			</td></tr>
+	
 			<tr>
-			</tr>
+				<td class="ss1">내용 ${dto.review_content }
+			</td></tr>
+	
 			<tr>
-			</tr>
-			
-			<tr>
-				<td>작성일</td>
-				<td>${dto.review_date }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>제목</td>
-				<td colspan="3">${dto.review_subject }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>내용</td>
-				<td colspan="3">${dto.review_content }</td>
-			</tr>
-			
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			
-			<tr>
-				<td>첨부파일</td>
-				<td colspan="3"><a href="./upload/${dto.review_file }" download>
+				<td class="ss2">첨부파일<a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>
-				</td>
-			</tr>
+			</td></tr>
 			
 		</table>
-	</fieldset>
-	<hr>
-		<fieldset>
-		<legend>리뷰 답글 작성하기</legend>
-		<form action="./ReviewReply.rv?review_num=${dto.review_num }" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
-		<div>
+		<br>
+	</div>
+		</div>
+			<br>
+	
+	
+		<h2>리뷰 답글 작성하기</h2>
 		
-	 	<input type="hidden" name="name" id="review_name" 
-	 			value="관리자" readonly="readonly">
-		비밀번호 <input type="password" name="review_password" 
+		<div class="wrapper" style="margin: auto;">
+		<form action="./ReviewReply.rv?review_num=${dto.review_num }" method="post" enctype="multipart/form-data"> <!-- 파일 삽입하는 페이지에 enctype 필수 -->
+		
+		<div class="container">
+		
+		<table>
+			<tr>
+				<td class="ss"><input class="ss" type="hidden" name="name" id="review_name" value="관리자" readonly="readonly">
+			</td></tr>
+			
+			<tr>
+				<td class="ss0">비밀번호 <input class="conbox0" type="password" name="review_password" 
 					maxlength="4" placeholder="비밀번호는 9090으로 자동 입력됩니다." value="9090"> 
-		<hr>
-		제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="review_subject" value="   Re: ${dto.review_subject }"> <br>
-		<hr>
-		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea rows="4" cols="60 " name="review_content"></textarea> <br>
-		<hr>
+			</td></tr>
+			
+			<tr>
+				<td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject" value=" Re: ${dto.review_subject }"> <br>
+			</td></tr>
+			
+			<tr>
+			<td class="ss1">내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content"></textarea> <br>
+			</td></tr>
+		
+				</table>
+			<br>
 		</div>
-		<div>
-		<input type="submit" value="작성"> &nbsp;&nbsp;
-		<input type="button" value="취소">
+			<br>
+		
+		<div class="divbtn">
+			<input type="submit" value="작성">
+			<input type="button" value="취소">
 		</div>
+		
+		<br>
 		</form>
-	</fieldset>
+		</div>
+	
 <!-- 푸터 시작 -->
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

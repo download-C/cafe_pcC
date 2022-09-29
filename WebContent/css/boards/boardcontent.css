@@ -19,7 +19,7 @@
 /*   border-radius: 10px; */
 /* } */
 
-h2{
+h1{
 	text-align: center;
 }
 
@@ -42,7 +42,7 @@ h2{
 
 .container table{
 	margin: auto;
-	font-size: 25px;
+	font-size: 20px;
 }
 
 tr{
@@ -69,10 +69,10 @@ tr{
   background-color: #adc2a9;
   border-radius: 10px;
   display: inline;
+  margin: auto;
 /*   float: right; */
-  margin-right: 4%;
-  padding: 5px;
+/*   margin-right: 4%; */
+/*   padding: 5px; */
 }
-
 
 

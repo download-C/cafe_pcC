@@ -19,7 +19,7 @@
   				$("#review_password").focus();
   				return false;
   			}
-  			if($.isNumeric($('#review_password').val()) == false) {
+  			if($.isNumeric($('#review_password').val()) != true) {
   			    alert('비밀번호는 숫자 4자리만 가능합니다.');
 		  		$("#review_password").focus();
 		  	    return false;
@@ -70,15 +70,15 @@
 	 			value="${name }" readonly="readonly">
 	 	</td></tr>		
     
-	 	<tr><td class="ss0">비밀번호 &nbsp; <input class="conbox0" type="password" name="review_password" 
+	 	<tr><td class="ss0">비밀번호 &nbsp; <input class="conbox0" type="password" name="review_password" id="review_password" 
 				maxlength="4" placeholder="4자리 숫자로 입력하세요."> 
 		</td></tr>
 		
-		<tr><td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject"> 
+		<tr><td class="ss">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="conbox" type="text" name="review_subject" id="review_subject" > 
 		</td></tr>
 		
 		<tr><td class="ss1">
-		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content"></textarea> 
+		내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <textarea class="conbox1" rows="4" cols="60 " name="review_content" id="review_content"></textarea> 
 
 		</td></tr>
 		

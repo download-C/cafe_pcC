@@ -9,11 +9,116 @@
   font-weight: normal;
   font-style: normal;
 }
+@media screen and (max-width: 768px) {
+	.wrapper {
+		text-align: center;
+		font-size: 20px;
+	}
+	
+	.container {
+	 margin: auto;
+	 text-align: center;
+	}
+	
+	.resformdiv {
+/* 		border: 3px solid blue; */
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 70%;
+		height: 400px;
+		text-align: left;
+	}
+	
+	.resformdiv div {
+		padding-left: 10%;
+		padding-bottom: 10px;
+	}
 
-body{
-	background-image: url(../img/reservation/res1.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	color: white;
-}	
+	input {
+		font-size: 20px;
+	}
+	
+	.inputdiv {
+		text-align: left;
+		margin-left: 17%;
+	}
+	
+	.inputdiv div {
+	 font-size: 12px;
+	 padding: inherit;
+	}
 
+	.btn {
+	  background: none;
+	  border: none;
+	  height: 40px;
+	  width: 20%;
+	  transition: color 0.3s;
+	  background-color: #adc2a9;
+	  border-radius: 10px;
+/*   	  display: inline;	 */
+	  padding: 5px;
+	  font-size: 18px;
+	  margin-bottom: 10px;
+	}
+	
+	.ressub {
+		font-size: 12px;
+	}
+
+
+	
+	.wrapper {
+		text-align: center;
+		font-size: 20px;
+	}
+	
+	.joindiv {
+/* 		border: 3px solid blue; */
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 450px;
+		height: 500px;
+		text-align: center;
+	}
+
+	input {
+		font-size: 20px;
+	}
+	
+	.inputdiv {
+		text-align: left;
+		margin-left: 17%;
+	}
+	
+	.hiddenbtn {
+		visibility: hidden;
+		background: none;
+		border: none;
+		height: 40px;
+		idth: 20%;
+		transition: color 0.3s;
+		ackground-color: #adc2a9;
+		border-radius: 10px;
+	/*    display: inline;	 */
+		padding: 5px;
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+	
+	.btn {
+	  background: none;
+	  border: none;
+	  height: 40px;
+	  width: 20%;
+	  transition: color 0.3s;
+	  background-color: #adc2a9;
+	  border-radius: 10px;
+/*   	  display: inline;	 */
+	  padding: 5px;
+	  font-size: 18px;
+	  margin-bottom: 10px;
+	}
+}

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pcc.board.notice.db.NoticeDAO;
+import com.pcc.member.db.MemberDAO;
 
 import action.Action;
 import vo.ActionForward;
@@ -32,13 +33,11 @@ public class NoticeDelete implements Action {
 		
 		NoticeDAO dao = new NoticeDAO();
 		dao.noticeDelete(notice_num, mgr_num);
+		MemberDAO daoM = new MemberDAO();
+		daoM.alert(response, notice_num+"번 공지사항이 삭제되었습니다.", "location.href='./NoticeList.no?pageNum=1';");
 		System.out.println(notice_num+"번 공지사항 삭제 완료");
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./NoticeList.no");
-		forward.setRedirect(true);
-		
-		return forward;
+		return null;
 	}
 
 }

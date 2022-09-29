@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pcc.board.notice.db.NoticeDAO;
 import com.pcc.board.notice.db.NoticeDTO;
+import com.pcc.member.db.MemberDAO;
 
 import action.Action;
 import vo.ActionForward;
@@ -64,13 +65,11 @@ public class NoticeUpdateAction implements Action {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("notice_num", notice_num);
 			
+			MemberDAO daoM = new MemberDAO();
+			daoM.alert(response, "공지사항을 수정했습니다.", 
+					"location.href='./NoticeContent.no?notice_num="+notice_num+"&pageNum="+pageNum+"';");
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println(	"alert('글을 수정했습니다.');");
-			out.println(	"location.href='./NoticeContent.no?notice_num='"+notice_num+"'&pageNum='"+pageNum+"';");
-			out.println("</script>");
-			
+
 			return null;
 		}
 		

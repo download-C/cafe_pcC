@@ -26,8 +26,8 @@
 <% 
 	if(mem_num != null) {
 %>		
-	<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
-
+	<div class="wrapper">
+	<h1> 예약 목록 </h1>
 	<div>
 		<input type="button" name="res_btn" class="writebtn" id="res_btn" value="예약하기" 
 		onclick="location.href='./Reservation.re';"> <br><br>
@@ -35,9 +35,7 @@
 <%
 	} 
 %>
-
-	<br><br>
-
+	<br>
 		<div class="container">
 			<div class="ss">예약 번호</div>
 			<div class="ss">예약자</div>

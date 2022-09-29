@@ -10,11 +10,55 @@
   font-style: normal;
 }
 
-#tb{
-    margin-left:auto; 
-    margin-right:auto;
+@media screen and (min-width: 768px) {
+
+	body {
+		margin: auto;
+	}
+	.tablediv{
+		width: 90%;
+		margin: auto;
+	}
+	table {
+		width: 70%;
+		margin: auto;
+	}
+	td {
+	 text-align: center;
+	}
+	span {
+	 text-align: center;
+	}
+	
+	textarea {
+		width: 100%;
+		height: 500px;
+		resize: none;
+	}
 }
 
-#con{
-	font-size: xx-large;
+@media screen and (max-width: 768px) {
+	body {
+		max-width: 750px;
+		margin: auto;
+	}
+	.tablediv{
+		width: 300px;
+	}
+	table {
+		width: 550px;
+		margin: auto;
+	}
+	td {
+	 text-align: center;
+	}
+	span {
+	 text-align: center;
+	}
+	
+	textarea {
+		width: 70%;
+		height: 300px;
+		resize: none;
+	}
 }

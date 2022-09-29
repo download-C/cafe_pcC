@@ -8,12 +8,12 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/member/signform.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script src="./script/jquery-3.6.0.js"></script>
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
 
         $('#join').submit(function(){
-//             alert("전송");
+//             alert("전송");s
 
   			if($(".phone").val()=="") {
   				$('.phonediv').html("아이디를 입력하세요.");
@@ -39,8 +39,8 @@
 
         //아이디 중복체크
 	
-		$('.dup').click(function() {
-		//alert("중복");
+		$('#dup').click(function() {
+// 		alert("중복");
 			if($(".phone").val()=="") {
 				$('.phonediv').html("아이디를 입력하세요");
 				$(".phone").focus();
@@ -51,7 +51,6 @@
 			$.ajax({
 			// id 체크 기능을 실행하는 idcheck.jsp 연결하기
 // 				request.setAttribute("phone");
-			
 				url:'./IdCheck.me',
 				data: {'phone':$('.phone').val()},
 				success: function(rdata) {
@@ -65,28 +64,36 @@
 
 <body>
 <!-- 헤더들어가는 곳 -->
+
 <jsp:include page="../inc/top.jsp" />
+<div style="position: relative; height: 100px"></div>
 <!-- 헤더들어가는 곳 -->
 <!-- 메인 시작 -->
-
-	<fieldset id="field">
+<div class="wrapper">
+	<div class="joindiv">
+		<h1> 회원가입 </h1>
 		<form action="./JoinAction.me" id="join" method="post" >
-		<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone" class="phone" placeholder="휴대폰 번호">
-			<input type="button" value="중복확인" class="dup"><br> 
-			<div class="phonediv"></div> <br> 
-			<input type="password" name="password" class="password" placeholder="비밀번호"><br> 
-			<div class="passdiv"></div> <br> 
-			<input type="password" name="password2" class="password2" placeholder="비밀번호 확인"><br> 
-			<div class="pass2div"></div> <br> 
-			<input type="text" name="name" class="name" placeholder="이름"><br>
-			<div class="namediv"></div> <br> 
+		<div class="inputdiv">
+			<input type="text" name="phone" class="phone" placeholder="휴대폰 번호">
+			<input type="button" value="중복확인" class="btn" id="dup"> <br>
+			<div class="phonediv"> </div> <br>
+			<input type="password" name="password" class="password" placeholder="비밀번호">
+			<input type="button" value="중복확인" class="hiddenbtn"><br> 
+			<div class="passdiv"> </div> <br> 
+			<input type="password" name="password2" class="password2" placeholder="비밀번호 확인">
+			<input type="button" value="중복확인" class="hiddenbtn"><br> 
+			<div class="pass2div"> </div> <br> 
+			<input type="text" name="name" class="name" placeholder="이름">
+			<input type="button" value="중복확인" class="hiddenbtn"><br>
+			<div class="namediv"> </div> <br> 
+		</div>
 		
-			<input type="submit" value="가입하기"> <input type="reset" value="다시작성">
-			
+		<div class="submitdiv">
+			<input type="submit" class="btn" value="가입하기">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn" value="다시작성">
+		</div>
 		</form>
-	</fieldset>
-
+	</div>
+</div>
 <!-- 메인 끝 -->
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />

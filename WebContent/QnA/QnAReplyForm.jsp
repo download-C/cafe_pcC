@@ -6,7 +6,7 @@
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/boards/boardreplyform.css" rel="stylesheet" type="text/css">
-<title>문의사항 답글 달기</title>
+<title>리뷰 답글 달기</title>
 <%
 	System.out.println(request.getAttribute("rmn"));
 // 	session = request.getSession();
@@ -32,41 +32,41 @@
 	%>
 		<input type="hidden" value="${dto.mgr_num }">
 	<%
-		}
+		} else if (mgr_num != null) {
 	%>
+   <input type="hidden" value="${dto.mgr_num }">
+   <%
+   		}
+   %>
+	
 	<div class="container">
 		<table>
-			<tr>
-				<td class="ss">글번호 ${dto.qna_num }</td>
-			</tr>
-				
-			<tr>	
-				<td class="ss">조회수 ${dto.qna_readcount }</td>
-			</tr>
-			
-			<tr>
-				<td class="ss">작성자 ${dto.name }
-			</td></tr>
-			
-			<tr>
-				<td class="ss">작성일 ${dto.qna_date }
-			</td></tr>
-			
-			<tr><td class="ss">
-			제목 ${dto.qna_subject }
-			</td></tr>
-		
-			<tr><td class="ss1"> 
-			내용 ${dto.qna_content }
-			</td></tr>
-			
-			<tr>
-				<td class="ss2">첨부파일
-				<td class="conbox2" colspan="3"><a href="./upload/${dto.qna_file }" download>
-				<img src="./upload/${dto.qna_file }"></a>
-			</td></tr>
-		
-				</table>
+         <tr>
+            <td class="ss">글번호</td><td class="ss3"> ${dto.qna_num }</td>
+            <td class="ss">조회수</td><td class="ss3"> ${dto.qna_readcount }</td>
+         </tr>
+         
+         <tr>
+            <td class="ss">작성자</td><td class="ss3"> ${dto.name }</td>
+            <td class="ss">작성일</td><td class="ss3"> ${dto.qna_date }</td>
+         </tr>
+         
+         <tr>
+            <td class="ss">제목</td>
+            <td colspan="3" class="ss3"> ${dto.qna_subject }</td>
+         </tr>
+      
+         <tr>
+            <td class="ss"> 내용</td>
+            <td colspan="3" class="ss3 content"> ${dto.qna_content }</td>
+         </tr>
+         
+         <tr>
+            <td class="ss2">첨부파일<a href="./upload/${dto.qna_file }" download>
+            <img src="./upload/${dto.qna_file }"></a>
+         </td></tr>
+      
+            </table>
 				<br>
 			</div>
 				</div>

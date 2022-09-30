@@ -40,29 +40,22 @@
 	<div class="container">
 		<table>
 			<tr>
-				<td class="ss">글번호 ${dto.review_num }</td>		
+				<td class="ss">글번호</td><td class="ss3">${dto.review_num }</td>
+				<td class="ss">조회수</td><td class="ss3">${dto.review_readcount }</td>
 			</tr>
-			
-			<tr>		
-				<td class="ss">조회수 ${dto.review_readcount }</td>
+			<tr>
+				<td class="ss">작성자</td><td class="ss3">${dto.name }</td>
+				<td class="ss">작성일</td><td class="ss3">${dto.review_date }</td>
 			</tr>
-
 			<tr>
-				<td class="ss">작성자 ${dto.name }
-			</td></tr>
+				<td class="ss">제목</td>
+				<td colsapn="3" class="ss3">${dto.review_subject }</td>
+			</tr>
 	
 			<tr>
-				<td class="ss">작성일 ${dto.review_date }
-			</td></tr>
-
-			<tr>
-				<td class="ss">제목 ${dto.review_subject }
-			</td></tr>
-	
-			<tr>
-				<td class="ss1">내용 ${dto.review_content }
-			</td></tr>
-	
+				<td class="ss1">내용</td>
+				<td colsapn="3" class="ss3 content">${dto.review_content }</td>
+			</tr>
 			<tr>
 				<td class="ss2">첨부파일<a href="./upload/${dto.review_file }" download>
 				<img src="./upload/${dto.review_file }"></a>

@@ -32,6 +32,7 @@ input[name=tab]{
 	width: 100%;
 	height: 1000px;
 	overflow: hidden;
+    }
 }
 
 .bgc{
@@ -49,7 +50,7 @@ input[name=tab]{
 	font-size: 0;
 	z-index: 1;
 	transition: 1s;
-	
+
 }
 
 .inner_slide a img{
@@ -82,6 +83,10 @@ input[name=tab]{
 
 .inner_slide a:nth-of-type(3) span{
 	left: 83.335%;
+}
+
+.inner_slide a:hover {
+	animation-play-state: paused;
 }
 
 .main_btn {

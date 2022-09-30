@@ -47,27 +47,25 @@
 			<input type="radio" name="tab" id="tab2" >
 			<input type="radio" name="tab" id="tab3" >
 			
-			
+		
 			<div class="slide">
 				<div class="inner_slide">
 				
 					<div class="bgc"></div>
-
-					<a href="./ProductList.pr">
-						<img alt="메인 이미지1" src="./img/slide1.jpg">
-						<span>MENU</span>
-					</a>
+						<a href="./ProductList.pr">
+							<img alt="메인 이미지1" src="./img/slide1.jpg">
+							<span>MENU</span>
+						</a>
 					
-					<a href="./ReservationList.re">
-						<img alt="메인 이미지2" src="./img/slide2.jpg">
-						<span>RESERVATION</span>
-					</a>
+						<a href="./ReservationList.re">
+							<img alt="메인 이미지2" src="./img/slide2.jpg">
+							<span>RESERVATION</span>
+						</a>
 					
-					<a href="ReviewList.rv">
-						<img alt="메인 이미지3" src="./img/slide3.jpg">
-						<span>REVIEW</span>
-					</a>
-					
+						<a href="ReviewList.rv">
+							<img alt="메인 이미지3" src="./img/slide3.jpg">
+							<span>REVIEW</span>
+						</a>
 				</div>
 			</div>
 	
@@ -78,7 +76,43 @@
 			</div>
 	
 	</div> 
+	<script>
+	 const container = document.querySelector('.inner_slide'),
+     slides = document.querySelectorAll('img'),
+     slidecounter = slides.length;
+	 let currentIndex = 0;
+
+	 var lele = 0;
+	 var i = 0;
+	 function moveleft() {
+	     if (i < slidecounter - 2) {
+	         lele  = 0;
+	         i++;
+	         container.style.transition = '0s'
+	         setTimeout('moveleft()', 9000);
+	     } else if(i < slidecounter - 1) {
+	         lele += 100;
+	         i++;
+	         container.style.transition = '2s'
+	         setTimeout('moveleft()', 6000);
+	     } else if(i<slidecounter){
+	         container.style.transition = '2s'
+	         lele +=100;
+	         i++;
+	         setTimeout('moveleft()', 3000);
+	     } else {
+	         container.style.transition = '2s'
+	         lele = 0;
+	         i=0;
+	     }
+
+	     container.style.left = "-" + lele + "%";
+	    
+	 }
+
+	moveleft();
 	
+	</script>
 	
 	<!-- 메인 이미지 종료 -->
 	

@@ -15,7 +15,6 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-	<h1>Notice</h1>
 	
 	<% 
 // 매니저로 로그인했을 때만 글 쓰기 버튼이 보이게
@@ -24,12 +23,16 @@
 
 	%>
 	
-	<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
 
+	<div class="wrapper" style="margin-left: 15%; margin-right: 15%;">
+		<div class="title_img">
+	      <img src="./img/images/img (13).jpg">
+	      <h1 class="title">NOTICE LIST</h1>
+	      <div class="img_box"></div>
+	    </div>
 	<% 
 	if(mgr_num != null) {
 	%>
-
 		<div>
 		<input type="button" name="noticeWrite" class="writebtn" value="새 글 쓰기(new)"
 	 	onclick="location.href='./NoticeWrite.no';">
@@ -41,7 +44,6 @@
  // 회원 로그인 시 글쓰기 버튼 안 보임
  } 
  %>
-	
 		<div class="container">
 				<div class="ss">글번호</div>
 				<div class="ss">제목</div>

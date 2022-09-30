@@ -42,7 +42,11 @@
 	%>
 	
 	<div class="wrapper" style="margin: auto;">
-	
+	<div class="title_img">
+	      <img src="./img/images/img (2).jpg">
+	      <h1 class="title">PASSWORD CHECK</h1>
+	      <div class="img_box"></div>
+	    </div>
 	<br>
 	<h1>삭제하려는 글의 비밀번호를 입력하세요.</h1>
 	<br>
@@ -67,7 +71,11 @@
 	%>
 	
 	<div class="wrapper" style="margin: auto;">
-	
+	<div class="title_img">
+	      <img src="./img/images/img (2).jpg">
+	      <h1 class="title">PASSWORD CHECK</h1>
+	      <div class="img_box"></div>
+	    </div>
 	<br>
 	<h1>수정하려는 글의 비밀번호를 입력하세요. </h1>
 	<br>	

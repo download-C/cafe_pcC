@@ -36,10 +36,12 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<h1>문의사항</h1>
-
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
-
+	<div class="title_img">
+	      <img src="./img/images/img (19).jpg">
+	      <h1 class="title">Q&A CONTENT</h1>
+	      <div class="img_box"></div>
+	    </div>
 
 	<% if(mem_num != null) {
 	%>
@@ -133,7 +135,7 @@
 	</div>
 	<br>
 	<br>
-	
+	</div>
 <%
 }
 %><!-- 푸터들어가는 곳 -->

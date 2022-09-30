@@ -1,6 +1,221 @@
-body{
-	background-image: url(../img/reservation/res2.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
+@CHARSET "UTF-8";
+
+@import url("./theme.css");
+
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+   	   format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (min-width: 768px) {
 	
+	.wrapper {
+		text-align: center;
+		font-size: 25px;
+	}
+	
+	.title_img{
+	   position:relative;
+	   width: 100%;
+	   height:200px;
+	   overflow: hidden;
+	   margin-bottom: 50px;
+/*       justify-content:center;    */
+   
+/*    display:flex; */
+/*    justify-content:center;    */
+}
+
+	.title_img img{
+	   width: 100%;
+	   height: 100%;
+	   object-fit:cover;
+	/*    border-radius : 40px; */
+	}
+
+	.img_box{
+	   width: 100%;
+	   height: 200px;
+	   background-color: black;
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   opacity: 0.33;
+	   z-index: 1;
+	/*    border-radius : 40px; */
+	   
+	}
+
+	.title{
+	   position: absolute;
+	   top: 40%;
+	   left: 50%;
+	   transform: translate(-50%, -50%); 
+	   z-index: 2;
+	   color: white;
+	   font-size: 40px;
+	   font-weight: bold;
+	   
+	}
+	
+	.container {
+		padding: 5% 5%;
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 400px;
+		height: 400px;
+		text-align: center;
+	}
+	
+	input {
+		font-size: 20px;
+	}
+	
+	.resformdiv {
+		margin: 20px auto;
+		width: 100%;
+		height: 300px;
+		text-align: left;
+	}
+	
+	.resformdiv div {
+		margin-left: 5%;
+		padding-bottom: 10px;
+	}
+
+	input {
+		font-size: 20px;
+	}
+	
+	.resdiv {
+		margin: auto;
+	}
+
+	.btn {
+	  background: none;
+	  border: none;
+	  height: 40px;
+	  width: 25%;
+	  transition: color 0.3s;
+	  background-color: #adc2a9;
+	  border-radius: 10px;
+/*   	  display: inline;	 */
+	  padding: 5px;
+	  font-size: 18px;
+	  margin-bottom: 10px;
+	}
+		
+	.ressub {
+		font-size: 15px;
+		color: var(--color-gray-700);
+	}
+}
+
+@media screen and (max-width: 768px) {
+
+	.wrapper {
+		text-align: center;
+		font-size: 25px;
+	}
+	
+	.title_img{
+	   position:relative;
+	   width: 100%;
+	   height:200px;
+	   overflow: hidden;
+	   margin-bottom: 50px;
+/*       justify-content:center;    */
+   
+/*    display:flex; */
+/*    justify-content:center;    */
+}
+
+	.title_img img{
+	   width: 100%;
+	   height: 100%;
+	   object-fit:cover;
+	/*    border-radius : 40px; */
+	}
+
+	.img_box{
+	   width: 100%;
+	   height: 200px;
+	   background-color: black;
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   opacity: 0.33;
+	   z-index: 1;
+	/*    border-radius : 40px; */
+	   
+	}
+
+	.title{
+	   position: absolute;
+	   top: 40%;
+	   left: 50%;
+	   transform: translate(-50%, -50%); 
+	   z-index: 2;
+	   color: white;
+	   font-size: 40px;
+	   font-weight: bold;
+	   
+	}
+	
+	.container {
+		padding: 5% 5%;
+		border: 1px solid var(--color-gray-400);
+		border-radius: 10px;
+		margin: 20px auto;
+		width: 400px;
+		height: 350px;
+		text-align: center;
+	}
+	
+	input {
+		font-size: 20px;
+	}
+	
+	.resformdiv {
+		margin: 20px auto;
+		width: 100%;
+		height: 250px;
+		text-align: left;
+	}
+	
+	.resformdiv div {
+		margin-left: 5%;
+		padding-bottom: 10px;
+	}
+
+	input {
+		font-size: 20px;
+	}
+	
+	.resdiv {
+		margin: auto;
+	}
+
+	.btn {
+	  background: none;
+	  border: none;
+	  height: 40px;
+	  width: 25%;
+	  transition: color 0.3s;
+	  background-color: #adc2a9;
+	  border-radius: 10px;
+/*   	  display: inline;	 */
+	  padding: 5px;
+	  font-size: 18px;
+	  margin-bottom: 10px;
+	}
+	
+	.ressub {
+		font-size: 15px;
+		color: var(--color-gray-700);
+	}
 }

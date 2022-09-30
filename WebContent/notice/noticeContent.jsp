@@ -25,7 +25,11 @@
 	
 	<br>
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
-
+		<div class="title_img">
+	      <img src="./img/images/img (13).jpg">
+	      <h1 class="title">NOTICE LIST</h1>
+	      <div class="img_box"></div>
+	    </div>
 	 <div class="container">
 		<table>
 			<tr>

@@ -157,7 +157,7 @@ public class ReviewDAO {
 			pstmt.setInt(3, dto.getMgr_num());
 			pstmt.setString(4,  "관리자");
 			pstmt.setInt(5, 9090);
-			System.out.println("글 제목:"+dto.getReview_subject());
+//			System.out.println("글 제목:"+dto.getReview_subject());
 			pstmt.setString(6, " "+dto.getReview_subject());
 			pstmt.setString(7, dto.getReview_content());
 			pstmt.setInt(8, dto.getReview_readcount());

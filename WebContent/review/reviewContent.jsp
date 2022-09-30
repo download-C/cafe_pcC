@@ -27,10 +27,13 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
-<h1>고객리뷰</h1>
-
 	<br>
 	<div class="wrapper" style="margin-left: 15%; margin-right: 15%; font-size: 50px;">
+		<div class="title_img">
+	      <img src="./img/images/img (14).jpg">
+	      <h1 class="title">REVIEW CONTENT</h1>
+	      <div class="img_box"></div>
+	    </div>
 
 	<% if(mem_num != null) {
 	%>

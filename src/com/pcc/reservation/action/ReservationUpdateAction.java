@@ -41,7 +41,7 @@ public class ReservationUpdateAction implements Action {
 			
 			if(result == 1) {
 				dto = dao.getReservationInfo(res_num);
-				request.setAttribute("dto", dto);
+				request.setAttribute("dto", dto);	
 				
 				daoM.alert(response, "예약이 수정되었습니다.", 
 						"location.href='./ReservationList.re?pageNum=1';");
@@ -55,6 +55,8 @@ public class ReservationUpdateAction implements Action {
 					"history.back();");
 				return null;
 			}
+		} else {
+			daoM.alert(response, "세션이 만료되어 로그인 페이지로 돌아갑니다.", "location.href='./Login.pcc';");
 		}
 		return null;
 	}

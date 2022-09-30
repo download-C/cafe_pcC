@@ -130,11 +130,13 @@ public class QnADAO {
 //			System.out.println(" content 완료 ");
 			pstmt.setInt(8, dto.getQna_readcount());
 //			System.out.println(" readcount 완료 ");
-			
-			pstmt.setInt(9, dto.getQna_re_ref());
-			pstmt.setInt(10, dto.getQna_re_lev());
-			pstmt.setInt(11, dto.getQna_re_seq());
-			
+			if(dto.getQna_re_ref() ==0 ){
+				pstmt.setInt(9, qna_num);
+			} else {
+				pstmt.setInt(9, dto.getQna_re_ref());
+			}
+			pstmt.setInt(10, 0);
+			pstmt.setInt(11, 0);
 			pstmt.setString(12, dto.getQna_ip());
 			pstmt.setString(13, dto.getQna_file());
 			
@@ -182,7 +184,8 @@ public class QnADAO {
 			try {
 				con = getConnect();
 				
-				sql = "select * from qna_boards";
+				sql = "select * from qna_boards order by qna_re_ref , qna_re_seq asc, " 
+						+"qna_num desc, qna_re_lev desc";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -231,12 +234,13 @@ public class QnADAO {
 			try {
 				con = getConnect();
 				
-				sql = "select * from qna_boards order by QnA_num desc limit ?,?";
+				sql = "select * from qna_boards order by qna_re_ref desc, qna_re_lev " 
+						+"limit ?, 10";
 				
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, startRow-1);
-				pstmt.setInt(2, pageSize);
+//				pstmt.setInt(2, pageSize);
 				
 				rs = pstmt.executeQuery();
 				
@@ -602,7 +606,7 @@ public class QnADAO {
 		try {
 			con = getConnect();
 			
-			sql = "delete from qna_boards where qna_num=? and qna_password=?";
+			sql = "delete from qna_boards where qna_num=? and qna_password=9090";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
@@ -646,7 +650,7 @@ public class QnADAO {
 			pstmt.setString(7, dto.getQna_content());
 			pstmt.setInt(8, dto.getQna_readcount());
 			pstmt.setInt(9, qna_re_ref);
-			pstmt.setInt(10, dto.getQna_re_ref());
+			pstmt.setInt(10, 1);
 			pstmt.setInt(11, 1);
 			pstmt.setString(12, dto.getQna_ip());
 			pstmt.setString(13, dto.getQna_file());

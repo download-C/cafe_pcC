@@ -192,7 +192,7 @@ public class OrderDAO {
 		try{
 			con = getConnect();
 			
-			sql ="select * from orders where mem_num =?;";
+			sql ="select * from orders where mem_num =? order by order_time desc;";
 					
 			pstmt = con.prepareStatement(sql);
 

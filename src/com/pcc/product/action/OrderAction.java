@@ -47,8 +47,11 @@ public class OrderAction implements Action {
 		
 		//OrderDTO 객체 생성
 		OrderDTO order_dto = new OrderDTO();
+		System.out.println(request.getParameter("order_price"));
+		System.out.println(request.getParameter("pickup_time"));
 		
 		//가져온 값들을 DTO에 넣기(order_price, pickup_time)
+//		order_dto.setOrder_price(Integer.parseInt((String)request.getAttribute("order_price")));
 		order_dto.setOrder_price(Integer.parseInt(request.getParameter("order_price")));
 		order_dto.setPickup_time(Integer.parseInt(request.getParameter("pickup_time")));
 		

@@ -7,6 +7,7 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/boards/boardcontent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <title>공지사항 보기</title>
 <% 
@@ -21,6 +22,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 100px"></div>
+
 <h1>공지사항</h1>
 	
 	<br>

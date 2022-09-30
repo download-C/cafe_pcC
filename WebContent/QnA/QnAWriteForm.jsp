@@ -41,6 +41,7 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 100px"></div>
 
 	<br>
 	<div class="wrapper" style="margin: auto;">

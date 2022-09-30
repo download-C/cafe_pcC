@@ -43,6 +43,7 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>reviewForm.jsp</h1> -->
+	<div style="position: relative; height: 100px"></div>
 	
 	<% 
 	String mgr_num = (String)session.getAttribute("mgr_num");

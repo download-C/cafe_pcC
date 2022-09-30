@@ -7,55 +7,107 @@
 // 	HttpSession session = new HttpSession();
 // 	int number = session.getAttribute("number");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주문하기</title>
+<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/product/order.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./JavaScript/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	//alert("test1");
-	IMP.init("imp73101414");
-	
-	$("#order").on("click", function() {
- 		var date = new Date();
- 		var now = date.getTime();
-		alert("pcc_"+now);
+	   //alert("test1");
+	   
+	   IMP.init("imp73101414");
+	   
+	   $('#order').click(function(){
+		   var order2 = $('#order_price').val();
+		   var time = $('input:radio[name=pickup_time]:checked').val();
+		   
+// 		   alert(order2);
+		   
+// 		   alert(time);
+		   
+		   
+		   
+	      var blank = $('input:radio[name=pickup_time]').is(":checked");
+	      
+	      if(blank == false ){
+	         alert("픽업 시간을 체크하세요.");
+	            return false;
+	      } 
+	      else if(blank == true){
+// 	    	 alert("결제테스트"); 
+	 	       var date = new Date();
+	 	       var now = date.getTime();
+// 	 	      alert("pcc_"+now);
 
-		//결제하기
-		IMP.request_pay({
-			pg: "html5_inicis",
-			pay_method: "card",//결제방식 그대로
-			merchant_uid: "pcc_"+now, //주문번호
-			name: "cafe_pcc",//상호명
-			amount: "${order}",//결제 금액
-			buyer_name: "${sessionScope.name}",
-// 			buyer_tel: "${sessionScope.phone}",
-		}, function(rsp) {
-			if(rsp.success) {
-				alert("결제가 정상적으로 완료되었습니다.");
-				
-			} else {
-				alert("결제에 실패하였습니다.");
-				alert(rsp.error_msg);
-			}
-		});
-	});
-	
-	$('#order_test').click(function(){
-		var blank = $('input:radio[name=pickup_time]').is(":checked");
-		if(blank == false ){
-			alert("픽업 시간을 체크하세요.");
-				return false;
-		}
-	});
-});//jQuery
+	 	      //결제하기
+	 	      IMP.request_pay({
+	 	         pg: "html5_inicis",
+	 	         pay_method: "card",//결제방식 그대로
+	 	         merchant_uid: "pcc_"+now, //주문번호
+	 	         name: "cafe_pcc",//상호명
+	 	         amount: "${order}",//결제 금액
+	 	         buyer_name: "${sessionScope.name}",
+	//	          buyer_tel: "${sessionScope.phone}",
+	 	      }, function(rsp) {
+	 	         if(rsp.success) {
+	 	        	 
+// 			 	            alert("결제가 정상적으로 완료되었습니다.");
+			 	          	
+			 	            $.ajax({
+				 	            method: "POST",
+// 			 					type: "post",
+			 					url: "./Order.pr",
+				 	            data: {
+				 	        	   "pickup_time": time,
+				 	        	   "order_price": $('#order_price').val(),
+			 					},
+			 					dataType: "text",
+			 					success: function(data) {
+// 			 						alert("결제 데이터 넘기기 성공");
+			 						location.href="./OrderList.pr";
+			 					},	
+				 	            error: function(){
+			 						alelrt("결제 데이터 넘기기 실패!!!!!!!!!!!!!");
+			 	            	}  
+			 	            });//ajax
+		 	              
+		 	              
+		 	              
+// 	 	          }).done(function (data) {
+// 		 	            // 가맹점 서버 결제 API 성공시 로직
+		 	            
+		 	            
+		 	            
+		 	            
+		 	            
+			            
+		 	         } 
+		 	         
+		 	         else {
+		 	            alert("결제에 실패하였습니다.");
+		 	            alert(rsp.error_msg);
+		 	         }
+		 	         
+		 	         
+		 	      }); //IMP.request_pay
+		    	  
+		    	  
+		    	  
+		    	  
+		      }//else-if
+		      
+		      
+		   });//click
+		   
+
+	});//jQuery
+
 </script>
 </head>
 <body>
@@ -71,7 +123,7 @@ $(document).ready(function(){
 			<div class="title_text2">주문 정보</div>
 		</div>
 		
-	<form action="./Order.pr">
+<!-- 	<form action="./Order.pr"> -->
 	
 	<div class="order_box">
 		<div class="title_box">
@@ -149,18 +201,18 @@ $(document).ready(function(){
 		</div>
  	
  		<div class="order_info button_area">
-			<input type="submit" value="결제하기" id="order_test">
+			<input type="button" value="결제하기" id="order">
 			<input type="button" value="상품 목록 돌아가기" class="return_product" onclick="location.href='./ProductList.pr';">
-			<input type="hidden" name="order_price" value="${order}">
+			<input type="hidden" id="order_price" name="order_price"  value="${order}">
 			
  		</div>
 	</div>
 	<!-- container2 -->
 		
 		
-	</form>
+<!-- 	</form> -->
 	</div>
-			<input type="button" value="결제 테스트" id="order">
+<!-- 			<input type="button" value="결제 테스트" id="order"> -->
 	<!-- container1 -->
 	
 <!-- 푸터들어가는 곳 -->

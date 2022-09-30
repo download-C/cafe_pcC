@@ -8,12 +8,16 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/about/about.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body style="font-size: 20">
 <div style="position: relative; height: 50px">
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 100px"></div>
+
 </div>
 <div class="wrapper">
 	<div class="content">

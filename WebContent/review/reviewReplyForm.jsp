@@ -6,6 +6,8 @@
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/boards/boardreplyform.css" rel="stylesheet" type="text/css">
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <title>리뷰 답글 달기</title>
 <%
 	System.out.println(request.getAttribute("rmn"));
@@ -20,6 +22,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->	
+	<div style="position: relative; height: 100px"></div>
+
 	<br>
 	<div class="wrapper" style="margin: auto;">
 	<div class="title_img">

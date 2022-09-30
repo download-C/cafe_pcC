@@ -31,6 +31,8 @@
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 <!-- 	<h1>QnAPassword.jsp</h1> -->	
+	<div style="position: relative; height: 100px"></div>
+
 
 	<%
 		String button = request.getParameter("button");

@@ -28,6 +28,7 @@ public class CartUpdateAction implements Action {
 		CartDTO cart_dto = new CartDTO();
 		CartDAO cart_dao = new CartDAO();
 		
+		
 		cart_dto.setCart_num(Integer.parseInt(request.getParameter("cart_num")));
 		cart_dto.setProd_count(Integer.parseInt(request.getParameter("prod_count")));
 		cart_dto.setTotal_price(Integer.parseInt(request.getParameter("total_price")));

@@ -9,7 +9,7 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/boards/boardpassword.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script src="./script/jquery-3.6.0.js"></script>
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 // var review_num = '<c:out value="${review_num }" />';
 	
@@ -32,6 +32,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 100px"></div>
+
 <!-- <h1>reviewPassword.jsp</h1> -->
 
 	<% 

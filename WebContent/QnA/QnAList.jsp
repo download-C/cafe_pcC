@@ -79,7 +79,7 @@
 	<br><br>
 	<c:if test="${cnt != 0 }">
 		<c:if test="${startPage > pageBlock }">
-			<a href="./Reviewdivst.rv?pageNum=${startPage-pageBlock }">이전</a>
+			<a href="./QnAList.qna?pageNum=${startPage-pageBlock }">이전</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 			&nbsp;
@@ -87,7 +87,7 @@
 			&nbsp;
 		</c:forEach>
 		<c:if test="${endPage < pageCount }">
-			<a href="./Reviewdivst.rv?pageNum=${startPage + pageBlock }">다음</a>
+			<a href="./QnAList.qna?pageNum=${startPage + pageBlock }">다음</a>
 			</c:if>
 		</c:if>
 		<br>

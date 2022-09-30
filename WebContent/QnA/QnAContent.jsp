@@ -116,14 +116,13 @@
 		
 	if(mgr_num != null) {
 	%>
-	<input type="button" class="btn" name="riview_reply" id="reply" value="답글"
-	 onclick="location.href='./QnAReplyForm.qna?qna_num=${dto.qna_num}';">
 	<div class="btndiv" style="margin:auto;">
-		<input type="button" class="btn" name="qna_update" id="update" value="수정"
-	     onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=update';">
-	
-		<input type="button" class="btn" name="qna_delete" id="delete" value="삭제" 
-		onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=delete';">
+		<input type="button" class="btn" name="riview_reply" id="reply" value="답글"
+		 onclick="location.href='./QnAReplyForm.qna?qna_num=${dto.qna_num}';">
+			<input type="button" class="btn" name="qna_update" id="update" value="수정"
+		     onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=update';">
+			<input type="button" class="btn" name="qna_delete" id="delete" value="삭제" 
+			onclick="location.href='./QnAPasswordForm.qna?qna_num=${dto.qna_num}&button=delete';">
    
     <%
 	}

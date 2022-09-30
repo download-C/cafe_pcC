@@ -49,8 +49,9 @@
 			<br>
 			
 		<div class="divbtn">
-			<input class="btn" type="button" value="임시 등록">
 			<input class="btn" type="submit" value="등록"> 
+			<input class="btn" type="button" value="취소" onclick="history.back();"> 
+			
 		</div>
 		
 	</form>

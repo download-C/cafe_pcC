@@ -92,7 +92,7 @@
 
 		<div class="divbtn">
 			<input class="btn" type="submit" id="write" value="작성" >
-			<input class="btn" type="button" id="btn" value="취소">
+			<input class="btn" type="button" id="btn" value="취소" onclick="history.back();">
 		</div>
 	<br>
 	</form>

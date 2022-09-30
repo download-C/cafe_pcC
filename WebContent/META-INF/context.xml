@@ -7,7 +7,7 @@
 		auth = "Container"
 		type = "javax.sql.DataSource"
 		driverClassName = "com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://itwillbs9.cafe24.com/itwillbs9"
+		url="jdbc:mysql://localhost:3306/itwillbs9"
 		username="itwillbs9"
 		password="itwillbs8030909"
 		maxWait = "5000"

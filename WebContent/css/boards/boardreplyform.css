@@ -5,18 +5,19 @@
 @font-face {
   font-family: "S-CoreDream-3Light";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
-   	   format("woff");
+         format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 h2 {
-	text-align: center;
+   text-align: center;
 }
 
 .wrapper{
-	width: 75%;
+   width: 90%;
 }
+
 
 .title_img{
 	   position:relative;
@@ -63,83 +64,91 @@ h2 {
 	}
 
 .container{
-		border: 1px solid var(--color-gray-400);
-		border-radius: 10px;
-		margin: 20px auto;
-		width: 500px;
-		min-height: 400px;
-		text-align: center;
-		padding-top: 40px;
+      border: 1px solid var(--color-gray-400);
+      border-radius: 10px;
+      margin: 20px auto;
+      width: 75%;
+      min-height: 350px;
+      text-align: center;
+/*       padding-top: 40px; */
+      padding: 40px 20px;
 }
 
-.container .ss0{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top: 20px;
+.ss0{
+   font-weight: bold;
+   font-size: 20px;
+   padding-top: 20px;
 }
 
-.container .ss{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top: 45px;
+.ss{
+   font-weight: bold;
+   font-size: 20px;
+   padding: 10px 0px;
+   min-width: 80px;
 }
 
-
-.container .ss1{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top: 45px;
+.ss1{
+   font-weight: bold;
+   font-size: 20px;
+   padding-top: 45px;
 }
-.container .ss2{
-	font-weight: bold;
-	font-size: 20px;
-	padding-top: 55px;
-	padding-bottom: 20px;
+.ss2{
+   font-weight: bold;
+   font-size: 20px;
+   padding-top: 55px;
+   padding-bottom: 20px;
+}
+
+.ss3 {
+   padding: 10px 0px;
+   font-size: 20px;
+   min-width: 100px;
+   
 }
 
 .conbox{
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-bottom: solid 1px var(--color-gray-500);
-	width: 200px;
-	height: 50px;
-	text-align: center;
-	font-size: 17px;
-	margin-bottom: 8px;
+   border-left: none;
+   border-right: none;
+   border-top: none;
+   border-bottom: solid 1px var(--color-gray-500);
+   width: 200px;
+   height: 50px;
+   text-align: center;
+   font-size: 17px;
+   margin-bottom: 8px;
 }
 
 .conbox0{
-	width: 15px;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-bottom: solid 1px var(--color-gray-500);
-	width: 200px;
-	height: 50px;
-	text-align: center;
-	font-size: 17px;
-	margin-bottom: 8px;
+   width: 15px;
+   border-left: none;
+   border-right: none;
+   border-top: none;
+   border-bottom: solid 1px var(--color-gray-500);
+   width: 200px;
+   height: 50px;
+   text-align: center;
+   font-size: 17px;
+   margin-bottom: 8px;
 }
 
 .conbox1{
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-bottom: solid 1px var(--color-gray-500);
-	width: 200px;
-	height: 50px;
-	text-align: center;
-	font-size: 17px;
-	margin-bottom: 8px;
+   border-left: none;
+   border-right: none;
+   border-top: none;
+   border-bottom: solid 1px var(--color-gray-500);
+   width: 200px;
+   height: 50px;
+   text-align: center;
+   font-size: 17px;
+   margin-bottom: 8px;
 }
 
 table{
-	margin: auto;
+   margin: auto;
 }
 
 .divbtn{
-	text-align: center;
+   text-align: center;
 }
 
 .divbtn .btn{

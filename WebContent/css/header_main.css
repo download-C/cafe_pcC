@@ -129,6 +129,8 @@ header{
     flex-direction: column;
     align-items: center;
     width:100%;
+/*     background-color: var(--color-white); */
+
   }
 
   .menu_area_ul{
@@ -145,7 +147,9 @@ header{
   .login_area{
     display: none;
     justify-content: flex-end;
-    width: 95%;
+    width: 100%;
+/*     background-color: var(--color-white); */
+
   }
 
   .togglebtn{
@@ -161,7 +165,4 @@ header{
   .menu_area.active, .login_area.active {
     display: flex;
   }
-
-
-}
 

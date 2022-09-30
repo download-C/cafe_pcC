@@ -10,6 +10,8 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/mypage/mypageDelete.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
+<script  src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
    // alert("document.fr.pw.value : "+document.fr.pw.value);
    function checkData(){
@@ -27,6 +29,8 @@
 <!-- 헤더들어가는 곳 -->
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
+	<div style="position: relative; height: 100px"></div>
+
 <%
        // 로그인 여부 체크
        String mem_num = (String) session.getAttribute("mem_num");

@@ -244,7 +244,7 @@
 		
 		<!-- 장바구니에 상품이 있을 때 -->
 			<c:if test="${not empty cartList}">
-			<form action="./OrderWrite.pr">
+			<form action="./OrderWrite.pr" method="post">
 			<div class="cart_box">
 			
 				<div class="title_box">

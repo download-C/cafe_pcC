@@ -14,9 +14,10 @@
 <title>주문하기</title>
 <script src="./JavaScript/main.js" defer></script>
 <link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/product/order.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./JavaScript/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	//alert("test1");
@@ -62,56 +63,106 @@ $(document).ready(function(){
 <jsp:include page="../inc/top.jsp" />
 <!-- 헤더들어가는 곳 -->
 	<div style="position: relative; height: 100px"></div>
-
-	<h1>결제하기</h1>
 	
+	<div class="container1">
+	
+		<div class="title">
+			<h1 class="title_text">결제하기</h1>
+			<div class="title_text2">주문 정보</div>
+		</div>
+		
 	<form action="./Order.pr">
-	<div>주문 정보</div>
-		<table border="1">
-	     	<tr>
-		       <td>상품 정보</td>
-		       <td>수량/옵션</td>
-		       <td>주문금액</td>
-		     </tr>
-		     
+	
+	<div class="order_box">
+		<div class="title_box">
+			<span class="box1">상품 정보</span>
+			<span class="box1">수량/옵션</span>
+			<span class="box1">주문금액</span>
+		</div>
+
+		<!-- content_box -->
+		<div class="content_box">
 			<c:forEach var="dto" items="${requestScope.cartList }">
 			<input type="hidden" name="cart_num" value="${dto.cart_num}">
-				<tr>
-	      			<td>
+			
+			<!-- content_box1 -->
+			<div class="content_box1">
+				<!-- 상품 정보 -->
+				<div class="box2">
+					<div class="content_inner">
 						<a href="./ProductContent.pr?prod_num=${dto.prod_num }">
-							<div><img src="img/product/${dto.prod_img}"></div>
-							<div>${dto.prod_name }</div>
-							<div>${dto.price}</div>							
+				
+							<div class="content_img">
+								<img src="img/product/${dto.prod_img}"></div>
+							</div>
+							
+							<div class="content_info">
+								<div class="content_title">${dto.prod_name }</div>
+								<div class="content_price"><span>${dto.price}</span>원</div>							
+							</div>
 						</a>
-	      			</td>
-	      			
-	       			<td>
-						<div>${dto.prod_count}</div>
-						<div>${dto.requirements}</div>
-	       			</td>
-	       			
-	       			<td>
-						<div>${dto.total_price}원</div>
-	       			</td>
-	    	 	</tr>
+					</div>
+					
+		      		<!--  수량/옵션 -->
+		        	<div class="box2">
+						<div>	
+							<div class="count">${dto.prod_count}</div>
+							<div class="requirements">${dto.requirements}</div>
+		       			</div>
+	       			</div>
+       			
+	      			<!-- 상품수량에 따른 total_price -->
+					<div class="box2">
+						<div>
+							<div class="total_price"><span class="total_price">${dto.total_price}</span>원</div>
+						</div>
+					</div>
+			</div>
+			<!-- content_box1 -->
 			</c:forEach>
-		</table>
-		
-		<div>주문자명 : ${sessionScope.name}</div>
-		
-		<div>총 주문 금액 : ${order} 원</div>
-		
-		<div>
-			<label for="pickup_time">수령 예정 시간 : </label>
-	        <input type="radio" name="pickup_time" id="pickup_time" value="5">5분 뒤
-			<input type="radio" name="pickup_time" id="pickup_time" value="10">10분 뒤
-		 	<input type="radio" name="pickup_time" id="pickup_time" value="15">15분 뒤<br>
 		</div>
-	 	
-		<input type="hidden" name="order_price" value="${order}">
-		<input type="submit" value="결제하기" id="order_test">
-		<input type="button" value="결제 테스트" id="order">
-	</form>	
+		<!-- content_box -->
+			
+	</div>
+	<!-- order_box -->
+	
+	<!-- container2 -->
+	<div class="container2">
+	
+		<div class="order_info">
+			<div class="label"> 주 문 자 명 : </div>
+			<div class="text">${sessionScope.name}</div>
+		</div>
+		
+		<div class="order_info">
+			<div class="label">총 주문 금액 :</div>
+			<div class="text">${order}원</div>
+		</div>
+		
+		<div class="order_info">
+			<div class="label">수령 예정 시간 : </div>
+			<div>
+		        <input class="text" type="radio" name="pickup_time" id="pickup_time" value="5">5분 뒤
+				<input class="text" type="radio" name="pickup_time" id="pickup_time" value="10">10분 뒤
+			 	<input class="text" type="radio" name="pickup_time" id="pickup_time" value="15">15분 뒤<br>
+			</div>
+		</div>
+ 	
+ 		<div class="order_info button_area">
+			<input type="submit" value="결제하기" id="order_test">
+			<input type="button" value="상품 목록 돌아가기" class="return_product" onclick="location.href='./ProductList.pr';">
+			<input type="hidden" name="order_price" value="${order}">
+			
+ 		</div>
+	</div>
+	<!-- container2 -->
+		
+		
+	</form>
+	</div>
+			<input type="button" value="결제 테스트" id="order">
+	<!-- container1 -->
+	
 <!-- 푸터들어가는 곳 -->
 <jsp:include page="../inc/bottom.jsp" />
 <!-- 푸터들어가는 곳 -->	

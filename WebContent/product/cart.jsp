@@ -10,7 +10,7 @@
 <link href="./css/main.css" rel="stylesheet" type="text/css">
 <link href="./css/product/cart.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./JavaScript/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -271,7 +271,7 @@
 							    	
 							    	<div class="content_info">
 									    <div class="content_title">${dto.prod_name}</div>    	
-								        <div class="content_price"><span class="price${dto.cart_num}">${dto.price}</span></div>
+								        <div class="content_price"><span class="price${dto.cart_num}">${dto.price}</span>원</div>
 							    	</div>
 							    	
 							    </a>
@@ -282,9 +282,9 @@
 			        	<!--  수량/옵션 -->
 			        	<div class="box2">
 							<div>
-								<input type='button' class="minus" data-text="${dto.cart_num}" value='-'/>
-								<input type='text' class='prod_count prod_count${dto.cart_num}' data-text="${dto.cart_num}" name='prod_count' value="${dto.prod_count}" >
-				      			<input type='button' class="plus" data-text="${dto.cart_num}" value='+'/>
+								<input type='button' class="count minus" data-text="${dto.cart_num}" value='-'/>
+								<input type='text' class='count prod_count prod_count${dto.cart_num}' data-text="${dto.cart_num}" name='prod_count' value="${dto.prod_count}" >
+				      			<input type='button' class="count plus" data-text="${dto.cart_num}" value='+'/>
 				      			<div id="requirements_div"><span id="requirements_val">${dto.requirements}</span></div>
 							</div>
 						</div>
@@ -292,7 +292,7 @@
 						<!-- 상품수량에 따른 total_price -->
 						<div class="box2">
 							<div>
-					        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원<br>
+					        	<span class="total_price total_price${dto.cart_num}">${dto.total_price}</span>원
 					        	<input type="hidden" class="total_price_hidden${dto.cart_num}" value="${dto.total_price}">
 							</div>
 						</div>
@@ -306,8 +306,8 @@
 		<div class="container2">	
 			<!-- 주문 금액 -->
 			<div class="total_area">
-				<div>주문 금액 </div>
-				<div><span class="order_price"></span>원</div>
+				<div class="total_area_title">총 주문 금액  </div>
+				<div class="total_area_box"><span class="order_price"></span><span>원</span></div>
 				<input type="hidden" class="order_price" name="order_price" val="">
 			</div>
 			

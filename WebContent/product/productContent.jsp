@@ -10,7 +10,7 @@
 <link href="./css/product/productContent.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/1e92182c7c.js" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="./script/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./JavaScript/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		//alert("시험");

@@ -55,12 +55,12 @@ MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
 
 <!-- Stack Icon Refernces -->
 
-[java] /
-[js]
-[html]
-[css]
-[jq]
-[jsp]
-[mysql]
-[tomcat]
+[java] /img/java.png
+[js] /img/JavaScript.png
+[html] /img/html5.png
+[css] /img/css3.png
+[jq] /img/jQuery.png
+[jsp] /img/jsp.png
+[mysql] /img/MySQL.png
+[tomcat] /img/
 

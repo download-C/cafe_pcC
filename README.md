@@ -9,7 +9,7 @@
 목차
 
 ## 프로젝트 소개
-<p align="center">
+<p align="justify">
 Model2 방식을 이용한 식당 예약 및 결제 사이트 구현
 </p>
 
@@ -49,9 +49,6 @@ Model2 방식을 이용한 식당 예약 및 결제 사이트 구현
 
 <br>
 
-## 라이센스
-
-MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
 
 <!-- Stack Icon Refernces -->
 

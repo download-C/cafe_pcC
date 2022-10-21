@@ -17,9 +17,9 @@ Model2 방식을 이용한 식당 예약 및 결제 사이트 구현
 
 ## 기술 스택
 
-| JavaScript | TypeScript |  React   |  Node   |
-| :--------: | :--------: | :------: | :-----: |
-|   ![js]    |   ![ts]    | ![react] | ![node] |
+|   Java8   | JavaScript |   HTML5   |   CSS3   | JQuery3 |  JSP2.4  |  MySQL8  | TomCat8.5 | 
+| :-------: | :--------: | :-------: | -------: | ------: | -------: | -------: | --------: |
+| ![java]   | ![js]      | ![html]   | ![css]   | ![jq]   | ![jsp]   | ![mysql] | ![tomcat] |
 
 <br>
 
@@ -55,7 +55,12 @@ MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
 
 <!-- Stack Icon Refernces -->
 
-[js]: /images/stack/javascript.svg
-[ts]: /images/stack/typescript.svg
-[react]: /images/stack/react.svg
-[node]: /images/stack/node.svg
+[java] /
+[js]
+[html]
+[css]
+[jq]
+[jsp]
+[mysql]
+[tomcat]
+

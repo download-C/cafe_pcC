@@ -9,13 +9,8 @@
 목차
 
 ## 프로젝트 소개
-
-<p align="justify">
-프로젝트 개요/동기
-</p>
-
 <p align="center">
-GIF Images
+Model2 방식을 이용한 식당 예약 및 결제 사이트 구현
 </p>
 
 <br>

@@ -1,3 +1,60 @@
-# cafe_pcC
+# cafe pcC
 
-![cafe pcC](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F26b5a547-af74-422b-8901-c8d44c8cbc58%2Fpcc_main.png?table=block&id=93a51c92-ff66-4645-99aa-441ea8b4c026&spaceId=cb34b068-6a6e-4075-accc-6fc9facd7ffb&width=2000&userId=124734b9-19e5-422a-8fb6-e85a96b709eb&cache=v2)
+<p align="center">
+  <br>
+  <img src="./WebContent/img/MainPage.jpg">
+  <br>
+</p>
+
+목차
+
+## 프로젝트 소개
+
+<p align="justify">
+프로젝트 개요/동기
+</p>
+
+<p align="center">
+GIF Images
+</p>
+
+<br>
+
+## 기술 스택
+
+| JavaScript | TypeScript |  React   |  Node   |
+| :--------: | :--------: | :------: | :-----: |
+|   ![js]    |   ![ts]    | ![react] | ![node] |
+
+<br>
+
+## 구현 기능
+
+### 기능 1
+
+### 기능 2
+
+### 기능 3
+
+### 기능 4
+
+<br>
+
+## 배운 점 & 아쉬운 점
+
+<p align="justify">
+
+</p>
+
+<br>
+
+## 라이센스
+
+MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
+
+<!-- Stack Icon Refernces -->
+
+[js]: /images/stack/javascript.svg
+[ts]: /images/stack/typescript.svg
+[react]: /images/stack/react.svg
+[node]: /images/stack/node.svg

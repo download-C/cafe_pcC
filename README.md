@@ -17,9 +17,9 @@ Model2 방식을 이용한 식당 예약 및 결제 사이트 구현
 
 ## 기술 스택
 
-|   Java8   | JavaScript |   HTML5   |   CSS3   | JQuery3 |  JSP2.4  |  MySQL8  |
-| :-------: | :--------: | :-------: | -------: | ------: | -------: | -------: | 
-| ![java]   | ![js]      | ![html]   | ![css]   | ![jq]   | ![jsp]   | ![mysql] |
+|Java8   |JavaScript |HTML5   |CSS3   |JQuery3 |JSP2.4  |MySQL8  |
+| :-------: | :-------: | :-------: | -------: | -------: | -------: | -------: | 
+| ![java]   | ![js]     | ![html]   | ![css]   | ![jq]    | ![jsp]   | ![mysql] |
 
 <br>
 
@@ -55,11 +55,11 @@ MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
 
 <!-- Stack Icon Refernces -->
 
-[java]: WebContent/img/Java.png
-[js]: WebContent/img/JavaScript.png
-[html]: WebContent/img/html5.png
-[css]: WebContent/img/CSS3.png
-[jq]: WebContent/img/jQuery.png
-[jsp]: WebContent/img/JSP.png
-[mysql]: WebContent/img/MySQL.png
+[java]: WebContent/img/icon/Java.png
+[js]: WebContent/img/icon/JavaScript.png
+[html]: WebContent/img/icon/html5.png
+[css]: WebContent/img/icon/CSS3.png
+[jq]: WebContent/img/icon/jQuery.png
+[jsp]: WebContent/img/icon/JSP.png
+[mysql]: WebContent/img/icon/mysql.jpg
 
